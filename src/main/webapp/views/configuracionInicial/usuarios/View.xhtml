@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioViewDlg" widgetVar="UsuarioViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewUsuarioTitle}" closeOnEscape="true">
+
+            <h:form id="UsuarioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:tabView id="UsuarioTabView">
+
+                        <p:tab id="UsuarioTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:panelGrid columns="2" columnClasses="column" rendered="#{ssUsuariosController.selected != null}">
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_idUsuario}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.idUsuario}" title="#{myBundle.ViewUsuarioTitle_idUsuario}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_codigoUsuario}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.codigoUsuario}" title="#{myBundle.ViewUsuarioTitle_codigoUsuario}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_nombreUsuario}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.nombreUsuario}" title="#{myBundle.ViewUsuarioTitle_nombreUsuario}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_telefono}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.telefono}" title="#{myBundle.ViewUsuarioTitle_telefono}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_email}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.email}" title="#{myBundle.ViewUsuarioTitle_email}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_cargo}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.cargo}" title="#{myBundle.ViewUsuarioTitle_cargo}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_descripcion}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.descripcion}" title="#{myBundle.ViewUsuarioTitle_descripcion}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_bloqueado}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.bloqueado}" title="#{myBundle.ViewUsuarioTitle_bloqueado}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_clave}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.clave}" title="#{myBundle.ViewUsuarioTitle_clave}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_intentosAccesoFallidos}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.intentosAccesoFallidos}" title="#{myBundle.ViewUsuarioTitle_intentosAccesoFallidos}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_usuarioRegistro}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.usuarioRegistro}" title="#{myBundle.ViewUsuarioTitle_usuarioRegistro}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_fechaRegistro}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.fechaRegistro}" title="#{myBundle.ViewUsuarioTitle_fechaRegistro}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_usuarioUltimamodificacion}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.usuarioUltimamodificacion}" title="#{myBundle.ViewUsuarioTitle_usuarioUltimamodificacion}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_fechaUltimamodificacion}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.fechaUltimamodificacion}" title="#{myBundle.ViewUsuarioTitle_fechaUltimamodificacion}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_fechaUltimoAcceso}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.fechaUltimoAcceso}" title="#{myBundle.ViewUsuarioTitle_fechaUltimoAcceso}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_direccionAcceso}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.direccionAcceso}" title="#{myBundle.ViewUsuarioTitle_direccionAcceso}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_detalleUltimoAcceso}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.detalleUltimoAcceso}" title="#{myBundle.ViewUsuarioTitle_detalleUltimoAcceso}"/>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_fechaCambioClave}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.fechaCambioClave}" title="#{myBundle.ViewUsuarioTitle_fechaCambioClave}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.ViewUsuarioLabel_codigoSucursal}"/>
+                                <h:outputText value="#{ssUsuariosController.selected.codigoSucursal}" title="#{myBundle.ViewUsuarioTitle_codigoSucursal}"/>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton value="#{myBundle.Close}" onclick="UsuarioViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

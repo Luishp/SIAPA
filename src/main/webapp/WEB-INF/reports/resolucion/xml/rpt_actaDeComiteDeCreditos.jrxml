@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_actaDeComiteDeCreditos" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bae9956-1689-40bb-bbd0-1f871efcacd3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="actaNumero" class="java.lang.String">
+		<fieldDescription><![CDATA[actaNumero]]></fieldDescription>
+	</field>
+	<field name="asistentes" class="java.lang.String">
+		<fieldDescription><![CDATA[asistentes]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="reunionFecha" class="java.lang.String">
+		<fieldDescription><![CDATA[reunionFecha]]></fieldDescription>
+	</field>
+	<field name="reunionHora" class="java.lang.String">
+		<fieldDescription><![CDATA[reunionHora]]></fieldDescription>
+	</field>
+	<field name="reunionLugar" class="java.lang.String">
+		<fieldDescription><![CDATA[reunionLugar]]></fieldDescription>
+	</field>
+	<field name="solicitudesAprobadas" class="java.lang.String">
+		<fieldDescription><![CDATA[solicitudesAprobadas]]></fieldDescription>
+	</field>
+	<field name="solicitudesDenegadas" class="java.lang.String">
+		<fieldDescription><![CDATA[solicitudesDenegadas]]></fieldDescription>
+	</field>
+	<field name="solicitudesDevueltas" class="java.lang.String">
+		<fieldDescription><![CDATA[solicitudesDevueltas]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<textField>
+				<reportElement x="251" y="54" width="67" height="20" uuid="8dba27d7-7724-459b-885a-3cfba60ff2e4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ACTA No."+$F{actaNumero}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="4" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="572" height="20" isPrintWhenDetailOverflows="true" uuid="534a0716-ad78-4615-a322-1d824e887bcf"/>
+				<textElement textAlignment="Justified" markup="html"/>
+				<textFieldExpression><![CDATA["En San Salvador y en el local de ACOFINGES DE R.L situado  en "+$F{reunionLugar}+", a las "+$F{reunionHora}+" horas del dia "+$F{reunionFecha}+", siendo estos el lugar, día y hora indicados , se celebra sesión ordinaria estando presentes:"+$F{asistentes}+" ,Existiendo el quórum requerido se declara abierta la sesión y se somete a consideración la agenda siguiente:"
++" Uno: verificación de quórum; Dos: lectura del acta anterior; tres: conocimiento de solicitudes de crédito. "
++"Tres: se analizaron y aprobaron  la(s) solicitud(es) siguiente(s): "
++$F{solicitudesAprobadas}
++". Fueron devueltas las solicitudes de: "
++$F{solicitudesDevueltas}
++". Fueron denegadas las solicitudes de : "
++$F{solicitudesDenegadas}
++" Y no habiendo más que hacer constar se da por finalizada la sesión. "
++"<br>"
++"Firmamos:"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="95">
+			<textField>
+				<reportElement x="81" y="30" width="67" height="20" uuid="276b6d40-f429-4908-8d09-59d96de871cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Presidente"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="30" width="67" height="20" uuid="01c77928-c6d9-42ea-a742-6b8f972d91a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Vocal"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="69" width="67" height="20" uuid="ce618350-e3fe-41a9-8c3a-b8fd3ce9af3b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Secretaria(o)"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="55" y="29" width="126" height="1" uuid="ddece009-9d9d-4934-bfc7-70299803d573"/>
+			</line>
+			<line>
+				<reportElement x="225" y="69" width="126" height="1" uuid="cdb7c56d-b8b8-43ad-a53b-8ce8d9cf409a"/>
+			</line>
+			<line>
+				<reportElement x="388" y="30" width="126" height="1" uuid="c3c0ae00-0924-469d-8a6d-918a4726057f"/>
+			</line>
+			<textField>
+				<reportElement x="39" y="9" width="16" height="20" uuid="c32d35d3-72ec-442a-9cb2-370346142d7d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["F."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="49" width="16" height="20" uuid="14591265-4e4c-4037-8c7c-ab17a34d5721"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["F."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="10" width="16" height="20" uuid="d03df9db-f955-40b9-a70b-d1a35a853e38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["F."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="449" y="73" width="80" height="20" uuid="e977277d-b4cd-414c-aee3-d6a0444b28a6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="529" y="73" width="40" height="20" uuid="79a2704f-9ceb-47e0-b258-cd040096b3aa"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="11" splitType="Stretch"/>
+	</summary>
+</jasperReport>

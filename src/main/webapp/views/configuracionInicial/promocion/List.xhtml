@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PromocionListForm">
+        <br/>
+        <br/>
+        <p:fieldset legend="#{crudbundle.PromocionTitle}">
+            <p:dataTable id="datalist" var="item" value="#{promocionManagedBean.lazyItems}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                         selectionMode="single" selection="#{promocionManagedBean.selected}"
+                         rowKey="#{item.promocionId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton"/>
+
+                <f:facet name="header">  
+                    #{crudbundle.ListPromocionTitle}
+                </f:facet>  
+
+
+                <p:column filterBy="#{item.promocionId}" width="12%">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.PromocionTitle_promocionId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.promocionId}"/>
+                </p:column>
+                <p:column filterBy="#{item.promocionNombre}" width="20%">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.PromocionTitle_promocionNombre}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.promocionNombre}"/>
+                </p:column>
+                <p:column filterBy="#{item.promocionDescripcion}" width="32%">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.PromocionTitle_promocionDescripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.promocionDescripcion}"/>
+                </p:column>
+                <p:column filterBy="#{item.promocionFechainicio}" width="12%">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.PromocionTitle_promocionFechainicio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.promocionFechainicio}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column filterBy="#{item.promocionFechafinal}" width="12%">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.PromocionTitle_promocionFechafinal}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.promocionFechafinal}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>                
+                <p:column filterBy="#{item.activo}" filterOptions="#{promocionManagedBean.activoOptionsFilter}" width="12%">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.Title_activo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.activo}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{promocionManagedBean.prepareCreate}" update=":PromocionCreateForm" oncomplete="PromocionCreateDialog.show()"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update=":PromocionViewForm" oncomplete="PromocionViewDialog.show()" disabled="#{empty promocionManagedBean.selected}"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":PromocionEditForm" oncomplete="PromocionEditDialog.show()" disabled="#{empty promocionManagedBean.selected}"/>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:fieldset>
+    </h:form>
+
+</ui:composition>

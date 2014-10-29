@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeudasCViewDlg" widgetVar="DeudasCViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.ViewDeudasCTitle}" closeOnEscape="true">
+
+            <h:form id="DeudasCViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{analisisCreditoManagedBean.deudaSelected != null}">
+
+                        <h:outputText value="#{crudbundle.deuda_id}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.deudaId}" title="#{crudbundle.deuda_id}"/>
+
+                        <h:outputText value="#{crudbundle.deuda_nombre_institucion}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.deudaNombreinstitucion}" title="#{crudbundle.deuda_nombre_institucion}"/>
+
+                        <h:outputText value="#{crudbundle.deuda_cuota}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.deudaCuota}" title="#{crudbundle.deuda_cuota}"/>
+                        
+                        <h:outputText value="#{crudbundle.deuda_fecha_otorgamiento}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.deudaFechaotorgado}" title="#{crudbundle.deuda_fecha_otorgamiento}">
+                           <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        
+                        <h:outputText value="#{crudbundle.deuda_valor_orginal}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.deudaValororiginal}" title="#{crudbundle.deuda_valor_orginal}"/>
+                        
+                        <h:outputText value="#{crudbundle.deuda_saldo_actual}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.deudaSaldoactual}" title="#{crudbundle.deuda_saldo_actual}"/>
+                        
+                        <h:outputText value="#{crudbundle.deuda_fecha_vencimiento}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.deudaFechavencimiento}" title="#{crudbundle.deuda_fecha_vencimiento}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        
+                        <h:outputText value="#{crudbundle.deuda_usuarioRegistro}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.usuarioRegistro}" title="#{crudbundle.deuda_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.deuda_fechaRegistro}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.fechaRegistro}" title="#{crudbundle.deuda_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.deuda_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.usuarioUltimamodificacion}" title="#{crudbundle.deuda_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.deuda_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{analisisCreditoManagedBean.deudaSelected.fechaUltimamodificacion}" title="#{crudbundle.deuda_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="DeudasCViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

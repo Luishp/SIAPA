@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">
+        <title>Documentos de Desembolso</title>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="desembolsosIngresadosListForm">
+            <br/>
+            <br/>
+
+            <p:dataTable id="datalist" var="item" value="#{desembolsoCreditoManagedBean.desembolsosReporte}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="false" resizableColumns="true"  
+                         selectionMode="single" selection="#{desembolsoCreditoManagedBean.desembolsoToReport}"
+                         rowKey="#{item.desembolsoId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="reportButton1 reportButton2"/>
+                <p:ajax event="rowUnselect" update="reportButton1 reportButton2"/>
+
+                <f:facet name="header">  
+                    Desembolsos
+                </f:facet>  
+                <p:column width="15%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Fecha"/>
+                    </f:facet>
+                    <h:outputText value="#{item.resolucionId.analisisId.analisisFechacreacion}"/>
+                </p:column>
+
+                <p:column width="40%">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre del Asociado"/>
+                    </f:facet>
+                    <h:outputText value="#{item.resolucionId.analisisId.solicitudId.nombreCompleto}"/>
+                </p:column>
+
+                <p:column width="15%" style="text-align: right">
+                    <f:facet name="header">
+                        <h:outputText value="Monto"/>
+                    </f:facet>
+                    <h:outputText value="#{item.resolucionId.analisisId.analisisMonto}">
+                        <f:convertNumber type="currency" currencySymbol="$ " />
+                    </h:outputText>
+                </p:column>
+
+                <p:column width="15%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Plazo" />
+                    </f:facet>
+                    <h:outputText value="#{item.resolucionId.analisisId.analisisPlazo}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="reportButton1" icon="ui-icon-print"  value="Comprobante de Desembolso" actionListener="#{desembolsoCreditoManagedBean.printComprobante()}" oncomplete="print(xhr, status, args)" disabled="#{empty desembolsoCreditoManagedBean.desembolsoToReport}"/>                        
+                        <p:spacer height="10" width="20"/>
+                        <p:commandButton id="reportButton2" icon="ui-icon-print"  value="Tabla Teorica de Amortizacion " actionListener="#{desembolsoCreditoManagedBean.printTabla()}" oncomplete="print(xhr, status, args)" disabled="#{empty desembolsoCreditoManagedBean.desembolsoToReport}"/>                        
+                        <p:spacer height="10" width="20"/>
+                        <p:commandButton id="refreshButton" icon="ui-icon-refresh" value="Actualizar" actionListener="#{desembolsoCreditoManagedBean.actualizarDesembolsosParaReporte()}" update="@(#desembolsosIngresadosListForm)"/>
+
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+
+        </h:form>
+        <ui:include src="../../common/Print.xhtml"/>
+    </ui:define>
+
+</ui:composition>

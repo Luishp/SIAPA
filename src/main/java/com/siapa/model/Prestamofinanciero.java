@@ -1,0 +1,284 @@
+package com.siapa.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ *
+ * @author marlon.andrade
+ */
+@Entity
+@Table(name = "prestafin", catalog = "siacofinges", schema = "")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Prestamofinanciero.findAll", query = "SELECT p FROM Prestamofinanciero p")})
+public class Prestamofinanciero implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue
+    @Column(name = "PRESTAFIN_ID", nullable = false)
+    private Integer prestamoId;
+    @Column(name = "PRESTAFIN_MONTO", precision = 10, scale = 2)
+    private BigDecimal prestamoMonto;
+    @Column(name = "PRESTAFIN_PLAZO")
+    private Integer prestamoPlazo;
+    @Column(name = "PRESTAFIN_TASA", precision = 4, scale = 4)
+    private BigDecimal prestamoTasa;
+    @Column(name = "PRESTAFIN_SALDO", precision = 10, scale = 2)
+    private BigDecimal prestamoSaldo;
+    @Column(name = "PRESTAFIN_CUOTA", precision = 10, scale = 2)
+    private BigDecimal prestamoCuota;
+   
+    @Column(name = "PRESTAFIN_FECHAPAGO")
+    @Temporal(TemporalType.DATE)
+    private Date prestamoFechapago;
+    @Column(name = "PRESTAFIN_FECHAVENCIMIENTO")
+    @Temporal(TemporalType.DATE)
+    private Date prestamoFechavencimiento;
+    @Column(name = "PRESTAFIN_FECHAULTIMOPAGO")
+    @Temporal(TemporalType.DATE)
+    private Date prestamoFechaultimopago;
+    @Column(name = "PRESTAFIN_FECHAULTIMACAPITAL")
+    @Temporal(TemporalType.DATE)
+    private Date prestamoFechaultimacapital;
+    @Column(name = "PRESTAFIN_FECHAULTIMAINTERES")
+    @Temporal(TemporalType.DATE)
+    private Date prestamoFechaultimainteres;
+    @Size(max = 2)
+    @Column(name = "PRESTAFIN_CATEGORIA", length = 2)
+    private String prestamoCategoria;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2)
+    @Column(nullable = false, length = 2)
+    private String activo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "USUARIO_REGISTRO", nullable = false, length = 15)
+    private String usuarioRegistro;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "FECHA_REGISTRO", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaRegistro;
+    @Size(max = 15)
+    @Column(name = "USUARIO_ULTIMAMODIFICACION", length = 15)
+    private String usuarioUltimamodificacion;
+    @Column(name = "FECHA_ULTIMAMODIFICACION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaUltimamodificacion;
+    @JoinColumn(name = "SOLICITUD_ID", referencedColumnName = "SOLICITUD_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Solicitud solicitudId;
+    @JoinColumn(name = "RGC_ID", referencedColumnName = "RGC_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Registrogarantiacodeudor rgcId;
+    
+    public Prestamofinanciero() {
+    }
+
+    public Prestamofinanciero(Integer prestamoId) {
+        this.prestamoId = prestamoId;
+    }
+
+    public Prestamofinanciero(Integer prestamoId, String activo, String usuarioRegistro, Date fechaRegistro) {
+        this.prestamoId = prestamoId;
+        this.activo = activo;
+        this.usuarioRegistro = usuarioRegistro;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Integer getPrestamoId() {
+        return prestamoId;
+    }
+
+    public void setPrestamoId(Integer prestamoId) {
+        this.prestamoId = prestamoId;
+    }
+
+    public BigDecimal getPrestamoMonto() {
+        return prestamoMonto;
+    }
+
+    public void setPrestamoMonto(BigDecimal prestamoMonto) {
+        this.prestamoMonto = prestamoMonto;
+    }
+
+    public Integer getPrestamoPlazo() {
+        return prestamoPlazo;
+    }
+
+    public void setPrestamoPlazo(Integer prestamoPlazo) {
+        this.prestamoPlazo = prestamoPlazo;
+    }
+
+    public BigDecimal getPrestamoTasa() {
+        return prestamoTasa;
+    }
+
+    public void setPrestamoTasa(BigDecimal prestamoTasa) {
+        this.prestamoTasa = prestamoTasa;
+    }
+
+    public BigDecimal getPrestamoSaldo() {
+        return prestamoSaldo;
+    }
+
+    public void setPrestamoSaldo(BigDecimal prestamoSaldo) {
+        this.prestamoSaldo = prestamoSaldo;
+    }
+
+    public BigDecimal getPrestamoCuota() {
+        return prestamoCuota;
+    }
+
+    public void setPrestamoCuota(BigDecimal prestamoCuota) {
+        this.prestamoCuota = prestamoCuota;
+    }
+
+    public Date getPrestamoFechapago() {
+        return prestamoFechapago;
+    }
+
+    public void setPrestamoFechapago(Date prestamoFechapago) {
+        this.prestamoFechapago = prestamoFechapago;
+    }
+
+    public Date getPrestamoFechavencimiento() {
+        return prestamoFechavencimiento;
+    }
+
+    public void setPrestamoFechavencimiento(Date prestamoFechavencimiento) {
+        this.prestamoFechavencimiento = prestamoFechavencimiento;
+    }
+
+    public Date getPrestamoFechaultimopago() {
+        return prestamoFechaultimopago;
+    }
+
+    public void setPrestamoFechaultimopago(Date prestamoFechaultimopago) {
+        this.prestamoFechaultimopago = prestamoFechaultimopago;
+    }
+
+    public Date getPrestamoFechaultimacapital() {
+        return prestamoFechaultimacapital;
+    }
+
+    public void setPrestamoFechaultimacapital(Date prestamoFechaultimacapital) {
+        this.prestamoFechaultimacapital = prestamoFechaultimacapital;
+    }
+
+    public Date getPrestamoFechaultimainteres() {
+        return prestamoFechaultimainteres;
+    }
+
+    public void setPrestamoFechaultimainteres(Date prestamoFechaultimainteres) {
+        this.prestamoFechaultimainteres = prestamoFechaultimainteres;
+    }
+
+    public String getPrestamoCategoria() {
+        return prestamoCategoria;
+    }
+
+    public void setPrestamoCategoria(String prestamoCategoria) {
+        this.prestamoCategoria = prestamoCategoria;
+    }
+
+    public String getActivo() {
+        return activo;
+    }
+
+    public void setActivo(String activo) {
+        this.activo = activo;
+    }
+
+    public String getUsuarioRegistro() {
+        return usuarioRegistro;
+    }
+
+    public void setUsuarioRegistro(String usuarioRegistro) {
+        this.usuarioRegistro = usuarioRegistro;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getUsuarioUltimamodificacion() {
+        return usuarioUltimamodificacion;
+    }
+
+    public void setUsuarioUltimamodificacion(String usuarioUltimamodificacion) {
+        this.usuarioUltimamodificacion = usuarioUltimamodificacion;
+    }
+
+    public Date getFechaUltimamodificacion() {
+        return fechaUltimamodificacion;
+    }
+
+    public void setFechaUltimamodificacion(Date fechaUltimamodificacion) {
+        this.fechaUltimamodificacion = fechaUltimamodificacion;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (prestamoId != null ? prestamoId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Prestamofinanciero)) {
+            return false;
+        }
+        Prestamofinanciero other = (Prestamofinanciero) object;
+        return (this.prestamoId != null || other.prestamoId == null) && (this.prestamoId == null || this.prestamoId.equals(other.prestamoId));
+    }
+
+    @Override
+    public String toString() {
+        return "com.siacofinges.model.Prestamofinanciero[ prestamoId=" + prestamoId + " ]";
+    }
+
+    public Solicitud getSolicitudId() {
+        return solicitudId;
+    }
+
+    public void setSolicitudId(Solicitud solicitudId) {
+        this.solicitudId = solicitudId;
+    }
+
+    public Registrogarantiacodeudor getRgcId() {
+        return rgcId;
+    }
+
+    public void setRgcId(Registrogarantiacodeudor rgcId) {
+        this.rgcId = rgcId;
+    }
+
+}

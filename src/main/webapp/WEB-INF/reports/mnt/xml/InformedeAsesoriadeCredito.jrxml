@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformedeAsesoriadeCredito" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8c245a52-90c8-4187-b71f-ef627ad57970">
+	<property name="ireport.zoom" value="1.331000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="prueba" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="17" width="572" height="20" uuid="5ca29100-cdfe-4dd9-a231-2ab1a232fa4d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME DE ASESORÍA DE CRÉDITO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="37" width="53" height="20" uuid="d465dd70-d37d-4c7c-b278-7309105f90d9"/>
+				<text><![CDATA[Código:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="57" width="52" height="20" uuid="05082a47-3bb9-4e24-8158-0dd8cfe183e5"/>
+				<text><![CDATA[Asociado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="169" y="37" width="100" height="20" uuid="002e463e-6c66-4fab-b937-dcb3fa3bb73b"/>
+				<textFieldExpression><![CDATA[$P{prueba}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="424" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="9" width="572" height="414" uuid="45ba0273-01a2-43cd-aa94-a3a48ec2d322"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="9" width="572" height="20" uuid="fb90c87d-bc43-4c67-90a2-b3857bf311c6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL CRÉDITO
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="43" width="98" height="20" uuid="88469326-9fae-4e86-8a01-d836380d3b94"/>
+				<text><![CDATA[Linea de crédito:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="63" width="98" height="20" uuid="5f6c9c06-68d0-41fa-949a-8d95a9d8df14"/>
+				<text><![CDATA[Garantía:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="96" width="98" height="20" uuid="7ebbab27-dc7f-4033-a72d-1077cee24ecc"/>
+				<text><![CDATA[Monto:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="116" width="98" height="20" uuid="0cf152cc-83d5-4926-b5b0-dbfc9491dea3"/>
+				<text><![CDATA[Plazo:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="136" width="98" height="20" uuid="b50982af-eefd-49ed-b841-0ded0b636102"/>
+				<text><![CDATA[Tasa de interés:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="165" width="98" height="20" uuid="3513efe2-db9b-4cec-ad6d-2e7f76356941"/>
+				<text><![CDATA[Ingresos Mensuales:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="185" width="98" height="20" forecolor="#FF0033" uuid="95460e86-1744-4dad-9a99-4bd9e3403f67"/>
+				<text><![CDATA[Forma de pago:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="216" width="292" height="20" uuid="c3b77844-44a0-45ce-be45-1c9227875502"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CALCULO DE CUOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="216" width="280" height="20" uuid="99e281e7-7746-4730-8b64-ad5dc841d488"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CALCULO DE GASTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="116" width="122" height="20" uuid="d53a55c5-cd08-40a2-b45e-89d0060bb6b6"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Valor de hipoteca anterior:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="63" width="122" height="20" uuid="6893a47c-a65e-4387-a5eb-46f151772480"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Valor de contrucción:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="96" width="122" height="20" uuid="8f51a188-d227-4236-9703-cfe7600eaba2"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Valor de compra venta:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="136" width="122" height="20" uuid="ed05e614-eb30-43dd-a967-dbce8f153ba9"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Valor hipoteca actual:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="43" width="122" height="20" uuid="1a97596f-75f7-4f46-9ee6-92beed460b84"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Valor de propiedad:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="263" width="98" height="20" uuid="99d00b38-106e-46b8-9ab7-dc75b7f48715"/>
+				<text><![CDATA[Seguro de deuda:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="243" width="98" height="20" uuid="a3867cfd-0015-4118-9f4f-ee3fd2ffe8e5"/>
+				<text><![CDATA[Capital e intereses:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="283" width="98" height="20" uuid="81dd89b1-1f81-4a8d-b6e6-afb9553512fe"/>
+				<text><![CDATA[Seguro de daños:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="317" width="98" height="20" uuid="a5071ca8-5dce-4448-858e-53f5dda85610"/>
+				<text><![CDATA[Cuota estimada:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="403" width="132" height="20" uuid="0105b241-f59e-4a22-aa10-2446f0a0d4dc"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total estimado de gasto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="323" width="151" height="20" uuid="a671f9f7-ec37-4883-be0e-fc0b231f4f05"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Impuesto de compra venta:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="243" width="151" height="20" uuid="ba505fe8-719d-4b64-b284-759ef5045917"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Complemento de apartaciones:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="263" width="151" height="20" uuid="b68eadab-8ecb-4917-8cdd-61eae4e8c469"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Comisión por otorgamiento:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="283" width="151" height="20" forecolor="#FF0000" uuid="6d880b5e-5e20-4463-8afa-d70613be7325"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Gasto por valúo del inmueble:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="303" width="151" height="20" uuid="e3ce455e-fb4b-453e-b0b7-9d8104cf2e9f"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Impuesto de hipoteca:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="343" width="151" height="20" uuid="cdd33f1d-268d-4d36-a615-f71dc22a8646"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Impuesto de transferencia:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="363" width="151" height="20" uuid="370708cb-1c55-48b2-9086-b424aa557092"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Impuesto por cancelación de hipoteca:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="383" width="151" height="20" forecolor="#FF0000" uuid="4d6f7c57-024e-4655-b537-d81a6e645797"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Honorarios notario:
+]]></text>
+			</staticText>
+		</band>
+		<band height="150">
+			<rectangle>
+				<reportElement x="0" y="9" width="572" height="141" uuid="b270eea0-306c-45c0-9d48-570946b421b8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="9" width="572" height="20" uuid="c62b682e-2dc6-44b1-849b-fccae5faa586"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REQUISITOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="29" width="295" height="121" uuid="62655503-66bd-42f5-9fed-7c72f1eaae7b"/>
+				<textElement markup="html">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1. Constancia de Salario Vigente.<BR>
+2. DUI,NIT,ISSS.<BR>
+3. Recibo de agua o energia.<BR>
+<BR>
+<B>DOCUMENTOS GARANTIA HIPOTECARIA</B><BR>
+<BR>
+5. Escritura publica de compra venta del inmueble.<BR>
+6. Certificacion extractada del inmueble<BR>(30 dias de antiguedad).<BR>
+7. Pago de Valuo.<BR>
+
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="29" width="275" height="121" uuid="b5063825-f5c6-42ea-bc72-2ebe2843e3dc"/>
+				<textElement markup="html">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[8.  Solvencias de impuestos municipales (inmueble ofrecido en garantia).<BR>
+9.  Solvencias de impuestos de hacienda (asociado solicitante).<BR>
+10.Carta de Compromiso de liberacion de hipotecaemitida por el acreedor.
+   <BR>(Aplica para inmuebles hipotecados ).<BR>
+11.Estado de cuenta del saldo de la hipoteca.<BR>
+12.DUI y NIT de los propietarios del inmueble.<BR>
+13.Solvencias de impuestos de hacienda (propietarios del inmueble).<BR>
+
+
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="572" height="42" uuid="fda4ec64-f405-488d-850d-88de46ab989d"/>
+				<text><![CDATA[Observaciones:
+Los valores y montos finales pudiesen variar de acuerdo a las condiciones de aprobacion y/o a las politicas vigentes en el otorgamiento]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="0" width="25" height="20" uuid="63d68d97-5982-4332-a52a-cabe96c34a63"/>
+				<text><![CDATA[Tel:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="0" width="41" height="20" uuid="7102f6a3-1003-42c4-a615-7a99bd258639"/>
+				<text><![CDATA[E-mail:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="0" width="53" height="20" uuid="c152b5fb-f7fa-46ac-9cd8-54144df2e27c"/>
+				<text><![CDATA[Asesora:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="25" width="93" height="20" uuid="24e70e57-8ba9-403e-90cb-7610c2d005e0"/>
+				<text><![CDATA[San Salvador:
+]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

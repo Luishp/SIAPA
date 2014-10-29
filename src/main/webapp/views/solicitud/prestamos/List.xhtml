@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PrestamoListForm">
+        <p:panel id="prestamos" header="Prestamos Internos" > 
+            <br></br>
+            <p:dataTable id="datalist" var="item" value="#{solicitudManagedBean.prestamoItems}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                         selectionMode="single" selection="#{solicitudManagedBean.prestamoSelected}"
+                         rowKey="#{item.prestamoId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="viewButton"/>
+                <p:ajax event="rowUnselect" update="viewButton"/>
+
+                <f:facet name="header">  
+                    Prestamos
+                </f:facet>  
+                <p:column width="15%" >
+                    <f:facet name="header">
+                        <h:outputText value="Identificador"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoId}"/>
+                </p:column>
+                <p:column width="15%" >
+                    <f:facet name="header">
+                        <h:outputText value="Monto"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoMonto}"/>
+                </p:column>
+                <p:column width="15%" >
+                    <f:facet name="header">
+                        <h:outputText value="Plazo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoPlazo}"/>
+                </p:column>
+                <p:column  width="15%" >
+                    <f:facet name="header">
+                        <h:outputText value="Tasa"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoTasa}">  
+                        <f:convertNumber type="percent" ></f:convertNumber>
+                    </h:outputText>
+                </p:column>
+                <p:column  width="15%" >
+                    <f:facet name="header">
+                        <h:outputText value="Saldo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoSaldo}"/>
+                </p:column>
+                <p:column  width="15%" >
+                    <f:facet name="header">
+                        <h:outputText value="Cuota"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoCuota}"/>
+                </p:column>
+                <p:column width="15%" >
+                    <f:facet name="header">
+                        <h:outputText value="Fecha de Pago"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoFechapago}">
+                       <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column width="15%" >
+                    <f:facet name="header">
+                        <h:outputText value="Categoria"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoCategoria}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#PrestamoViewForm)" oncomplete="PrestamoViewDialog.show()" disabled="#{empty solicitudManagedBean.prestamoSelected}"/>
+                        <span>&nbsp;</span>
+                    </div>
+                </f:facet>
+            </p:dataTable>
+            <br></br>
+        </p:panel>
+    </h:form>
+</ui:composition>

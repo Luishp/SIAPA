@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        <style>
+            .ui-panelgrid td, .ui-panelgrid tr
+            {
+                border-style: none !important
+            }
+
+        </style>
+
+        <p:dialog id="DocumentosCreateDlg" widgetVar="DocumentosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Documentos" closeOnEscape="true">
+            <p:ajax event="close" oncomplete="myrefresh();"></p:ajax>  
+
+            <h:form id="DocumentosCreateForm">
+
+                <h:panelGroup id="display" >
+                    <p:dataTable id="requisitosDatalist" var="item" value="#{solicitudManagedBean.requisitosItems}" paginator="true" rows="5"  
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                                 rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="false"  
+                                 selection="#{solicitudManagedBean.requisitosSeleccionados}" 
+                                 rowKey="#{item.requisitosolicitadoempleadoPK.requisitolineacreditoempleadoId}" paginatorPosition="bottom">
+
+                        <f:facet name="header">  
+                            Documentos Solicitados
+                        </f:facet>  
+                        <p:column  style="width:80%" headerText="Nombre del Documento" >
+                            <f:facet name="header">
+                                <h:outputText value="Nombre del Documento"/>
+                            </f:facet>
+                            <p:outputLabel value="#{item.requisitolineacreditoempleado.requisitolineacreditoempleadoNombre}"/>
+                        </p:column>
+                        <p:column selectionMode="multiple" style="width:10%; text-align: center;" />
+                    </p:dataTable>
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{solicitudManagedBean.updateDocumentosRecibido}" value="Guardar" update="display,:growl" oncomplete="handleSubmit(xhr,status,args,DocumentosCreateDialog);"/>
+                    <p:commandButton icon="ui-icon-closethick" value="Cancelar" onclick="DocumentosCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="CajaListForm">
+        <br/>
+        <br/>
+        <p:fieldset legend="Emision de cheques">
+
+
+            <p:panelGrid columns="3">
+
+                <p:outputLabel value="Numero de prestamo"/>
+                <p:inputText  required="true" requiredMessage="Ingrese el numero de prestamo" size="20" maxlength="15"/>
+                <p:commandButton  icon="ui-icon-search" value="Buscar"/>
+
+            </p:panelGrid>
+
+            <p:spacer height="10" width="25"/>
+
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Codigo del Asociado:"/>
+                <h:outputText  value="962532"/>
+
+                <p:outputLabel value="Nombre del Asociado:"/>
+                <h:outputText  value="Mario Ernsto Mancia"/>
+
+            </p:panelGrid>
+
+            <p:spacer height="10" width="25"/>
+
+
+            <p:dataTable id="datalist" var="item" value="#{cajaManagedBean.lazyItems}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                         selectionMode="single" selection="#{cajaManagedBean.selected}"
+                         rowKey="#{item.cajaId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="createButton"/>
+                <p:ajax event="rowUnselect" update="createButton"/>
+
+                <f:facet name="header">  
+                    Cheques
+                </f:facet>  
+
+                <p:column width="50%">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Beneficiario"/>
+                    </f:facet>
+                    <h:outputText value="Banco Credomatic"/>
+                </p:column>
+
+                <p:column width="25%">
+                    <f:facet name="header">
+                        <h:outputText value="Monto"/>
+                    </f:facet>
+                    <h:outputText value="$ 10,000.00"/>
+                </p:column>
+
+                <p:column width="25%">
+                    <f:facet name="header">
+                        <h:outputText value="Estado"/>
+                    </f:facet>
+                    <h:outputText value="Pendiente"/>
+                </p:column>
+
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                         <p:outputLabel value="Banco: " />
+                         <p:spacer width="10"/>
+                        <p:selectOneMenu  >
+                            <f:selectItem itemLabel="Banco Agricola"/>
+                        </p:selectOneMenu>
+                        <p:spacer width="25"/>
+                        <p:commandButton id="createButton" icon="ui-icon-gear"   value="Emitir" actionListener="#{cajaManagedBean.prepareCreate}" update=":CajaCreateForm" oncomplete="CajaCreateDialog.show()" disabled="#{empty cajaManagedBean.selected}"/>
+                    </div>
+                </f:facet>
+            </p:dataTable>
+
+
+        </p:fieldset>
+    </h:form>
+
+</ui:composition>   

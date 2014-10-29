@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">
+        <title>Reporte de Historial Crediticio.</title>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="preatamosVigentesListForm">
+            <br/>
+            <br/>
+            <p:fieldset legend="Parametros de busqueda." style="width: 70%; margin: auto;">
+                <p:panelGrid columns="2" styleClass="panelGridCenter">
+
+                    <p:outputLabel value="Código:" for="idasociado"/>
+                    <h:panelGroup>
+                        <p:inputText id="idasociado" value="#{rptHistorialCrediticioManagedBean.asociado.idasociados}" title="Codigo del asociado" required="true" requiredMessage="Codigo del asociado, es Requerido" size="100" maxlength="100"/>
+                        <p:tooltip for="idasociado" value="Ingresa codigo del asociado."/>
+                    </h:panelGroup>
+                    <p:outputLabel value="Nombre:" for="nombreAsociado"/>
+                    <h:panelGroup>
+                        <p:inputText id="nombreAsociado" value="#{rptHistorialCrediticioManagedBean.asociado.idasocnatu.conyNombre1}" title="Nombre del asociado" readonly="true" size="100" maxlength="100"/>
+                    </h:panelGroup>
+                    <h:outputLabel value="Fecha Inicio:" for="fechaInicio"/>
+                    <h:panelGroup>
+                        <p:calendar  id="fechaInicio"  value="#{rptHistorialCrediticioManagedBean.fechInicio}" title="fechaInicio" required="true" requiredMessage="fecha inicio, es Requerido" />
+                        <p:tooltip for="fechaInicio" value="Ingresa la fecha de inicio"/>
+                    </h:panelGroup>
+                    <h:outputLabel value="Fecha Final:" for="fechaFin"/>
+                    <h:panelGroup>
+                        <p:calendar  id="fechaFin"  value="#{rptHistorialCrediticioManagedBean.fechFinal}" title="fechaFin" required="true" requiredMessage="fecha fin, es Requerido" />
+                        <p:tooltip for="fechaFin" value="Ingresa la fecha fin"/>
+                    </h:panelGroup>
+                    <p:commandButton id="buscarButton"  icon="ui-icon-search" value="Buscar" />
+
+
+                </p:panelGrid>
+            </p:fieldset>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="RequisitolineacreditonegocioEditDlg" widgetVar="RequisitolineacreditonegocioEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.EditRequisitolineacreditonegocioTitle}" closeOnEscape="true">
+
+            <h:form id="RequisitolineacreditonegocioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{lineaCreditoManagedBean.rlcnSelected != null}">
+
+
+                        <p:outputLabel value="#{crudbundle.EditRequisitolineacreditonegocioLabel_requisitoLineacreditonegocioNombre}" for="requisitoLineacreditonegocioNombre" />
+                        <p:inputText id="requisitoLineacreditonegocioNombre" value="#{lineaCreditoManagedBean.rlcnSelected.requisitoLineacreditonegocioNombre}" title="#{crudbundle.EditRequisitolineacreditonegocioTitle_requisitoLineacreditonegocioNombre}" required="true" requiredMessage="#{crudbundle.EditRequisitolineacreditonegocioRequiredMessage_requisitoLineacreditonegocioNombre}" size="60" maxlength="60"/>
+
+                     
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lineaCreditoManagedBean.updateReqNegocio}" value="#{crudbundle.Save}" update="display,:RequisitolineacreditonegocioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RequisitolineacreditonegocioEditDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="RequisitolineacreditonegocioEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

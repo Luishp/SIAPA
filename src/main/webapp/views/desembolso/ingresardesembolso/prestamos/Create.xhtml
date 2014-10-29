@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        <style>
+            .ui-panelgrid td, .ui-panelgrid tr
+            {
+                border-style: none !important
+            }
+
+        </style>
+        <script type="text/javascript">
+            function validaSoloNumeros() {
+                 if (((event.keyCode &gt;  47) &amp; (event.keyCode &lt; 57)) || (event.keyCode == 46)) {
+                    return true; 
+                }else 
+                    return false; 
+            }
+        
+            function validaSoloNumerosSinPunto() {
+                if ((event.keyCode &lt;  48) || (event.keyCode &gt; 57)) {
+                    return false; 
+                 }
+            }
+        </script>
+        <p:dialog id="PrestamoCreateDlg" widgetVar="PrestamoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Prestamo" closeOnEscape="true">
+            <p:ajax event="close" oncomplete="myrefresh();"></p:ajax>  
+
+            <h:form id="PrestamoCreateForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Monto" for="prestamoMonto" />
+                        <h:panelGroup>
+                            <p:inputText id="prestamoMonto" value="#{solicitudManagedBean.prestamoSelected.prestamoMonto}" title="Monto" required="true" requiredMessage="Monto" size="25" maxlength="25" onkeypress="return validaSoloNumeros(event)" />
+                            <p:tooltip for="prestamoMonto" value="Monto del Prestamo"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Plazo" for="prestamoPlazo" />
+                        <h:panelGroup>
+                            <p:inputText id="prestamoPlazo" value="#{solicitudManagedBean.prestamoSelected.prestamoPlazo}" title="Plazo" required="true" requiredMessage="Plazo" size="25" maxlength="25" onkeypress="return validaSoloNumeros(event)" />
+                            <p:tooltip for="prestamoPlazo" value="Plazo"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Tasa" for="prestamoTasa" />
+                        <h:panelGroup>
+                            <p:inputText id="prestamoTasa" value="#{solicitudManagedBean.prestamoSelected.prestamoTasa}" title="Tasa" required="true" requiredMessage="Tasa" size="25" maxlength="25" onkeypress="return validaSoloNumeros(event)"/>
+                            <p:tooltip for="prestamoTasa" value="Tasa"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Saldo" for="prestamoSaldo" />
+                        <h:panelGroup>
+                            <p:inputText id="prestamoSaldo" value="#{solicitudManagedBean.prestamoSelected.prestamoSaldo}" title="Saldo" requiredMessage="Saldo" size="25" maxlength="25" onkeypress="return validaSoloNumeros(event)" />
+                            <p:tooltip for="prestamoSaldo" value="Saldo"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Cuota" for="prestamoCuota" />
+                        <h:panelGroup>
+                            <p:inputText id="prestamoCuota" value="#{solicitudManagedBean.prestamoSelected.prestamoCuota}" title="Cuota" requiredMessage="Cuota" size="25" maxlength="25" onkeypress="return validaSoloNumeros(event)" />
+                            <p:tooltip for="prestamoCuota" value="Cuota"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Fecha Pago" for="prestamoFechapago" />
+                        <p:calendar id="prestamoFechapago" pattern="MM/dd/yyyy" value="#{solicitudManagedBean.prestamoSelected.prestamoFechapago}" title="#{crudbundle.prestamo_fechaPago}" required="true" requiredMessage="#{crudbundle.prestamo_fechaPago}" showOn="button"/>
+
+                        <p:outputLabel value="Fecha Vencimiento" for="prestamoFechavencimiento" />
+                        <p:calendar id="prestamoFechavencimiento" pattern="MM/dd/yyyy" value="#{solicitudManagedBean.prestamoSelected.prestamoFechavencimiento}" title="#{crudbundle.prestamo_fechaVencimiento}" required="true" requiredMessage="#{crudbundle.prestamo_fechaVencimiento}" showOn="button"/>
+                        
+                        <p:outputLabel value="Fecha del Ultimo Pago" for="prestamoFechaultimopago" />
+                         <p:calendar id="prestamoFechaultimopago" pattern="MM/dd/yyyy" value="#{solicitudManagedBean.prestamoSelected.prestamoFechaultimopago}" title="#{crudbundle.prestamo_fechaUltimoPago}" required="true" requiredMessage="#{crudbundle.prestamo_fechaUltimoPago}" showOn="button"/>
+                        
+                        <p:outputLabel value="Fecha capitalizacion" for="prestamoFechaultimacapital" />
+                        <p:calendar id="prestamoFechaultimacapital" pattern="MM/dd/yyyy" value="#{solicitudManagedBean.prestamoSelected.prestamoFechaultimacapital}" title="#{crudbundle.prestamo_fechaUltimaCapitalizacion}" required="true" requiredMessage="#{crudbundle.prestamo_fechaUltimaCapitalizacion}" showOn="button"/>
+                        
+                        <p:outputLabel value="Fecha Calculo de interes" for="prestamoFechaultimainteres" />
+                        <p:calendar id="prestamoFechaultimainteres" pattern="MM/dd/yyyy" value="#{solicitudManagedBean.prestamoSelected.prestamoFechaultimainteres}" title="#{crudbundle.prestamo_fechaUltimaInteres}" required="true" requiredMessage="#{crudbundle.prestamo_fechaUltimaInteres}" showOn="button"/>
+
+                        <p:outputLabel value="Categoria del Prestamo" for="prestamoCategoria" />
+                        <h:panelGroup>
+                            <p:inputText id="prestamoCategoria" value="#{solicitudManagedBean.prestamoSelected.prestamoCategoria}" title="Categoria del Prestamo" requiredMessage="Categoria del Prestamo" size="25" maxlength="25"/>
+                            <p:tooltip for="prestamoCategoria" value="Categoria del Prestamo"/>
+                        </h:panelGroup>
+                        
+                        <p:outputLabel value="#{crudbundle.Label_activo}" for="activo" />
+                        <h:panelGroup >
+                            <p:selectOneMenu id="activo" value="#{solicitudManagedBean.prestamoSelected.activo}" required="true" requiredMessage="#{crudbundle.RequiredMessage_activo}">
+                                <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{solicitudManagedBean.prestamoActivoOptions}"
+                                               var="activoItem"
+                                               itemValue="#{activoItem.value}"
+                                               itemLabel="#{activoItem.description}"/>
+                            </p:selectOneMenu>
+                            <p:tooltip for="activo" value="#{solicitudManagedBean.getComponentMessages('activo', crudbundle.HelpText_activo)}"/>
+                        </h:panelGroup>
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{solicitudManagedBean.savePrestamo}" value="Guardar" update="display,:PrestamoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,PrestamoCreateDialog);"/>
+                    <p:commandButton icon="ui-icon-closethick" value="Cancelar" onclick="PrestamoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

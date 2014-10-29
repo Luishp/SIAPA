@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SucursalViewDlg" widgetVar="SucursalViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.ViewSucursalTitle}" closeOnEscape="true">
+
+            <h:form id="SucursalViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sucursalManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.SucursalLabel_sucursalId}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.sucursalId}" title="#{crudbundle.SucursalTitle_sucursalId}"/>
+
+                        <h:outputText value="#{crudbundle.SucursalLabel_sucursalNombre}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.sucursalNombre}" title="#{crudbundle.SucursalTitle_sucursalNombre}"/>
+
+                        <h:outputText value="#{crudbundle.SucursalLabel_sucursalDireccion}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.sucursalDireccion}" title="#{crudbundle.SucursalTitle_sucursalDireccion}"/>
+
+                        <h:outputText value="#{crudbundle.SucursalLabel_sucursalTelefono}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.sucursalTelefono}" title="#{crudbundle.SucursalTitle_sucursalTelefono}"/>
+
+                        <h:outputText value="#{crudbundle.SucursalLabel_sucursalFax}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.sucursalFax}" title="#{crudbundle.SucursalTitle_sucursalFax}"/>
+
+                        <h:outputText value="#{crudbundle.Label_activo}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.activo}" title="#{crudbundle.Title_activo}"/>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioRegistro}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.usuarioRegistro}" title="#{crudbundle.Title_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaRegistro}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.fechaRegistro}" title="#{crudbundle.Title_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.usuarioUltimamodificacion}" title="#{crudbundle.Title_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{sucursalManagedBean.selected.fechaUltimamodificacion}" title="#{crudbundle.Title_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="SucursalViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

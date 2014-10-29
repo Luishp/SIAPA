@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DeduccionesEditDlg" widgetVar="DeduccionesEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.EditDeduccionesTitle}" closeOnEscape="true">
+
+            <h:form id="DeduccionesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{desembolsoCreditoManagedBean.deduccionesSelected != null}">
+
+                       
+                        <p:outputLabel value="Descripcion" for="deduccionesDescripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="deduccionesDescripcion" value="#{desembolsoCreditoManagedBean.deduccionesSelected.deduccionesDescripcion}" title="#{crudbundle.EditDeduccionesTitle_deduccionesDescripcion}" />
+
+
+                        <p:outputLabel value="Valor" for="deduccionesValor" />
+                        <p:inputText id="deduccionesValor" value="#{desembolsoCreditoManagedBean.deduccionesSelected.deduccionesValor}" title="#{crudbundle.EditDeduccionesTitle_deduccionesValor}"/>
+
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{desembolsoCreditoManagedBean.updateDeduccion}" value="#{crudbundle.Save}" update="display,:DeduccionesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DeduccionesEditDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="DeduccionesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

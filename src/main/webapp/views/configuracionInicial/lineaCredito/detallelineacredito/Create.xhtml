@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetallelineacreditoCreateDlg" widgetVar="DetallelineacreditoCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{crudbundle.CreateDetallelineacreditoTitle}" closeOnEscape="true">
+
+            <h:form id="DetallelineacreditoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                      
+                        <p:outputLabel value="#{crudbundle.CreateDetallelineacreditoLabel_detallelineacreditoMonto}" for="detallelineacreditoMonto" />
+                        <p:inputText id="detallelineacreditoMonto" value="#{lineaCreditoManagedBean.detalleLCSelected.detallelineacreditoMonto}" title="#{crudbundle.CreateDetallelineacreditoTitle_detallelineacreditoMonto}" required="true" requiredMessage="#{crudbundle.CreateDetallelineacreditoRequiredMessage_detallelineacreditoMonto}"/>
+
+
+                        <p:outputLabel value="#{crudbundle.CreateDetallelineacreditoLabel_detallelineacreditoTasa}" for="detallelineacreditoTasa" />
+                        <p:inputText id="detallelineacreditoTasa" value="#{lineaCreditoManagedBean.detalleLCSelected.detallelineacreditoTasa}" title="#{crudbundle.CreateDetallelineacreditoTitle_detallelineacreditoTasa}" required="true" requiredMessage="#{crudbundle.CreateDetallelineacreditoRequiredMessage_detallelineacreditoTasa}"/>
+
+
+                        <p:outputLabel value="#{crudbundle.CreateDetallelineacreditoLabel_detallelineacreditoPlazo}" for="detallelineacreditoPlazo" />
+                        <p:inputText id="detallelineacreditoPlazo" value="#{lineaCreditoManagedBean.detalleLCSelected.detallelineacreditoPlazo}" title="#{crudbundle.CreateDetallelineacreditoTitle_detallelineacreditoPlazo}" required="true" requiredMessage="#{crudbundle.CreateDetallelineacreditoRequiredMessage_detallelineacreditoPlazo}"/>
+
+                        <p:outputLabel value="Comision por otorgamiento:" for="detallelineacreditocomotor" />
+                        <p:inputText id="detallelineacreditocomotor" value="#{lineaCreditoManagedBean.detalleLCSelected.detallelineacreditocomotor}" title="Detalle linea de credito comision x otorgamiento" required="false" requiredMessage="no procede"/>
+
+                        <p:outputLabel value="Comision por aportaciones:" for="detallelineacreditocomaport" />
+                        <p:inputText id="detallelineacreditocomaport" value="#{lineaCreditoManagedBean.detalleLCSelected.detallelineacreditocomaport}" title="Detalle linea de credito comision x aportaciones" required="true" requiredMessage="Comision por aportaciones, es requerido"/>
+
+
+
+                    </p:panelGrid>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{lineaCreditoManagedBean.saveDetalle}" value="#{crudbundle.Save}" update="display,:DetallelineacreditoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DetallelineacreditoCreateDialog);"/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="DetallelineacreditoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CartaparaBurosdeCreditos" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c7e41c2-aac3-4ade-b995-d66f1f5838b5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="asociadoCodigo" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoCodigo]]></fieldDescription>
+	</field>
+	<field name="asociadoDui" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoDui]]></fieldDescription>
+	</field>
+	<field name="asociadoNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoNombre]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="59" width="178" height="20" uuid="1013dfaa-582c-4647-9220-f98ef444af59"/>
+				<textFieldExpression><![CDATA["Señores\nACOFINGES de R.L."]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="572" height="20" uuid="7f0e1f35-0d25-4ca7-9681-e31f68e82d89"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA["Por medio de la presente y con el objeto que ACOFINGES DE R.L pueda sustentar financieramente la concesión de financiamiento   solicitado,  autorizamos:   A)  Para  que  investigue  mi  (nuestra)  trayectoria   crediticia  tanto  con personas naturales como  jurídicas,  incluyendo aquellas  que  recolectan, registran, y distribuyen datos referente al comportamiento  al  comportamiento  crediticio  de  las  personas.  B)  Para  que  reporte  mi  (nuestra)  trayectoria crediticia  con  la  Cooperativa,  a  entidades  dedicadas  al  tratamiento  de  datos  crediticios,  autorizados  por  la superintendencia del Sistema  financiero. C) Así  mismo  la Cooperativa podrá adicionar y actualizar cualquiera dato personal  de  tipo  financiero  proporcionado por  mi  (nuestra)  persona,  incluyendo los de la  solicitud  de crédito y cualquier otros datos  personales  que la  Cooperativa  adquiera en un futuro para usos crediticios. Garantizamos la exactitud  de  la información  otorgada. D) Autorizamos  a la  Cooperativa  para que se conserve  esta información y las constancias en sus archivos. E) Además, autorizamos para que confirme la información recolectada por las vías que crea conveniente."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="10" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="104" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="30" width="79" height="20" uuid="de584b58-c7b7-49f8-97d7-f5f507e2d10c"/>
+				<textFieldExpression><![CDATA["San Salvador, "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="84" width="178" height="20" uuid="eb40431f-50ad-42d1-9e19-7d0cf1931f37"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA["Firma: _________________<br>Nombre:&nbsp;"+$F{asociadoNombre}+"<br>DUI:&nbsp;&nbsp;&nbsp;"+$F{asociadoDui}+"<br>Código:&nbsp;"+$F{asociadoCodigo}+""]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="65" y="30" width="100" height="20" uuid="c7c670aa-bc90-4423-8a2d-d153eb9e4091"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="83" width="80" height="20" uuid="bd5cd8b8-4182-4e04-abf6-99ba7f6981d0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="530" y="83" width="40" height="20" uuid="7e4cfe14-5892-47fc-a7aa-a818b5f19ca8"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

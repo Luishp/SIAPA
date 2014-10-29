@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        <style>
+            .ui-panelgrid td, .ui-panelgrid tr
+            {
+                border-style: none !important
+            }
+
+        </style>
+        <script type="text/javascript">
+            function validaSoloNumeros() {
+                 if (((event.keyCode &gt;  47) &amp; (event.keyCode &lt; 58)) || (event.keyCode == 46)) {
+                    return true; 
+                }else 
+                    return false; 
+            }
+        
+            function validaSoloNumerosSinPunto() {
+                if ((event.keyCode &lt;  48) || (event.keyCode &gt; 57)) {
+                    return false; 
+                 }
+            }
+        </script>
+        <p:dialog id="PropiedadCreateDlg" widgetVar="PropiedadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Propiedad" closeOnEscape="true">
+            <p:ajax event="close" oncomplete="myrefresh();"></p:ajax>  
+
+            <h:form id="PropiedadCreateForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Clase de Propiedad" for="propiedadClase" />
+                        <h:panelGroup>
+                            <p:inputText id="propiedadClase" value="#{solicitudManagedBean.propiedadSelected.propiedadClase}" required="true" requiredMessage="Clase es requerido" size="40" maxlength="100"/>
+                            <p:tooltip for="propiedadClase" value="Clase de Propiedad"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Ubicacion" for="propiedadUbicacion" />
+                        <h:panelGroup>
+                            <p:inputText id="propiedadUbicacion" value="#{solicitudManagedBean.propiedadSelected.propiedadUbicacion}"  required="true" requiredMessage="Ubicacion es requerido" size="60" maxlength="300"/>
+                            <p:tooltip for="propiedadUbicacion" value="Ubicacion"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Valor Propiedad" for="propiedadValor" />
+                        <h:panelGroup>
+                            <p:inputText id="propiedadValor" value="#{solicitudManagedBean.propiedadSelected.propiedadValor}" required="true" requiredMessage="Valor es requerido" size="15" maxlength="15" onkeypress="return validaSoloNumeros(event)" >
+                                </p:inputText>
+                            <p:tooltip for="propiedadValor" value="Valor Propiedad"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Hipoteca a Favor" for="propiedadHipotecafavor" />
+                        <h:panelGroup>
+                            <p:inputText id="propiedadHipotecafavor" value="#{solicitudManagedBean.propiedadSelected.propiedadHipotecafavor}" size="15" maxlength="60"/>
+                            <p:tooltip for="propiedadHipotecafavor" value="Hipoteca a Favor"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{crudbundle.Label_activo}" for="activo" />
+                        <h:panelGroup >
+                            <p:selectOneMenu id="activo" value="#{solicitudManagedBean.propiedadSelected.activo}" required="true" requiredMessage="#{crudbundle.RequiredMessage_activo}">
+                                <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{solicitudManagedBean.propiedadActivoOptions}"
+                                               var="activoItem"
+                                               itemValue="#{activoItem.value}"
+                                               itemLabel="#{activoItem.description}"/>
+                            </p:selectOneMenu>
+                            <p:tooltip for="activo" value="#{solicitudManagedBean.getComponentMessages('activo', crudbundle.HelpText_activo)}"/>
+                        </h:panelGroup>
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{solicitudManagedBean.savePropiedad}" value="Guardar" update="display,:PropiedadListForm,:growl" oncomplete="handleSubmit(xhr,status,args,PropiedadCreateDialog);"/>
+                    <p:commandButton icon="ui-icon-closethick" value="Cancelar" onclick="PropiedadCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

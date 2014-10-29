@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CartadeFechasdeDesignaciondeAseguradoras" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c7e41c2-aac3-4ade-b995-d66f1f5838b5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="asociadoCodigo" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoCodigo]]></fieldDescription>
+	</field>
+	<field name="asociadoDui" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoDui]]></fieldDescription>
+	</field>
+	<field name="asociadoNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoNombre]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="59" width="178" height="20" uuid="1013dfaa-582c-4647-9220-f98ef444af59"/>
+				<textFieldExpression><![CDATA["Señores\nACOFINGES de R.L."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="14" width="572" height="17" uuid="3cdfb909-80a7-4ec2-82fe-7e7b0327cb00"/>
+				<textElement textAlignment="Center" markup="html">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DESIGNACI&Oacute;N DE ASEGURADORA"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="572" height="20" uuid="7f0e1f35-0d25-4ca7-9681-e31f68e82d89"/>
+				<textElement textAlignment="Justified" markup="html"/>
+				<textFieldExpression><![CDATA["Por medio  de la  presente solicito mi inclusión  como asegurado de  PÓLIZA DE SEGURO DE VIDA COLECTIVO DECRECIENTE, contratada  con la  aseguradora <b>SISA VIDA, S.A. SEGUROS DE PERSONAS</b>,  para  poder  tener cobertura de seguro sobre el monto de la deuda otorgada por ACOFINGES DE R.L. de acuerdo a las condiciones establecidas en la Póliza.<br><br><br>Asimismo declaro, que departe de ACOFINGES DE R.L.,  sus  funcionarios,  ejecutivos, o empleados,  no he tenido de manera directa o indirecta, ninguna limitación o retraso para ejercer libremente la designación de aseguradora,y no tengo nada  que  reclamar a ACOFINGES DE R.L.,  ni  a  sus funcionarios, ejecutivos, o empleados, por haber cumplido  con  lo  dispuesto  en el Artículo  19  de  la Ley  de Protección al Consumidor referido a las prohibiciones especiales para proveedores de servicios financieros."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="10" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="104" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="30" width="79" height="20" uuid="de584b58-c7b7-49f8-97d7-f5f507e2d10c"/>
+				<textFieldExpression><![CDATA["San Salvador, "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="84" width="178" height="20" uuid="eb40431f-50ad-42d1-9e19-7d0cf1931f37"/>
+				<textFieldExpression><![CDATA["Firma:\t_________________\nNombre:\t"+$F{asociadoNombre}+"\nDUI:\t"+$F{asociadoDui}+"\nCódigo:\t"+$F{asociadoCodigo}+""]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="65" y="30" width="100" height="20" uuid="c7c670aa-bc90-4423-8a2d-d153eb9e4091"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="83" width="80" height="20" uuid="5db122fa-cdb7-460e-9311-4069404b18e8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="530" y="83" width="40" height="20" uuid="fd227341-039a-4eb2-a61a-d5073cffdd9b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

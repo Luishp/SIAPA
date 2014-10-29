@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SsOpcionesViewDlg" widgetVar="SsOpcionesViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.ViewSsOpcionesTitle}" closeOnEscape="true">
+
+            <h:form id="SsOpcionesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ssOpcionesController.selected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewSsOpcionesLabel_idOpcion}"/>
+                        <h:outputText value="#{ssOpcionesController.selected.idOpcion}" title="#{crudbundle.ViewSsOpcionesTitle_idOpcion}"/>
+
+                        <h:outputText value="#{crudbundle.ViewSsOpcionesLabel_nombreOpcion}"/>
+                        <h:outputText value="#{ssOpcionesController.selected.nombreOpcion}" title="#{crudbundle.ViewSsOpcionesTitle_nombreOpcion}"/>
+
+                        <h:outputText value="#{crudbundle.ViewSsOpcionesLabel_url}"/>
+                        <h:outputText value="#{ssOpcionesController.selected.url}" title="#{crudbundle.ViewSsOpcionesTitle_url}"/>
+
+                        <h:outputText value="#{crudbundle.ViewSsOpcionesLabel_visible}"/>
+                        <h:outputText value="#{ssOpcionesController.selected.visible}" title="#{crudbundle.ViewSsOpcionesTitle_visible}"/>
+
+                        <h:outputText value="#{crudbundle.ViewSsOpcionesLabel_usuarioRegistro}"/>
+                        <h:outputText value="#{ssOpcionesController.selected.usuarioRegistro}" title="#{crudbundle.ViewSsOpcionesTitle_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.ViewSsOpcionesLabel_fechaRegistro}"/>
+                        <h:outputText value="#{ssOpcionesController.selected.fechaRegistro}" title="#{crudbundle.ViewSsOpcionesTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.ViewSsOpcionesLabel_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{ssOpcionesController.selected.usuarioUltimamodificacion}" title="#{crudbundle.ViewSsOpcionesTitle_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.ViewSsOpcionesLabel_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{ssOpcionesController.selected.fechaUltimamodificacion}" title="#{crudbundle.ViewSsOpcionesTitle_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="SsOpcionesViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

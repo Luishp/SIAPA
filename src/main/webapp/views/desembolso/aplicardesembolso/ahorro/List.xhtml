@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <style>
+        .ui-fieldset .ui-fieldset-legend
+        {
+            font-size: smaller;
+        }
+
+    </style>
+    <h:form id="AhorroListForm">
+        <p:spacer height="30" width="20"/>
+        <p:panel header="Ahorros">
+
+
+            <p:dataTable id="datalist" var="item" value="#{desembolsoCreditoManagedBean.ahorroList}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                         selectionMode="single" selection="#{desembolsoCreditoManagedBean.ahorroSelected}"
+                         rowKey="#{item.ahorroId}" paginatorPosition="bottom">
+
+<!--                <p:ajax event="rowSelect"   update="createButton viewButton editButton "/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton "/>-->
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ahorroId}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Monto"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ahorroMonto}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Cuenta"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ahorroCuenta}"/>
+                </p:column>
+
+<!--                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{desembolsoCreditoManagedBean.ahorroPrepareCreate}" update=":AhorroCreateForm" oncomplete="AhorroCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update=":AhorroViewForm" oncomplete="AhorroViewDialog.show()" disabled="#{empty desembolsoCreditoManagedBean.ahorroSelected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":AhorroEditForm" oncomplete="AhorroEditDialog.show()" disabled="#{empty desembolsoCreditoManagedBean.ahorroSelected}"/>
+
+                    </div>
+                </f:facet>-->
+
+            </p:dataTable>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

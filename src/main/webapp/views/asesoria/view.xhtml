@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AsesoriaViewDlg" widgetVar="AsesoriaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="Asesoria" closeOnEscape="true">
+
+            <h:form id="AsesoriaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{asesoriaManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.asesoriaId}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.asesoriaId}" title="#{crudbundle.asesoriaId}"/>
+
+                        <h:outputText value="#{crudbundle.asesoriaTipo}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.taId.taNombre}" title="#{crudbundle.asesoriaTipo}"/>
+
+                        <h:outputText value="#{crudbundle.asesoriaasociado}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.idasociados.idasocnatu.nombreCompleto}" title="#{crudbundle.asesoriaasociado}"/>
+                            
+                        <h:outputText value="#{crudbundle.asesoriaIngreso}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.asesoriaIngreso}" title="#{crudbundle.asesoriaIngreso}"/>
+                       
+                        <h:outputText value="#{crudbundle.asesoriaMonto}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.asesoriaMonto}" title="#{crudbundle.asesoriaMonto}" />
+
+                        <h:outputText value="#{crudbundle.asesoriaPlazo}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.asesoriaPlazo}" title="#{crudbundle.asesoriaPlazo}"/>
+                        
+                        
+                        <h:outputText value="#{crudbundle.asesoriaPeriodicidadpago}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.ppId.ppNombre}" title="#{crudbundle.asesoriaPeriodicidadpago}" />
+
+                        <h:outputText value="#{crudbundle.asesoriaTasa}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.asesoriaTasa}" title="#{crudbundle.asesoriaTasa}">
+                            <f:convertNumber type="percent" minFractionDigits="2"/>
+                        </h:outputText>
+
+                        
+                        <h:outputText value="#{crudbundle.Label_usuarioRegistro}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.usuarioRegistro}" title="#{crudbundle.Title_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaRegistro}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.fechaRegistro}" title="#{crudbundle.Title_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.usuarioUltimamodificacion}" title="#{crudbundle.Title_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{asesoriaManagedBean.selected.fechaUltimamodificacion}" title="#{crudbundle.Title_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="AsesoriaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

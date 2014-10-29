@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SucursalCreateDlg" widgetVar="SucursalCreateDialog" modal="true" resizable="false" appendToBody="true" header="Titulo de pantalla" closeOnEscape="true">
+
+            <h:form id="SucursalCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="Etiqueta" for="sucursalNombre" />
+                        <h:panelGroup>
+                            <p:inputText id="sucursalNombre" value="#{sucursalManagedBean.selected.sucursalNombre}" title="#{crudbundle.SucursalTitle_sucursalNombre}" required="true" requiredMessage="#{crudbundle.SucursalRequiredMessage_sucursalNombre}" size="100" maxlength="100"/>
+                            <p:tooltip for="sucursalNombre" value="#{sucursalManagedBean.getComponentMessages('sucursalNombre', crudbundle.SucursalHelpText_sucursalNombre)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Etiqueta" for="sucursalDireccion" />
+                        <h:panelGroup>
+                            <p:inputTextarea rows="4" cols="30" id="sucursalDireccion" value="#{sucursalManagedBean.selected.sucursalDireccion}" title="#{crudbundle.SucursalTitle_sucursalDireccion}" required="true" requiredMessage="#{crudbundle.SucursalRequiredMessage_sucursalDireccion}"/>
+                            <p:tooltip for="sucursalDireccion" value="#{sucursalManagedBean.getComponentMessages('sucursalDireccion', crudbundle.SucursalHelpText_sucursalDireccion)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Etiqueta" for="sucursalTelefono" />
+                        <h:panelGroup>
+                            <p:inputMask id="sucursalTelefono" mask="9999-9999" value="#{sucursalManagedBean.selected.sucursalTelefono}" title="#{crudbundle.SucursalTitle_sucursalTelefono}" required="true" requiredMessage="#{crudbundle.SucursalRequiredMessage_sucursalTelefono}" size="9" maxlength="9"/>
+                            <p:tooltip for="sucursalTelefono" value="#{sucursalManagedBean.getComponentMessages('sucursalTelefono', crudbundle.SucursalHelpText_sucursalTelefono)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Etiqueta" for="sucursalFax" />
+                        <h:panelGroup>
+                            <p:inputMask id="sucursalFax" mask="9999-9999" value="#{sucursalManagedBean.selected.sucursalFax}" title="#{crudbundle.SucursalTitle_sucursalFax}" size="9" maxlength="9"/>
+                            <p:tooltip for="sucursalFax" value="#{sucursalManagedBean.getComponentMessages('sucursalFax', crudbundle.SucursalHelpText_sucursalFax)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="Etiqueta" for="activo" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="activo" value="#{sucursalManagedBean.selected.activo}" required="true" requiredMessage="#{crudbundle.RequiredMessage_activo}">
+                                <f:selectItem itemLabel="Lista"/>
+                                <f:selectItems value="#{sucursalManagedBean.activoOptions}"
+                                               var="activoItem"
+                                               itemValue="#{activoItem.value}"
+                                               itemLabel="#{activoItem.description}"/>
+                            </p:selectOneMenu>
+                            <p:tooltip for="activo" value="#{sucursalManagedBean.getComponentMessages('activo', crudbundle.HelpText_activo)}"/>
+                        </h:panelGroup>
+
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{sucursalManagedBean.saveNew}" value="Boton" update="display,:SucursalListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SucursalCreateDialog);"/>
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="Boton" onclick="SucursalCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

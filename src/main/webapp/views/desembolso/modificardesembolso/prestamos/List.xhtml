@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PrestamoListForm">
+        <p:panel id="prestamos" header="Abonos a prestamos" > 
+            <br></br>
+            <p:dataTable id="datalist" var="item" value="#{solicitudManagedBean.prestamoLazyItems}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                         selectionMode="single" selection="#{solicitudManagedBean.prestamoSelected}"
+                         rowKey="#{item.prestamoId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="createButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton"/>
+
+                <f:facet name="header">  
+                    Abonos a Prestamos
+                </f:facet>  
+                <p:column width="30%" >
+                    <f:facet name="header">
+                        <h:outputText value="Numero de prestamo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoId}"/>
+                </p:column>
+                <p:column width="50%" >
+                    <f:facet name="header">
+                        <h:outputText value="Nombre del deudor"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoMonto}"/>
+                </p:column>
+                <p:column width="20%" >
+                    <f:facet name="header">
+                        <h:outputText value="Monto abonado"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prestamoPlazo}"/>
+                </p:column>
+               
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Add}" actionListener="#{solicitudManagedBean.prestamoPrepareCreate}" update=" @(#PrestamoCreateForm)" oncomplete="PrestamoCreateDialog.show()"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#PrestamoViewForm)" oncomplete="PrestamoViewDialog.show()" disabled="#{empty solicitudManagedBean.prestamoSelected}"/>
+                        <span>&nbsp;</span>
+                    </div>
+                </f:facet>
+            </p:dataTable>
+            <br></br>
+        </p:panel>
+    </h:form>
+</ui:composition>

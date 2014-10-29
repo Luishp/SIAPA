@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GarantiaViewDlg" widgetVar="GarantiaViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.ViewGarantiaTitle}" closeOnEscape="true">
+
+            <h:form id="GarantiaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{catalogoGarantiaManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_garantiaId}"/>
+                        <h:outputText value="#{catalogoGarantiaManagedBean.selected.garantiaId}" title="#{crudbundle.ViewGarantiaTitle_garantiaId}"/>
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_garantiaNombre}"/>
+                        <h:outputText value="#{catalogoGarantiaManagedBean.selected.garantiaNombre}" title="#{crudbundle.ViewGarantiaTitle_garantiaNombre}"/>
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_garantiaTipo}"/>
+                        <h:outputText value="#{catalogoGarantiaManagedBean.selected.garantiaTipo}" title="#{crudbundle.ViewGarantiaTitle_garantiaTipo}"/>
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_activo}"/>
+                        <h:outputText value="#{catalogoGarantiaManagedBean.selected.activo}" title="#{crudbundle.ViewGarantiaTitle_activo}"/>
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_usuarioRegistro}"/>
+                        <h:outputText value="#{catalogoGarantiaManagedBean.selected.usuarioRegistro}" title="#{crudbundle.ViewGarantiaTitle_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_fechaRegistro}"/>
+                        <h:outputText value="#{catalogoGarantiaManagedBean.selected.fechaRegistro}" title="#{crudbundle.ViewGarantiaTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{catalogoGarantiaManagedBean.selected.usuarioUltimamodificacion}" title="#{crudbundle.ViewGarantiaTitle_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{catalogoGarantiaManagedBean.selected.fechaUltimamodificacion}" title="#{crudbundle.ViewGarantiaTitle_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.ViewGarantiaLabel_requisitogarantiaCollection}"/>
+                        <h:selectManyMenu converter="requisitogarantiaConverter">
+                            <f:selectItems value="#{catalogoGarantiaManagedBean.selected.requisitogarantiaCollection}"
+                                           var="requisitogarantiaCollectionItem"
+                                           itemValue="#{requisitogarantiaCollectionItem}"
+                                           itemLabel="#{requisitogarantiaCollectionItem.rgId.toString()}"
+                                           />
+
+                        </h:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="GarantiaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

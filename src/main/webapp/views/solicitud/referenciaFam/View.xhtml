@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReferenciaFamViewDlg" widgetVar="ReferenciaFamViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.ViewReferenciaFamTitle}" closeOnEscape="true">
+
+            <h:form id="ReferenciaFamViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudManagedBean.refFamSelected != null}">
+
+                        <h:outputText value="#{crudbundle.refFam_id}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.rfId}" title="#{crudbundle.refFam_id}"/>
+
+                        <h:outputText value="#{crudbundle.refFam_nombreCompleto}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.rfNombrecompleto}" title="#{crudbundle.refFam_nombreCompleto}"/>
+
+                        <h:outputText value="#{crudbundle.refFam_direccion}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.rfDireccion}" title="#{crudbundle.refFam_direccion}"/>
+
+                        
+                        <h:outputText value="#{crudbundle.refFam_telefono}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.rfTelefono}" title="#{crudbundle.refFam_telefono}"/>
+
+                        <h:outputText value="#{crudbundle.refFam_parentesco}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.rfParentesco}" title="#{crudbundle.refFam_parentesco}"/>
+                        
+                        
+                        <h:outputText value="#{crudbundle.refFam_usuarioRegistro}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.usuarioRegistro}" title="#{crudbundle.refFam_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.refFam_fechaRegistro}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.fechaRegistro}" title="#{crudbundle.refFam_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.refFam_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.usuarioUltimamodificacion}" title="#{crudbundle.refFam_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.refFam_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{solicitudManagedBean.refFamSelected.fechaUltimamodificacion}" title="#{crudbundle.refFam_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="ReferenciaFamViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

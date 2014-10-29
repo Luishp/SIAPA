@@ -1,0 +1,82 @@
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">
+        <title>Analisis incompletos.</title>
+    </ui:define>
+
+    <ui:define name="content">
+        <style>
+            .ui-fieldset .ui-fieldset-legend
+            {
+                font-size: small;
+            }
+
+        </style>
+        <h:form id="AnalisisList">
+            <p:fieldset legend="Analisis Completos">
+                <p:dataTable id="datalist" var="item" value="#{analisisCreditoManagedBean.analisisItems}" paginator="true" rows="5"  
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                             rowsPerPageTemplate="5,10,15"  lazy="false" resizableColumns="true"  
+                             selectionMode="single" selection="#{analisisCreditoManagedBean.selected}" 
+                             rowKey="#{item.analisisId}" paginatorPosition="bottom">
+
+                     <p:ajax event="rowSelect"   update="editButton"/>
+                    <p:ajax event="rowUnselect" update="editButton"/>
+                    
+                        <f:facet name="header">  
+                           Analisis de credito Incompletos.
+                        </f:facet>
+                        
+                        <p:column width="15%" style="text-align: center">
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{item.analisisId}"/>
+                        </p:column>
+                     <p:column width="40%">
+                            <f:facet name="header">
+                                <h:outputText value="Nombre del Asociado"/>
+                            </f:facet>
+                            <h:outputText value="#{item.solicitudId.nombreCompleto}"/>
+                        </p:column>
+                        <p:column width="15%" style="text-align: center">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha"/>
+                            </f:facet>
+                            <h:outputText value="#{item.analisisFechacreacion}"/>
+                        </p:column>
+                       
+                        <p:column width="15%" style="text-align: right">
+                            <f:facet name="header">
+                                <h:outputText value="Monto"/>
+                            </f:facet>
+                            <h:outputText value="#{item.analisisMonto}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>
+                        </p:column>
+                        <p:column width="15%" style="text-align: center">
+                            <f:facet name="header">
+                                <h:outputText value="Plazo" />
+                            </f:facet>
+                            <h:outputText value="#{item.analisisPlazo}"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                        <p:commandButton id="editButton" icon="ui-icon-pencil" value="#{crudbundle.Edit}" actionListener="#{analisisCreditoManagedBean.toEdit}" />
+                        <p:commandButton id="refreshButton"   icon="ui-icon-refresh" value="Actualizar" actionListener="#{analisisCreditoManagedBean.cargarAnalisisIncompletos()}" update="@(#AnalisisList)"/>
+                        </f:facet>
+
+                    </p:dataTable>
+                
+
+            </p:fieldset>
+                
+
+        </h:form>
+    </ui:define>
+</ui:composition>

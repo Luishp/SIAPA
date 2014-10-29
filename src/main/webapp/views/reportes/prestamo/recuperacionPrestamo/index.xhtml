@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">
+        <title>Reporte de recuperacion e ingresos por préstamo.</title>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="rptrecueingresosListForm">
+            <br/>
+            <br/>
+            <p:fieldset legend="Parametros de busqueda." style="width: 70%; margin: auto;">
+                <p:panelGrid columns="4" styleClass="panelGridCenter">
+
+                    
+                    <h:outputLabel value="Rango de fechas:" for="fechaInicio"/>
+                    <h:panelGroup>
+                        <p:calendar  id="fechaInicio"  value="#{rptRecuIngrPrestamoManagedBean.fechInicio}" title="fechaInicio" required="true" requiredMessage="fecha inicio, es Requerido" />
+                        <p:tooltip for="fechaInicio" value="Ingresa la fecha de inicio"/>
+                    </h:panelGroup>
+                    <h:outputLabel value="y:" for="fechaFin"/>
+                    <h:panelGroup>
+                        <p:calendar  id="fechaFin"  value="#{rptRecuIngrPrestamoManagedBean.fechFinal}" title="fechaFin" required="true" requiredMessage="fecha fin, es Requerido" />
+                        <p:tooltip for="fechaFin" value="Ingresa la fecha fin"/>
+                    </h:panelGroup>
+                    <p:commandButton id="buscarButton"  icon="ui-icon-search" value="Buscar" />
+
+
+                </p:panelGrid>
+            </p:fieldset>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

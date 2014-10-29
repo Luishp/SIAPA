@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformedeAsesoriadeCredito" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8c245a52-90c8-4187-b71f-ef627ad57970">
+	<property name="ireport.zoom" value="1.024520183047606"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="471"/>
+	<parameter name="totalgasto" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new Double($F{gastosComplementoAportaciones})+ new Double($F{gastosComisionOtorgamiento})]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGE_PATH" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="asesoraCelular" class="java.lang.String">
+		<fieldDescription><![CDATA[asesoraCelular]]></fieldDescription>
+	</field>
+	<field name="asesoraEmail" class="java.lang.String">
+		<fieldDescription><![CDATA[asesoraEmail]]></fieldDescription>
+	</field>
+	<field name="asesoraFecha" class="java.lang.String">
+		<fieldDescription><![CDATA[asesoraFecha]]></fieldDescription>
+	</field>
+	<field name="asesoraNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[asesoraNombre]]></fieldDescription>
+	</field>
+	<field name="asesoraTelefono" class="java.lang.String">
+		<fieldDescription><![CDATA[asesoraTelefono]]></fieldDescription>
+	</field>
+	<field name="asociadoCodigo" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoCodigo]]></fieldDescription>
+	</field>
+	<field name="asociadoIngreso" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoIngreso]]></fieldDescription>
+	</field>
+	<field name="asociadoNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoNombre]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="creditoFormaPago" class="java.lang.String">
+		<fieldDescription><![CDATA[creditoFormaPago]]></fieldDescription>
+	</field>
+	<field name="creditoGarantia" class="java.lang.String">
+		<fieldDescription><![CDATA[creditoGarantia]]></fieldDescription>
+	</field>
+	<field name="creditoLinea" class="java.lang.String">
+		<fieldDescription><![CDATA[creditoLinea]]></fieldDescription>
+	</field>
+	<field name="creditoMonto" class="java.lang.String">
+		<fieldDescription><![CDATA[creditoMonto]]></fieldDescription>
+	</field>
+	<field name="creditoPlazo" class="java.lang.String">
+		<fieldDescription><![CDATA[creditoPlazo]]></fieldDescription>
+	</field>
+	<field name="creditoTasaInteres" class="java.lang.String">
+		<fieldDescription><![CDATA[creditoTasaInteres]]></fieldDescription>
+	</field>
+	<field name="cuotaCapitalintereses" class="java.lang.String">
+		<fieldDescription><![CDATA[cuotaCapitalintereses]]></fieldDescription>
+	</field>
+	<field name="cuotaEstimada" class="java.lang.String">
+		<fieldDescription><![CDATA[cuotaEstimada]]></fieldDescription>
+	</field>
+	<field name="cuotaSegurodaños" class="java.lang.String">
+		<fieldDescription><![CDATA[cuotaSegurodaños]]></fieldDescription>
+	</field>
+	<field name="cuotaSegurodeuda" class="java.lang.String">
+		<fieldDescription><![CDATA[cuotaSegurodeuda]]></fieldDescription>
+	</field>
+	<field name="garantiaValorcompraventa" class="java.lang.String">
+		<fieldDescription><![CDATA[garantiaValorcompraventa]]></fieldDescription>
+	</field>
+	<field name="garantiaValorconstruccion" class="java.lang.String">
+		<fieldDescription><![CDATA[garantiaValorconstruccion]]></fieldDescription>
+	</field>
+	<field name="garantiaValorhipotecaactual" class="java.lang.String">
+		<fieldDescription><![CDATA[garantiaValorhipotecaactual]]></fieldDescription>
+	</field>
+	<field name="garantiaValorhipotecaanterior" class="java.lang.String">
+		<fieldDescription><![CDATA[garantiaValorhipotecaanterior]]></fieldDescription>
+	</field>
+	<field name="garantiaValorpropiedad" class="java.lang.String">
+		<fieldDescription><![CDATA[garantiaValorpropiedad]]></fieldDescription>
+	</field>
+	<field name="gastosComisionOtorgamiento" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosComisionOtorgamiento]]></fieldDescription>
+	</field>
+	<field name="gastosComplementoAportaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosComplementoAportaciones]]></fieldDescription>
+	</field>
+	<field name="gastosHonorarionotario" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosHonorarionotario]]></fieldDescription>
+	</field>
+	<field name="gastosImpuestoCompraventa" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosImpuestoCompraventa]]></fieldDescription>
+	</field>
+	<field name="gastosImpuestoHipoteca" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosImpuestoHipoteca]]></fieldDescription>
+	</field>
+	<field name="gastosImpuestoTransferencia" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosImpuestoTransferencia]]></fieldDescription>
+	</field>
+	<field name="gastosImpuestocancelacionhipoteca" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosImpuestocancelacionhipoteca]]></fieldDescription>
+	</field>
+	<field name="gastosTotalEstimado" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosTotalEstimado]]></fieldDescription>
+	</field>
+	<field name="gastosValuoinmueble" class="java.lang.String">
+		<fieldDescription><![CDATA[gastosValuoinmueble]]></fieldDescription>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[observaciones]]></fieldDescription>
+	</field>
+	<variable name="estimadoGasto" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[new Double($F{gastosComplementoAportaciones})+
+new Double($F{gastosComisionOtorgamiento})+
+new Double($F{gastosValuoinmueble})+
+new Double($F{gastosImpuestoHipoteca})+
+new Double($F{gastosImpuestoCompraventa})+
+new Double($F{gastosImpuestoTransferencia})+
+new Double($F{gastosImpuestocancelacionhipoteca})+
+new Double($F{gastosHonorarionotario})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="101" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="40" width="572" height="20" uuid="5ca29100-cdfe-4dd9-a231-2ab1a232fa4d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME DE ASESORÍA DE CRÉDITO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="60" width="53" height="20" uuid="d465dd70-d37d-4c7c-b278-7309105f90d9"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Código:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="80" width="52" height="20" uuid="05082a47-3bb9-4e24-8158-0dd8cfe183e5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Asociado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="60" width="100" height="20" uuid="0954f153-09e1-4db4-aea1-07e55b636b32"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{asociadoCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="80" width="352" height="20" uuid="ee545238-8579-44c0-bccf-5012ef94be38"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{asociadoNombre}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="290" height="40" uuid="2a35d15a-9245-480f-943a-ed9eb21b9c96"/>
+				<imageExpression><![CDATA[$P{IMAGE_PATH}.concat("\\logo_1.png")]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="416" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="2" width="572" height="414" uuid="45ba0273-01a2-43cd-aa94-a3a48ec2d322"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="2" width="572" height="20" backcolor="#999999" uuid="fb90c87d-bc43-4c67-90a2-b3857bf311c6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL CRÉDITO
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="36" width="98" height="20" uuid="88469326-9fae-4e86-8a01-d836380d3b94"/>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[Linea de crédito:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="56" width="98" height="20" uuid="5f6c9c06-68d0-41fa-949a-8d95a9d8df14"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Garantía:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="89" width="98" height="20" uuid="7ebbab27-dc7f-4033-a72d-1077cee24ecc"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Monto:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="109" width="98" height="20" uuid="0cf152cc-83d5-4926-b5b0-dbfc9491dea3"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Plazo:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="129" width="98" height="20" uuid="b50982af-eefd-49ed-b841-0ded0b636102"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tasa de interés:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="158" width="98" height="20" uuid="3513efe2-db9b-4cec-ad6d-2e7f76356941"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Ingresos Mensuales:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="178" width="98" height="20" forecolor="#000000" uuid="95460e86-1744-4dad-9a99-4bd9e3403f67"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Forma de pago:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="209" width="292" height="20" backcolor="#999999" uuid="c3b77844-44a0-45ce-be45-1c9227875502"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CALCULO DE CUOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="292" y="209" width="280" height="20" backcolor="#999999" uuid="99e281e7-7746-4730-8b64-ad5dc841d488"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CALCULO DE GASTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="111" width="136" height="20" uuid="d53a55c5-cd08-40a2-b45e-89d0060bb6b6"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Valor de hipoteca anterior:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="58" width="136" height="20" uuid="6893a47c-a65e-4387-a5eb-46f151772480"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Valor de contrucción:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="91" width="136" height="20" uuid="8f51a188-d227-4236-9703-cfe7600eaba2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Valor de compra venta:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="131" width="136" height="20" uuid="ed05e614-eb30-43dd-a967-dbce8f153ba9"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Valor hipoteca actual:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="38" width="136" height="20" uuid="1a97596f-75f7-4f46-9ee6-92beed460b84"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Valor de propiedad:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="256" width="98" height="20" uuid="99d00b38-106e-46b8-9ab7-dc75b7f48715"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Seguro de deuda:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="236" width="98" height="20" uuid="a3867cfd-0015-4118-9f4f-ee3fd2ffe8e5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Capital e intereses:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="276" width="98" height="20" uuid="81dd89b1-1f81-4a8d-b6e6-afb9553512fe"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Seguro de daños:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="310" width="98" height="20" uuid="a5071ca8-5dce-4448-858e-53f5dda85610"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Cuota estimada:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="396" width="132" height="20" uuid="0105b241-f59e-4a22-aa10-2446f0a0d4dc"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total estimado de gasto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="316" width="189" height="20" uuid="a671f9f7-ec37-4883-be0e-fc0b231f4f05"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Impuesto de compra venta:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="236" width="189" height="20" uuid="ba505fe8-719d-4b64-b284-759ef5045917"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Complemento de aportaciones:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="256" width="189" height="20" uuid="b68eadab-8ecb-4917-8cdd-61eae4e8c469"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Comisión por otorgamiento:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="276" width="189" height="20" forecolor="#000000" uuid="6d880b5e-5e20-4463-8afa-d70613be7325"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Gasto por valúo del inmueble:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="296" width="189" height="20" uuid="e3ce455e-fb4b-453e-b0b7-9d8104cf2e9f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Impuesto de hipoteca:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="336" width="189" height="20" uuid="cdd33f1d-268d-4d36-a615-f71dc22a8646"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Impuesto de transferencia:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="356" width="189" height="20" uuid="370708cb-1c55-48b2-9086-b424aa557092"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Impuesto por cancelación de hipoteca:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="376" width="189" height="20" forecolor="#000000" uuid="4d6f7c57-024e-4655-b537-d81a6e645797"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Honorarios notario:
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="129" y="36" width="135" height="20" uuid="9caeda0e-c56a-45e2-a4be-3f78196413b2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{creditoLinea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="56" width="135" height="20" uuid="fa81e144-fa27-4bc3-8d9e-1caf8605c356"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{creditoGarantia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="89" width="135" height="20" uuid="73fba594-cec5-42bd-9276-cb347a88d58b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{creditoMonto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="109" width="135" height="20" uuid="67b67a4d-b47e-446d-bb3d-f8b523f858b2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{creditoPlazo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="129" y="129" width="135" height="20" uuid="aa681eb3-1cd8-4d87-aba0-a1e6839173f8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{creditoTasaInteres})*100]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="158" width="135" height="20" uuid="0bd9ecfe-550c-48b2-8e04-05b2a3608e26"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{asociadoIngreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="178" width="135" height="20" uuid="02c0b24f-3b5e-4755-80cd-da59447170c5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{creditoFormaPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="38" width="100" height="20" uuid="55f02f46-b3b3-4418-8bc3-118eda5b4cc0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{garantiaValorpropiedad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="58" width="100" height="20" uuid="bccb0792-3563-42e9-93c8-5d49544291fe"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{garantiaValorconstruccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="91" width="100" height="20" uuid="e365e550-0ca6-419d-8edf-5a6e94baa33f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{garantiaValorcompraventa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="131" width="100" height="20" uuid="7c7d9f18-30be-4019-8f61-bd742eb7f760"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{garantiaValorhipotecaactual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="111" width="100" height="20" uuid="e6b1906d-fcff-43ff-b20d-64e8ab7d0144"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{garantiaValorhipotecaanterior}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="236" width="100" height="20" uuid="1eff5fe3-be5d-4e38-87c7-b51246ae2c0a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cuotaCapitalintereses}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="256" width="100" height="20" uuid="9359f311-e5a2-4054-b2d5-380213a4703e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cuotaSegurodeuda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="276" width="100" height="20" uuid="eda05e90-0bbd-43bc-a3ac-0da4ec2cdeda"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cuotaSegurodaños}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="310" width="100" height="20" uuid="6b7bf54d-e55d-4e68-9ce8-d338403d323c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cuotaEstimada}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="469" y="236" width="90" height="20" uuid="b81693ee-1581-4fed-aa5e-a8b97fed2dd4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{gastosComplementoAportaciones})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="469" y="256" width="90" height="20" uuid="b8618aa4-20e6-4fcb-845a-e2a5d48726b8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{gastosComisionOtorgamiento})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="469" y="276" width="90" height="20" uuid="f44ab5c9-087e-44ac-ae8b-a18ab378bfd6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{gastosValuoinmueble})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="469" y="296" width="90" height="20" uuid="5e2e4830-9c9d-4891-bf57-f0c07e1d67ae"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{gastosImpuestoHipoteca})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="469" y="316" width="90" height="20" uuid="dcab7b01-ca61-4add-8583-f325b60fcc86"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{gastosImpuestoCompraventa})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="469" y="356" width="90" height="20" uuid="3a174c9f-0678-49bf-8b9a-32103da393cf"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{gastosImpuestocancelacionhipoteca})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="469" y="376" width="90" height="20" uuid="2f62f66d-9693-4cd9-80ab-db6602e1c48d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{gastosHonorarionotario})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="469" y="336" width="90" height="20" uuid="eae05301-85ac-497c-8046-2f498a6d0419"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($F{gastosImpuestoTransferencia})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="469" y="396" width="90" height="20" uuid="184c407a-26f2-4fda-a5af-8250456deb92"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{estimadoGasto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="264" y="129" width="16" height="20" uuid="c02c7e29-16cb-41a3-9a41-a243fadcc8c9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[%]]></text>
+			</staticText>
+		</band>
+		<band height="150">
+			<rectangle>
+				<reportElement x="0" y="8" width="572" height="141" uuid="b270eea0-306c-45c0-9d48-570946b421b8"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="8" width="572" height="20" backcolor="#999999" uuid="c62b682e-2dc6-44b1-849b-fccae5faa586"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REQUISITOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="29" width="295" height="121" uuid="62655503-66bd-42f5-9fed-7c72f1eaae7b"/>
+				<textElement markup="html">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1. Constancia de Salario Vigente.<BR>
+2. DUI,NIT,ISSS.<BR>
+3. Recibo de agua o energia.<BR>
+<BR>
+<B>DOCUMENTOS GARANTIA HIPOTECARIA</B><BR>
+<BR>
+5. Escritura publica de compra venta del inmueble.<BR>
+6. Certificacion extractada del inmueble<BR>(30 dias de antiguedad).<BR>
+7. Pago de Valuo.<BR>
+
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="29" width="275" height="121" uuid="b5063825-f5c6-42ea-bc72-2ebe2843e3dc"/>
+				<textElement markup="html">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[8.  Solvencias de impuestos municipales (inmueble ofrecido en garantia).<BR>
+9.  Solvencias de impuestos de hacienda (asociado solicitante).<BR>
+10.Carta de Compromiso de liberacion de hipotecaemitida por el acreedor.
+   <BR>(Aplica para inmuebles hipotecados ).<BR>
+11.Estado de cuenta del saldo de la hipoteca.<BR>
+12.DUI y NIT de los propietarios del inmueble.<BR>
+13.Solvencias de impuestos de hacienda (propietarios del inmueble).<BR>
+
+
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="22" width="25" height="20" uuid="63d68d97-5982-4332-a52a-cabe96c34a63"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tel:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="22" width="41" height="20" uuid="7102f6a3-1003-42c4-a615-7a99bd258639"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[E-mail:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="22" width="53" height="20" uuid="c152b5fb-f7fa-46ac-9cd8-54144df2e27c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Asesora:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="43" width="69" height="20" uuid="24e70e57-8ba9-403e-90cb-7610c2d005e0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[San Salvador:
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="22" width="167" height="20" uuid="038a00dc-1d2e-479d-a0e2-e72595e8ffb6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{asesoraNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="22" width="100" height="20" uuid="0d202001-9b18-4e1f-ba9d-a2d8b9f2ed48"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{asesoraTelefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="391" y="22" width="181" height="20" uuid="c70f6061-f7ec-4ac7-9efe-a740d1c4d773"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{asesoraEmail}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="43" width="100" height="20" uuid="b4fdde2a-adb2-4027-a183-d1c0dbfa3235"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{asesoraFecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="0" width="570" height="21" uuid="e027427d-ce58-4d4b-a4ff-267e261489f7"/>
+				<textElement verticalAlignment="Middle" markup="html"/>
+				<textFieldExpression><![CDATA["Observaciones:"+$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="449" y="44" width="80" height="20" uuid="2b2d80e8-1bfc-4275-8439-0719cc1e803a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="529" y="44" width="40" height="20" uuid="db4ac1af-fdb0-4eee-8dcf-f3854153f89b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

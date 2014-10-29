@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegistrogarantiarealCreateDlg" widgetVar="RegistrogarantiarealCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateRegistrogarantiarealTitle}" closeOnEscape="true">
+
+            <h:form id="RegistrogarantiarealCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_rgrId}" for="rgrId" />
+                        <p:inputText id="rgrId" value="#{registrogarantiarealController.selected.rgrId}" title="#{myBundle.CreateRegistrogarantiarealTitle_rgrId}" required="true" requiredMessage="#{myBundle.CreateRegistrogarantiarealRequiredMessage_rgrId}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_rgrTipo}" for="rgrTipo" />
+                        <p:inputText id="rgrTipo" value="#{registrogarantiarealController.selected.rgrTipo}" title="#{myBundle.CreateRegistrogarantiarealTitle_rgrTipo}" required="true" requiredMessage="#{myBundle.CreateRegistrogarantiarealRequiredMessage_rgrTipo}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_rgrNumerocuenta}" for="rgrNumerocuenta" />
+                        <p:inputText id="rgrNumerocuenta" value="#{registrogarantiarealController.selected.rgrNumerocuenta}" title="#{myBundle.CreateRegistrogarantiarealTitle_rgrNumerocuenta}" required="true" requiredMessage="#{myBundle.CreateRegistrogarantiarealRequiredMessage_rgrNumerocuenta}" size="10" maxlength="10"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_rgrNumerodeposito}" for="rgrNumerodeposito" />
+                        <p:inputText id="rgrNumerodeposito" value="#{registrogarantiarealController.selected.rgrNumerodeposito}" title="#{myBundle.CreateRegistrogarantiarealTitle_rgrNumerodeposito}" size="10" maxlength="10"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_rgrPorcentajepignorado}" for="rgrPorcentajepignorado" />
+                        <p:inputText id="rgrPorcentajepignorado" value="#{registrogarantiarealController.selected.rgrPorcentajepignorado}" title="#{myBundle.CreateRegistrogarantiarealTitle_rgrPorcentajepignorado}" required="true" requiredMessage="#{myBundle.CreateRegistrogarantiarealRequiredMessage_rgrPorcentajepignorado}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_rgrMontopignorado}" for="rgrMontopignorado" />
+                        <p:inputText id="rgrMontopignorado" value="#{registrogarantiarealController.selected.rgrMontopignorado}" title="#{myBundle.CreateRegistrogarantiarealTitle_rgrMontopignorado}" required="true" requiredMessage="#{myBundle.CreateRegistrogarantiarealRequiredMessage_rgrMontopignorado}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_activo}" for="activo" />
+                        <p:inputText id="activo" value="#{registrogarantiarealController.selected.activo}" title="#{myBundle.CreateRegistrogarantiarealTitle_activo}" required="true" requiredMessage="#{myBundle.CreateRegistrogarantiarealRequiredMessage_activo}" size="2" maxlength="2"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_usuarioRegistro}" for="usuarioRegistro" />
+                        <p:inputText id="usuarioRegistro" value="#{registrogarantiarealController.selected.usuarioRegistro}" title="#{myBundle.CreateRegistrogarantiarealTitle_usuarioRegistro}" required="true" requiredMessage="#{myBundle.CreateRegistrogarantiarealRequiredMessage_usuarioRegistro}" size="15" maxlength="15"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{registrogarantiarealController.selected.fechaRegistro}" title="#{myBundle.CreateRegistrogarantiarealTitle_fechaRegistro}" required="true" requiredMessage="#{myBundle.CreateRegistrogarantiarealRequiredMessage_fechaRegistro}" showOn="button"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_usuarioUltimamodificacion}" for="usuarioUltimamodificacion" />
+                        <p:inputText id="usuarioUltimamodificacion" value="#{registrogarantiarealController.selected.usuarioUltimamodificacion}" title="#{myBundle.CreateRegistrogarantiarealTitle_usuarioUltimamodificacion}" size="15" maxlength="15"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_fechaUltimamodificacion}" for="fechaUltimamodificacion" />
+                        <p:calendar id="fechaUltimamodificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{registrogarantiarealController.selected.fechaUltimamodificacion}" title="#{myBundle.CreateRegistrogarantiarealTitle_fechaUltimamodificacion}"  showOn="button"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_rgrValidar}" for="rgrValidar" />
+                        <p:selectBooleanCheckbox id="rgrValidar" value="#{registrogarantiarealController.selected.rgrValidar}" />
+
+
+                        <p:outputLabel value="#{myBundle.CreateRegistrogarantiarealLabel_analisisId}" for="analisisId" />
+                        <p:selectOneMenu id="analisisId" value="#{registrogarantiarealController.selected.analisisId}"  converter="analisisConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{analisisController.items}"
+                                           var="analisisIdItem"
+                                           itemValue="#{analisisIdItem}"
+                                           itemLabel="#{analisisIdItem.analisisId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{registrogarantiarealController.saveNew}" value="#{myBundle.Save}" update="display,:RegistrogarantiarealListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RegistrogarantiarealCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="RegistrogarantiarealCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

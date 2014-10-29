@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+
+    <style>
+.first-row {
+     background-color: #EE9B0D !important;
+     background-image: none !important;
+     color: #000000 !important;
+}
+                
+.second-row {
+    background-color: #1f7a18 !important;
+    background-image: none !important;
+    color: #000000 !important;
+}
+    </style>
+    <h:form id="AnalisisListForm">
+        <p:growl id="growl" showDetail="true" sticky="false"  />  
+        <br/>
+        <br/>
+        <!--<p:panel header="Asignacion de Garantias del Credito">-->
+            <p:dataTable id="datalistAnalisis" var="item" value="#{registroGarantiasManagedBean.anlisisItems}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="false" resizableColumns="false" rowStyleClass="#{item.getColor() eq 1 ? 'second-row' : 'first-row'}"
+                         selectionMode="single" selection="#{registroGarantiasManagedBean.selected}"
+                         rowKey="#{item.analisisId}" paginatorPosition="bottom">
+
+
+                <f:facet name="header">  
+                    <h4>
+                    Asignacion de Garantias de Credito
+                    </h4>
+                </f:facet>  
+                <p:column width="5%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Analisis"/>
+                    </f:facet>
+                    <h:outputText value="#{item.analisisId}"/>
+                </p:column>
+                <p:column width="7%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Fecha Creacion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.analisisFechacreacion}">
+                        <f:convertDateTime pattern="dd/MM/YY" ></f:convertDateTime>
+                    </h:outputText>
+                </p:column>
+                
+                <p:column width="50%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Asociado"/>
+                    </f:facet>
+                    <h:outputText value="#{item.solicitudId.nombreCompleto}">
+                       
+                    </h:outputText>
+                </p:column>
+
+                <p:column  width="6%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Hipotecaria"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gHipotecariaReq}"/>
+                </p:column>
+
+                <p:column  width="6%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Hipotecaria"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gHipotecariaReg}"/>
+                </p:column>
+
+                <p:column  width="6%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Prendarias"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gPrendariaReq}"/>
+                </p:column>
+
+                <p:column  width="6%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Prendaria"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gPrendariaReg}"/>
+                </p:column>
+
+                <p:column  width="6%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Real"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gRealReq}"/>
+                </p:column>
+
+                <p:column  width="6%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Real"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gRealReg}"/>
+                </p:column>
+
+
+                <p:column  width="6%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Codeudor"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gCodeudorReq}"/>
+                </p:column>
+
+                <p:column  width="6%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Codeudor"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gCodeudorReg}"/>
+                </p:column>
+              
+                <f:facet name="footer">
+                
+<!--                    <p:selectOneMenu id="garantia" value="#{registroGarantiasManagedBean.garantiaSelected}"  converter="#{garantiaConverter}" style="width: 120px;">
+                        <f:selectItem itemLabel="Seleccione" />
+                        <f:selectItems value="#{registroGarantiasManagedBean.tiposGarantias}" var="garantia" itemLabel="#{garantia.garantiaTipo}" itemValue="#{garantia}"/>
+                        <p:ajax update=":growl,createButton" process="garantia" listener="#{registroGarantiasManagedBean.onselect(event)}"/>
+                    </p:selectOneMenu>-->
+                    <p:selectOneMenu id="garantia" value="#{registroGarantiasManagedBean.garantiaSelected}" required="true" requiredMessage="Tipo de garantia es requerido">
+
+                        <f:selectItems value="#{registroGarantiasManagedBean.opcionesGarantias}"
+                                       var="activoItem"
+                                       itemValue="#{activoItem.value}"
+                                       itemLabel="#{activoItem.description}"/>
+                         <p:ajax update=":growl,createButton" process="garantia" listener="#{registroGarantiasManagedBean.onselect(event)}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:commandButton id="createButton" icon="ui-icon-extlink"   value="Agregar Garantia" update="datalistAnalisis" actionListener="#{registroGarantiasManagedBean.transferir(event)}" disabled="#{empty registroGarantiasManagedBean.garantiaSelected}"/>
+                    <p:commandButton id="refreshButton"   icon="ui-icon-refresh" value="Actualizar" actionListener="#{registroGarantiasManagedBean.cargarAnalisisListos()}" update="@(#AnalisisListForm)"/>
+
+                </f:facet>
+
+            </p:dataTable>
+
+      <!--</p:panel>-->
+
+    </h:form>
+</ui:composition>

@@ -1,0 +1,991 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+    <style>
+        .ui-fieldset .ui-fieldset-legend
+        {
+            font-size: small;
+        }
+
+    </style>
+    <h:form id="ConsultaburocreditoListForm">
+        <h2 style="text-align: center">Registrar analisis de credito </h2>  
+        <p:panel header=" ">
+            <p:panelGrid columns="2"  style="width: 100%;" >   
+                <p:panel header="Perfil Asociado">  
+                    <p:panelGrid>  
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Codigo Asociado:" />
+                            </p:column>
+                            <p:column colspan="1">
+                                <p:outputLabel value="#{analisisCreditoManagedBean.asociado.codigo}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Asociado:" />   
+                            </p:column>
+
+                            <p:column colspan="3">
+                                <p:outputLabel value="#{analisisCreditoManagedBean.asociado != null?analisisCreditoManagedBean.asociado.idasocnatu.nombreCompleto: analisisCreditoManagedBean.asociado.idasocjuri.duiNombre1}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Fecha Ingreso:"/>
+                            </p:column>
+                            <p:column colspan="3">
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.fechaRegistro}" style="font-weight: normal;"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel  value="Profesion:" />   
+                            </p:column>
+                            <p:column >
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudProfesion}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel   value="Nombre de Empresa:" /> 
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudNombreempresa}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel   value="Cargo:" /> 
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudCargo}" style="font-weight: normal;"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>     
+                                <p:outputLabel  value="Tipo Empresa:" />  
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudNombreempresa}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column> 
+                                <p:outputLabel   value="Categoria cliente:" />  
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="A" style="font-weight: normal;"  />  
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>  
+
+                </p:panel>
+                <br/>
+            </p:panelGrid>
+            <p:panel header="Datos de la solicitud de credito">  
+                <p:panelGrid columns="2"  style="width: 100%;">
+                    <p:panelGrid >
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Solicitud de credito:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudId}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Fecha de solicitud:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.fechaRegistro}" style="font-weight: normal;">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </p:outputLabel>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Tipo de solicitud:"/>
+                            </p:column>
+
+                            <p:column>
+                                <p:selectOneMenu value="#{analisisCreditoManagedBean.analisis.tsId}" effect="fade" id="tipoSolicitud" converter="#{tipoSolicitudConverter}">
+                                    <f:selectItem itemLabel="Seleccione" />
+                                    <f:selectItems value="#{analisisCreditoManagedBean.tipoSolicitudList}" var="tipoSolicitud" itemLabel="#{tipoSolicitud.tsNombre}" itemValue="#{tipoSolicitud}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Ejecutiva de Mercadeo:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.usuarioRegistro}" style="font-weight: normal;"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Saldo en aportaciones:"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText  value="#{analisisCreditoManagedBean.solicitudSelected.solicitudAportacionactivo}" readonly="true" size="10" converter="#{BigDecimal}" styleClass="decimales">  
+                                    <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                                </p:inputText>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Complemento en aportaciones" />
+                            </p:column>
+                            <p:column>
+                                <p:inputText  value="#{analisisCreditoManagedBean.solicitudSelected.asesoriaId.asesoriaRelacionaportacion}" readonly="true" size="10" converter="#{BigDecimal}" styleClass="decimales">  
+                                    <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                                </p:inputText>
+                            </p:column>
+
+                        </p:row>
+
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <br/>
+            <p:panel header="Situacion economica familiar:">  
+                <p:panelGrid columns="2"  style="width: 100%;">
+                    <p:panelGrid >
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Estado civil:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Casado" />
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Conyuge:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudNombrecompletoconyuge}" style="font-weight: normal;"/>
+                            </p:column>
+
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Lugar trabajo:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudNombreempresaconyugue}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Tiempo de 
+                                               trabajo:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudTiempotrabajoanioconyugue}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Cargo:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudCargoconyugue}" style="font-weight: normal;"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Ingreso Conyugue:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{analisisCreditoManagedBean.analisis.solicitudId.solicitudSueldoconyuge}" style="font-weight: normal;"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="N. dependientes:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="3" />
+                            </p:column>
+                        </p:row>
+
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <br/>
+            <p:panel header="Datos de analisis:">  
+                <p:panelGrid columns="2"  style="width: 100%;">
+                    <p:panelGrid id="datosAnalisis">
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Monto:"/>
+                            </p:column>
+                            <p:column>
+
+                                <pe:inputNumber id="analisis_monto" value="#{analisisCreditoManagedBean.analisis.analisisMonto}"  symbol="$ " emptyValue="zero">
+                                </pe:inputNumber>
+                            </p:column>
+                            <p:column width="10px">
+                                <p:outputLabel value="#{analisisCreditoManagedBean.vecesSalario} veces su salario">
+                                <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+                                </p:outputLabel>
+                                    
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="" />
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Plazo:"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{analisisCreditoManagedBean.analisis.analisisPlazo}" size="3" maxlength="3" required="true" >
+                                </p:inputText>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Tasa de interes anual:"/>
+                            </p:column>
+                            <p:column>
+                                <pe:inputNumber value="#{analisisCreditoManagedBean.analisis.analisisTasa}" minValue="-99.99" maxValue="99.99" decimalSeparator="." thousandSeparator="," symbol="%" symbolPosition="s" required="true" label="Tasa de Interes"  maxlength="5"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Forma de pago:"/>
+                            </p:column>
+                            <p:column>
+                                <p:selectOneMenu value="#{analisisCreditoManagedBean.solicitudSelected.fpId}" effect="fade" id="formaPago" converter="#{formaPagoConverter}">
+                                    <f:selectItem itemLabel="Seleccione" />
+                                    <f:selectItems value="#{analisisCreditoManagedBean.formaPagoList}" var="formaPago" itemLabel="#{formaPago.fpNombre}" itemValue="#{formaPago}"/>
+                                </p:selectOneMenu>
+
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Periodicidad de pago:"/>
+                            </p:column>
+                            <p:column>
+                                <p:selectOneMenu value="#{analisisCreditoManagedBean.solicitudSelected.ppId}" effect="fade" id="periodicidadPago" converter="#{periodicidadPagoConverter}">
+                                    <f:selectItem itemLabel="Seleccione" />
+                                    <f:selectItems value="#{analisisCreditoManagedBean.periodicidadPagoList}" var="periodicidadPago" itemLabel="#{periodicidadPago.ppNombre}" itemValue="#{periodicidadPago}"/>
+                                </p:selectOneMenu>
+
+                            </p:column>
+
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel  value="Capital e interes:" />  
+
+                            </p:column>
+                            <p:column>
+                                <p:inputText  value="#{analisisCreditoManagedBean.analisis.analisisCuotacapitalmasintereses}" readonly="true" size="10" styleClass="decimales">
+                                    <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                                </p:inputText>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="calcgastos" value="Calcular" actionListener="#{analisisCreditoManagedBean.calcularCuotaGastos}" process="datosAnalisis,detalleCuenta" update="datosAnalisis,detalleCuenta,:growl" />  
+                            </p:column>
+
+                        </p:row>
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <br/>
+            <p:panel header="Solicitud de credito:" id="pkyt">  
+                <p:panelGrid columns="2"  style="width: 100%;">
+                    <p:panelGrid >
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Linea de credito"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{analisisCreditoManagedBean.solicitudSelected.asesoriaId.detallelineacreditoId.lineacreditoId.lineacreditoNombre}" readonly="true" size="20" maxlength="15" required="true" styleClass="decimales">
+                                </p:inputText>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Garantia:"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="1 Codeudor" />
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Asignar Garantia" icon="ui-icon-extlink" process="pkyt" actionListener="#{analisisCreditoManagedBean.dialogAsignarAsesoria()}"  update="@(#AsignarGarantiaForm)" oncomplete="AsignarGarantiaDialog.show()" />  
+                            </p:column>
+
+
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Promocion:"/>
+                            </p:column>
+                            <p:column>
+                                <p:selectCheckboxMenu value="#{analisisCreditoManagedBean.promocionList}" label="Promociones" panelStyle="width:220px" converter="#{promocionConverter}">
+                                    <f:selectItems value="#{analisisCreditoManagedBean.promociones}" var="promocion" itemLabel="#{promocion.promocionNombre}" itemValue="#{promocion}"/>
+                                </p:selectCheckboxMenu>
+                            </p:column>
+
+                        </p:row>
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <br/>
+            <p:panel header="Consulta a buros de credito:">  
+
+                <p:dataTable id="datalist" var="item" value="#{analisisCreditoManagedBean.consultaBuroCreditoList}" paginator="true" rows="5"  
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                             rowsPerPageTemplate="5,10,15"   resizableColumns="true"  
+                             selectionMode="single" selection="#{analisisCreditoManagedBean.cbSelected}"
+                             rowKey="#{item.cbcId}" paginatorPosition="bottom">
+
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton"/>
+
+                    <p:column sortBy="#{item.cbcNombre}" filterBy="#{item.cbcNombre}">
+                        <f:facet name="header">
+                            <h:outputText value="#{crudbundle.ConsultaburocreditoTitle_cbcNombre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cbcNombre}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.cbdCalificacion}" filterBy="#{item.cbdCalificacion}">
+                        <f:facet name="header">
+                            <h:outputText value="#{crudbundle.ConsultaburocreditoTitle_cbdCalificacion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cbdCalificacion}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.cbcComentario}" filterBy="#{item.cbcComentario}">
+                        <f:facet name="header">
+                            <h:outputText value="#{crudbundle.ConsultaburocreditoTitle_cbcComentario}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cbcComentario}"/>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <div class="footer-section">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" immediate="true" actionListener="#{analisisCreditoManagedBean.agregarBuro(event)}" update="@(#ConsultaburocreditoCreateForm)" oncomplete="ConsultaburocreditoCreateDialog.show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ConsultaburocreditoViewForm)" oncomplete="ConsultaburocreditoViewDialog.show()" disabled="#{empty analisisCreditoManagedBean.cbSelected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#ConsultaburocreditoEditForm)" oncomplete="ConsultaburocreditoEditDialog.show()" disabled="#{empty analisisCreditoManagedBean.cbSelected}"/>
+                        </div>
+                    </f:facet>
+
+                </p:dataTable>
+            </p:panel>
+            <br/>
+            <h2>SITUACION CREDITICIA</h2>
+            <p:panel header="Situacion crediticia actualmente:" id="listadosDeudas">  
+                <p:fieldset legend="Deudas Comerciales">
+
+                    <p:dataTable id="datalist1" var="item" value="#{analisisCreditoManagedBean.deudaList}" paginator="true" rows="5"  
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                                 rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                                 selectionMode="single" selection="#{analisisCreditoManagedBean.deudaSelected}"
+                                 rowKey="#{item.deudaId}" paginatorPosition="bottom">
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton"/>
+
+                        <f:facet name="header">  
+                            Deudas Comerciales
+                        </f:facet>  
+                        <p:column width="10%" >
+                            <f:facet name="header">
+                                <h:outputText value="Identificador"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaId}"/>
+                        </p:column>
+                        <p:column width="20%" >
+                            <f:facet name="header">
+                                <h:outputText value="Institucion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaNombreinstitucion}"/>
+                        </p:column>
+                        <p:column width="10%" >
+                            <f:facet name="header">
+                                <h:outputText value="Cuota"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaCuota}"/>
+                        </p:column>
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Fecha Otorgada"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaFechaotorgado}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>    
+                        </p:column>
+                        <p:column width="10%" >
+                            <f:facet name="header">
+                                <h:outputText value="Valor Original"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaValororiginal}"/>
+                        </p:column>
+                        <p:column width="10%" >
+                            <f:facet name="header">
+                                <h:outputText value="Saldo Actual"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaSaldoactual}"/>
+                        </p:column>
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Vencimiento"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaFechavencimiento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>  
+                        </p:column>
+                        <f:facet name="footer">
+                            <div class="footer-section">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="crear" actionListener="#{analisisCreditoManagedBean.deudaCPrepareCreate}" update=" @(#DeudasCCreateForm)" oncomplete="DeudasCCreateDialog.show()"/>
+
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#DeudasCViewForm)" oncomplete="DeudasCViewDialog.show()" disabled="#{empty analisisCreditoManagedBean.deudaSelected}"/>
+
+                            </div>
+                        </f:facet>
+
+                    </p:dataTable>
+                </p:fieldset>
+
+                <p:fieldset legend="Tarjetas de Credito">
+                    <p:dataTable id="datalist2" var="item" value="#{analisisCreditoManagedBean.deudaTarjetaCredito}" paginator="true" rows="5"  
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                                 rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                                 selectionMode="single" selection="#{analisisCreditoManagedBean.deudaTSelected}"
+                                 rowKey="#{item.deudaId}" paginatorPosition="bottom">
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton"/>
+
+                        <f:facet name="header">  
+                            Tarjetas de Credito
+                        </f:facet>  
+                        <p:column width="10%" >
+                            <f:facet name="header">
+                                <h:outputText value="Identificador"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaId}"/>
+                        </p:column>
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Emisor"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaNombreinstitucion}"/>
+                        </p:column>
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="No de Tarjeta"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaNumtarjeta}"/>
+                        </p:column>
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Fecha de Emision"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaFechaotorgado}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText> 
+                        </p:column>
+                        <p:column width="10%" >
+                            <f:facet name="header">
+                                <h:outputText value="Limite"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaLimite}"/>
+                        </p:column>
+                        <p:column width="10%" >
+                            <f:facet name="header">
+                                <h:outputText value="Saldo Actual"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaSaldoactual}"/>
+                        </p:column>
+                        <p:column width="10%" >
+                            <f:facet name="header">
+                                <h:outputText value="Pago Minimo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaPagominimo}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <div class="footer-section">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="crear" actionListener="#{analisisCreditoManagedBean.deudaTPrepareCreate}" update=" @(#DeudasTCreateForm)" oncomplete="DeudasTCreateDialog.show()"/>
+
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#DeudasTViewForm)" oncomplete="DeudasTViewDialog.show()" disabled="#{empty analisisCreditoManagedBean.deudaTSelected}"/>
+
+                            </div>
+                        </f:facet>
+
+                    </p:dataTable>
+
+                </p:fieldset>
+                <br/>
+                <p:commandButton id="calcsituacion" value="Calcular Situacion Crediticia" actionListener="#{analisisCreditoManagedBean.calcularSituacion()}" process="listadosDeudas,situacionCrediticia,descuentosPrestamos,conclusion" update="listadosDeudas,situacionCrediticia,descuentosPrestamos,conclusion,:growl" />  
+            </p:panel>
+            <br/>
+            <p:panel header="Situacion crediticia al adquirir el financiamiento" id="situacionCrediticia">  
+                <p:panelGrid  columns="2"  style="width: 100%;">
+                    <p:panelGrid >
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Situacion sin el financiamiento" />
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{analisisCreditoManagedBean.situacionSinFinanciaiemto}" readonly="true"  required="true" >
+                                    <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+                                </p:inputText>
+
+                            </p:column>
+
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Situacion despues de adquierir el financiamiento" />
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{analisisCreditoManagedBean.situacionConFinanciaiemto}"  readonly="true"  required="true" >
+                                    <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+                                </p:inputText>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <br/>
+            <p:panel header="">  
+                <p:panelGrid columns="3"  style="width: 100%;">
+                    <p:panel header="Detalle de la cuota">
+                        <p:panelGrid id="detalleCuenta">
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="capital e intereses"/>
+                                </p:column>
+                                <p:column>
+                                    <pe:inputNumber id="if_capital_interes" value="#{analisisCreditoManagedBean.solicitudSelected.asesoriaId.asesoriaCapitalinteres}" maxlength="10" required="true" label="Sueldo" symbol="$ " emptyValue="zero" >
+                                    </pe:inputNumber>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="seguros por deuda"/>
+                                </p:column>
+                                <p:column>
+                                    <pe:inputNumber id="if_seguro_deuda" value="#{analisisCreditoManagedBean.analisis.analisisSegurodeuda}" maxlength="10" required="true" label="Sueldo" symbol="$ " emptyValue="zero" >
+                                    </pe:inputNumber>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="seguros por daÃ±o"/>
+                                </p:column>
+                                <p:column>
+
+                                    <pe:inputNumber id="if_seguro_dano" value="#{analisisCreditoManagedBean.analisis.analisisSegurodano}" maxlength="10" required="true" label="Sueldo" symbol="$ " emptyValue="zero" >
+                                    </pe:inputNumber>
+                                </p:column>
+                            </p:row>
+
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Cuentas en orden">
+                        <p:panelGrid >
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Intereses diferidos"/>
+                                </p:column>
+                                <p:column>
+                                    <pe:inputNumber id="if_interes_diferido" value="#{analisisCreditoManagedBean.analisis.analisisInteresdiferido}" maxlength="10" required="true" label="Sueldo" symbol="$ " emptyValue="zero" >
+                                    </pe:inputNumber>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Capital diferido"/>
+                                </p:column>
+                                <p:column>
+                                    <pe:inputNumber id="if_capital_diferido" value="#{analisisCreditoManagedBean.analisis.analisisCapitaldiferido}" maxlength="10" required="true" label="Sueldo" symbol="$ " emptyValue="zero" >
+                                    </pe:inputNumber>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Costas Procesales"/>
+                                </p:column>
+                                <p:column>
+
+                                    <pe:inputNumber id="if_costas_procesales" value="#{analisisCreditoManagedBean.analisis.analisisCostasprocesales}" maxlength="10" required="true" label="Sueldo" symbol="$ " emptyValue="zero" >
+                                    </pe:inputNumber>
+                                </p:column>
+                            </p:row>
+
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Conclusion">
+                        <p:panelGrid id="conclusion">
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Actual"/>
+                                </p:column>
+                                <p:column>
+                                    
+                                    <p:inputText value="#{analisisCreditoManagedBean.situacionSinFinanciaiemto}" readonly="true"   required="true" >
+                                        <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Propuesto"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText value="#{analisisCreditoManagedBean.situacionConFinanciaiemto}" readonly="true"  required="true" >
+                                        <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Conclusion"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText value="#{analisisCreditoManagedBean.conclusionSituacion}" readonly="true"  required="true" >
+                                        <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+
+                        </p:panelGrid>
+                    </p:panel>
+                </p:panelGrid>  
+            </p:panel>
+            <h2>SITUACION FINANCIERA</h2>
+            <p:panel header="Estado de Ingreso-Descuentos" id="descuentosPrestamos">  
+                <br/>
+                <p:fieldset legend="Descuentos de Instituciones Financieras">
+                    <p:dataTable id="datalist3" var="item" value="#{analisisCreditoManagedBean.deudaPFList}" paginator="true" rows="5"  
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                                 rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                                 selectionMode="single" selection="#{analisisCreditoManagedBean.prestamoFinSelected}"
+                                 rowKey="#{item.deudaId}" paginatorPosition="bottom">
+
+                        <p:ajax event="rowSelect"   update="viewButton"/>
+                        <p:ajax event="rowUnselect" update="viewButton"/>
+
+                        <f:facet name="header">  
+                            Prestamos Financieros
+                        </f:facet>  
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Identificador"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaId}"/>
+                        </p:column>
+                        <p:column width="20%" >
+                            <f:facet name="header">
+                                <h:outputText value="Institucion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaNombreinstitucion}"/>
+                        </p:column>
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Monto"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaMonto}"/>
+                        </p:column>
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Plazo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaPlazo}"/>
+                        </p:column>
+                        <p:column  width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Tasa"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaTasa}">
+                                <f:convertNumber type="percent" ></f:convertNumber>
+                            </h:outputText>
+                        </p:column>
+                        <p:column  width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Saldo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaSaldoactual}"/>
+                        </p:column>
+                        <p:column  width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Cuota"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaCuota}"/>
+                        </p:column>
+                        <p:column width="15%" >
+                            <f:facet name="header">
+                                <h:outputText value="Fecha de Pago"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deudaFechapago}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <f:facet name="footer">
+                            <div class="footer-section">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="crear" actionListener="#{analisisCreditoManagedBean.prestamofinPrepareCreate}" update=" @(#PrestamoFinCreateForm)" oncomplete="PrestamoFinCreateDialog.show()"/>
+
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#PrestamofinViewForm)" oncomplete="PrestamofinViewDialog.show()" disabled="#{empty analisisCreditoManagedBean.prestamoFinSelected}"/>
+
+                            </div>
+                        </f:facet>
+                    </p:dataTable>
+                </p:fieldset>
+                <p:panelGrid columns="2"  style="width: 100%;">
+                    <p:panel id="ingresosIf" header="Ingresos">
+                        <h:panelGrid columns="3" id="grid_if_1">
+
+                            <p:outputLabel value="Sueldo($)" for="if_sueldo"/>
+                            <pe:inputNumber id="if_sueldo" value="#{analisisCreditoManagedBean.solicitudSelected.solicitudSueldo}" maxlength="10" required="true" label="Sueldo">
+                            </pe:inputNumber>
+                            <p:message for="if_sueldo" display="icon"/>  
+
+                            <p:outputLabel value="ComisiÃ³n ($)" for="if_comision"/>
+                            <pe:inputNumber id="if_comision" value="#{analisisCreditoManagedBean.solicitudSelected.solicitudIngresoComision}" maxlength="10" required="true" label="Comision" emptyValue="zero" symbol="$ ">
+                            </pe:inputNumber>
+                            <p:message for="if_comision" display="icon"/>  
+
+
+                            <p:outputLabel value="Otros Ingresos ($)" for="if_otros_ingresos"/>
+                            <pe:inputNumber id="if_otros_ingresos" value="#{analisisCreditoManagedBean.solicitudSelected.solicitudIngresoOtros}" maxlength="10" label="Otros Ingresos" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>
+                            <p:message for="if_otros_ingresos" display="icon"/>  
+
+                            <p:outputLabel value="Negocio Propio ($)" for="if_negocio_propio"/>
+                            <pe:inputNumber id="if_negocio_propio" value="#{analisisCreditoManagedBean.solicitudSelected.solicitudIngresoNegocioPropio}" maxlength="10" label="Negocio Propio" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>
+                            <p:message for="if_negocio_propio" display="icon"/>  
+
+                            <p:outputLabel value="Total Ingresos ($)" for="if_total_ingresos"/>
+                            <p:inputText id="if_total_ingresos" value="#{analisisCreditoManagedBean.analisis.analisisTotalingreso}" maxlength="10" readonly="true" converter="#{BigDecimal}" styleClass="decimales">
+                                <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                            </p:inputText>
+                            <p:message for="if_total_ingresos" display="icon"/>  
+
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:panel id="egresosIf" header="Egresos">
+                        <h:panelGrid columns="3" id="grid_if_2">
+
+                            <p:outputLabel for="if_gastos_vida" value="Gastos de Vida($)"/>
+                            <pe:inputNumber id="if_gastos_vida" value="#{analisisCreditoManagedBean.analisis.analisisGastovida}" maxlength="10" label="Gastos de Vida" converter="#{BigDecimal}" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>
+                            <p:message for="if_gastos_vida" display="icon"/> 
+
+                            <p:outputLabel value="Pagos de deudas($)"/>
+                            <pe:inputNumber id="if_pago_deuda" value="#{analisisCreditoManagedBean.analisis.analisisPagodeudaactual}" maxlength="10"   label="Pagos de deudas" symbol="$ " emptyValue="zero" >
+                            </pe:inputNumber>
+                            <p:message for="if_pago_deuda" display="icon"/> 
+
+                            <p:outputLabel value="Pago de vivienda($)"/>
+                            <pe:inputNumber id="if_pago_vivienda" value="#{analisisCreditoManagedBean.analisis.analisisPagovivienda}"  maxlength="10" label="Pago Vivienda" symbol="$ " emptyValue="zero"> 
+                            </pe:inputNumber>
+                            <p:message for="if_pago_vivienda" display="icon"/> 
+
+                            <p:outputLabel value="ISSS, AFP,Renta,Descuentos($)"/>
+                            <pe:inputNumber id="if_descuento"  value="#{analisisCreditoManagedBean.analisis.analisisDescuentoley}"  maxlength="10"  label="ISSS, AFP,Renta,Descuentos" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>
+                            <p:message for="if_descuento" display="icon"/> 
+
+                            <p:outputLabel value="Total Egresos ($)" />
+                            <p:inputText id="if_total_egresos" value="#{analisisCreditoManagedBean.analisis.analisisTotalegreso}"  readonly="true" converter="#{BigDecimal}" styleClass="decimales">
+                                <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                            </p:inputText>
+                            <p:message for="if_total_egresos" display="icon"/> 
+
+                        </h:panelGrid>
+                    </p:panel>
+
+
+                    <h:panelGrid columns="4" id="grid_if_3" style="margin-left: 7%; text-align: center; ">
+
+                        <p:outputLabel value="Renta Neta Mensual"/>
+                        <p:inputText value="#{analisisCreditoManagedBean.analisis.analisisRentaneta}" converter="#{BigDcimal}" styleClass="decimales">
+                            <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                        </p:inputText>  
+                        <p:commandButton value="Calcular Renta Neta Mensual" id="btnRentaNeta" process="@this,grid_if_1,grid_if_2" update="grid_if_1,grid_if_2,grid_if_3,:growl " actionListener="#{analisisCreditoManagedBean.calcularRentaNetaMensual}" /> 
+                        <p:row></p:row>
+                        <p:outputLabel value="Total liquido del salario:"/>
+                        <p:inputText value="#{analisisCreditoManagedBean.analisis.analisisTotalliquido}" converter="#{BigDcimal}" styleClass="decimales">
+                            <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                        </p:inputText>
+
+                    </h:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <br/>
+            <p:panel header="Situacion Financiera">  
+                <p:panelGrid columns="2"  style="width: 100%;">
+                    <p:panel header="Activos">
+                        <h:panelGrid columns="3" id="grid_if_4">
+                            <p:outputLabel value="Aportaciones($)"/>
+                            <pe:inputNumber id="if_aportaciones" value="#{analisisCreditoManagedBean.analisis.analisisAportaciones}" maxlength="10" label="Aportacion" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>
+                            <p:message for="if_aportaciones" display="icon"/> 
+
+                            <p:outputLabel value="Ahorros($)"/>
+                            <pe:inputNumber id="if_ahorros" value="#{analisisCreditoManagedBean.analisis.analisisAhorro}" maxlength="10"  label="Ahorro" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>
+                            <p:message for="if_ahorros" display="icon"/> 
+
+                            <p:outputLabel value="Otros(Bancos.etc)($)"/>
+                            <pe:inputNumber id="if_otros" value="#{analisisCreditoManagedBean.analisis.analisisOtroactivo}" maxlength="10"  label="Otros(Bancos etc)" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>
+                            <p:message for="if_otros" display="icon"/> 
+
+                            <p:outputLabel value="Propiedades($)"/>
+                            <pe:inputNumber id="if_propiedades" value="#{analisisCreditoManagedBean.analisis.analisisValorpropiedad}" maxlength="10"   label="Propiedades" symbol="$ " emptyValue="zero">                      
+                            </pe:inputNumber>
+                            <p:message for="if_propiedades" display="icon"/> 
+
+                            <p:outputLabel value="Vehiculos"/>
+                            <pe:inputNumber id="if_vehiculos"  value="#{analisisCreditoManagedBean.analisis.analisisValorvehiculo}" maxlength="10"  label="Vehiculos" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>
+                            <p:message for="if_vehiculos" display="icon"/> 
+
+                            <p:outputLabel value="Total Activos ($)" />
+                            <p:inputText id="if_total_activos" value="#{analisisCreditoManagedBean.analisis.analisisTotalactivo}" maxlength="10" readonly="true" converter="#{BigDecimal}" onkeypress="return validaSoloNumeros(event)" styleClass="decimales">
+                                <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                            </p:inputText>  
+                            <p:message for="if_total_activos" display="icon"/> 
+
+                        </h:panelGrid>
+                    </p:panel>
+
+                    <p:panel id="pasivosIf" header="Pasivos">
+                        <h:panelGrid columns="3" id="grid_if_5">
+                            <p:outputLabel value="Prestamos($)"/>
+                            <pe:inputNumber id="if_prestamos" value="#{analisisCreditoManagedBean.analisis.analisisPrestamo}" maxlength="10"  label="Prestamos" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>  
+                            <p:message for="if_prestamos" display="icon"/> 
+
+                            <p:outputLabel value="Cuanto debe a instituciones Finascieras($)"/>
+                            <pe:inputNumber id="if_deuda_if" value="#{analisisCreditoManagedBean.analisis.analisisDeudacomercial}" maxlength="10" label="Otras Instituciones" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>  
+                            <p:message for="if_deuda_if" display="icon"/> 
+
+                            <p:outputLabel value="Cuanto debe a otros($)"/>
+                            <pe:inputNumber id="if_otra_deuda" value="#{analisisCreditoManagedBean.analisis.analisisDeudapersonal}" maxlength="10" label="Deuda a terceros" symbol="$ " emptyValue="zero">
+                            </pe:inputNumber>  
+                            <p:message for="if_otra_deuda" display="icon"/> 
+
+                            <p:outputLabel value="Total Pasivos ($)" />
+                            <p:inputText id="if_total_pasivos" value="#{analisisCreditoManagedBean.analisis.analisisTotalpasivo}" readonly="true"  converter="#{BigDecimal}" styleClass="decimales">
+                                <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                            </p:inputText>  
+                            <p:message for="if_total_pasivos" display="icon"/> 
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                        </h:panelGrid>
+                    </p:panel>
+
+                    <h:panelGrid columns="3" id="grid_if_6" style="margin-left: 7%; text-align: center; ">
+                        <p:outputLabel value="Capital Actual"/>
+                        <p:inputText value="#{analisisCreditoManagedBean.analisis.analisisCapitalactual}" readonly="true" converter="#{BigDecimal}" styleClass="decimales">
+                            <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                        </p:inputText>  
+                        <p:commandButton value="Calcular Capital Actual" id="btnCapitalActual" process="@this,grid_if_4,grid_if_5" update="grid_if_4,grid_if_5,grid_if_6,:growl" actionListener="#{analisisCreditoManagedBean.calcularCapitalActual}"/> 
+                    </h:panelGrid>
+
+                </p:panelGrid>  
+            </p:panel>
+
+            <br/>
+            <p:panel header="Asegurbilidad">  
+                <p:panelGrid columns="2"  style="width: 100%;">
+                    <p:panelGrid >
+                        <p:row>
+                            <p:outputLabel value="Edad" />
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Examenes medicos"/>
+                            </p:column>
+                            <p:column>
+                                <p:selectOneMenu value="#{analisisCreditoManagedBean.exameMed}">  
+                                    <f:selectItem itemLabel="Seleccionar" itemValue="" />   
+                                    <f:selectItems value="#{analisisCreditoManagedBean.examenMedicoOptions}"
+                                                   var="activoItem"
+                                                   itemValue="#{activoItem.value}"
+                                                   itemLabel="#{activoItem.description}"/> 
+
+                                </p:selectOneMenu>
+
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Posee Cobertura"/>
+                            </p:column>
+                            <p:column >
+                                <p:selectOneMenu id="poseeCobertura" value="#{analisisCreditoManagedBean.poseeCob}">  
+                                    <f:selectItem itemLabel="Seleccionar" itemValue="" />   
+                                    <f:selectItems value="#{analisisCreditoManagedBean.poseeCoberturaOptions}"
+                                                   var="activoItem"
+                                                   itemValue="#{activoItem.value}"
+                                                   itemLabel="#{activoItem.description}"/>
+
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Declara problemas de salud:"/>
+                            </p:column>
+                            <p:column >
+                                <p:selectOneMenu value="#{analisisCreditoManagedBean.problemSalud}">  
+                                    <f:selectItem itemLabel="Seleccionar" itemValue="" />   
+                                    <f:selectItems value="#{analisisCreditoManagedBean.problemaSaludOptions}"
+                                                   var="activoItem"
+                                                   itemValue="#{activoItem.value}"
+                                                   itemLabel="#{activoItem.description}"/>  
+
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <br/>
+            <p:panel header="Comentarios:">  
+                <p:panelGrid columns="1"  style="width: 100%;">
+                    <p:panelGrid >
+                        <p:row>
+                            <p:outputLabel value="Comentarios:" /> 
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:inputTextarea value="#{analisisCreditoManagedBean.analisis.analisisObservacion}" maxlength="500" rows="6" cols="150"  />                      
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <p:panel header="Conclusiones">  
+                <p:panelGrid columns="1"  style="width: 100%;">
+                    <p:panelGrid >
+                        <p:row>
+                            <p:outputLabel value="Conclusiones" /> 
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:inputTextarea value="#{analisisCreditoManagedBean.analisis.analisisConclusion}" maxlength="500" rows="6" cols="150"  />                      
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <p:panel header="Recomendaciones:">  
+                <p:panelGrid columns="1"  style="width: 100%;">
+                    <p:panelGrid >
+                        <p:row>
+                            <p:outputLabel value="Recomendaciones:" /> 
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:inputTextarea value="#{analisisCreditoManagedBean.analisis.analisisRecomendacion}" maxlength="500" rows="6" cols="150"  />                      
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:panelGrid>  
+            </p:panel>
+            <br/>
+            <p:row>
+                <p:column>
+                    <p:selectBooleanCheckbox value="#{analisisCreditoManagedBean.analisisCompleto}" />
+                </p:column>
+                <p:column>
+                    <p:outputLabel value=" Analisis Completo" />
+                </p:column>
+
+            </p:row>
+            <br></br>
+            <div style="text-align: center">
+
+                <p:commandButton value="Guardar" actionListener="#{analisisCreditoManagedBean.update}" ajax="false" />
+                <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" actionListener="#{analisisCreditoManagedBean.cancelar}"/>
+            </div>
+
+
+        </p:panel> <!-- el panel de afuera -->
+    </h:form>
+</ui:composition>

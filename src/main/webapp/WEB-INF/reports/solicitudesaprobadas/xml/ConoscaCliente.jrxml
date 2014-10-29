@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConoscaClientes" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="47e0ad47-6fc4-41d9-85ca-4b7c68a68f94">
+	<property name="ireport.zoom" value="1.2396694214876052"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1283"/>
+	<parameter name="IMAGE_PATH" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="asociadoCodigo" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoCodigo]]></fieldDescription>
+	</field>
+	<field name="asociadoDepartamento" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoDepartamento]]></fieldDescription>
+	</field>
+	<field name="asociadoDomicilio" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoDomicilio]]></fieldDescription>
+	</field>
+	<field name="asociadoDui" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoDui]]></fieldDescription>
+	</field>
+	<field name="asociadoNit" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoNit]]></fieldDescription>
+	</field>
+	<field name="asociadoNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoNombre]]></fieldDescription>
+	</field>
+	<field name="bancoNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[bancoNombre]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="cooperativaLugar" class="java.lang.String">
+		<fieldDescription><![CDATA[cooperativaLugar]]></fieldDescription>
+	</field>
+	<field name="cuotaMonto" class="java.lang.String">
+		<fieldDescription><![CDATA[cuotaMonto]]></fieldDescription>
+	</field>
+	<field name="cuotaNumero" class="java.lang.String">
+		<fieldDescription><![CDATA[cuotaNumero]]></fieldDescription>
+	</field>
+	<field name="empresaNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[empresaNombre]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
+	</field>
+	<field name="fechaInicio" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+	</field>
+	<field name="firmaNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[firmaNombre]]></fieldDescription>
+	</field>
+	<field name="notarioNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[notarioNombre]]></fieldDescription>
+	</field>
+	<field name="prestamoLinea" class="java.lang.String">
+		<fieldDescription><![CDATA[prestamoLinea]]></fieldDescription>
+	</field>
+	<field name="prestamoMonto" class="java.lang.String">
+		<fieldDescription><![CDATA[prestamoMonto]]></fieldDescription>
+	</field>
+	<field name="prestamoMontoLetras" class="java.lang.String">
+		<fieldDescription><![CDATA[prestamoMontoLetras]]></fieldDescription>
+	</field>
+	<field name="prestamoNumero" class="java.lang.String">
+		<fieldDescription><![CDATA[prestamoNumero]]></fieldDescription>
+	</field>
+	<group name="Grop1">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="555">
+				<rectangle>
+					<reportElement x="0" y="274" width="570" height="151" uuid="8f668206-9a45-4ff9-b245-0f25c18641b8"/>
+				</rectangle>
+				<textField>
+					<reportElement x="0" y="20" width="153" height="20" uuid="708e87aa-28d0-41a3-8339-f1b8344a771c"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Nombre del Titular de la Cuenta:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="40" width="69" height="20" uuid="bc8c590c-166a-4100-a751-2c02d868eb2f"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Estado Civil:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="-1" y="79" width="52" height="20" uuid="56786ba6-22d1-4f76-b20f-69b220cb8c97"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Telefono:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="59" width="122" height="20" uuid="9fb8ca34-a939-4b66-9d88-bbe2973ca513"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Dirección de Residencia:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="99" width="214" height="20" uuid="44edece5-c063-42e3-9f96-0de6a45780b5"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Desempeña o a desempeñado Cargo Público:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement mode="Opaque" x="0" y="0" width="572" height="20" backcolor="#999999" uuid="ccbaa8ed-9ac0-4039-8fed-eae841bb51b6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["PERSONA NATURAL"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="409" y="20" width="81" height="20" uuid="4b4ad28a-e0f9-4a7b-a668-67117e3550dc"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["N° de Asociado:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="192" y="40" width="145" height="20" uuid="f63bdccc-b8c7-4e04-8756-5ccfec453d5d"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Lugar y Fecha de Nacimiento:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="118" y="79" width="42" height="20" uuid="5427947a-4987-4965-a65c-0ba1a29932db"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Celular:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="231" y="79" width="36" height="20" uuid="825f9111-cb43-4f1e-a590-82b149c84cc5"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Email:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="251" y="99" width="52" height="20" uuid="c2e4cefc-704a-4286-b64e-fd81d0d748ca"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Período:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement mode="Opaque" x="-1" y="128" width="572" height="20" backcolor="#999999" uuid="e6a3147d-5c85-4448-aa7d-799c5e85a248"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["PERSONA JURIDICA"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="153" y="39" width="256" height="1" uuid="6a856f9c-71b5-490e-9bd7-ecd3ac3b884a"/>
+				</line>
+				<line>
+					<reportElement x="490" y="39" width="81" height="1" uuid="9c0d6324-6187-4bff-a2a1-c6ccb475b35d"/>
+				</line>
+				<line>
+					<reportElement x="337" y="59" width="235" height="1" uuid="c7a5ab95-0ac4-4d15-894a-18c92db0d04d"/>
+				</line>
+				<line>
+					<reportElement x="268" y="98" width="234" height="1" uuid="5f6ee544-c01f-4ffd-b137-d50607c1647a"/>
+				</line>
+				<line>
+					<reportElement x="160" y="98" width="71" height="1" uuid="94b8202a-983c-4c9a-96cb-34d09936b284"/>
+				</line>
+				<line>
+					<reportElement x="303" y="118" width="69" height="1" uuid="029bb264-82a7-4473-981a-00b5fc863871"/>
+				</line>
+				<line>
+					<reportElement x="214" y="118" width="37" height="1" uuid="529db6ef-acc4-4507-8cd0-db6ae137020e"/>
+				</line>
+				<line>
+					<reportElement x="51" y="98" width="67" height="1" uuid="9b3538a9-9ad8-47e6-9c9a-797a7cab9425"/>
+				</line>
+				<line>
+					<reportElement x="122" y="79" width="450" height="1" uuid="16627f86-51ec-43a7-9819-9cb186b093ba"/>
+				</line>
+				<line>
+					<reportElement x="69" y="60" width="123" height="1" uuid="57b832f9-034c-4aac-a944-3de65963dbb2"/>
+				</line>
+				<textField>
+					<reportElement x="0" y="171" width="145" height="20" uuid="a0160588-d193-4edd-a635-4c02dfb3e7e6"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Lugar y Fecha de Nacimiento:"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="145" y="191" width="427" height="1" uuid="58489b7d-de4a-4565-afe7-a5046bf561aa"/>
+				</line>
+				<line>
+					<reportElement x="153" y="168" width="256" height="1" uuid="d1cc2fef-91e3-4a0c-be1b-6258064b162f"/>
+				</line>
+				<textField>
+					<reportElement x="0" y="149" width="160" height="20" uuid="8474e607-f1ca-4128-8617-8a9656275196"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Nombre Completo de la Empresa:"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="490" y="168" width="81" height="1" uuid="a552de3f-eefd-428d-8727-4f812f013c2c"/>
+				</line>
+				<textField>
+					<reportElement x="409" y="149" width="81" height="20" uuid="7b003ba9-9979-4249-b571-eb8ef7cb9671"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["N° de Asociado:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="-1" y="217" width="52" height="20" uuid="400a2d20-4f09-4d8c-8747-7b45211197b5"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Telefono:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="339" y="217" width="36" height="20" uuid="b5a414fd-87de-4740-aa56-67fe9b5b29cc"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Email:"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="375" y="236" width="195" height="1" uuid="eebcbfc6-c2cd-4307-96c1-a242aeb4fe12"/>
+				</line>
+				<textField>
+					<reportElement x="118" y="217" width="52" height="20" uuid="7eac102d-b093-41bf-b8e8-362c7f6fadaa"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Oficina:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="225" y="217" width="42" height="20" uuid="2fec8a43-a325-4e5d-b0a1-d326f5bd135c"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Celular:"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="267" y="236" width="71" height="1" uuid="3eaa435a-5ed1-4803-b668-bf9493766aea"/>
+				</line>
+				<line>
+					<reportElement x="51" y="236" width="67" height="1" uuid="99967751-58cb-418b-9fb2-0cc6ff38e4f3"/>
+				</line>
+				<line>
+					<reportElement x="105" y="214" width="466" height="1" uuid="8ee6ae9f-1a54-4d80-9f95-d79eb798510b"/>
+				</line>
+				<textField>
+					<reportElement x="-1" y="194" width="106" height="20" uuid="3479f62a-095d-4261-8edc-35b4be3dc410"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Dirección o Domicilio:"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="170" y="237" width="55" height="1" uuid="b64201fa-423b-49e1-b888-ea279555c0d2"/>
+				</line>
+				<textField isStretchWithOverflow="true">
+					<reportElement mode="Opaque" x="0" y="249" width="572" height="20" backcolor="#999999" uuid="aef5d60c-73d8-40b4-92cb-41fa24788b57"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["ADJUNTAR LOS SIGUIENTES DOCUMENTOS DE ACUERDO AL TIPO DE PERSONA"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="26" y="324" width="104" height="15" uuid="f0eb4b7e-0a67-46d5-bf71-aa30c19a6aff"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Lugar de Empleo:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="26" y="310" width="104" height="15" uuid="b8b38cd6-9e61-49b3-abf5-27165915ced0"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["NIT del Titular:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="26" y="295" width="104" height="15" uuid="ff84cbb0-f3db-40cf-9714-7a28046ad29e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["N° de DUI del Titular:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="26" y="338" width="104" height="15" uuid="2c8024c3-0298-4088-8409-030d79d0fe36"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Profsional en:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="26" y="366" width="104" height="15" uuid="d1e6045c-57d0-4eeb-8abe-eb3d10a5c4c9"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Otros"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="26" y="352" width="104" height="15" uuid="ca94475f-65e0-4934-984d-f8a366c15b8b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Cargo o Atc. Económica: "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="26" y="380" width="119" height="15" uuid="d5dae755-c2f0-4d70-b289-d9f5a4fb7653"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Comprobante de Domicilio:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="337" width="145" height="15" uuid="252bac93-a627-46e7-8426-8590c689dd74"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["N° de Registro Fiscal IVA:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="309" width="145" height="15" uuid="4d74a2f6-d165-41da-81ba-dd8bdbbcf379"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["NIT del Titular:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="351" width="145" height="15" uuid="44f81d7d-1377-4b0d-b718-d31bdc7cbfab"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Giro Económico de la Empresa:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="295" width="145" height="15" uuid="0285b693-d80e-4fac-ae79-4de1197e8f26"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["N° de DUI del Titular:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="423" y="379" width="112" height="15" uuid="ff7b3fd7-60f9-4945-ba11-66ef6a2c8fcf"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Escritura de Constrtución:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="323" width="145" height="15" uuid="10fc28ff-7770-4b38-81f8-d4ebd0c32793"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["NIT de Empresa:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="365" width="193" height="15" uuid="ba1b3dba-9323-4e3b-8835-39d0b462b5e5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Poderes Notariales del Representante Legal:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="26" y="394" width="199" height="15" uuid="ff0cf3a2-dfeb-4424-9a64-eaafc1d87c13"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["* Aplica si la dirección actual de la identificación presentada "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="379" width="123" height="15" uuid="7d4f39ba-0359-4a50-ab11-4165d9d00279"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Comprobante de Domicilio:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="263" y="394" width="307" height="15" uuid="231d0a97-f894-4b1d-9795-cb9fe1453273"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["* Recibo de agua, energia eléctrica o teléfono no mayor de 6 meses de antiguedad"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="98" y="280" width="104" height="15" uuid="89f10eba-32a8-48a3-985b-f8b744667348"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["PERSONA NATURAL"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="339" y="280" width="104" height="15" uuid="d6aea4dc-7215-42d4-887c-b3e7b832db8e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["PERSONA JURIDICA"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="129" y="309" width="100" height="1" uuid="1f49a0ad-70f9-4d1f-b214-277648d43320"/>
+				</line>
+				<line>
+					<reportElement x="130" y="324" width="100" height="1" uuid="48635262-f3dd-4024-be43-db8bb4e3f903"/>
+				</line>
+				<line>
+					<reportElement x="130" y="338" width="100" height="1" uuid="9b06459e-4ff2-43b8-bf0f-e326f7e65226"/>
+				</line>
+				<line>
+					<reportElement x="130" y="352" width="100" height="1" uuid="d6e59b52-cd59-44b5-9771-73380ffbe27e"/>
+				</line>
+				<line>
+					<reportElement x="130" y="366" width="100" height="1" uuid="46a93c90-c2c8-43d1-b0fc-4f944f1f416f"/>
+				</line>
+				<line>
+					<reportElement x="130" y="379" width="100" height="1" uuid="174edcd5-6fe6-4bf7-9004-0eabcf2b04f7"/>
+				</line>
+				<line>
+					<reportElement x="411" y="364" width="100" height="1" uuid="33aa172e-0cdf-4100-a5ef-b36408afdb12"/>
+				</line>
+				<line>
+					<reportElement x="411" y="337" width="100" height="1" uuid="b3a0837f-1013-48b4-8ba3-16c196d73e68"/>
+				</line>
+				<line>
+					<reportElement x="411" y="323" width="100" height="1" uuid="070815ce-fbbc-4f43-a62a-2dfb57a48e0b"/>
+				</line>
+				<line>
+					<reportElement x="410" y="308" width="100" height="1" uuid="2c2320f2-ca4b-4f75-b7f7-a29964022e7c"/>
+				</line>
+				<line>
+					<reportElement x="411" y="351" width="100" height="1" uuid="e94cc446-72ce-4afe-b86e-a5fe0218d69c"/>
+				</line>
+				<line>
+					<reportElement x="259" y="274" width="1" height="151" uuid="01e5518d-c3a1-48bd-aadf-12cbf89c3303"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="-1" y="42" width="572" height="51" uuid="c7683c84-0c85-4558-9cc1-2fba697a0027"/>
+				<textElement textAlignment="Center" markup="html">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>ACOFINGES de R.L.</b><br>"
++"Cooperativa Financiera de Ingenieros y Arquitectos<br>"
++"<br><b>CONOZCA A SU CLIENTE<b><br>"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="97" width="572" height="1" uuid="ec2e6d13-5715-4efb-8cce-c96145ffe1e3"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="-1" y="98" width="572" height="15" uuid="d830fdab-a43d-44ce-af95-bbecf388f4de"/>
+				<textElement textAlignment="Center" markup="html">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Acuerdo N°. 356 aprobado por la Fiscalia General de la República y de conformidad al Instructivo vigente a partir del 1 de febrero de 2002 de la Unidad de Investigación Financiera para la Prevención del Lavado de Dinero y Activos en las Instituciones de Intermediación Financiera."]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="-1" y="0" width="290" height="40" uuid="01624ef1-7129-402e-a638-4d6b639883a8"/>
+				<imageExpression><![CDATA[$P{IMAGE_PATH}.concat("\\logo_1.png")]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="271" splitType="Stretch">
+			<textField>
+				<reportElement x="338" y="107" width="112" height="20" uuid="ecf2fbfb-3562-42ee-bc25-8de3df3c0ec3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Apertura realizada con:"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="450" y="125" width="51" height="1" uuid="971e1164-4d07-4dbc-974f-60e7df9c6e7e"/>
+			</line>
+			<textField>
+				<reportElement x="21" y="168" width="299" height="20" uuid="e3de6e5a-d079-4f3d-b7fb-eaa50a12ed46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(Este cuadro no aplica para Depósitos a Plazo)"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="-1" y="2" width="572" height="20" backcolor="#999999" uuid="52e6b8e0-59a5-4c6e-95ac-3534724166f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DECLARACION JURADA"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="98" y="66" width="256" height="1" uuid="51ccc386-b929-4f5e-9bf5-517741c66651"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="47" width="98" height="20" uuid="4aadfe1c-e3c8-4228-8cd8-4ac18e5518bc"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Monto de Apertura:"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="456" y="66" width="115" height="1" uuid="be4c72e8-a837-4340-83f2-95747a9b6eb2"/>
+			</line>
+			<textField>
+				<reportElement x="354" y="47" width="101" height="20" uuid="3e8bd384-017b-4ecb-8203-8678a815b81b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["N° de Referencia:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="0" y="26" width="572" height="20" backcolor="#FFFFFF" uuid="8ae59df3-66e9-470f-b7ca-1a9fd30b9826"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SI ES APERTURA DE CUENTA DE AHORRO O APERTURA DE DEPOITO A PLAZO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="67" width="198" height="20" uuid="2fc1719a-9584-4a7b-98f2-8b6c258922d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(Espacio reservado por ACOFINGES de R.L.)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="88" width="320" height="20" uuid="8d853fa4-d55c-45b3-8d8e-1e58d543d3e0"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Actividad Mensual Estimada de la Cuenta"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="108" width="98" height="20" uuid="f22432be-7204-47bc-901d-a674d25170d0"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Tipo de Actividad"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="128" width="98" height="20" uuid="429ab7a6-717c-4b6e-951a-0000ff23bac6"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Total Depósitos"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="148" width="98" height="20" uuid="4628e577-c1e3-4efc-91ce-f29fa1e80b3e"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Total Retiros"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="108" width="98" height="20" uuid="ff31bd96-9576-4852-8a48-56f585c2724c"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["N° de Operaciones"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="203" y="108" width="124" height="20" uuid="64084086-d019-44ae-8135-7c7b1814eb63"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Monto Promedio Mensual"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="128" width="98" height="20" uuid="5d5b5c6e-9a16-4a6d-988c-c98a404d06e9"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<textField>
+				<reportElement x="105" y="148" width="98" height="20" uuid="7d621497-7b43-4c19-8810-d0daeff76fa0"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<textField>
+				<reportElement x="203" y="128" width="124" height="20" uuid="5a6915f3-dad2-409b-b599-906777a77d35"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<textField>
+				<reportElement x="203" y="148" width="124" height="20" uuid="891c62d0-0267-4bc0-95d5-78f28ffbe481"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			</textField>
+			<textField>
+				<reportElement x="10" y="200" width="135" height="20" uuid="e08a0fee-a9eb-4c6a-b7b7-276a4adb5b69"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Procedencia de los Fondos:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="220" width="135" height="20" uuid="f92d7e27-436b-42f1-a45f-332f3f2848d7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Nombre del Banco:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="240" width="135" height="20" uuid="b4965545-be7e-48bb-a99d-97ac7f145a54"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Propósito de la Cuenta:"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="145" y="220" width="415" height="1" uuid="af38f671-f1c2-4c38-8140-3db6b9e2914f"/>
+			</line>
+			<line>
+				<reportElement x="145" y="239" width="415" height="1" uuid="e20ecc03-45b1-4a10-9f0f-6ddcacff18e4"/>
+			</line>
+			<line>
+				<reportElement x="145" y="259" width="415" height="1" uuid="ad33d531-7c7c-44b4-a0eb-3d76109b66e0"/>
+			</line>
+		</band>
+		<band height="151">
+			<textField>
+				<reportElement x="1" y="49" width="78" height="20" uuid="3c73329f-b892-4833-9fe5-ab5b15fca655"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["N° de Crédito:"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="293" y="67" width="115" height="1" uuid="69ce24f4-4896-4831-98d5-16f764d9dd85"/>
+			</line>
+			<line>
+				<reportElement x="83" y="68" width="109" height="1" uuid="dfbff8e2-584b-47a6-9095-64bcaf779e47"/>
+			</line>
+			<textField>
+				<reportElement x="192" y="48" width="101" height="20" uuid="4bd2d346-b8ff-4626-947c-3e6740317b3e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Monto Otorgado:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="0" y="4" width="572" height="20" backcolor="#999999" uuid="1457a12f-5be4-4cc0-9d0f-96027f8c98ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SI ES OTORGAMIENTO DE CREDITO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="112" width="509" height="20" uuid="05daaa37-b877-4cbc-858c-cfdcd910ee99"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Si la respuesta anterior es afirmativa, aclare los motivos de los pagos o cancelación anticipada y su procedencia:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="72" width="261" height="20" uuid="d680677b-57eb-4271-b7cd-a22c9e7856e9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Los fondos con los que cancelará la cuenta proceden de:"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="150" width="553" height="1" uuid="bfa78bdf-ab94-4e7a-9527-46168fe8c218"/>
+			</line>
+			<line>
+				<reportElement x="337" y="112" width="215" height="1" uuid="9e08b7b3-ad8d-4cb9-abd7-504ae2d8c1dd"/>
+			</line>
+			<textField>
+				<reportElement x="2" y="92" width="335" height="20" uuid="718f7417-1796-4976-a2cf-02d2c570bc4a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["¿Tiene Proyectado realizar pagos anticipados o adicionales a lo pactado?"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="263" y="92" width="289" height="1" uuid="5fca2431-d1e7-4714-90e4-da4c7020f6c4"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="157" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="81" width="188" height="20" uuid="54ae513c-7da9-4068-9f77-24fbc4053f1c"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Lugar y Fecha: San Salvador,"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="81" width="278" height="20" uuid="8f27cc5d-8f1a-4ae9-bf62-f11587b7a324"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Firma del Ciente: ______________________________"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="5" width="569" height="1" uuid="8a7f47dd-143d-4a04-8cf0-01755d2651b1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="7" y="8" width="553" height="20" uuid="2e7441fc-a8f0-4125-b336-02942cf9dcc2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Por este medio declaro bajo juramento que la información anterior es fidedigna y que me ha sido solicítada por ACOFINGES de R.L. en cumplimiento de lo dispuesto en el instructivo de la unidad de investigación financiera, de la Fiscalia Generalde la Republica, para la Prevención del Lavado de Dinero y de Activos en las instituciones de intermedicación financiera asimismo.Autorizo a ACOFINGES de R.L. para que pueda investigar la información que he proporcionado en este formulario y en el(los) contrato(s)de apertura de la(s) cuenta(s) de depósitos o préstamos."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="136" width="80" height="20" uuid="ed9d52ab-12c6-4b20-9adf-f316c878979d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="530" y="136" width="40" height="20" uuid="15d92d2f-86ba-4815-adbd-dfe31c260a24"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

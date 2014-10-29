@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="LineacreditoEditDlg" widgetVar="LineacreditoEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.EditLineacreditoTitle}" closeOnEscape="true">
+
+            <h:form id="LineacreditoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{lineaCreditoManagedBean.selected != null}">
+
+                        <p:outputLabel value="#{crudbundle.EditLineacreditoLabel_lineacreditoNombre}" for="lineacreditoNombre" />
+                        <p:inputText id="lineacreditoNombre" value="#{lineaCreditoManagedBean.selected.lineacreditoNombre}" title="#{crudbundle.EditLineacreditoTitle_lineacreditoNombre}" required="true" requiredMessage="#{crudbundle.EditLineacreditoRequiredMessage_lineacreditoNombre}" size="60" maxlength="60"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditLineacreditoLabel_lineacreditoGrupo}" for="lineacreditoGrupo" />
+                        <p:inputText id="lineacreditoGrupo" value="#{lineaCreditoManagedBean.selected.lineacreditoGrupo}" title="#{crudbundle.EditLineacreditoTitle_lineacreditoGrupo}"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditLineacreditoLabel_lineacreditoDestino}" for="lineacreditoDestino" />
+                        <p:inputText id="lineacreditoDestino" value="#{lineaCreditoManagedBean.selected.lineacreditoDestino}" title="#{crudbundle.EditLineacreditoTitle_lineacreditoDestino}" required="true" requiredMessage="#{crudbundle.EditLineacreditoRequiredMessage_lineacreditoDestino}" size="200" maxlength="200"/>
+
+
+                        <p:outputLabel value="#{crudbundle.Label_activo}" for="activo" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="activo" value="#{lineaCreditoManagedBean.selected.activo}" required="true" requiredMessage="#{crudbundle.RequiredMessage_activo}">
+                                <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{lineaCreditoManagedBean.activoOptions}"
+                                               var="activoItem"
+                                               itemValue="#{activoItem.value}"
+                                               itemLabel="#{activoItem.description}"/>
+                            </p:selectOneMenu>
+                            <p:tooltip for="activo" value="#{lineaCreditoManagedBean.getComponentMessages('activo', crudbundle.HelpText_activo)}"/>
+                        </h:panelGroup>
+
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{lineaCreditoManagedBean.save}" value="#{crudbundle.Save}" update="display,:LineacreditoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,LineacreditoEditDialog);"/>
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="LineacreditoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

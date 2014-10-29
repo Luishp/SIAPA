@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagaduriaViewDlg" widgetVar="PagaduriaViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.ViewPagaduriaTitle}" closeOnEscape="true">
+
+            <h:form id="PagaduriaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pagaduriaManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.PagaduriaLabel_pagaduriaId}"/>
+                        <h:outputText value="#{pagaduriaManagedBean.selected.pagaduriaId}" title="#{crudbundle.PagaduriaTitle_pagaduriaId}"/>
+
+                        <h:outputText value="#{crudbundle.PagaduriaLabel_pagaduriaNombre}"/>
+                        <h:outputText value="#{pagaduriaManagedBean.selected.pagaduriaNombre}" title="#{crudbundle.PagaduriaTitle_pagaduriaNombre}"/>
+
+                        <h:outputText value="#{crudbundle.PagaduriaLabel_pagaduriaDescripcion}"/>
+                        <h:outputText value="#{pagaduriaManagedBean.selected.pagaduriaDescripcion}" title="#{crudbundle.PagaduriaTitle_pagaduriaDescripcion}"/>
+
+                        <h:outputText value="#{crudbundle.Label_activo}"/>
+                        <h:outputText value="#{pagaduriaManagedBean.selected.activo}" title="#{crudbundle.Title_activo}"/>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioRegistro}"/>
+                        <h:outputText value="#{pagaduriaManagedBean.selected.usuarioRegistro}" title="#{crudbundle.Title_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaRegistro}"/>
+                        <h:outputText value="#{pagaduriaManagedBean.selected.fechaRegistro}" title="#{crudbundle.Title_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{pagaduriaManagedBean.selected.usuarioUltimamodificacion}" title="#{crudbundle.Title_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{pagaduriaManagedBean.selected.fechaUltimamodificacion}" title="#{crudbundle.Title_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="PagaduriaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

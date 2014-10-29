@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  template="/WEB-INF/templates/commonLayout.xhtml"
+                 xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="title">
+        <title>Solicitudes con resolucion aprobada</title>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="SolicitudesAprobadasListForm">
+
+            <p:fieldset legend="Solicitudes Aprobadas">
+                <p:dataTable id="datalist" var="item" value="#{solicitudesAprobadasManagedBean.analisisItems}" paginator="true" rows="5"  
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                             rowsPerPageTemplate="5,10,15"  lazy="false" resizableColumns="true"  
+                             selectionMode="single" selection="#{solicitudesAprobadasManagedBean.analisisSelected}"
+                             rowKey="#{item.analisisId}" paginatorPosition="bottom">
+
+                    <p:ajax event="rowSelect"   update="reportButton1 reportButton2 reportButton3 reportButton4"/>
+                    <p:ajax event="rowUnselect" update="reportButton1 reportButton2 reportButton3 reportButton4"/>
+
+                    <f:facet name="header">  
+                        Solicitudes
+                    </f:facet>  
+                    <p:column width="15%" style="text-align: center">
+                        <f:facet name="header">
+                            <h:outputText value="Fecha"/>
+                        </f:facet>
+                        <h:outputText value="#{item.analisisFechacreacion}"/>
+                    </p:column>
+
+                    <p:column width="40%">
+                        <f:facet name="header">
+                            <h:outputText value="Nombre del Asociado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solicitudId.nombreCompleto}"/>
+                    </p:column>
+
+                    <p:column width="15%" style="text-align: right">
+                        <f:facet name="header">
+                            <h:outputText value="Monto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.analisisMonto}">
+                            <f:convertNumber type="currency" currencySymbol="$ " />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column width="15%" style="text-align: center">
+                        <f:facet name="header">
+                            <h:outputText value="Plazo" />
+                        </f:facet>
+                        <h:outputText value="#{item.analisisPlazo}"/>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <div class="footer-section">
+                            <p:commandButton id="reportButton1" icon="ui-icon-print"  value="Designacion Notarial" actionListener="#{solicitudesAprobadasManagedBean.printDesignacionNotarial()}" oncomplete="print(xhr, status, args)"/> 
+                            <p:commandButton id="reportButton2" icon="ui-icon-print"  value="Buro de Credito" actionListener="#{solicitudesAprobadasManagedBean.printCartaBuroDeCredito()}" oncomplete="print(xhr, status, args)"/> 
+                            <p:commandButton id="reportButton3" icon="ui-icon-print"  value="Designacion Aseguradora" actionListener="#{solicitudesAprobadasManagedBean.printDesignacionAseguradora()}" oncomplete="print(xhr, status, args)"/> 
+                            <p:commandButton id="reportButton4" icon="ui-icon-print"  value="Orden de Descuento" actionListener="#{solicitudesAprobadasManagedBean.printOrdenIrrebocableDescuento()}" oncomplete="print(xhr, status, args)"/> 
+                            <p:commandButton id="reportButton5" icon="ui-icon-print"  value="Conosca su Cliente" actionListener="#{solicitudesAprobadasManagedBean.printConoscaSuCliente()}" oncomplete="print(xhr, status, args)"/> 
+                            <p:spacer height="10" width="20"/>
+                            <p:commandButton id="refreshButton" icon="ui-icon-refresh" value="Actualizar" actionListener="#{solicitudesAprobadasManagedBean.actualizarAnalisisItems()}" update="@(#SolicitudesAprobadasListForm)"/>
+
+                        </div>
+                    </f:facet>
+
+                </p:dataTable>
+
+            </p:fieldset>
+
+        </h:form>
+        <ui:include src="../../../common/Print.xhtml"/>
+    </ui:define>
+
+</ui:composition>

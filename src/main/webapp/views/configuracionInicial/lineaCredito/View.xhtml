@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LineacreditoViewDlg" widgetVar="LineacreditoViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.ViewLineacreditoTitle}" closeOnEscape="true">
+
+            <h:form id="LineacreditoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lineaCreditoManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewLineacreditoLabel_lineacreditoId}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.lineacreditoId}" title="#{crudbundle.ViewLineacreditoTitle_lineacreditoId}"/>
+
+                        <h:outputText value="#{crudbundle.ViewLineacreditoLabel_lineacreditoNombre}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.lineacreditoNombre}" title="#{crudbundle.ViewLineacreditoTitle_lineacreditoNombre}"/>
+
+                        <h:outputText value="#{crudbundle.ViewLineacreditoLabel_lineacreditoGrupo}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.lineacreditoGrupo}" title="#{crudbundle.ViewLineacreditoTitle_lineacreditoGrupo}"/>
+
+                        <h:outputText value="#{crudbundle.ViewLineacreditoLabel_lineacreditoDestino}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.lineacreditoDestino}" title="#{crudbundle.ViewLineacreditoTitle_lineacreditoDestino}"/>
+
+                        <h:outputText value="#{crudbundle.Label_activo}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.activo}" title="#{crudbundle.Title_activo}"/>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioRegistro}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.usuarioRegistro}" title="#{crudbundle.Title_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaRegistro}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.fechaRegistro}" title="#{crudbundle.Title_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.usuarioUltimamodificacion}" title="#{crudbundle.Title_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{lineaCreditoManagedBean.selected.fechaUltimamodificacion}" title="#{crudbundle.Title_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="LineacreditoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

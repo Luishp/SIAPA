@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ConsultaburocreditoEditDlg" widgetVar="ConsultaburocreditoEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.ConsultaburocreditoTitleTitle}" closeOnEscape="true">
+
+            <h:form id="ConsultaburocreditoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{analisisCreditoManagedBean.cbSelected != null}">
+
+                     
+                        <p:outputLabel value="Nombre:" for="cbcNombre" />
+                        <p:inputText id="cbcNombre" value="#{analisisCreditoManagedBean.cbSelected.cbcNombre}" title="Nombre" required="true" requiredMessage="El Nombre del Buro de Credito, es requerido" size="50" maxlength="50"/>
+
+
+                        <p:outputLabel value="Calificacion:" for="cbdCalificacion" />
+                        <p:inputText id="cbdCalificacion" value="#{analisisCreditoManagedBean.cbSelected.cbdCalificacion}" title="Calificacion" required="true" requiredMessage="La Calificacion del Buro de Credito, es requerida." size="20" maxlength="20"/>
+
+
+                        <p:outputLabel value="Comentario:" for="cbcComentario" />
+                        <p:inputTextarea rows="4" cols="30" id="cbcComentario" value="#{analisisCreditoManagedBean.cbSelected.cbcComentario}" title="Comentario" />
+
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{analisisCreditoManagedBean.updateBuroCredito}" value="#{crudbundle.Save}" update="display,:ConsultaburocreditoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ConsultaburocreditoEditDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="ConsultaburocreditoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

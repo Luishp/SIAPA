@@ -1,0 +1,31 @@
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">
+        <title>Ingresar Desembolso</title>
+    </ui:define>
+
+    <ui:define name="content">
+        <h1 style="text-align: center">Ingresar Desembolso</h1>
+
+        <ui:include src="/views/desembolso/ingresardesembolso/form.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/deducciones/List.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/deducciones/Create.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/deducciones/View.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/deducciones/Edit.xhtml"/>
+          
+        <ui:include src="/views/desembolso/ingresardesembolso/cheques/List.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/cheques/Create.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/cheques/View.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/cheques/Edit.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/ahorro/List.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/ahorro/Create.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/ahorro/View.xhtml"/>
+        <ui:include src="/views/desembolso/ingresardesembolso/ahorro/Edit.xhtml"/>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AhorroEditDlg" widgetVar="AhorroEditDialog" modal="true" resizable="false"  appendToBody="true" header="Editar Ahorro" closeOnEscape="true">
+
+            <h:form id="AhorroEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{desembolsoCreditoManagedBean.ahorroSelected != null}">
+                       
+                        <p:outputLabel value="Monto" for="ahorroMonto" />
+                        <p:inputText id="ahorroMonto" value="#{desembolsoCreditoManagedBean.ahorroSelected.ahorroMonto}" title="#{crudbundle.EditAhorroTitle_ahorroMonto}"/>
+
+                        <p:outputLabel value="Cuenta" for="ahorroCuenta" />
+                        <p:inputText id="ahorroCuenta" value="#{desembolsoCreditoManagedBean.ahorroSelected.ahorroCuenta}" title="#{crudbundle.EditAhorroTitle_ahorroCuenta}"/>
+                   
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{desembolsoCreditoManagedBean.updateAhorro}" value="#{crudbundle.Save}" update="display,:AhorroListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AhorroEditDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="AhorroEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

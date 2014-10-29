@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+   
+        <h:form id="LineacreditoListForm">
+            <br/>
+            <br/>
+
+            <p:fieldset legend="#{crudbundle.LineacreditoTitle}">
+                <p:dataTable id="datalist" var="item" value="#{lineaCreditoManagedBean.lineaCreditoList}" paginator="true" rows="5"  
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                             rowsPerPageTemplate="5,10,15"   resizableColumns="true"  
+                             selectionMode="single" selection="#{lineaCreditoManagedBean.selected}"
+                             rowKey="#{item.lineacreditoId}" paginatorPosition="bottom">
+
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton"/>
+
+                    <f:facet name="header">  
+                       Mantenimiento de Linea de Credito
+                    </f:facet>  
+
+                   <p:column sortBy="#{item.lineacreditoId}" filterBy="#{item.lineacreditoId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListLineacreditoTitle_lineacreditoId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lineacreditoId}"/>
+                </p:column>
+                <p:column sortBy="#{item.lineacreditoNombre}" filterBy="#{item.lineacreditoNombre}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListLineacreditoTitle_lineacreditoNombre}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lineacreditoNombre}"/>
+                </p:column>
+                <p:column sortBy="#{item.lineacreditoGrupo}" filterBy="#{item.lineacreditoGrupo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListLineacreditoTitle_lineacreditoGrupo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lineacreditoGrupo}"/>
+                </p:column>
+                <p:column sortBy="#{item.lineacreditoDestino}" filterBy="#{item.lineacreditoDestino}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListLineacreditoTitle_lineacreditoDestino}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lineacreditoDestino}"/>
+                </p:column>
+                <p:column sortBy="#{item.activo}" filterBy="#{item.activo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListLineacreditoTitle_activo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.activo}"/>
+                </p:column>
+                <p:column sortBy="#{item.usuarioRegistro}" filterBy="#{item.usuarioRegistro}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListLineacreditoTitle_usuarioRegistro}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioRegistro}"/>
+                </p:column>
+                
+
+                    <f:facet name="footer">
+                        <div class="footer-section">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Nuevo" actionListener="#{lineaCreditoManagedBean.toCreateLinea}" />
+                            <span>&nbsp;</span>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver"  disabled="#{empty lineaCreditoManagedBean.selected}"/>
+                            <span>&nbsp;</span>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" actionListener="#{lineaCreditoManagedBean.toEditLinea}" disabled="#{empty lineaCreditoManagedBean.selected}"/>
+                        </div>
+
+                    </f:facet>
+
+                </p:dataTable>
+
+            </p:fieldset>
+        </h:form>
+    
+
+</ui:composition>

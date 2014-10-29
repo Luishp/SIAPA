@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="RegistrogarantiaprendariaListForm">
+
+        <p:panel header="#{myBundle.ListRegistrogarantiaprendariaTitle}">
+            <p:dataTable id="datalist" value="#{registrogarantiaprendariaController.items}" var="item"
+                         selectionMode="single" selection="#{registrogarantiaprendariaController.selected}"
+                         rowKey="#{item.rgpPlaca}"
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.rgpPlaca}" filterBy="#{item.rgpPlaca}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpPlaca}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpPlaca}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgpClase}" filterBy="#{item.rgpClase}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpClase}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpClase}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgpMarca}" filterBy="#{item.rgpMarca}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpMarca}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpMarca}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgpAnio}" filterBy="#{item.rgpAnio}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpAnio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpAnio}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgpModelo}" filterBy="#{item.rgpModelo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpModelo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpModelo}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgpPeritovaluador}" filterBy="#{item.rgpPeritovaluador}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpPeritovaluador}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpPeritovaluador}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgpFechavaluo}" filterBy="#{item.rgpFechavaluo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpFechavaluo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpFechavaluo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.rgpValorvaluo}" filterBy="#{item.rgpValorvaluo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpValorvaluo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpValorvaluo}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgpCarnetnotario}" filterBy="#{item.rgpCarnetnotario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpCarnetnotario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpCarnetnotario}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgpNombrenotario}" filterBy="#{item.rgpNombrenotario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpNombrenotario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgpNombrenotario}"/>
+                </p:column>
+                <p:column sortBy="#{item.activo}" filterBy="#{item.activo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_activo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.activo}"/>
+                </p:column>
+                <p:column sortBy="#{item.usuarioRegistro}" filterBy="#{item.usuarioRegistro}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_usuarioRegistro}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioRegistro}"/>
+                </p:column>
+                <p:column sortBy="#{item.fechaRegistro}" filterBy="#{item.fechaRegistro}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_fechaRegistro}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaRegistro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.usuarioUltimamodificacion}" filterBy="#{item.usuarioUltimamodificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_usuarioUltimamodificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioUltimamodificacion}"/>
+                </p:column>
+                <p:column sortBy="#{item.fechaUltimamodificacion}" filterBy="#{item.fechaUltimamodificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_fechaUltimamodificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaUltimamodificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.rgpValidar}" filterBy="#{item.rgpValidar}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_rgpValidar}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="rgpValidar" value="#{item.rgpValidar}" title="#{myBundle.EditRegistrogarantiaprendariaTitle_rgpValidar}"  disabled="true"/>
+                </p:column>
+                <p:column sortBy="#{item.analisisId.analisisId}" filterBy="#{item.analisisId.analisisId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiaprendariaTitle_analisisId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.analisisId.analisisId}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{registrogarantiaprendariaController.prepareCreate}" update=":RegistrogarantiaprendariaCreateForm" oncomplete="RegistrogarantiaprendariaCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":RegistrogarantiaprendariaViewForm" oncomplete="RegistrogarantiaprendariaViewDialog.show()" disabled="#{empty registrogarantiaprendariaController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":RegistrogarantiaprendariaEditForm" oncomplete="RegistrogarantiaprendariaEditDialog.show()" disabled="#{empty registrogarantiaprendariaController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{registrogarantiaprendariaController.delete}" update=":growl,datalist" disabled="#{empty registrogarantiaprendariaController.selected}"/>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

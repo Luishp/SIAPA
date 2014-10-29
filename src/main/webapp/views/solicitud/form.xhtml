@@ -1,0 +1,603 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <script type="text/javascript">
+        function validaSoloNumeros() {
+            if (((event.keyCode &gt;  47) &amp; (event.keyCode &lt; 58)) || (event.keyCode == 46)) {
+                return true; 
+            }else {
+                return false;
+            } 
+        }
+        
+        function validaSoloNumerosSinPunto() {
+            if ((event.keyCode &lt;  48) || (event.keyCode &gt; 57)) {
+                 return false; 
+             }
+         }
+    </script>
+    <style type="text/css">
+        .decimales{
+            text-align: right;
+        }
+    </style>
+    <h:form id="solicitudForm">
+   <p:growl id="growl" showDetail="true" sticky="false" />  
+        <p:panel id="datosPersonales" header="I.Datos Personales" >  
+            <p:panelGrid columns="3">
+
+
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Codigo Asociado"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.codigo}"/>
+                    <p:outputLabel value="No. DUI"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu.noDui}"/>
+                    <p:outputLabel value="No. NIT"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu.noNit}"/>
+                    <p:outputLabel value="No. ISSS"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu.noIsss}"/>
+                </p:panelGrid>
+
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Nombre Completo"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu.nombreCompleto }"/>
+
+                    <p:outputLabel value="Lugar Exp"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu.lugarExped}"/>
+
+                    <p:outputLabel value="Nacionalidad"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu.nacionalidad}"/>
+
+                </p:panelGrid>
+
+                <p:panelGrid columns="2">    
+                    <p:outputLabel value="Fecha Exp."/>
+                    <h:outputText value="#{solicitudManagedBean.solicitud.asesoriaId.idasociados.idasocnatu.dateExped}"/> 
+                </p:panelGrid>
+
+            </p:panelGrid>
+
+            <p:panelGrid columns="2">    
+                <p:outputLabel value="Si es Salvadoreño residente en el extranjero, especifique el País:"/>
+                <!--<h:outputText value=""/>-->
+            </p:panelGrid>
+        </p:panel>
+
+        <p:panel id="datosCredito" header="II.Datos del Credito" >
+            <p:panelGrid columns="1">    
+                <p:panelGrid columns="6">
+                    <p:outputLabel value="Monto"/>
+                    <h:panelGroup>
+                        <p:inputText id="monto" value="#{solicitudManagedBean.solicitud.solicitudMontosolicitado}" maxlength="10" size="10" required="true" onkeypress="validaSoloNumeros(event)" converter="#{BigDecimal}" styleClass="decimales">
+                           <f:convertNumber pattern="###,###.00"></f:convertNumber>
+                        </p:inputText>
+                        <p:watermark for="monto" value="Monto"/>
+                        <p:message for="monto" display="icon"/>  
+                    </h:panelGroup>
+                    <p:outputLabel value="Plazo"/>
+                    <h:panelGroup>
+                        <p:inputText id="plazo" value="#{solicitudManagedBean.solicitud.solicitudPlazosolicitado}" style="text-align: right;" maxlength="3" size="10" required="true" onkeypress="validaSoloNumerosSinPunto(event)">
+                        </p:inputText>
+                        <p:watermark for="plazo" value="Plazo"/>
+                        <p:message for="plazo" display="icon"/>  
+                    </h:panelGroup>
+                    <p:outputLabel value="Destino"/>
+                    <h:panelGroup>
+                        <p:inputText id="destino" value="#{solicitudManagedBean.solicitud.solicitudDestino}" maxlength="80" required="true" size="40">
+                            <f:validateLength maximum="80" />  
+                        </p:inputText>
+                        <p:watermark for="destino" value="Destino"/>
+                        <p:message for="destino" display="icon"/>  
+                    </h:panelGroup>
+                </p:panelGrid>
+
+
+                <p:panelGrid columns="15">
+                    <p:outputLabel value="Dia en que Recibe el Sueldo"/>
+                    <p:inputText id="dia_sueldo" value="#{solicitudManagedBean.solicitud.solicitudFechasueldo}" maxlength="2" required="true" size="2">
+                        <f:validateLength maximum="2" />  
+                    </p:inputText>
+                    <p:watermark for="dia_sueldo" value="Dia"/>
+                    <!--<p:message for="dia_sueldo" display="icon"/>-->  
+
+                    <p:outputLabel value="Dia de Pago"/>
+                    <p:inputText id="dia_pago" value="#{solicitudManagedBean.solicitud.solicitudDiapago}" maxlength="2" required="true" size="2" onkeypress="return validaSoloNumerosSinPunto(event)">
+                         <f:validateLength maximum="2" />  
+                    </p:inputText>
+
+                    <p:outputLabel value="Cada" />  
+                    <p:selectOneMenu value="#{solicitudManagedBean.solicitud.ppId}" effect="fade" id="periodicidadPago" converter="#{periodicidadPagoConverter}">
+                        <f:selectItem itemLabel="Seleccione" />
+                        <f:selectItems value="#{solicitudManagedBean.periodicidadPagoList}" var="periodicidadPago" itemLabel="#{periodicidadPago.ppNombre}" itemValue="#{periodicidadPago}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Forma de Pago" />  
+                    <p:selectOneMenu value="#{solicitudManagedBean.solicitud.fpId}" effect="fade" id="formaPago" converter="#{formaPagoConverter}">
+                        <f:selectItem itemLabel="Seleccione" />
+                        <f:selectItems value="#{solicitudManagedBean.formaPagoList}" var="formaPago" itemLabel="#{formaPago.fpNombre}" itemValue="#{formaPago}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+
+            </p:panelGrid>
+
+            <p:panelGrid columns="4">
+                <p:outputLabel value="Garantia"/>
+                <h:outputText value="Prendaria"/>
+
+                <p:outputLabel value="Aplica Promoción"/>
+                <p:selectCheckboxMenu value="#{solicitudManagedBean.promocionesSelecionadas}" label="Promociones" panelStyle="width:220px" converter="#{promocionConverter}">
+                    <f:selectItems value="#{solicitudManagedBean.promociones}" var="promocion" itemLabel="#{promocion.promocionNombre}" itemValue="#{promocion}"/>
+                </p:selectCheckboxMenu>
+            </p:panelGrid>
+        </p:panel>
+  
+        <p:panel id="domicilio" header="III.Domicilio" >
+
+            <p:panelGrid columns="3">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Residencia"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu != null?solicitudManagedBean.asociado.idasocnatu.direccionRes:solicitudManagedBean.asociado.idasocjuri.direccion}"/>
+                    <h:outputLabel value="Tel."/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu != null?solicitudManagedBean.asociado.idasocnatu.telCasa1:solicitudManagedBean.asociado.idasocjuri.telCasa1}"/> 
+                </p:panelGrid>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Direccion de residencia"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu != null?solicitudManagedBean.asociado.idasocnatu.direccionRes:solicitudManagedBean.asociado.idasocjuri.direccionRes}"/> 
+                    <h:outputLabel value="Cel."/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu != null?solicitudManagedBean.asociado.idasocnatu.telCel1:solicitudManagedBean.asociado.idasocjuri.numCel1}"/> 
+                </p:panelGrid>
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Tiempo de residir"/>
+                    <h:outputText value="#{solicitudManagedBean.asociado.idasocnatu != null?solicitudManagedBean.asociado.idasocnatu.ttanios:solicitudManagedBean.asociado.idasocjuri.ttanios}"/>
+                </p:panelGrid>
+            </p:panelGrid>
+        </p:panel>
+
+
+        <p:panel id="informacionLaboral" header="IV.Informacion Laboral" >
+            <p:panelGrid columns="2">
+                <p:panelGrid columns="1">
+                    <p:dataTable var="fuentesi" value="#{solicitudManagedBean.ingresos}" id="fiinsolicitud"  rowKey="#{fuentesi.ingresoPK.fiId}">  
+                        <p:column headerText="Fuente Ingreso">  
+                            <h:outputText value="#{fuentesi.fuenteingreso.fiNombre}" />  
+                        </p:column>  
+
+                        <p:column headerText="Monto ($)" style="text-align: right">  
+                            <h:outputText value="#{fuentesi.ingresoCantidad}">
+                                <f:convertNumber type="number" minFractionDigits="2"  maxFractionDigits="2"></f:convertNumber>
+                            </h:outputText>  
+                        </p:column>  
+                        <f:facet name="footer">
+                            <div class="footer-section">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="Agregar" actionListener="#{solicitudManagedBean.dialogFuenteIngreso(event)}" update="@(#FuenteIngresoCreateForm)" oncomplete="FuenteIngresoCreateDialog.show()" immediate="true"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-close" value="Quitar"/>
+                            </div>
+                        </f:facet>
+                    </p:dataTable> 
+                </p:panelGrid>
+
+
+                <p:panelGrid columns="2">
+<!--
+                    <p:outputLabel value="Explique Fuentes de Ingresos" for="fuentesI"/>
+                    <h:panelGroup>
+                        <p:inputTextarea id="fuentesI" maxlength="500" required="true" cols="60">
+                            <f:validateLength maximum="500" />  
+                        </p:inputTextarea>
+                        <p:watermark for="fuentesI" value="Explique Fuentes de Ingreso"/>
+             
+                    </h:panelGroup>-->
+
+<!--                    <p:outputLabel value="Tipo de Empresa" for="tipo_empresa_asoc" />  
+                    <p:selectOneMenu value="" effect="fade" id="tipo_empresa_asoc" converter="#{tipoEmpresaConverter}">
+                        <f:selectItem itemLabel="Seleccione" itemValue="1" />
+                        <f:selectItems value="#{solicitudManagedBean.tipoEmpresaList}" var="tipoEmpresaAsoc" itemLabel="#{tipoEmpresaAsoc.teNombre}" itemValue="#{solicitudManagedBean.tipoEmpresaSeleccionado}"/>
+                    </p:selectOneMenu>-->
+
+                    <p:outputLabel value="Cargo" for="cargo"/>
+                    <h:panelGroup>
+                    <p:inputText id="cargo" value="#{solicitudManagedBean.solicitud.solicitudCargo}" maxlength="30" required="true" size="25" >
+                        <f:validateLength maximum="30" />  
+                    </p:inputText>
+                    <p:watermark for="cargo" value="Cargo"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="Nombre Empresa" for="nombre_empresa"/>
+                    <h:panelGroup>
+                    <p:inputText id="nombre_empresa" value="#{solicitudManagedBean.solicitud.solicitudNombreempresa}" maxlength="30" required="true" size="41" >
+                        <f:validateLength maximum="30" />  
+                    </p:inputText>
+                    <p:watermark for="nombre_empresa" value="Nombre de la Empresa"/>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup>
+                        <p:outputLabel value="Tiempo de Trabajo" for="tiempo_trabajo"/>
+                        <p:inputText id="tiempo_trabajo" value="#{solicitudManagedBean.solicitud.solicitudTiempotrabajoanio}" maxlength="2" required="true" size="5" onkeypress="return validaSoloNumerosSinPunto(event)" >
+                            <f:validateLength maximum="2" />  
+                        </p:inputText>
+                        <p:watermark for="tiempo_trabajo" value="anio"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <p:inputText id="ilmes" value="#{solicitudManagedBean.solicitud.solicitudTiempotrabajomes}" maxlength="2" required="true" size="5" onkeypress="return validaSoloNumerosSinPunto(event)" >
+                            <f:validateLength maximum="2" />  
+                        </p:inputText>
+                        <p:watermark for="ilmes" value="mes"/>
+                        <p:outputLabel value="meses"/>
+                         
+                    </h:panelGroup>
+
+                    <p:outputLabel value="Direccion de Trabajo"/>
+                    <h:panelGroup>
+                    <p:inputTextarea id="direccionI" value="#{solicitudManagedBean.solicitud.solicitudDireccionempresa}" maxlength="500" required="true" cols="60">
+                        <f:validateLength maximum="500" />  
+                    </p:inputTextarea>
+                    <p:watermark for="direccionI" value="Direccion de Trabajo"/>
+                     </h:panelGroup>
+
+                    <h:panelGroup>
+                        <p:outputLabel value="Tel."/>
+                        <p:inputMask id="telI" value="#{solicitudManagedBean.solicitud.solicitudTelefonoempresa}" size="10" mask="9999-9999" ></p:inputMask>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <p:outputLabel value="Fax"/>
+                        <p:inputMask id="faxI" value="#{solicitudManagedBean.solicitud.solicitudFaxempresa}"  size="10" mask="9999-9999"></p:inputMask>
+                    </h:panelGroup>
+
+                </p:panelGrid>  
+
+            </p:panelGrid>
+
+            <p:fieldset legend="Si es Empresa Propia" style="width: 800px;">
+                <p:panelGrid columns="6" >
+                    <p:outputLabel value="NCR" for="ncr_propia"/>
+                    <p:inputMask id="ncr_propia" value="#{solicitudManagedBean.solicitud.solicitudNegocionrc}" size="10" mask="99999999" ></p:inputMask>
+                    <p:message for="ncr_propia" display="text"/>  
+                    <p:outputLabel value="NIT" for="nit_propia"/>
+                    <p:inputMask id="nit_propia" value="#{solicitudManagedBean.solicitud.solicitudNegocionit}" size="15" mask="9999-999999-999-9"></p:inputMask>
+                    <p:message for="nit_propia" display="text"/>  
+                </p:panelGrid>
+
+                <p:panelGrid columns="4" >
+                    <p:outputLabel value="Actividad Principal del Negocio"/>
+                    <p:inputText id="actividad_principalI" value="#{solicitudManagedBean.solicitud.solicitudNegocioactividad}" maxlength="500" size="60" >
+                        <f:validateLength maximum="500" />  
+                    </p:inputText>
+                    <p:watermark for="actividad_principalI" value="Actividad Principal del Negocio"/>
+                    <p:message for="actividad_principalI" display="text"/>  
+                </p:panelGrid>
+
+
+                <p:panelGrid columns="7">
+                    <p:outputLabel value="Propietario Unico" id="propietario_unico" />  
+                    <p:selectOneMenu value="item" >  
+                        <f:selectItem itemLabel="Seleccione" itemValue="-1" /> 
+                        <f:selectItem itemLabel="Si" itemValue="1" />  
+                        <f:selectItem itemLabel="No" itemValue="2" />  
+                    </p:selectOneMenu>  
+                    <p:outputLabel for="num_propietarios" value="Número de Propietarios" />  
+                    <p:spinner id="num_propietarios"   
+                               value="1" min="0" max="10" size="2"/>  
+                    <p:outputLabel value="Indique su Participación"/>
+                    <p:inputText id="participacion" value="1" maxlength="2" size="2" >
+                        <f:validateLength maximum="2" />  
+                    </p:inputText>
+                    <h:outputText value="%"/>
+                </p:panelGrid>
+            </p:fieldset>
+
+        </p:panel>
+
+        <p:panel id="empleoAnterior" header="V.Empleo Anterior" >
+            <p:panelGrid columns="1">
+
+                <p:panelGrid columns="6">
+                    <p:outputLabel value="Nombre Empresa"/>
+                    <p:inputText id="nombre_empleo_anterior" value="#{solicitudManagedBean.solicitud.solictudNombreempresaanterior}" maxlength="40" size="60" >
+                        <f:validateLength maximum="40" />  
+                    </p:inputText>
+                    <p:message for="nombre_empleo_anterior" display="text"/>  
+
+                    <p:outputLabel value="Tel."/>
+                    <p:inputMask id="tel_empleo_anterior" value="#{solicitudManagedBean.solicitud.solictudTelefonoanterior}" size="10" mask="9999-9999" ></p:inputMask>
+                    <p:message for="tel_empleo_anterior" display="text"/>  
+
+                </p:panelGrid>
+
+                <p:panelGrid columns="4">
+                    <p:outputLabel value="Dirección Empresa"/>
+                    <p:inputTextarea id="direccion_empleo_anterior" value="#{solicitudManagedBean.solicitud.solictudDireccionempresaanterior}" maxlength="500" cols="60">
+                        <f:validateLength maximum="500" />  
+                    </p:inputTextarea>
+                    <p:watermark for="direccion_empleo_anterior" value="Dirección Empresa Anterior"/>
+                    <p:message for="direccion_empleo_anterior" display="text"/>  
+                </p:panelGrid>
+
+                <p:panelGrid columns="12">
+
+                    <p:outputLabel value="Fecha de Ingreso"/>
+                    <p:calendar id="fec_ing_empleo_anterior" value="#{solicitudManagedBean.solicitud.solictudFechaingresoanterior}"  readonlyInput="true" showOn="button" pattern="dd/MM/yyyy" size="10" >
+                    </p:calendar>
+                    <p:message for="fec_ing_empleo_anterior" display="text"/>  
+
+                    <p:outputLabel value="Fecha de Retiro"/>
+                    <p:calendar id="fec_ret_empleo_anterior" value="#{solicitudManagedBean.solicitud.solictudFecharetiroanterior}" readonlyInput="true" showOn="button" pattern="dd/MM/yyyy" size="10" >
+                    </p:calendar>
+                    <p:message for="fec_ret_empleo_anterior" display="text"/>  
+
+                    <p:outputLabel value="Cargo/Puesto"/>
+                    <p:inputText id="cargo_empleo_anterior" value="#{solicitudManagedBean.solicitud.solictudCargoanterior}" maxlength="50" size="20" >
+                        <f:validateLength maximum="50" />  
+                    </p:inputText>
+                    <p:watermark for="cargo_empleo_anterior" value="Cargo/Puesto"/>
+                    <p:message for="cargo_empleo_anterior" display="text"/>  
+
+                </p:panelGrid>
+
+            </p:panelGrid>
+
+        </p:panel>
+
+        <p:panel id="datosConyuge" header="V.Datos Conyuge">
+            <p:panelGrid columns="1">
+
+                <p:panelGrid columns="6">
+                    <h:panelGroup>
+                        <p:outputLabel value="Nombre Completo"/>
+                        <p:inputText id="nombre_completo_conyuge" value="#{solicitudManagedBean.solicitud.solicitudNombrecompletoconyuge}" maxlength="40" size="60" >
+                            <f:validateLength maximum="50" />  
+                        </p:inputText>
+                        <p:watermark for="nombre_completo_conyuge" value="Nombre Completo del Conyuge"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <p:outputLabel value="Tel."/>
+                        <p:inputMask id="tel_conyuge" value="#{solicitudManagedBean.solicitud.solicitudTelefonoconyuge}" size="10" mask="9999-9999" ></p:inputMask>
+                    </h:panelGroup>
+                </p:panelGrid>
+
+                <p:panelGrid columns="4">
+                    <h:panelGroup>
+                        <p:outputLabel value="Nombre Empresa"/>
+                        <p:inputText id="nombre_empresa_conyuge" value="#{solicitudManagedBean.solicitud.solicitudNombreempresaconyugue}" maxlength="500" size="60">
+                            <f:validateLength maximum="500" />  
+                        </p:inputText>
+                        <p:watermark for="nombre_empresa_conyuge" value="Nombre Empresa"/>
+                    </h:panelGroup>
+                    <!--                            <h:panelGroup>
+                                                <p:outputLabel value="Lugar de Trabajo"/>
+                                                <p:inputTextarea id="lugar_trabajo_conyuge" value="#{solicitudManagedBean.solicitud.solicitud}" maxlength="500" cols="60">
+                                                    <f:validateLength maximum="500" />  
+                                                </p:inputTextarea>
+                                                <p:watermark for="lugar_trabajo_conyuge" value="Lugar de Trabajo"/>
+                                                <p:message for="lugar_trabajo_conyuge" display="text"/>  
+                                                </h:panelGroup>-->
+                </p:panelGrid>
+
+
+                <p:panelGrid columns="4">
+
+                    <h:panelGroup>
+                        <p:outputLabel value="Tiempo de Trabajo" for="tiempo_trabajo_conyuge"/>
+                        <p:inputText id="tiempo_trabajo_conyuge" value="#{solicitudManagedBean.solicitud.solicitudTiempotrabajoanioconyugue}" maxlength="2"  size="5"   onkeypress="return validaSoloNumerosSinPunto(event)"   >
+                            <f:validateLength maximum="2" /> 
+                        </p:inputText>      
+                        <p:outputLabel value="Anios"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <p:inputText id="meses_trabajo_conyuge" value="#{solicitudManagedBean.solicitud.solicitudTiemoptrabajomesconyugue}" maxlength="2" size="5" onkeypress="return validaSoloNumerosSinPunto(event)"          >
+                            <f:validateLength maximum="2" />
+                        </p:inputText>
+                        <p:outputLabel value="meses"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <p:outputLabel value="Cargo/Puesto"/>
+                        <p:inputText id="cargo_conyuge" value="#{solicitudManagedBean.solicitud.solicitudCargoconyugue}" maxlength="50" size="20" >
+                            <f:validateLength maximum="50" /> 
+                        </p:inputText>
+                        <p:watermark for="cargo_conyuge" value="Cargo/Puesto"/>
+                        <p:message for="cargo_conyuge" display="icon"/>  
+
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <p:outputLabel value="Sueldo"/>
+                        <pe:inputNumber id="sueldo_conyuge" value="#{solicitudManagedBean.solicitud.solicitudSueldoconyuge}"  symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:watermark for="sueldo_conyuge" value="Sueldo"/>
+                        <p:message for="sueldo_conyuge" display="text"/>  
+                    </h:panelGroup>
+
+
+                </p:panelGrid>
+
+            </p:panelGrid>
+        </p:panel>
+
+        
+        
+        <p:panel id="informacionFinanciera" header="V.Informacion Financiera" >
+            <br></br>
+            <h:panelGrid columns="3">
+
+                <p:panel id="ingresosIf" header="Ingresos">
+                    <h:panelGrid columns="3" id="grid_if_1">
+
+                        <p:outputLabel value="Sueldo($)" for="if_sueldo"/>
+                        <pe:inputNumber style="text-align: right" id="if_sueldo" value="#{solicitudManagedBean.solicitud.solicitudSueldo}" maxlength="10" required="true" label="Sueldo">
+                        </pe:inputNumber>
+                        <p:message for="if_sueldo" display="icon"/>  
+
+                        <p:outputLabel value="Comisión ($)" for="if_comision"/>
+                        <pe:inputNumber style="text-align: right" id="if_comision" value="#{solicitudManagedBean.solicitud.solicitudIngresoComision}" maxlength="10" required="true" label="Comision" emptyValue="zero" symbol="$ ">
+                        </pe:inputNumber>
+                        <p:message for="if_comision" display="icon"/>  
+
+
+                        <p:outputLabel value="Otros Ingresos ($)" for="if_otros_ingresos"/>
+                        <pe:inputNumber style="text-align: right" id="if_otros_ingresos" value="#{solicitudManagedBean.solicitud.solicitudIngresoOtros}" maxlength="10" label="Otros Ingresos" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:message for="if_otros_ingresos" display="icon"/>  
+
+                        <p:outputLabel value="Negocio Propio ($)" for="if_negocio_propio"/>
+                        <pe:inputNumber style="text-align: right" id="if_negocio_propio" value="#{solicitudManagedBean.solicitud.solicitudIngresoNegocioPropio}" maxlength="10" label="Negocio Propio" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:message for="if_negocio_propio" display="icon"/>  
+
+                        <p:outputLabel value="Total Ingresos ($)" for="if_total_ingresos"/>
+                        <p:inputText id="if_total_ingresos" value="#{solicitudManagedBean.solicitud.solicitudTotalingreso}" maxlength="10" readonly="true" converter="#{BigDecimal}" styleClass="decimales">
+                            <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                        </p:inputText>
+                        <p:message for="if_total_ingresos" display="icon"/>  
+
+                    </h:panelGrid>
+                </p:panel>
+
+                
+                
+
+                <p:panel id="egresosIf" header="Egresos">
+                    <h:panelGrid columns="3" id="grid_if_2">
+
+                        <p:outputLabel for="if_gastos_vida" value="Gastos de Vida($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_gastos_vida" value="#{solicitudManagedBean.solicitud.solicitudGastovida}" maxlength="10" label="Gastos de Vida" converter="#{BigDecimal}" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:message for="if_gastos_vida" display="icon"/> 
+
+                        <p:outputLabel value="Pagos de deudas($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_pago_deuda" value="#{solicitudManagedBean.solicitud.solicitudPagodeudaactual}" maxlength="10"   label="Pagos de deudas" symbol="$ " emptyValue="zero" >
+                        </pe:inputNumber>
+                        <p:message for="if_pago_deuda" display="icon"/> 
+
+                        <p:outputLabel value="Pago de vivienda($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_pago_vivienda" value="#{solicitudManagedBean.solicitud.solicitudPagovivienda}"  maxlength="10" label="Pago Vivienda" symbol="$ " emptyValue="zero"> 
+                        </pe:inputNumber>
+                        <p:message for="if_pago_vivienda" display="icon"/> 
+
+                        <p:outputLabel value="ISSS, AFP,Renta,Descuentos($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_descuento"  value="#{solicitudManagedBean.solicitud.solicitudDescuento}"  maxlength="10"  label="ISSS, AFP,Renta,Descuentos" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:message for="if_descuento" display="icon"/> 
+
+                        <p:outputLabel value="Total Egresos ($)" />
+                        <p:inputText id="if_total_egresos" value="#{solicitudManagedBean.solicitud.solicitudTotalegreso}"  readonly="true" converter="#{BigDecimal}" styleClass="decimales">
+                            <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                        </p:inputText>
+                        <p:message for="if_total_egresos" display="icon"/> 
+
+                    </h:panelGrid>
+                </p:panel>
+
+
+
+                <h:panelGrid columns="1" id="grid_if_3" style="margin-left: 7%; text-align: center; ">
+                    <p:outputLabel value="Renta Neta Mensual"/>
+                    <p:inputText value="#{solicitudManagedBean.solicitud.solicitudRentaneta}" converter="#{BigDcimal}" styleClass="decimales">
+                        <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                    </p:inputText>  
+                    <p:commandButton value="Calcular Renta Neta Mensual" id="btnRentaNeta" process="@this,grid_if_1,grid_if_2" update="grid_if_1,grid_if_2,grid_if_3,:growl " actionListener="#{solicitudManagedBean.calcularRentaNetaMensual}" /> 
+                </h:panelGrid>
+
+
+                
+                
+                <p:panel id="activosIf" header="Activos">
+                    <h:panelGrid columns="3" id="grid_if_4">
+                        <p:outputLabel value="Aportaciones($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_aportaciones" value="#{solicitudManagedBean.solicitud.solicitudAportacionactivo}" maxlength="10" label="Aportacion" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:message for="if_aportaciones" display="icon"/> 
+
+                        <p:outputLabel value="Ahorros($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_ahorros" value="#{solicitudManagedBean.solicitud.solicitudAhorroactivo}" maxlength="10"  label="Ahorro" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:message for="if_ahorros" display="icon"/> 
+
+                        <p:outputLabel value="Otros(Bancos.etc)($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_otros" value="#{solicitudManagedBean.solicitud.solicitudOtroactivo}" maxlength="10"  label="Otros(Bancos etc)" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:message for="if_otros" display="icon"/> 
+
+                        <p:outputLabel value="Propiedades($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_propiedades" value="#{solicitudManagedBean.solicitud.solicitudValorpropiedad}" maxlength="10"   label="Propiedades" symbol="$ " emptyValue="zero">                      
+                        </pe:inputNumber>
+                        <p:message for="if_propiedades" display="icon"/> 
+
+                        <p:outputLabel value="Vehiculos"/>
+                        <pe:inputNumber style="text-align: right" id="if_vehiculos"  value="#{solicitudManagedBean.solicitud.solicitudValorvehiculo}" maxlength="10"  label="Vehiculos" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>
+                        <p:message for="if_vehiculos" display="icon"/> 
+
+                        <p:outputLabel value="Total Activos ($)" />
+                        <p:inputText style="text-align: right" id="if_total_activos" value="#{solicitudManagedBean.solicitud.solicitudTotalactivo}" maxlength="10" readonly="true" converter="#{BigDecimal}" onkeypress="return validaSoloNumeros(event)" styleClass="decimales">
+                            <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                        </p:inputText>  
+                        <p:message for="if_total_activos" display="icon"/> 
+
+                    </h:panelGrid>
+                </p:panel>
+                
+                
+                
+                
+                <p:panel id="pasivosIf" header="Pasivos">
+                    <h:panelGrid columns="3" id="grid_if_5">
+                        <p:outputLabel value="Prestamos($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_prestamos" value="#{solicitudManagedBean.solicitud.solicitudPrestamo}" maxlength="10"  label="Prestamos" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>  
+                        <p:message for="if_prestamos" display="icon"/> 
+
+                        <p:outputLabel value="Cuanto debe a instituciones Finascieras($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_deuda_if" value="#{solicitudManagedBean.solicitud.solicitudDeudaif}" maxlength="10" label="Otras Instituciones" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>  
+                        <p:message for="if_deuda_if" display="icon"/> 
+
+                        <p:outputLabel value="Cuanto debe a otros($)"/>
+                        <pe:inputNumber style="text-align: right" id="if_otra_deuda" value="#{solicitudManagedBean.solicitud.solicitudOtradeuda}" maxlength="10" label="Deuda a terceros" symbol="$ " emptyValue="zero">
+                        </pe:inputNumber>  
+                        <p:message for="if_otra_deuda" display="icon"/> 
+
+                        <p:outputLabel value="Total Pasivos ($)" />
+                        <p:inputText id="if_total_pasivos" value="#{solicitudManagedBean.solicitud.solicitudTotalpasivo}" readonly="true"  converter="#{BigDecimal}" styleClass="decimales">
+                            <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                        </p:inputText>  
+                        <p:message for="if_total_pasivos" display="icon"/> 
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                    </h:panelGrid>
+                </p:panel>
+
+
+                <h:panelGrid columns="1" id="grid_if_6" style="margin-left: 7%; text-align: center; ">
+                    <p:outputLabel value="Capital Actual"/>
+                    <p:inputText value="#{solicitudManagedBean.solicitud.solicitudCapital}" readonly="true" converter="#{BigDecimal}" styleClass="decimales">
+                        <f:convertNumber pattern="###,##0.00"></f:convertNumber>
+                    </p:inputText>  
+                    <p:commandButton value="Calcular Capital Actual" id="btnCapitalActual" process="@this,grid_if_4,grid_if_5" update="grid_if_4,grid_if_5,grid_if_6,:growl" actionListener="#{solicitudManagedBean.calcularCapitalActual}"/> 
+                </h:panelGrid>
+
+            </h:panelGrid>
+            <br></br>
+            <br></br>
+            <p:selectBooleanCheckbox value="#{solicitudManagedBean.solictudCompleta}"/> 
+            <p:outputLabel value="Lista para Analisis"></p:outputLabel>
+            <center>
+                <p:commandButton icon="ui-icon-extlink" action="#{solicitudManagedBean.documentosRecibidos}" value="Registrar Documentos Recibidos" update="@(#DocumentosCreateForm)" oncomplete="DocumentosCreateDialog.show()"  immediate="true"/>
+                <p:commandButton icon="ui-icon-disk" actionListener="#{solicitudManagedBean.update}" value="Guardar" ajax="false"/>
+                <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" actionListener="#{solicitudManagedBean.cancelar}"/>
+            </center>
+            <br></br>
+            <br></br>
+        </p:panel>
+        
+       
+    </h:form>
+</ui:composition>
+
+

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CartadeDesignacionNotarial" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c7e41c2-aac3-4ade-b995-d66f1f5838b5">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Angel\\Source Code\\siacofinges\\src\\main\\webapp\\WEB-INF\\reports\\desembolso\\xml\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGE_PATH" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="comprobante" class="java.lang.String">
+		<fieldDescription><![CDATA[comprobante]]></fieldDescription>
+	</field>
+	<field name="diapago" class="java.lang.String">
+		<fieldDescription><![CDATA[diapago]]></fieldDescription>
+	</field>
+	<field name="formapago" class="java.lang.String">
+		<fieldDescription><![CDATA[formapago]]></fieldDescription>
+	</field>
+	<field name="garantia" class="java.lang.String">
+		<fieldDescription><![CDATA[garantia]]></fieldDescription>
+	</field>
+	<field name="linea" class="java.lang.String">
+		<fieldDescription><![CDATA[linea]]></fieldDescription>
+	</field>
+	<field name="monto" class="java.lang.String">
+		<fieldDescription><![CDATA[monto]]></fieldDescription>
+	</field>
+	<field name="nombreasociado" class="java.lang.String">
+		<fieldDescription><![CDATA[nombreasociado]]></fieldDescription>
+	</field>
+	<field name="numeros" class="java.lang.String">
+		<fieldDescription><![CDATA[numeros]]></fieldDescription>
+	</field>
+	<field name="periocidad" class="java.lang.String">
+		<fieldDescription><![CDATA[periocidad]]></fieldDescription>
+	</field>
+	<field name="plazo" class="java.lang.String">
+		<fieldDescription><![CDATA[plazo]]></fieldDescription>
+	</field>
+	<field name="primerpago" class="java.lang.String">
+		<fieldDescription><![CDATA[primerpago]]></fieldDescription>
+	</field>
+	<field name="tabladesembolso" class="java.util.List">
+		<fieldDescription><![CDATA[tabladesembolso]]></fieldDescription>
+	</field>
+	<field name="tasaanual" class="java.lang.String">
+		<fieldDescription><![CDATA[tasaanual]]></fieldDescription>
+	</field>
+	<field name="valorcuota" class="java.lang.String">
+		<fieldDescription><![CDATA[valorcuota]]></fieldDescription>
+	</field>
+	<group name="Grop1">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+	</group>
+	<group name="Grupo3">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+	</group>
+	<group name="Grupo5">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupFooter>
+			<band height="31">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="8" width="572" height="20" uuid="1cac7905-b646-4e3e-ae2b-a903132afefd"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA["He recibido a mi entera satisfacción,lo arriba descrito, en fe de lo cual firmo en la ciudad de :____________________________________________a las___________________________________horas del dia dd mes de yyyy."]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="92" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="40" width="572" height="17" uuid="3cdfb909-80a7-4ec2-82fe-7e7b0327cb00"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Comprobante: "+$F{comprobante}+" \nOTORGAMIENTO DE PRESTAMOS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="74" width="572" height="17" uuid="b2824dd3-bdcb-4921-80ae-6aacc31a880b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["COMPROBANTE DE DESEMBOLSO"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="290" height="40" uuid="a4aba946-a267-452c-b740-9ce3bfd57f2e"/>
+				<imageExpression><![CDATA[$P{IMAGE_PATH}.concat("\\logo_1.png")]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="152" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="150" width="572" height="1" uuid="7a100fa5-d640-4a33-b8a2-6692cf2f31c0"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="31" width="93" height="20" uuid="1013dfaa-582c-4647-9220-f98ef444af59"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["LINEA :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="2" width="123" height="20" uuid="de584b58-c7b7-49f8-97d7-f5f507e2d10c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nombre del Asociado:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="51" width="93" height="20" uuid="bdf37001-62b4-43e6-b9e7-75bce268acbc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["MONTO :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="71" width="93" height="20" uuid="6777765e-e089-4bc5-80f5-457d5846a91a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EN NUMEROS :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="91" width="93" height="20" uuid="347d63dd-b839-4394-b313-938c8fc269c4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PLAZO             :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="218" y="71" width="103" height="20" uuid="62a6ef7e-85eb-4272-b697-2ec121756b45"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PERIODICIDAD:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="419" y="91" width="88" height="20" uuid="058fabe6-529d-43f2-95c6-d397856f145c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VALOR CUOTA:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="218" y="91" width="103" height="20" uuid="c0ced9f8-af43-4c0a-875d-e2d26795c49f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["FORMA DE PAGO:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="375" y="2" width="67" height="20" uuid="854838f7-8773-49c8-a2dd-c6246743cadc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CODIGO:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="357" y="31" width="85" height="20" uuid="1f950bd3-c835-444b-92bb-c5eaef802531"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TASA ANUAL:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="197" y="131" width="69" height="20" uuid="89c0c3c1-5865-481c-8c00-c24fa8143a54"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1er. Pago: "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="394" y="131" width="168" height="20" uuid="d7547435-4bab-4776-861c-cea1f272d3b8"/>
+				<textElement markup="html">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dia Pago: "+$F{diapago}+" c/ mes"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="2" width="100" height="20" uuid="a939b1f2-e340-4ee8-960e-29a40fcd9014"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="2" width="234" height="20" uuid="b81f4927-796c-4b71-a16a-469c5a5fbf31"/>
+				<textFieldExpression><![CDATA[$F{nombreasociado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 %">
+				<reportElement x="442" y="31" width="100" height="20" uuid="ef985341-2b4b-4640-8532-85cafdcd4a5b"/>
+				<textFieldExpression><![CDATA[new Double($F{tasaanual})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="31" width="125" height="20" uuid="cd96708c-23f6-4b4f-8b5b-fcd2e5a1b575"/>
+				<textFieldExpression><![CDATA[$F{linea}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$##,##0.00">
+				<reportElement x="106" y="51" width="112" height="20" uuid="68a25ac4-074c-4421-b2de-110365bf59be"/>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="93" y="91" width="64" height="20" uuid="01a4f0ef-1b24-4489-bbfe-fb5175ed47ca"/>
+				<textFieldExpression><![CDATA[$F{plazo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="71" width="100" height="20" uuid="882b4ddd-df09-4f80-84af-d51d696af7e6"/>
+				<textFieldExpression><![CDATA[$F{periocidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="91" width="100" height="20" uuid="0ead95c1-7b09-4d9f-b867-de5a85a0c7fe"/>
+				<textFieldExpression><![CDATA[$F{formapago}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$#,##0.00">
+				<reportElement x="519" y="91" width="53" height="20" uuid="7fb441af-c96c-44ce-9fc1-72eb5db8aee4"/>
+				<textFieldExpression><![CDATA[$F{valorcuota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="132" width="75" height="20" uuid="135e33ae-2bd0-4afd-910c-dd9afea0a20e"/>
+				<textFieldExpression><![CDATA[$F{primerpago}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="95" y="51" width="11" height="20" uuid="cf361fd7-c390-4967-867e-eb6417f27858"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["$"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="508" y="91" width="11" height="20" uuid="1a56704e-19cd-4318-b44a-708dd365a3bc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["$"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="157" y="91" width="45" height="20" uuid="ade6c4d4-af42-44f9-83c5-4ebe63d8a7dd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Meses"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="34">
+			<subreport>
+				<reportElement x="0" y="0" width="572" height="34" uuid="61c53088-8116-49b2-b31e-5465b6025b2b"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{tabladesembolso})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ReportedeComprobantedeDesembolso_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="108" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="197" y="46" width="178" height="20" uuid="8a2bfae2-dced-4628-a193-123110280846"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[" ___________________________\nFIRMA DEL ASOCIADO"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="83" width="178" height="20" uuid="97182413-9276-45bc-b95f-0e7d60f67eae"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[" ___________________________\nPROCESADO"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="394" y="83" width="178" height="20" uuid="770e7c2e-4ec9-4f3a-b355-a6539dee405e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[" ___________________________\nAUTORIZADO"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

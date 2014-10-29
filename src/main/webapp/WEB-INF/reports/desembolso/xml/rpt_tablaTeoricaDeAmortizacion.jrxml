@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_tablaTeoricaDeAmortizacion" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="ffe2baa9-f9d0-4675-8dba-7ee7d9bebbe8">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="19"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Angel\\Source Code\\siacofinges\\src\\main\\webapp\\WEB-INF\\reports\\desembolso\\xml\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGE_PATH" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="codigoDeAsociado" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoDeAsociado]]></fieldDescription>
+	</field>
+	<field name="codigoPrestamo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoPrestamo]]></fieldDescription>
+	</field>
+	<field name="detalleTablaAmortizacion" class="java.util.List">
+		<fieldDescription><![CDATA[detalleTablaAmortizacion]]></fieldDescription>
+	</field>
+	<field name="fechaApertura" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaApertura]]></fieldDescription>
+	</field>
+	<field name="fechaVencimiento" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaVencimiento]]></fieldDescription>
+	</field>
+	<field name="montoOriginal" class="java.lang.String">
+		<fieldDescription><![CDATA[montoOriginal]]></fieldDescription>
+	</field>
+	<field name="nombreDeAsociado" class="java.lang.String">
+		<fieldDescription><![CDATA[nombreDeAsociado]]></fieldDescription>
+	</field>
+	<field name="numeroCuotas" class="java.lang.String">
+		<fieldDescription><![CDATA[numeroCuotas]]></fieldDescription>
+	</field>
+	<field name="tasaInteresNominal" class="java.lang.String">
+		<fieldDescription><![CDATA[tasaInteresNominal]]></fieldDescription>
+	</field>
+	<field name="totalAmortizacionACapital" class="java.lang.String">
+		<fieldDescription><![CDATA[totalAmortizacionACapital]]></fieldDescription>
+	</field>
+	<field name="totalAmortizacionAInteres" class="java.lang.String">
+		<fieldDescription><![CDATA[totalAmortizacionAInteres]]></fieldDescription>
+	</field>
+	<field name="totalComisiones" class="java.lang.String">
+		<fieldDescription><![CDATA[totalComisiones]]></fieldDescription>
+	</field>
+	<field name="totalIva" class="java.lang.String">
+		<fieldDescription><![CDATA[totalIva]]></fieldDescription>
+	</field>
+	<field name="totalPagosARealizar" class="java.lang.String">
+		<fieldDescription><![CDATA[totalPagosARealizar]]></fieldDescription>
+	</field>
+	<field name="totalSaldo" class="java.lang.String">
+		<fieldDescription><![CDATA[totalSaldo]]></fieldDescription>
+	</field>
+	<field name="totalSeguros" class="java.lang.String">
+		<fieldDescription><![CDATA[totalSeguros]]></fieldDescription>
+	</field>
+	<variable name="montoOriginal" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($F{montoOriginal})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="40" width="572" height="20" uuid="5f7a2677-36ac-4fff-b65c-37bad2800398"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tabla de Amortización Teórica"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="1" y="0" width="290" height="40" uuid="81230ebc-d198-41c9-89d5-85603de50f9e"/>
+				<imageExpression><![CDATA[$P{IMAGE_PATH}.concat("\\logo_1.png")]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="93" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="31" width="98" height="20" uuid="72a201c5-90ea-44d1-98fa-cbeb5249221a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Monto Original"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="291" y="51" width="131" height="20" uuid="1e99bed0-3595-489b-844a-fb4ba214d4ae"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tasa de Interes Nominal"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="52" width="98" height="20" uuid="83716223-53e5-4d06-b397-c7e9e3809f1a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fecha de Apertura"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="72" width="98" height="20" uuid="2622c96e-367b-4231-8561-9ea969b46c8e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["No.de Cuotas"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="291" y="71" width="131" height="20" uuid="f282af06-09ec-4478-a919-7e040bd1a69b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fecha de Vencimiento"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="52" width="101" height="20" uuid="aefc5ec2-260a-472d-84fe-9961d0ae5f1e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaApertura}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0" isBlankWhenNull="true">
+				<reportElement x="100" y="72" width="101" height="20" uuid="4ff6e7f4-f853-4d8f-a034-81f66442c2c1"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numeroCuotas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 %">
+				<reportElement x="422" y="51" width="100" height="20" uuid="cfbf9593-2425-4d2d-b269-31195d36b83b"/>
+				<textFieldExpression><![CDATA[new Double($F{tasaInteresNominal})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="71" width="100" height="20" uuid="5b8b9821-cb7c-43be-aa05-6a5a124a144a"/>
+				<textFieldExpression><![CDATA[$F{fechaVencimiento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="11" width="98" height="20" uuid="3c6b4740-6cd6-4894-a108-60df14f92e96"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Codigo de Asociado"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="291" y="12" width="131" height="20" uuid="eabe92f5-76b1-4532-8253-915d7cd8d986"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nombre del Asociado"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="11" width="101" height="20" uuid="aa193142-606e-48e7-8344-a51316958527"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigoDeAsociado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 %">
+				<reportElement x="422" y="12" width="149" height="20" uuid="0fd4e485-2274-450b-b856-c428fb63db4a"/>
+				<textFieldExpression><![CDATA[$F{nombreDeAsociado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="291" y="32" width="131" height="20" uuid="89653f59-977d-4138-9671-399fc3d69765"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Codigo de Prestamo"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 %">
+				<reportElement x="422" y="32" width="100" height="20" uuid="2c969bfe-07cf-4329-a7ac-398ceca2c95f"/>
+				<textFieldExpression><![CDATA[$F{codigoPrestamo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="110" y="31" width="91" height="20" uuid="907f3769-9d41-4969-81f9-22e012f0dd0d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{montoOriginal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="31" width="10" height="20" uuid="27a211fd-28f3-4a7d-9a42-484e7cbc6b66"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+		<band height="31">
+			<subreport>
+				<reportElement x="0" y="0" width="572" height="31" uuid="a9c57c50-c5bc-4f52-97a9-c87f21ab1b8f"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalleTablaAmortizacion})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rpt_tablaTeoricaDeAmortizacion_subReporte.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="451" y="5" width="80" height="20" uuid="e8eac67c-8fad-4c4c-a179-884e2e9b7583"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="531" y="5" width="40" height="20" uuid="9445eb3f-ce25-436e-8ece-3c0d49616edd"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="SsOpcionesEditDlg" widgetVar="SsOpcionesEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.EditSsOpcionesTitle}" closeOnEscape="true">
+
+            <h:form id="SsOpcionesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{ssOpcionesManagedBean.selected != null}">
+
+                        <h:outputLabel value="#{crudbundle.EditSsOpcionesLabel_idOpcion}" for="idOpcion" />
+                        <h:outputText id="idOpcion" value="#{ssOpcionesManagedBean.selected.idOpcion}" />
+
+
+                        <p:outputLabel value="#{crudbundle.EditSsOpcionesLabel_nombreOpcion}" for="nombreOpcion" />
+                        <p:inputText id="nombreOpcion" value="#{ssOpcionesManagedBean.selected.nombreOpcion}" title="#{crudbundle.EditSsOpcionesTitle_nombreOpcion}" size="100" maxlength="100"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditSsOpcionesLabel_url}" for="url" />
+                        <p:inputTextarea rows="4" cols="30" id="url" value="#{ssOpcionesManagedBean.selected.url}" title="#{crudbundle.EditSsOpcionesTitle_url}" />
+
+
+                        <p:outputLabel value="#{crudbundle.EditSsOpcionesLabel_visible}" for="visible" />
+                        <p:inputText id="visible" value="#{ssOpcionesManagedBean.selected.visible}" title="#{crudbundle.EditSsOpcionesTitle_visible}" size="1" maxlength="1"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditSsOpcionesLabel_usuarioRegistro}" for="usuarioRegistro" />
+                        <p:inputText id="usuarioRegistro" value="#{ssOpcionesManagedBean.selected.usuarioRegistro}" title="#{crudbundle.EditSsOpcionesTitle_usuarioRegistro}" size="15" maxlength="15"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditSsOpcionesLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{ssOpcionesManagedBean.selected.fechaRegistro}" title="#{crudbundle.EditSsOpcionesTitle_fechaRegistro}"  showOn="button"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditSsOpcionesLabel_usuarioUltimamodificacion}" for="usuarioUltimamodificacion" />
+                        <p:inputText id="usuarioUltimamodificacion" value="#{ssOpcionesManagedBean.selected.usuarioUltimamodificacion}" title="#{crudbundle.EditSsOpcionesTitle_usuarioUltimamodificacion}" size="15" maxlength="15"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditSsOpcionesLabel_fechaUltimamodificacion}" for="fechaUltimamodificacion" />
+                        <p:calendar id="fechaUltimamodificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{ssOpcionesManagedBean.selected.fechaUltimamodificacion}" title="#{crudbundle.EditSsOpcionesTitle_fechaUltimamodificacion}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ssOpcionesManagedBean.save}" value="#{crudbundle.Save}" update="display,:SsOpcionesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SsOpcionesEditDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="SsOpcionesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

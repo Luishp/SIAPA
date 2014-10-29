@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PrestamoViewDlg" widgetVar="PrestamoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Ver Prestamo" closeOnEscape="true">
+
+            <h:form id="PrestamoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudManagedBean.prestamoSelected != null}">
+
+                        <h:outputText value="Id"/>
+                        <h:outputText value="#{solicitudManagedBean.prestamoSelected.prestamoId}" title="#{crudbundle.prestamo_id}"/>
+
+                        <h:outputText value="Monto"/>
+                        <h:outputText value="#{solicitudManagedBean.prestamoSelected.prestamoMonto}" title="#{crudbundle.prestamo_monto}"/>
+
+                        <h:outputText value="Plazo"/>
+                        <h:outputText value="#{solicitudManagedBean.prestamoSelected.prestamoPlazo}" title="#{crudbundle.prestamo_plazo}"/>
+
+                        <h:outputText value="Tasa de interes anual"/>
+                        <h:outputText value="#{solicitudManagedBean.prestamoSelected.prestamoTasa}" title="#{crudbundle.prestamo_tasa}"/>
+
+                        <h:outputText value="Saldo"/>
+                        <h:outputText value="#{solicitudManagedBean.prestamoSelected.prestamoSaldo}" title="#{crudbundle.prestamo_saldo}"/>
+
+                        <h:outputText value="Cuota"/>
+                        <h:outputText value="#{solicitudManagedBean.prestamoSelected.prestamoCuota}" title="#{crudbundle.prestamo_cuota}"/>
+
+                        <h:outputText value="Fecha de pago"/>
+                        <h:outputText value="#{solicitudManagedBean.prestamoSelected.prestamoFechapago}" title="#{crudbundle.prestamo_fechaPago}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="PrestamoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

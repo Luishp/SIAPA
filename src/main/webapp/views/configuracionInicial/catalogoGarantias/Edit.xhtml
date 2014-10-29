@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="GarantiaEditDlg" widgetVar="GarantiaEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.EditGarantiaTitle}" closeOnEscape="true">
+
+            <h:form id="GarantiaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{catalogoGarantiaManagedBean.selected != null}">
+
+                        <h:outputLabel value="#{crudbundle.EditGarantiaLabel_garantiaId}" for="garantiaId" />
+                        <h:outputText id="garantiaId" value="#{catalogoGarantiaManagedBean.selected.garantiaId}" />
+
+
+                        <p:outputLabel value="#{crudbundle.EditGarantiaLabel_garantiaNombre}" for="garantiaNombre" />
+                        <p:inputText id="garantiaNombre" value="#{catalogoGarantiaManagedBean.selected.garantiaNombre}" title="#{crudbundle.EditGarantiaTitle_garantiaNombre}" required="true" requiredMessage="#{crudbundle.EditGarantiaRequiredMessage_garantiaNombre}" size="50" maxlength="50"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditGarantiaLabel_garantiaTipo}" for="garantiaTipo" />
+                        <p:inputText id="garantiaTipo" value="#{catalogoGarantiaManagedBean.selected.garantiaTipo}" title="#{crudbundle.EditGarantiaTitle_garantiaTipo}" required="true" requiredMessage="#{crudbundle.EditGarantiaRequiredMessage_garantiaTipo}" size="50" maxlength="50"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditGarantiaLabel_activo}" for="activo" />
+                        <p:inputText id="activo" value="#{catalogoGarantiaManagedBean.selected.activo}" title="#{crudbundle.EditGarantiaTitle_activo}" required="true" requiredMessage="#{crudbundle.EditGarantiaRequiredMessage_activo}" size="2" maxlength="2"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditGarantiaLabel_usuarioRegistro}" for="usuarioRegistro" />
+                        <p:inputText id="usuarioRegistro" value="#{catalogoGarantiaManagedBean.selected.usuarioRegistro}" title="#{crudbundle.EditGarantiaTitle_usuarioRegistro}" required="true" requiredMessage="#{crudbundle.EditGarantiaRequiredMessage_usuarioRegistro}" size="15" maxlength="15"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditGarantiaLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{catalogoGarantiaManagedBean.selected.fechaRegistro}" title="#{crudbundle.EditGarantiaTitle_fechaRegistro}" required="true" requiredMessage="#{crudbundle.EditGarantiaRequiredMessage_fechaRegistro}" showOn="button"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditGarantiaLabel_usuarioUltimamodificacion}" for="usuarioUltimamodificacion" />
+                        <p:inputText id="usuarioUltimamodificacion" value="#{catalogoGarantiaManagedBean.selected.usuarioUltimamodificacion}" title="#{crudbundle.EditGarantiaTitle_usuarioUltimamodificacion}" size="15" maxlength="15"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditGarantiaLabel_fechaUltimamodificacion}" for="fechaUltimamodificacion" />
+                        <p:calendar id="fechaUltimamodificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{catalogoGarantiaManagedBean.selected.fechaUltimamodificacion}" title="#{crudbundle.EditGarantiaTitle_fechaUltimamodificacion}"  showOn="button"/>
+
+
+                        <p:outputLabel value="#{crudbundle.EditGarantiaLabel_requisitogarantiaCollection}" for="requisitogarantiaCollection" />
+                        <p:selectManyMenu id="requisitogarantiaCollection" value="#{catalogoGarantiaManagedBean.selected.requisitogarantiaCollection}"  converter="requisitogarantiaConverter">
+                            <f:selectItems value="#{requisitocatalogoGarantiaManagedBean.items}"
+                                           var="requisitogarantiaCollectionItem"
+                                           itemValue="#{requisitogarantiaCollectionItem}"
+                                           itemLabel="#{requisitogarantiaCollectionItem.rgId.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{catalogoGarantiaManagedBean.save}" value="#{crudbundle.Save}" update="display,:GarantiaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,GarantiaEditDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="GarantiaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

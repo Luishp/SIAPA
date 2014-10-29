@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="RegistrogarantiahipotecariaEditDlg" widgetVar="RegistrogarantiahipotecariaEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditRegistrogarantiahipotecariaTitle}" closeOnEscape="true">
+
+            <h:form id="RegistrogarantiahipotecariaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{registrogarantiahipotecariaController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghId}" for="rghId" />
+                        <h:outputText id="rghId" value="#{registrogarantiahipotecariaController.selected.rghId}" />
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghTipoinmueble}" for="rghTipoinmueble" />
+                        <p:inputText id="rghTipoinmueble" value="#{registrogarantiahipotecariaController.selected.rghTipoinmueble}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghTipoinmueble}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghTipoinmueble}" size="60" maxlength="60"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghMatricula}" for="rghMatricula" />
+                        <p:inputText id="rghMatricula" value="#{registrogarantiahipotecariaController.selected.rghMatricula}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghMatricula}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghMatricula}" size="30" maxlength="30"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghDireccion}" for="rghDireccion" />
+                        <p:inputText id="rghDireccion" value="#{registrogarantiahipotecariaController.selected.rghDireccion}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghDireccion}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghDireccion}" size="100" maxlength="100"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghPeritovaluador}" for="rghPeritovaluador" />
+                        <p:inputText id="rghPeritovaluador" value="#{registrogarantiahipotecariaController.selected.rghPeritovaluador}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghPeritovaluador}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghPeritovaluador}" size="100" maxlength="100"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghFechavaluo}" for="rghFechavaluo" />
+                        <p:calendar id="rghFechavaluo" pattern="MM/dd/yyyy" value="#{registrogarantiahipotecariaController.selected.rghFechavaluo}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghFechavaluo}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghFechavaluo}" showOn="button"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghCalificacion}" for="rghCalificacion" />
+                        <p:inputText id="rghCalificacion" value="#{registrogarantiahipotecariaController.selected.rghCalificacion}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghCalificacion}" size="2" maxlength="2"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghFechaconstruccion}" for="rghFechaconstruccion" />
+                        <p:calendar id="rghFechaconstruccion" pattern="MM/dd/yyyy" value="#{registrogarantiahipotecariaController.selected.rghFechaconstruccion}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghFechaconstruccion}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghFechaconstruccion}" showOn="button"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghArearegistral}" for="rghArearegistral" />
+                        <p:inputText id="rghArearegistral" value="#{registrogarantiahipotecariaController.selected.rghArearegistral}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghArearegistral}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghArearegistral}"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghValorcampo}" for="rghValorcampo" />
+                        <p:inputText id="rghValorcampo" value="#{registrogarantiahipotecariaController.selected.rghValorcampo}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghValorcampo}"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghValortierra}" for="rghValortierra" />
+                        <p:inputText id="rghValortierra" value="#{registrogarantiahipotecariaController.selected.rghValortierra}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghValortierra}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghValortierra}"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghValorconstruccion}" for="rghValorconstruccion" />
+                        <p:inputText id="rghValorconstruccion" value="#{registrogarantiahipotecariaController.selected.rghValorconstruccion}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghValorconstruccion}"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghValorvaluo}" for="rghValorvaluo" />
+                        <p:inputText id="rghValorvaluo" value="#{registrogarantiahipotecariaController.selected.rghValorvaluo}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghValorvaluo}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_rghValorvaluo}"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghNombreinstitucion}" for="rghNombreinstitucion" />
+                        <p:inputText id="rghNombreinstitucion" value="#{registrogarantiahipotecariaController.selected.rghNombreinstitucion}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghNombreinstitucion}" size="100" maxlength="100"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghValorhipoteca}" for="rghValorhipoteca" />
+                        <p:inputText id="rghValorhipoteca" value="#{registrogarantiahipotecariaController.selected.rghValorhipoteca}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghValorhipoteca}"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghSaldoactual}" for="rghSaldoactual" />
+                        <p:inputText id="rghSaldoactual" value="#{registrogarantiahipotecariaController.selected.rghSaldoactual}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghSaldoactual}"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_activo}" for="activo" />
+                        <p:inputText id="activo" value="#{registrogarantiahipotecariaController.selected.activo}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_activo}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_activo}" size="2" maxlength="2"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_usuarioRegistro}" for="usuarioRegistro" />
+                        <p:inputText id="usuarioRegistro" value="#{registrogarantiahipotecariaController.selected.usuarioRegistro}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_usuarioRegistro}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_usuarioRegistro}" size="15" maxlength="15"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{registrogarantiahipotecariaController.selected.fechaRegistro}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_fechaRegistro}" required="true" requiredMessage="#{myBundle.EditRegistrogarantiahipotecariaRequiredMessage_fechaRegistro}" showOn="button"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_usuarioUltimamodificacion}" for="usuarioUltimamodificacion" />
+                        <p:inputText id="usuarioUltimamodificacion" value="#{registrogarantiahipotecariaController.selected.usuarioUltimamodificacion}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_usuarioUltimamodificacion}" size="15" maxlength="15"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_fechaUltimamodificacion}" for="fechaUltimamodificacion" />
+                        <p:calendar id="fechaUltimamodificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{registrogarantiahipotecariaController.selected.fechaUltimamodificacion}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_fechaUltimamodificacion}"  showOn="button"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_rghValidar}" for="rghValidar" />
+                        <p:selectBooleanCheckbox id="rghValidar" value="#{registrogarantiahipotecariaController.selected.rghValidar}" />
+
+
+                        <p:outputLabel value="#{myBundle.EditRegistrogarantiahipotecariaLabel_analisisId}" for="analisisId" />
+                        <p:selectOneMenu id="analisisId" value="#{registrogarantiahipotecariaController.selected.analisisId}"  converter="analisisConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{analisisController.items}"
+                                           var="analisisIdItem"
+                                           itemValue="#{analisisIdItem}"
+                                           itemLabel="#{analisisIdItem.analisisId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{registrogarantiahipotecariaController.save}" value="#{myBundle.Save}" update="display,:RegistrogarantiahipotecariaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RegistrogarantiahipotecariaEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="RegistrogarantiahipotecariaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

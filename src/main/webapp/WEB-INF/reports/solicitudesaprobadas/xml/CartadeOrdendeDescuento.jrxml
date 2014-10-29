@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CartadeDesignacionNotarial" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c7e41c2-aac3-4ade-b995-d66f1f5838b5">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="asociadoCodigo" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoCodigo]]></fieldDescription>
+	</field>
+	<field name="asociadoDepartamento" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoDepartamento]]></fieldDescription>
+	</field>
+	<field name="asociadoDomicilio" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoDomicilio]]></fieldDescription>
+	</field>
+	<field name="asociadoDui" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoDui]]></fieldDescription>
+	</field>
+	<field name="asociadoNit" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoNit]]></fieldDescription>
+	</field>
+	<field name="asociadoNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[asociadoNombre]]></fieldDescription>
+	</field>
+	<field name="bancoNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[bancoNombre]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="cooperativaLugar" class="java.lang.String">
+		<fieldDescription><![CDATA[cooperativaLugar]]></fieldDescription>
+	</field>
+	<field name="cuotaMonto" class="java.lang.String">
+		<fieldDescription><![CDATA[cuotaMonto]]></fieldDescription>
+	</field>
+	<field name="cuotaNumero" class="java.lang.String">
+		<fieldDescription><![CDATA[cuotaNumero]]></fieldDescription>
+	</field>
+	<field name="empresaNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[empresaNombre]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
+	</field>
+	<field name="fechaInicio" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+	</field>
+	<field name="firmaNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[firmaNombre]]></fieldDescription>
+	</field>
+	<field name="notarioNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[notarioNombre]]></fieldDescription>
+	</field>
+	<field name="prestamoLinea" class="java.lang.String">
+		<fieldDescription><![CDATA[prestamoLinea]]></fieldDescription>
+	</field>
+	<field name="prestamoMonto" class="java.lang.String">
+		<fieldDescription><![CDATA[prestamoMonto]]></fieldDescription>
+	</field>
+	<field name="prestamoMontoLetras" class="java.lang.String">
+		<fieldDescription><![CDATA[prestamoMontoLetras]]></fieldDescription>
+	</field>
+	<field name="prestamoNumero" class="java.lang.String">
+		<fieldDescription><![CDATA[prestamoNumero]]></fieldDescription>
+	</field>
+	<group name="Grop1">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="572" height="18" uuid="7f0e1f35-0d25-4ca7-9681-e31f68e82d89"/>
+					<textElement textAlignment="Justified" markup="html">
+						<paragraph tabStopWidth="45"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Yo:<b>"+$F{asociadoNombre}+"</b>de: 99 años  de  edad,  del  domicilio  de la  ciudad de <b>"+$F{asociadoDomicilio}+"</b>, <b>"+$F{asociadoDepartamento}+"</b> con Documento Único de Identidad Número de Identificación Tributaria Número :"+$F{asociadoDui}+"<br><br>"
++"De conformidad  con el  Articulo 65 de la  Ley de  Asociaciones  Cooperativas, decreto legislativo No. 339, publicado en el  Diario Oficial del 14  de mayo  de 1996 y  el  Articulo No. 136 del Código de Trabajo,  AUTORIZO para que del sueldo que  devengo  como  empleado  de  esta  institución  se  me  sean  descontadas las cuotas que a continuación detallo:"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Gropo2">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="34">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="11" width="572" height="18" uuid="86bbdfa3-572c-4471-bbd8-c1d0ccfdbb6a"/>
+					<textElement textAlignment="Justified" markup="html">
+						<paragraph tabStopWidth="45"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>"+$F{cuotaNumero}+" cuotas mensuales de $ "+$F{cuotaMonto}+" el  dia 30 de cada mes. Monto: $ "+$F{prestamoMonto}+"</b>,cantidad que deberé pagar por mi cuenta a ACOFINGES DE R.L., situada en Calle Sisimiles, Centro Comercial Metro Galerias, tercer nivel, local No. 3-13, San Salvador, en concepto de obligaciones contraidas por mi  persona,  con  dicha  cooperativa. Por  todo  lo  antes  expuesto, ruego  dar  conformidad  a  la  Cooperativa, de  que procederá a efectuar lo que por medio de esta carta autorizo, a partir de la fecha:"+$F{fechaInicio}+"<br><b>LINEA DE CREDITO:"+$F{prestamoLinea}+" <br>ESTA ORDEN DE DESCUENTO CANCELA LA VIGENTE CON EL BANCO<br>"+$F{bancoNombre}+"</b>"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Grupo3">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="28">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="8" width="572" height="18" uuid="f191da2b-be92-4d43-a370-a4380b22525a"/>
+					<textElement textAlignment="Right" markup="html">
+						<paragraph tabStopWidth="45"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Firma:___________________________<br>"+$F{asociadoNombre}+"<br>Ref.:"+$F{prestamoNumero}+""]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Grupo4">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="178" height="20" uuid="874553af-c75c-4eb4-b3ec-3163891f2521"/>
+					<textElement markup="html"/>
+					<textFieldExpression><![CDATA["Señores<br><b>ACOFINGES de R.L.</b><br>Presente.<br><br><br>Estimados Señores.<br>"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Grupo5">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="572" height="20" uuid="81738d40-991e-43df-9f52-b81c3d1e7a15"/>
+					<textElement markup="html"/>
+					<textFieldExpression><![CDATA["Al tomar nota de la carta anterior me comprometo a descontar del sueldo de "+$F{asociadoNombre}+"  ,   las cuotas a que se refiere la <b>AUTORIZACION ANTERIOR</b> y remitirlas a  ACOFINGES DE R.L.<br><br>Lugar y Fecha:_____________________________<br>"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="114" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="94" width="178" height="20" uuid="1013dfaa-582c-4647-9220-f98ef444af59"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA["Señores<br><b> "+$F{empresaNombre}+"</b><br>Atte. Pagador Habilitado-Tesorería"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="572" height="17" uuid="3cdfb909-80a7-4ec2-82fe-7e7b0327cb00"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ACOFINGES de R.L."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="17" width="572" height="17" uuid="728469cb-e9c2-4fd5-a3a7-902fe20e1c37"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cooperativa Financiera de Ingenieros y Arquitectos"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="34" width="572" height="17" uuid="b2824dd3-bdcb-4921-80ae-6aacc31a880b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ORDEN IRREVOCABLE DE DESCUENTO"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="62" width="153" height="20" uuid="de584b58-c7b7-49f8-97d7-f5f507e2d10c"/>
+				<textFieldExpression><![CDATA["Lugar y Fecha: San Salvador, "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="142" y="62" width="100" height="20" uuid="c7c670aa-bc90-4423-8a2d-d153eb9e4091"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="54" width="572" height="1" uuid="a9932b10-547d-4739-8722-70b6b851ecd1"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="2" width="572" height="20" uuid="1cac7905-b646-4e3e-ae2b-a903132afefd"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA["Forma de Pago: ____Remesa Bco. Agricola S.A\t\t\t\tcta. No.504-006142-0 \n"
++"                           ____Remesa Bco. Citibank de El Salvador\t\t\tcta. No.01-01-11745\n"
++"                           ____Remesa Bco. Scotiabank El Salvador S.A\t\tcta. No.1940016165\n"
++"                           ____Ventanilla ACOFINGES DE R.L.\n"
++"                           ____Cobrador ACOFINGES DE R.L.\n\n"
++"Nombre y Firma:___________________________________________(Sello)\n\n"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="25" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="572" height="1" uuid="7a100fa5-d640-4a33-b8a2-6692cf2f31c0"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="1" width="572" height="17" uuid="c8b18680-49ce-4feb-9288-b362f0dd0f9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CALLE SISIMILES, CENTRO COMERCIAL METROGALERIAS LOCAL 13 TERCER NIVEL, CONTIGUO A CENTRO CULTURAL SALVADOREÑO.<br>"
++"TELEFONOS Y FAX : 2234-1400 // 2234-1406 // 2234-1418.<br>"
++"www.acofinges.com"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

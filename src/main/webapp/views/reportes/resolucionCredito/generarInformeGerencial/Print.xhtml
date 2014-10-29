@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InformeGerencialPrintDialog" widgetVar="InformeGerencialPrintDialog" modal="true" resizable="false" appendTo="@(body)" header="Generar Informe Gerencial" closeOnEscape="true">
+
+            <h:form id="InformeGerencialPrintForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{agendaComiteCreditosManagedBean.agendaSelected != null}">
+
+                        <h:outputText value="Fecha"/>
+                        <h:outputText value="#{agendaComiteCreditosManagedBean.agendaSelected.accFechareunion}" title="Fecha de reunion"/>
+
+                        <h:outputText value="Hora"/>
+                        <h:outputText value="#{agendaComiteCreditosManagedBean.agendaSelected.accHorareunion}" title="Hora de reunion"/>
+
+                        <h:outputText value="Lugar"/>
+                        <h:outputText value="#{agendaComiteCreditosManagedBean.agendaSelected.accLugarreunion}" title="Lugar de reunion"/>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioRegistro}"/>
+                        <h:outputText value="#{agendaComiteCreditosManagedBean.agendaSelected.usuarioRegistro}" title="#{crudbundle.Title_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaRegistro}"/>
+                        <h:outputText value="#{agendaComiteCreditosManagedBean.agendaSelected.fechaRegistro}" title="#{crudbundle.Title_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.Label_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{agendaComiteCreditosManagedBean.agendaSelected.usuarioUltimamodificacion}" title="#{crudbundle.Title_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.Label_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{agendaComiteCreditosManagedBean.agendaSelected.fechaUltimamodificacion}" title="#{crudbundle.Title_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+
+
+                    <br/>                    
+
+<!--                    <p:dataTable id="listadoMiembrosPrint" var="asistente" value="#{agendaComiteCreditosManagedBean.asistentesParaInforme}" rowKey="#{asistente.asistentePK.mccId}" paginatorPosition="bottom"
+                                 paginator="true" rows="5"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10"
+                                 emptyMessage="No se encontraron miembros del comite para mostrar">  
+
+                        <f:facet name="header">  
+                            Listado de miembros del Comite de Cr&eacute;ditos
+                        </f:facet>  
+
+                        <p:column  id="asistenteCargoPrint" headerText="Cargo" resizable="false" width="30%">  
+                            <h:outputText value="#{asistente.miembroscomitecreditos.mccCargo}" />                     
+                        </p:column>  
+
+                        <p:column id="asistenteNombrePrint" headerText="Nombre" resizable="false" width="40%"> 
+                            <h:outputText value="#{asistente.miembroscomitecreditos.mccNombre}" />  
+                        </p:column>  
+
+                        <p:column id="asistenteAsistiraPrint" headerText="Asistira" resizable="false" width="10%" style="text-align: center"> 
+                            <h:outputText value="#{asistente.asistenteAsistira ? 
+                                           'SI' : 
+                                           'NO'}" />  
+                </p:column> 
+
+                <p:column id="asistentePermisoPrint" headerText="Tiene Permiso" resizable="false" width="10%" style="text-align: center"> 
+                    <h:outputText value="#{asistente.assistentePermiso ? 
+                                           'SI' : 
+                                           'NO'}" />  
+                </p:column>                 
+
+                <p:column id="asistenteSelectedPrint" headerText="Seleccionar" resizable="false" width="10%" style="text-align: center"> 
+                    <p:selectBooleanCheckbox value="#{asistente.selected}"/>
+                </p:column>
+
+            </p:dataTable>  
+
+            <br/>-->
+
+                    <p:dataTable id="listadoSolicitudesPrint" var="solicitud" value="#{agendaComiteCreditosManagedBean.analisisParaInforme}" rowKey="#{solicitud.analisisId}" paginatorPosition="bottom"
+                                 paginator="true" rows="5"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10"
+                                 emptyMessage="No se encontraron solicitudes para mostrar"
+                                 selectionMode="single" selection="#{agendaComiteCreditosManagedBean.analisisSelectedParaInforme}"
+                                 >  
+
+                        <f:facet name="header">  
+                            Listado de Solicitudes
+                        </f:facet>  
+
+                        <p:column  id="idSolicitudPrint" headerText="Solicitud" resizable="false" width="15%">  
+                            <h:outputText value="#{solicitud.solicitudId.solicitudId}" />                     
+                        </p:column>  
+
+                        <p:column id="fechaSolicitudPrint" headerText="Fecha" resizable="false" width="10%" style="text-align: center">
+                            <h:outputText value="#{solicitud.solicitudId.fechaRegistro}">
+                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                            </h:outputText>
+                        </p:column>  
+
+                        <p:column id="destinoSolicitudPrint" headerText="Destino" resizable="false" width="15%"> 
+                            <h:outputText value="#{solicitud.solicitudId.solicitudDestino}" />  
+                        </p:column> 
+
+                        <p:column id="asociadoSolicitudPrint" headerText="Nombre del Asociado" resizable="false" width="30%"> 
+                            <h:outputText value="#{solicitud.solicitudId.nombreCompleto}" />  
+                        </p:column>                 
+
+                        <p:column id="montoSolicitudPrint" headerText="Monto" resizable="false" width="10%" style="text-align: right"> 
+                            <h:outputText value="#{solicitud.analisisMonto}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>  
+                        </p:column> 
+
+                        <p:column id="tasaSolicitudPrint" headerText="Tasa" resizable="false" width="5%" style="text-align: right"> 
+                            <h:outputText value="#{solicitud.analisisTasa}">
+                                <f:convertNumber type="percent"  minFractionDigits="2"/>
+                            </h:outputText>  
+                        </p:column> 
+
+                        <p:column id="plazoSolicitudPrint" headerText="Plazo" resizable="false" width="5%" style="text-align: center"> 
+                            <h:outputText value="#{solicitud.analisisPlazo}" />  
+                        </p:column>
+
+<!--                        <p:column id="selectedSolicitudPrint" headerText="Seleccionar" resizable="false" width="5%" style="text-align: center"> 
+                            <p:selectBooleanCheckbox value="#{solicitud.selected}"/>
+                        </p:column>-->
+
+                    </p:dataTable>  
+
+                    <br/>
+                    <p:commandButton id="reportButton" icon="ui-icon-print"  value="#{crudbundle.Print}" actionListener="#{agendaComiteCreditosManagedBean.printInformeGerencial}" oncomplete="print(xhr, status, args)"/>                     
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="InformeGerencialPrintDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

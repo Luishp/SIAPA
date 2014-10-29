@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegistrogarantiarealViewDlg" widgetVar="RegistrogarantiarealViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewRegistrogarantiarealTitle}" closeOnEscape="true">
+
+            <h:form id="RegistrogarantiarealViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{registrogarantiarealController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_rgrId}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.rgrId}" title="#{myBundle.ViewRegistrogarantiarealTitle_rgrId}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_rgrTipo}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.rgrTipo}" title="#{myBundle.ViewRegistrogarantiarealTitle_rgrTipo}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_rgrNumerocuenta}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.rgrNumerocuenta}" title="#{myBundle.ViewRegistrogarantiarealTitle_rgrNumerocuenta}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_rgrNumerodeposito}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.rgrNumerodeposito}" title="#{myBundle.ViewRegistrogarantiarealTitle_rgrNumerodeposito}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_rgrPorcentajepignorado}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.rgrPorcentajepignorado}" title="#{myBundle.ViewRegistrogarantiarealTitle_rgrPorcentajepignorado}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_rgrMontopignorado}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.rgrMontopignorado}" title="#{myBundle.ViewRegistrogarantiarealTitle_rgrMontopignorado}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_activo}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.activo}" title="#{myBundle.ViewRegistrogarantiarealTitle_activo}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_usuarioRegistro}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.usuarioRegistro}" title="#{myBundle.ViewRegistrogarantiarealTitle_usuarioRegistro}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_fechaRegistro}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.fechaRegistro}" title="#{myBundle.ViewRegistrogarantiarealTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.usuarioUltimamodificacion}" title="#{myBundle.ViewRegistrogarantiarealTitle_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.fechaUltimamodificacion}" title="#{myBundle.ViewRegistrogarantiarealTitle_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_rgrValidar}"/>
+                        <h:selectBooleanCheckbox id="rgrValidar" value="#{registrogarantiarealController.selected.rgrValidar}" title="#{myBundle.EditRegistrogarantiarealTitle_rgrValidar}"  disabled="true"/>
+
+                        <h:outputText value="#{myBundle.ViewRegistrogarantiarealLabel_analisisId}"/>
+                        <h:outputText value="#{registrogarantiarealController.selected.analisisId.analisisId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="RegistrogarantiarealViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

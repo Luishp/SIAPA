@@ -1,0 +1,95 @@
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">
+        <title>Codeudor</title>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <style>
+            .ui-fieldset .ui-fieldset-legend
+            {
+                font-size: small;
+            }
+
+        </style>
+        <h:form id="HipotecariasListForm">
+            <h:panelGroup id="display">
+            <p:panel header="Datos de Garantia Hipotecaria">
+                <p:panelGrid columns="4">
+                    <p:outputLabel value="Codigo Solicitud : " for="codigosolicitud" />
+                    <p:outputLabel id="codigosolicitud" value="#{garantiaHipotecariaManagedBean.codigoSolicitud}"/>
+
+                    <p:outputLabel value="Codigo Asociado : " for="codigoasociado" />
+                    <p:outputLabel id="codigoasociado" value="#{garantiaHipotecariaManagedBean.codigoSocio}"/>
+
+
+                    <p:outputLabel value="Nombre : " for="nombreasociado" />
+                    <p:outputLabel id="nombreasociado" value="#{garantiaHipotecariaManagedBean.nombreAsociado}"/>
+                </p:panelGrid>
+       
+                <br></br>
+ 
+                <p:dataTable id="datalist" var="item" value="#{garantiaHipotecariaManagedBean.garantiasHipotecarias}" paginator="true" rows="5"  
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                             rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                             selectionMode="single" selection="#{garantiaHipotecariaManagedBean.selected}"
+                             rowKey="#{item.rghId}" paginatorPosition="bottom">
+
+                    <p:ajax event="rowSelect"   update="createButton"/>
+                    <p:ajax event="rowUnselect" update="createButton"/>
+
+                    <f:facet name="header">  
+                        Garantias Hipotecarias
+                    </f:facet>  
+
+                    <p:column width="10%" >
+                        <f:facet name="header">
+                            <h:outputText value="Identificador"/>
+                        </f:facet>
+                        <h:outputText value="#{item.rghId}"/>
+                    </p:column>
+
+                    <p:column width="20%" >
+                        <f:facet name="header">
+                            <h:outputText value="Tipo Inmueble"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tipoInmuebleId.tipoInmuebleNombre}"/>
+                    </p:column>
+                    <p:column width="40%" >
+                        <f:facet name="header">
+                            <h:outputText value="Direccion"/>
+                        </f:facet>
+                        <h:outputText value="#{item.rghDireccion}"/>
+                    </p:column>
+
+                    <p:column width="15%" style="text-align: center;" >
+                        <f:facet name="header">
+                            <h:outputText value="Fecha de Registro"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <div class="footer-section">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear Garantia Hipotecaria" actionListener="#{garantiaHipotecariaManagedBean.toCreateGarantiaHipotecaria(event)}"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#HipotecariaViewForm)" oncomplete="HipotecariaViewDialog.show()" />
+                            <p:commandButton value="Cancelar" actionListener="#{garantiaHipotecariaManagedBean.cancelar(event)}" />
+                        </div>
+                    </f:facet>
+
+                </p:dataTable>
+
+     </p:panel>
+                </h:panelGroup>
+        
+        </h:form>
+    </ui:define>
+</ui:composition>

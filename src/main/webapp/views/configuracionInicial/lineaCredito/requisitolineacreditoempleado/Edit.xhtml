@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="RequisitolineacreditoempleadoEditDlg" widgetVar="RequisitolineacreditoempleadoEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.EditRequisitolineacreditoempleadoTitle}" closeOnEscape="true">
+
+            <h:form id="RequisitolineacreditoempleadoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{lineaCreditoManagedBean.rlceSelected != null}">
+
+                       
+                        <p:outputLabel value="#{crudbundle.EditRequisitolineacreditoempleadoLabel_requisitolineacreditoempleadoNombre}" for="requisitolineacreditoempleadoNombre" />
+                        <p:inputText id="requisitolineacreditoempleadoNombre" value="#{lineaCreditoManagedBean.rlceSelected.requisitolineacreditoempleadoNombre}" title="#{crudbundle.EditRequisitolineacreditoempleadoTitle_requisitolineacreditoempleadoNombre}" required="true" requiredMessage="#{crudbundle.EditRequisitolineacreditoempleadoRequiredMessage_requisitolineacreditoempleadoNombre}" size="60" maxlength="60"/>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lineaCreditoManagedBean.updateReqEmpleado}" value="#{crudbundle.Save}" update="display,:RequisitolineacreditoempleadoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RequisitolineacreditoempleadoEditDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="RequisitolineacreditoempleadoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

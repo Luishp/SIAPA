@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form id="ActaComiteListForm">
+        <br/>
+        <br/>
+        <p:fieldset legend="Generar Acta de comite">
+
+            <h:panelGrid columns="4" cellpadding="5">
+                <p:outputLabel for="fechaInicial" value="Desde:" />
+                <p:calendar id="fechaInicial" pattern="dd/MM/yyyy" value="#{agendaComiteCreditosManagedBean.fechaInicialActa}" showOn="button" readonlyInput="true" binding="#{actaComiteStartDateComponent}"/>
+
+                <p:outputLabel for="fechaFinal" value="Hasta:" />
+                <p:calendar id="fechaFinal" pattern="dd/MM/yyyy" value="#{agendaComiteCreditosManagedBean.fechaFinalActa}" showOn="button" readonlyInput="true">
+                    <f:validator validatorId="actaComiteDateRangeValidator" />
+                    <f:attribute name="actaComiteStartDateComponent" value="#{actaComiteStartDateComponent}" />
+                </p:calendar>
+            </h:panelGrid>
+
+            <p:spacer height="25" width="25"/>
+
+            <p:dataTable id="datalist" var="item" value="#{agendaComiteCreditosManagedBean.reunionesRealizadas}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" resizableColumns="true"
+                         selectionMode="single" selection="#{agendaComiteCreditosManagedBean.actaSelected}"
+                         rowKey="#{item.accId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="viewButton reportButton"/>
+                <p:ajax event="rowUnselect" update="viewButton reportButton"/>
+
+
+                <f:facet name="header">  
+                    Reuniones Realizadas
+                </f:facet>  
+
+                <p:column width="10%" style="text-align: center" >
+                    <f:facet name="header">
+                        <h:outputText value="Fecha"/>
+                    </f:facet>
+                    <h:outputText value="#{item.accFechareunion}">
+                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column width="10%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Hora"/>
+                    </f:facet>
+                    <h:outputText value="#{item.accHorareunion}">
+                        <f:convertDateTime pattern="hh:mm" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column filterBy="#{item.accLugarreunion}" filterMatchMode="contains" width="45%" >
+                    <f:facet name="header">
+                        <h:outputText value="Lugar"/>
+                    </f:facet>
+                    <h:outputText value="#{item.accLugarreunion}"/>
+                </p:column>
+
+
+                <p:column width="15%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Asistentes"/>
+                    </f:facet>
+                    <h:outputText value="#{item.asistencia}"/>
+                </p:column>
+
+                <p:column width="20%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Numero de solicitudes"/>
+                    </f:facet>
+                    <h:outputText value="#{item.solicitudes}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" actionListener="#{agendaComiteCreditosManagedBean.prepareViewActa}"   update="@(#ActaComiteViewForm)" oncomplete="ActaComiteViewDialog.show()" disabled="#{empty agendaComiteCreditosManagedBean.actaSelected}"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="reportButton" icon="ui-icon-print"  value="#{crudbundle.Print}" actionListener="#{agendaComiteCreditosManagedBean.printActa}" oncomplete="print(xhr, status, args)" disabled="#{empty agendaComiteCreditosManagedBean.actaSelected}"/>                     
+                        <span>&nbsp;</span>
+                        <p:commandButton id="refreshButton"   icon="ui-icon-refresh" value="Actualizar" actionListener="#{agendaComiteCreditosManagedBean.findRealizadas()}" update="@(#ActaComiteListForm)"/>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:fieldset>
+
+    </h:form>
+</ui:composition>

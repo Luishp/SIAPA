@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <h:form id="ReferenciaPerListForm">
+        <p:panel id="referenciasPersonales" header="Referencias Personales" >
+            <br></br>
+            <p:dataTable id="datalist" var="item" value="#{solicitudManagedBean.refPerItems}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                         selectionMode="single" selection="#{solicitudManagedBean.refPerSelected}"
+                         rowKey="#{item.rpId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="createButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton"/>
+
+                <f:facet name="header">  
+                    Referencias Personales
+                </f:facet>  
+                <p:column width="20%" >
+                    <f:facet name="header">
+                        <h:outputText value="Identificador"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rpId}"/>
+                </p:column>
+                <p:column width="20%" >
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Completo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rpNombrecompleto}"/>
+                </p:column>
+                <p:column width="20%" >
+                    <f:facet name="header">
+                        <h:outputText value="Direccion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rpDireccion}"/>
+                </p:column>
+                <p:column  width="20%" >
+                    <f:facet name="header">
+                        <h:outputText value="Telefono"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rpTelefono}"/>
+                </p:column>
+                <p:column  width="20%" >
+                    <f:facet name="header">
+                        <h:outputText value="Tiempo de Conocerlo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rfTiempoconocerlo}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="crear" actionListener="#{solicitudManagedBean.referenciaPerPrepareCreate}" update=" @(#ReferenciaPerCreateForm)" oncomplete="ReferenciaPerCreateDialog.show()"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ReferenciaPerViewForm)" oncomplete="ReferenciaPerViewDialog.show()" disabled="#{empty solicitudManagedBean.refPerSelected}"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="deleteButton" icon="ui-icon-close"   value="Quitar" actionListener="#{solicitudManagedBean.quitarReferenciaPer}" update=":ReferenciaPerListForm" />
+                        <span>&nbsp;</span>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+            <br></br>
+        </p:panel>
+    </h:form>
+
+</ui:composition>

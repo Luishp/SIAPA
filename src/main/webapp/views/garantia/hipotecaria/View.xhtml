@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HipotecariaViewDlg" widgetVar="HipotecariaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Garantia Hipotecaria" closeOnEscape="true">
+
+            <h:form id="HipotecariaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputText value="Tipo Inmueble"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.tipoInmuebleId.tipoInmuebleNombre}" title="Tipo Inmueble"/>
+
+                <h:outputText value="Direccion"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.rghDireccion}" title="Direccion"/>
+
+                        <h:outputText value="Fecha de Registro"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.fechaRegistro}" title="Fecha de Registro">
+                             <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="Perito Valuador"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.rghPeritovaluador}" title="Perito Valuador"/>
+
+                        <h:outputText value="Calificacion"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.rghCalificacion}" title="Calificacion"/>
+
+                        <h:outputText value="Fecha de Construccion"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.rghFechaconstruccion}" title="Fecha de Construccion">
+                             <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="Fecha de Valuo"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.rghFechavaluo}" title="Fecha de Valuo">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                         <h:outputText value="#{crudbundle.prestamo_usuarioRegistro}"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.usuarioRegistro}" title="#{crudbundle.prestamo_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.prestamo_fechaRegistro}"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.fechaRegistro}" title="#{crudbundle.prestamo_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.prestamo_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.usuarioUltimamodificacion}" title="#{crudbundle.prestamo_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.prestamo_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{garantiaHipotecariaManagedBean.selected.fechaUltimamodificacion}" title="#{crudbundle.prestamo_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="HipotecariaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ChequeCreateDlg" widgetVar="ChequeCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{crudbundle.CreateChequeTitle}" closeOnEscape="true">
+
+            <h:form id="ChequeCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="Fecha" for="chequeFecha" />
+                        <p:calendar id="chequeFecha" pattern="MM/dd/yyyy" value="#{desembolsoCreditoManagedBean.chequeSelected.chequeFecha}" title="#{crudbundle.CreateChequeTitle_chequeFecha}"  showOn="button"/>
+
+
+                        <p:outputLabel value="Monto" for="chequeMonto" />
+                        <p:inputText id="chequeMonto" value="#{desembolsoCreditoManagedBean.chequeSelected.chequeMonto}" title="#{crudbundle.CreateChequeTitle_chequeMonto}"/>
+
+
+                        <p:outputLabel value="Beneficiario" for="chequeBeneficiario" />
+                        <p:inputText id="chequeBeneficiario" value="#{desembolsoCreditoManagedBean.chequeSelected.chequeBeneficiario}" title="#{crudbundle.CreateChequeTitle_chequeBeneficiario}" size="100" maxlength="100"/>
+
+
+                        <p:outputLabel value="Concepto" for="chequeConcepto" />
+                        <p:inputTextarea rows="4" cols="30" id="chequeConcepto" value="#{desembolsoCreditoManagedBean.chequeSelected.chequeConcepto}" title="#{crudbundle.CreateChequeTitle_chequeConcepto}" />
+
+
+
+                        <p:outputLabel value="Banco" for="bancoId" />
+                        <p:selectOneMenu id="bancoId" value="#{desembolsoCreditoManagedBean.chequeSelected.bancoId}"  converter="#{bancoConverter}">
+                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{desembolsoCreditoManagedBean.bancoList}"
+                                           var="bancoIdItem"
+                                           itemValue="#{bancoIdItem}"
+                                           itemLabel="#{bancoIdItem.bancoNombre}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{desembolsoCreditoManagedBean.saveCheque}" value="#{crudbundle.Save}" update="display,:ChequeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ChequeCreateDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="ChequeCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

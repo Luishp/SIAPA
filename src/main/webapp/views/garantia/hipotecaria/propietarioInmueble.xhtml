@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <ui:composition>
+
+        <p:dialog id="PropietarioinmuebleCreateDlg" widgetVar="PropietarioinmuebleCreateDialog" modal="true" resizable="false" appendTo="@(body)"  header="#{crudbundle.CreatePropietarioinmuebleTitle}" closeOnEscape="true">
+
+            <h:form id="PropietarioinmuebleCreateForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2" columnClasses="column">
+ 
+                        <p:outputLabel value="#{crudbundle.CreatePropietarioinmuebleLabel_piNombrepropietario}" for="piNombrepropietario" />
+                        <p:inputText id="piNombrepropietario" value="#{garantiaHipotecariaManagedBean.propietario.piNombrepropietario}" title="#{crudbundle.CreatePropietarioinmuebleTitle_piNombrepropietario}" required="true" requiredMessage="#{crudbundle.CreatePropietarioinmuebleRequiredMessage_piNombrepropietario}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePropietarioinmuebleLabel_piDuipropietario}" for="piDuipropietario" />
+                        <p:inputMask id="piDuipropietario" value="#{garantiaHipotecariaManagedBean.propietario.piDuipropietario}" title="#{crudbundle.CreatePropietarioinmuebleTitle_piDuipropietario}" mask="99999999-9" required="true" requiredMessage="#{crudbundle.CreatePropietarioinmuebleRequiredMessage_piDuipropietario}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePropietarioinmuebleLabel_piNitpropietario}" for="piNitpropietario" />
+                        <p:inputMask id="piNitpropietario" value="#{garantiaHipotecariaManagedBean.propietario.piNitpropietario}" title="#{crudbundle.CreatePropietarioinmuebleTitle_piNitpropietario}" mask="9999-999999-999-9" required="true" requiredMessage="#{crudbundle.CreatePropietarioinmuebleRequiredMessage_piNitpropietario}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePropietarioinmuebleLabel_piPorcentajepropiedad}" for="piPorcentajepropiedad" />
+                        <pe:inputNumber id="piPorcentajepropiedad" value="#{garantiaHipotecariaManagedBean.propietario.piPorcentajepropiedad}" title="#{crudbundle.CreatePropietarioinmuebleTitle_piPorcentajepropiedad}"   minValue="1.00" maxValue="100.00" decimalSeparator="." thousandSeparator="," symbol="%" symbolPosition="s" required="true"  requiredMessage="#{crudbundle.CreatePropietarioinmuebleRequiredMessage_piPorcentajepropiedad}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePropietarioinmuebleLabel_piTipotenencia}" for="piTipotenencia" />
+                        <p:inputText id="piTipotenencia" value="#{garantiaHipotecariaManagedBean.propietario.piTipotenencia}" title="#{crudbundle.CreatePropietarioinmuebleTitle_piTipotenencia}" required="true" requiredMessage="#{crudbundle.CreatePropietarioinmuebleRequiredMessage_piTipotenencia}"/>
+
+                       </p:panelGrid>
+                    <p:commandButton actionListener="#{garantiaHipotecariaManagedBean.guardarPropietario(event)}" value="#{crudbundle.Save}" update="display,:RegistrogarantiahipotecariaCreateForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PropietarioinmuebleCreateDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PropietarioinmuebleCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeGerencial" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="47e0ad47-6fc4-41d9-85ca-4b7c68a68f94">
+	<property name="ireport.zoom" value="1.3310000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<group name="Grop1">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="388">
+				<textField>
+					<reportElement x="0" y="0" width="100" height="20" uuid="6789befd-1a13-48b5-9eb3-e94ef96b0cef"/>
+					<textFieldExpression><![CDATA["Solicitante:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="20" width="144" height="20" uuid="708e87aa-28d0-41a3-8339-f1b8344a771c"/>
+					<textFieldExpression><![CDATA["Saldo Aportaciones:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="40" width="144" height="20" uuid="bc8c590c-166a-4100-a751-2c02d868eb2f"/>
+					<textFieldExpression><![CDATA["Constante    Si___  No___"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="80" width="100" height="20" uuid="56786ba6-22d1-4f76-b20f-69b220cb8c97"/>
+					<textFieldExpression><![CDATA["Ahorro a la Vista"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="60" width="100" height="20" uuid="9fb8ca34-a939-4b66-9d88-bbe2973ca513"/>
+					<textFieldExpression><![CDATA["Ahorro a Plazo	"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="100" width="192" height="20" uuid="44edece5-c063-42e3-9f96-0de6a45780b5"/>
+					<textFieldExpression><![CDATA["Préstamo(s) Vigente(s)  Si___  No___"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="192" y="0" width="198" height="20" uuid="ccbaa8ed-9ac0-4039-8fed-eae841bb51b6"/>
+					<textFieldExpression><![CDATA["F/Ingreso:__________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="192" y="20" width="358" height="20" uuid="4b4ad28a-e0f9-4a7b-a668-67117e3550dc"/>
+					<textFieldExpression><![CDATA["Tipo Garantia: ____________________________________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="192" y="40" width="198" height="20" uuid="f63bdccc-b8c7-4e04-8756-5ccfec453d5d"/>
+					<textFieldExpression><![CDATA["Total Ingreso:  __________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="192" y="60" width="170" height="20" uuid="adcd46b8-2513-460c-a080-ffdba1283ba7"/>
+					<textFieldExpression><![CDATA["Su 20 %  ________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="192" y="80" width="346" height="20" uuid="5427947a-4987-4965-a65c-0ba1a29932db"/>
+					<textFieldExpression><![CDATA["Destino:  ________________________________________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="192" y="100" width="140" height="20" uuid="825f9111-cb43-4f1e-a590-82b149c84cc5"/>
+					<textFieldExpression><![CDATA["Saldo  $_____________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="401" y="0" width="160" height="20" uuid="6106a12d-4595-4708-953b-6ad6d927bc53"/>
+					<textFieldExpression><![CDATA["Codigo:__________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="373" y="60" width="199" height="20" uuid="c9167466-a317-44c0-a782-b9cd8c9196f5"/>
+					<textFieldExpression><![CDATA["Disponible ____________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="373" y="100" width="195" height="20" uuid="c2e4cefc-704a-4286-b64e-fd81d0d748ca"/>
+					<textFieldExpression><![CDATA["Orden de descuento Si___ No___"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="126" width="100" height="20" uuid="4419800b-c34d-40ad-b1d9-be4320df09bd"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Detalle Prestamo"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="146" width="164" height="20" uuid="1e6f5e03-876b-40eb-a8e7-aaa0fb8dabf4"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Monto Solicitado ___________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="164" y="146" width="226" height="20" uuid="bc041022-30f1-4df9-a9aa-6d1bf36b23d4"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Linea: ____________________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="390" y="146" width="111" height="20" uuid="04701baa-3d0c-4942-b38e-1dfeef7fee91"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Tasa: ___________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="472" y="146" width="100" height="20" uuid="64923caf-834f-4fe1-928c-4ca9002e8b86"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Plazo: _________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="191" width="100" height="20" uuid="cea6dec2-7e80-4a4a-a092-6d1e3f2a6603"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Tramite"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="211" width="100" height="20" uuid="dac260df-0171-4fb8-9973-8c0e4269480b"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Saldo Prestamo(s)"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="231" width="100" height="20" uuid="16c3036b-6be7-4d9d-a621-f509b4743297"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Interes al "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="251" width="100" height="20" uuid="313910d9-ad35-43e1-99dd-06210268a5b2"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Mora"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="271" width="100" height="20" uuid="6c7b137b-c3fa-4db0-93cc-26c18b195ff3"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Seguro"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="291" width="100" height="20" uuid="b8d4295f-5bd9-4c52-9658-139ca5a39fd4"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["aportaciones"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="251" y="191" width="100" height="20" uuid="8cc52a38-437e-49bd-a9f4-93085d4669f2"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Capital e interes"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="251" y="231" width="100" height="20" uuid="954b0019-805a-4ea7-8629-9c6a2420107a"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Aportaciones"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="251" y="251" width="111" height="20" uuid="c68fe5c1-cd0b-4687-91a9-e2b014105eaf"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Ahorro Simultaneo"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="251" y="271" width="100" height="20" uuid="6bc278db-63e7-4d88-a7c9-d9ed47d6b3aa"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Seguro de Daños"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="251" y="211" width="100" height="20" uuid="16199b72-8491-46f6-8adf-9ae3f11e6c03"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Seguro"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="251" y="171" width="100" height="20" uuid="33de3f26-212d-46fc-8149-83cd3e228899"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["CUOTA MENSUAL"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="311" width="100" height="20" uuid="96be6101-4763-478d-a686-9851e2762405"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Otros"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="122" y="331" width="179" height="20" uuid="bc8251fb-e475-47b7-b5bb-777b765368ee"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Liquido a recibir  ______________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="320" y="331" width="81" height="20" uuid="696b61f0-2e39-4712-a0ca-124d2d4be904"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Cuota Total"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="362" width="572" height="20" uuid="4b315e64-5a0d-42ce-b0ec-ae2e4c48fdab"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Comentarios: __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________San Salvador,  	F._______________"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="3"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="22" width="572" height="33" uuid="c7683c84-0c85-4558-9cc1-2fba697a0027"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["REUNIÓN DE COMITÉ DE CRÉDITOS"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="11" width="572" height="1" uuid="24c43f8f-296a-42ab-9749-d4b6e4a14de7"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="12" width="572" height="20" uuid="c3aa458f-f988-4669-a467-a2c7b7db75bf"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RESOLUCION"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="32" width="572" height="20" uuid="d54e67e1-3626-4dc5-ae8b-d74e3fec5ad4"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["El día  __________________________________________________________________________\n\nEl Nivel de resolución  ______________________, acuerda  ____________________________________________\n\nSegún las condiciones descritas en la resolución decrédito  ________________________________________________\n\n Observaciones:\n\nPrevio desembolso aplicar orden de descuento a favor de ACOFINGES DE R.L.\n\nDeducir del préstamo hasta cubrir la relación de 1 a\n\nA la primer cuota en mora aplicar orden de descuento al Deudor Fiador\n\nCancelar préstamo(s)\n\nElaborar liquidación a favor de los acreedores"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="56" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="0" width="188" height="20" uuid="4044e9a5-07f4-45b2-afb7-66f50dc40a34"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["F. ______________________________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="188" height="20" uuid="5ba99d73-e913-4128-9e09-d5416ee11624"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["F. ______________________________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="36" width="188" height="20" uuid="54ae513c-7da9-4068-9f77-24fbc4053f1c"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["F. ______________________________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="36" width="188" height="20" uuid="8f27cc5d-8f1a-4ae9-bf62-f11587b7a324"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["F. ______________________________"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

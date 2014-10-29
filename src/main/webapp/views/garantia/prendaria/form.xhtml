@@ -1,0 +1,90 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+    <style>
+        .ui-fieldset .ui-fieldset-legend
+        {
+            font-size: small;
+        }
+
+    </style>
+    <h:form id="RegistrogarantiaprendariaCreateForm">
+
+        <h:panelGroup id="display">
+            <p:panel header="Datos de Solicitud">
+                <p:panelGrid columns="4">
+                    <p:outputLabel value="Codigo Solicitud" for="codigosolicitud" />
+                    <p:outputLabel id="codigosolicitud" value="#{garantiaPrendariaManagedBean.codigoSolicitud}"/>
+
+                    <p:outputLabel value="Codigo Asociado" for="codigoasociado" />
+                    <p:outputLabel id="codigoasociado" value="#{garantiaPrendariaManagedBean.codigoSocio}"/>
+
+                    <p:outputLabel value="Nombre" for="nombreasociado" />
+                    <p:outputLabel id="nombreasociado" value="#{garantiaPrendariaManagedBean.nombreAsociado}"/>
+                </p:panelGrid>
+            </p:panel>
+            
+            
+            <p:panel header="Registro Garantias">
+                <p:panelGrid columns="2">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpPlaca}" for="rgpPlaca" />
+                        <p:inputText id="rgpPlaca" value="#{garantiaPrendariaManagedBean.selected.rgpPlaca}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpPlaca}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiaprendariaRequiredMessage_rgpPlaca}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpClase}" for="rgpClase" />
+                        <p:inputText id="rgpClase" value="#{garantiaPrendariaManagedBean.selected.rgpClase}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpClase}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiaprendariaRequiredMessage_rgpClase}" size="40"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpMarca}" for="rgpMarca" />
+                        <p:inputText id="rgpMarca" value="#{garantiaPrendariaManagedBean.selected.rgpMarca}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpMarca}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiaprendariaRequiredMessage_rgpMarca}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpAnio}" for="rgpAnio" />
+                        <p:inputText id="rgpAnio" value="#{garantiaPrendariaManagedBean.selected.rgpAnio}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpAnio}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiaprendariaRequiredMessage_rgpAnio}">
+                            <f:validateLongRange minimum="1990" maximum="2015"></f:validateLongRange>
+                        </p:inputText>
+
+                        <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpModelo}" for="rgpModelo" />
+                        <p:inputText id="rgpModelo" value="#{garantiaPrendariaManagedBean.selected.rgpModelo}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpModelo}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiaprendariaRequiredMessage_rgpModelo}"/>
+                    </p:panelGrid>
+
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpPeritovaluador}" for="rgpPeritovaluador" />
+                        <p:inputText id="rgpPeritovaluador" value="#{garantiaPrendariaManagedBean.selected.rgpPeritovaluador}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpPeritovaluador}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiaprendariaRequiredMessage_rgpPeritovaluador}" size="40"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpFechavaluo}" for="rgpFechavaluo" />
+                        <p:calendar id="rgpFechavaluo" pattern="MM/dd/yyyy" value="#{garantiaPrendariaManagedBean.selected.rgpFechavaluo}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpFechavaluo}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiaprendariaRequiredMessage_rgpFechavaluo}" showOn="button"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpValorvaluo}" for="rgpValorvaluo" />
+                        <pe:inputNumber id="rgpValorvaluo" value="#{garantiaPrendariaManagedBean.selected.rgpValorvaluo}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpValorvaluo}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiaprendariaRequiredMessage_rgpValorvaluo}"/>
+                    </p:panelGrid>
+                </p:panelGrid>
+
+                <center>
+                <p:panelGrid columns="1" columnClasses="column">
+                    <p:fieldset legend="Datos del Notario">
+                        <p:panelGrid columns="2" columnClasses="column">
+                            <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpCarnetnotario}" for="rgpCarnetnotario" />
+                            <p:inputText id="rgpCarnetnotario" value="#{garantiaPrendariaManagedBean.selected.rgpCarnetnotario}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpCarnetnotario}"/>
+
+                            <p:outputLabel value="#{crudbundle.CreateRegistrogarantiaprendariaLabel_rgpNombrenotario}" for="rgpNombrenotario" />
+                            <p:inputText id="rgpNombrenotario" value="#{garantiaPrendariaManagedBean.selected.rgpNombrenotario}" title="#{crudbundle.CreateRegistrogarantiaprendariaTitle_rgpNombrenotario}" size="70"/>
+                        </p:panelGrid>
+                    </p:fieldset>
+                </p:panelGrid>
+                    <br></br>
+                    <p:commandButton actionListener="#{garantiaPrendariaManagedBean.saveNew}" value="#{crudbundle.Save}" ajax="false"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" actionListener="#{garantiaPrendariaManagedBean.cancelar(event)}" />
+                </center>
+            </p:panel>
+
+
+        </h:panelGroup>
+
+    </h:form>
+
+</ui:composition>
+
+

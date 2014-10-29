@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        <style>
+            .ui-panelgrid td, .ui-panelgrid tr
+            {
+                border-style: none !important
+            }
+
+        </style>
+        <script type="text/javascript">
+            function validaSoloNumeros() {
+                 if (((event.keyCode &gt;  47) &amp; (event.keyCode &lt; 57)) || (event.keyCode == 46)) {
+                    return true; 
+                }else 
+                    return false; 
+            }
+        
+            function validaSoloNumerosSinPunto() {
+                if ((event.keyCode &lt;  48) || (event.keyCode &gt; 57)) {
+                    return false; 
+                 }
+            }
+        </script>
+        <p:dialog id="DeudasCCreateDlg" widgetVar="DeudasCCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Deuda Comercial" closeOnEscape="true">
+            <p:ajax event="close" oncomplete="myrefresh();"></p:ajax>  
+
+            <h:form id="DeudasCCreateForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Nombre de la Institucion" for="nombreInstitucionc" />
+                        <h:panelGroup>
+                            <p:inputText id="nombreInstitucionc" value="#{analisisCreditoManagedBean.deudaSelected.deudaNombreinstitucion}" required="true" requiredMessage="Nombre Institucion" size="60" maxlength="60"/>
+                            <p:tooltip for="nombreInstitucionc" value="Nombre de la Institucion"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Cuota" for="cuotadc" />
+                        <h:panelGroup>
+                            <p:inputText id="cuotadc" value="#{analisisCreditoManagedBean.deudaSelected.deudaCuota}"  required="true" requiredMessage="Cuota" size="15" maxlength="10" onkeypress="return validaSoloNumeros(event)"/>
+                            <p:tooltip for="cuotadc" value="Cuota"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Fecha Otorgada" for="fechaotorgadac" />
+                        <h:panelGroup>
+                            <p:calendar id="fechaotorgadac" pattern="MM/dd/yyyy" value="#{analisisCreditoManagedBean.deudaSelected.deudaFechaotorgado}" title="#{crudbundle.prestamo_fechaUltimoPago}" required="true" requiredMessage="#{crudbundle.prestamo_fechaUltimoPago}" showOn="button"/>
+                        </h:panelGroup>
+                        
+                        <p:outputLabel value="Valor Original" for="valororiginalc" />
+                        <h:panelGroup>
+                            <p:inputText id="valororiginalc" value="#{analisisCreditoManagedBean.deudaSelected.deudaValororiginal}"  required="true" requiredMessage="Valor Original" size="15" maxlength="10" onkeypress="return validaSoloNumeros(event)"/>
+                            <p:tooltip for="valororiginalc" value="Valor Original"/>
+                        </h:panelGroup>
+                        
+                        <p:outputLabel value="Saldo Actual" for="saldoactualc" />
+                        <h:panelGroup>
+                            <p:inputText id="saldoactualc" value="#{analisisCreditoManagedBean.deudaSelected.deudaSaldoactual}"  required="true" requiredMessage="Saldo Actual" size="15" maxlength="10" onkeypress="return validaSoloNumeros(event)"/>
+                            <p:tooltip for="saldoactualc" value="Saldo Actual"/>
+                        </h:panelGroup>
+                            
+                        <p:outputLabel value="Vencimiento" for="fechavencimientoc" />
+                        <h:panelGroup>
+                            <p:calendar id="fechavencimientoc" pattern="MM/dd/yyyy" value="#{analisisCreditoManagedBean.deudaSelected.deudaFechavencimiento}" title="#{crudbundle.prestamo_fechaUltimoPago}" required="true" requiredMessage="#{crudbundle.prestamo_fechaUltimoPago}" showOn="button"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{crudbundle.Label_activo}" for="activo" />
+                        <h:panelGroup >
+                            <p:selectOneMenu id="activo" value="#{analisisCreditoManagedBean.deudaSelected.activo}" required="true" requiredMessage="#{crudbundle.RequiredMessage_activo}">
+                                <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{analisisCreditoManagedBean.deudaCActivoOptions}"
+                                               var="activoItem"
+                                               itemValue="#{activoItem.value}"
+                                               itemLabel="#{activoItem.description}"/>
+                            </p:selectOneMenu>
+                            <p:tooltip for="activo" value="#{analisisCreditoManagedBean.getComponentMessages('activo', crudbundle.HelpText_activo)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{analisisCreditoManagedBean.saveDeudaC}" value="Guardar" update="display,:ConsultaburocreditoListForm:datalist1,:growl" oncomplete="handleSubmit(xhr,status,args,DeudasCCreateDialog);"/>
+                    <p:commandButton icon="ui-icon-closethick" value="Cancelar" onclick="DeudasCCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

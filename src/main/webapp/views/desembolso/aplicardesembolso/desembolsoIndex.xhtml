@@ -1,0 +1,30 @@
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">
+        <title>Aplicar Desembolso</title>
+    </ui:define>
+
+    <ui:define name="content">
+        <h1 style="text-align: center">Aplicar Desembolso</h1>
+       
+        <ui:include src="form.xhtml"/>
+        <ui:include src="deducciones/List.xhtml"/>
+        <ui:include src="deducciones/Create.xhtml"/>
+        <ui:include src="deducciones/View.xhtml"/>
+<!--        <ui:include src="prestamos/List.xhtml"/>
+        <ui:include src="prestamos/Create.xhtml"/>
+        <ui:include src="prestamos/View.xhtml"/>      -->
+        <ui:include src="cheques/List.xhtml"/>
+        <ui:include src="cheques/Create.xhtml"/>
+        <ui:include src="cheques/View.xhtml"/>
+        <ui:include src="ahorro/List.xhtml"/>
+        <ui:include src="ahorro/Create.xhtml"/>
+        <ui:include src="ahorro/View.xhtml"/>
+        
+    </ui:define>
+</ui:composition>

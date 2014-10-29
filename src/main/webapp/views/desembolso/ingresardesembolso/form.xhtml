@@ -1,0 +1,295 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <h:form id="DesembolsoCreateForm">
+
+        <p:panel header="Datos del prestamo">
+
+            <p:panelGrid columns="4">
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Codigo de solicitud:" for="codigoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="codigoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.solicitudId.solicitudId}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Linea de credito:" for="lineacreditoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="lineacreditoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.solicitudId.asesoriaId.detallelineacreditoId.lineacreditoId.lineacreditoNombre}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Tipo de solicitud:" for="tipoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="tipoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.tsId.tsNombre}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Nivel de Resolucion:" for="nivelDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="nivelDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.resolucionId.nrId.nrNombre}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Monto:" for="montoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="montoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.analisisMonto}">
+                        <f:convertNumber type="currency" currencySymbol="$ " />
+                    </h:outputText>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Codigo Asociado:" for="codigoAsociadoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="codigoAsociadoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.solicitudId.solicitudCodigoasociado}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Plazo:" for="plazoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="plazoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.analisisPlazo}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Nombre:" for="nombreAsociadoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="nombreAsociadoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.solicitudId.nombreCompleto}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Tasa de interes anual:" for="tasaDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="tasaDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.analisisTasa}">
+                        <f:convertNumber type="percent"  minFractionDigits="2"/>
+                    </h:outputText>
+                </h:panelGroup>
+
+            </p:panelGrid>
+
+        </p:panel> 
+
+        <p:spacer height="25" width="100"/>
+
+        <p:panel header="Cuota">  
+            <p:panelGrid columns="2">  
+
+                <p:panel header="Datos de cuota">
+                    <p:panelGrid columns="2">
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Capital e intereses:" for="capitalinteresDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText id="capitalinteresDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.analisisCuotacapitalmasintereses}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Seguro de deuda:" for="segurodeudaDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText id="segurodeudaDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.analisisSegurodeuda}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Extra prima:" for="extraprimaDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <pe:inputNumber id="extraprimaDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoExtraprima}" symbol="$ " emptyValue="zero">
+                                <f:ajax render="cuotaDeSolicitud" event="keyup"/>
+                            </pe:inputNumber>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Aportacion:" for="aportacionDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <pe:inputNumber id="aportacionDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoAportcion}"  symbol="$ " emptyValue="zero">
+                                <f:ajax render="cuotaDeSolicitud" event="keyup"/>
+                            </pe:inputNumber>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Ahorro programado:" for="ahorroprograadoDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <pe:inputNumber id="ahorroprograadoDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoAhorroprogramado}" symbol="$ "  emptyValue="zero">
+                                <f:validateDoubleRange minimum="0"/>
+                                <f:ajax render="cuotaDeSolicitud" event="keyup"/>
+                            </pe:inputNumber>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Cuota:" for="cuotaDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText id="cuotaDeSolicitud" value="#{desembolsoCreditoManagedBean.cuota}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Tasa efectiva:" for="tasaefectivaDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText id="tasaefectivaDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoTasaefectiva}">
+                                <f:convertNumber type="percent"  minFractionDigits="2"/>
+                            </h:outputText>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                </p:panel>
+
+                <p:panel header="Cuentas de orden">
+
+                    <p:panelGrid columns="2">
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Interes diferido:" for="interesesdiferidosDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText id="interesesdiferidosDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoInteresdiferidos}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Capital diferido:" for="capitadiferidoDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText id="capitadiferidoDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoCapitaldiferido}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Costas procesales:" for="costasprocesalesDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText id="costasprocesalesDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoCostasprocesales}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="panelGroupAlingRight">
+                            <p:outputLabel value="Total Costas procesales:" for="totalcostasprocesalesDeSolicitud"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText id="totalcostasprocesalesDeSolicitud" value="#{desembolsoCreditoManagedBean.costasProcesales}">
+                                <f:convertNumber type="currency" currencySymbol="$ " />
+                            </h:outputText>
+                        </h:panelGroup>
+
+                    </p:panelGrid>
+
+                </p:panel>
+
+            </p:panelGrid>                  
+
+        </p:panel>
+
+        <p:spacer height="25" width="100"/>
+
+        <p:panel header="Datos de pago">
+
+            <p:panelGrid columns="4">
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Periodicidad de pago:" for="periodicidadpagoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="periodicidadpagoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.solicitudId.ppId.ppNombre}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Primer pago:" for="primerpagoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:calendar id="primerpagoDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoFechaprimerpago}" pattern="dd/MM/yyyy" showOn="button" readonlyInput="true">
+                        <p:ajax event="dateSelect" listener="#{desembolsoCreditoManagedBean.calcularFechaVencimiento()}" process="primerpagoDeSolicitud" update="fechavencimientoDeSolicitud,primerpagoDeSolicitud"/>
+                    </p:calendar>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Forma de pago:" for="formapagoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="formapagoDeSolicitud" value="#{desembolsoCreditoManagedBean.analisisSelected.solicitudId.fpId.fpNombre}"/>
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Fecha de vencimiento:" for="fechavencimientoDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputText id="fechavencimientoDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoFechavencimiento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </h:panelGroup>
+
+            </p:panelGrid>
+
+            <p:panelGrid columns="2">
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Pagaduria:" for="pagaduriaDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:selectOneMenu id="pagaduriaDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.pagaduriaId}" converter="#{pagaduriaConverter}">  
+                        <f:selectItems value="#{desembolsoCreditoManagedBean.pagaduriaList}"
+                                       var="pagaduria"   
+                                       itemLabel="#{pagaduria.pagaduriaNombre}"  
+                                       itemValue="#{pagaduria}" />  
+                    </p:selectOneMenu>  
+
+
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Direccion de cobro:" for="direccioncobroDeSolicitud"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:inputTextarea id="direccioncobroDeSolicitud" value="#{desembolsoCreditoManagedBean.selected.desembolsoDireccioncobro}"/>
+                </h:panelGroup>
+
+            </p:panelGrid>
+
+        </p:panel>
+
+        <p:spacer height="25" width="100"/>
+
+        <p:panel header="Envio a Contabilidad">
+            <p:panelGrid columns="2">
+               
+                <h:panelGroup styleClass="panelGroupAlingRight">
+                    <p:outputLabel value="Enviar a Contabilidad" for="enviarAContabilidad"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:selectBooleanCheckbox id="enviarAContabilidad" value="#{desembolsoCreditoManagedBean.selected.desembolsoListo}"/>
+                </h:panelGroup>
+
+            </p:panelGrid>
+
+            <p:commandButton icon="ui-icon-disk" actionListener="#{desembolsoCreditoManagedBean.saveNew}" value="Guardar" ajax="false" />
+        </p:panel> 
+
+        <p:spacer height="25" width="100"/>
+
+    </h:form>
+</ui:composition>
+
+

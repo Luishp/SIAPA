@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SsOpcionesCreateDlg" widgetVar="SsOpcionesCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{crudbundle.CreateSsOpcionesTitle}" closeOnEscape="true">
+
+            <h:form id="SsOpcionesCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{crudbundle.CreateSsOpcionesLabel_idOpcion}" for="idOpcion" />
+                        <p:inputText id="idOpcion" value="#{ssOpcionesManagedBean.selected.idOpcion}" title="#{crudbundle.CreateSsOpcionesTitle_idOpcion}" required="true" requiredMessage="#{crudbundle.CreateSsOpcionesRequiredMessage_idOpcion}"/>
+
+
+                        <p:outputLabel value="#{crudbundle.CreateSsOpcionesLabel_nombreOpcion}" for="nombreOpcion" />
+                        <p:inputText id="nombreOpcion" value="#{ssOpcionesManagedBean.selected.nombreOpcion}" title="#{crudbundle.CreateSsOpcionesTitle_nombreOpcion}" size="100" maxlength="100"/>
+
+
+                        <p:outputLabel value="#{crudbundle.CreateSsOpcionesLabel_url}" for="url" />
+                        <p:inputTextarea rows="4" cols="30" id="url" value="#{ssOpcionesManagedBean.selected.url}" title="#{crudbundle.CreateSsOpcionesTitle_url}" />
+
+
+                        <p:outputLabel value="#{crudbundle.CreateSsOpcionesLabel_visible}" for="visible" />
+                        <p:inputText id="visible" value="#{ssOpcionesManagedBean.selected.visible}" title="#{crudbundle.CreateSsOpcionesTitle_visible}" size="1" maxlength="1"/>
+
+
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ssOpcionesManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:SsOpcionesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SsOpcionesCreateDialog);"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="SsOpcionesCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

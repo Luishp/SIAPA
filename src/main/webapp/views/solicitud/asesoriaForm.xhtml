@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <style>
+        .ui-fieldset .ui-fieldset-legend
+        {
+            font-size: small;
+        }
+
+    </style>
+    <h:form id="AsesoriaListForm">
+        <p:fieldset legend="Asesorias">
+            <p:dataTable id="datalist" var="item" value="#{solicitudManagedBean.asesoriaItems}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                         selectionMode="single" selection="#{solicitudManagedBean.asesoriaSelected}"
+                         rowKey="#{item.asesoriaId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="createButton viewButton reportButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton reportButton"/>
+
+                <f:facet name="header">  
+                    Asesorias
+                </f:facet>  
+                <p:column width="10%" >
+                    <f:facet name="header">
+                        <h:outputText value="Identificador"/>
+                    </f:facet>
+                    <h:outputText value="#{item.asesoriaId}"/>
+                </p:column>
+
+                <p:column width="35%" >
+                    <f:facet name="header">
+                        <h:outputText value="Asociado"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idasociados.idasocnatu.nombreCompleto}"/>
+                </p:column>
+
+                <p:column width="20%" style="text-align: center;" >
+                    <f:facet name="header">
+                        <h:outputText value="Tipo Asesoria"/>
+                    </f:facet>
+                    <h:outputText value="#{item.taId.taNombre}"/>
+                </p:column>
+                <p:column width="35%" >
+                    <f:facet name="header">
+                        <h:outputText value="Comentario"/>
+                    </f:facet>
+                    <h:outputText value="#{item.asesoriaComentario}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear Solicitud" actionListener="#{solicitudManagedBean.toSolicitud}" disabled="#{empty solicitudManagedBean.asesoriaSelected}"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#AsesoriaViewForm)" oncomplete="AsesoriaViewDialog.show()" disabled="#{empty solicitudManagedBean.asesoriaSelected}"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="reportButton" icon="ui-icon-print"  value="#{crudbundle.Print}" actionListener="#{solicitudManagedBean.printAsesoria}" disabled="#{empty solicitudManagedBean.asesoriaSelected}" oncomplete="print(xhr, status, args)"/>                        
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:fieldset>
+    </h:form>
+</ui:composition>

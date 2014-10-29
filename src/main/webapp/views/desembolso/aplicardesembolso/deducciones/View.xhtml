@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeduccionesViewDlg" widgetVar="DeduccionesViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{crudbundle.ViewDeduccionesTitle}" closeOnEscape="true">
+
+            <h:form id="DeduccionesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{desembolsoCreditoManagedBean.deduccionesSelected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewDeduccionesLabel_deduccionesId}"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.deduccionesSelected.deduccionesId}" title="#{crudbundle.ViewDeduccionesTitle_deduccionesId}"/>
+
+                        <h:outputText value="#{crudbundle.ViewDeduccionesLabel_deduccionesDescripcion}"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.deduccionesSelected.deduccionesDescripcion}" title="#{crudbundle.ViewDeduccionesTitle_deduccionesDescripcion}"/>
+
+                        <h:outputText value="#{crudbundle.ViewDeduccionesLabel_deduccionesValor}"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.deduccionesSelected.deduccionesValor}" title="#{crudbundle.ViewDeduccionesTitle_deduccionesValor}"/>
+
+                        
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="DeduccionesViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

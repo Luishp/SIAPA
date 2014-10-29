@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="RegistrogarantiahipotecariaListForm">
+
+        <p:panel header="#{myBundle.ListRegistrogarantiahipotecariaTitle}">
+            <p:dataTable id="datalist" value="#{registrogarantiahipotecariaController.items}" var="item"
+                         selectionMode="single" selection="#{registrogarantiahipotecariaController.selected}"
+                         rowKey="#{item.rghId}"
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.rghId}" filterBy="#{item.rghId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghId}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghTipoinmueble}" filterBy="#{item.rghTipoinmueble}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghTipoinmueble}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghTipoinmueble}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghMatricula}" filterBy="#{item.rghMatricula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghMatricula}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghMatricula}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghDireccion}" filterBy="#{item.rghDireccion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghDireccion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghDireccion}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghPeritovaluador}" filterBy="#{item.rghPeritovaluador}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghPeritovaluador}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghPeritovaluador}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghFechavaluo}" filterBy="#{item.rghFechavaluo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghFechavaluo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghFechavaluo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.rghCalificacion}" filterBy="#{item.rghCalificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghCalificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghCalificacion}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghFechaconstruccion}" filterBy="#{item.rghFechaconstruccion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghFechaconstruccion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghFechaconstruccion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.rghArearegistral}" filterBy="#{item.rghArearegistral}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghArearegistral}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghArearegistral}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghValorcampo}" filterBy="#{item.rghValorcampo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghValorcampo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghValorcampo}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghValortierra}" filterBy="#{item.rghValortierra}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghValortierra}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghValortierra}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghValorconstruccion}" filterBy="#{item.rghValorconstruccion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghValorconstruccion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghValorconstruccion}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghValorvaluo}" filterBy="#{item.rghValorvaluo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghValorvaluo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghValorvaluo}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghNombreinstitucion}" filterBy="#{item.rghNombreinstitucion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghNombreinstitucion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghNombreinstitucion}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghValorhipoteca}" filterBy="#{item.rghValorhipoteca}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghValorhipoteca}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghValorhipoteca}"/>
+                </p:column>
+                <p:column sortBy="#{item.rghSaldoactual}" filterBy="#{item.rghSaldoactual}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghSaldoactual}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rghSaldoactual}"/>
+                </p:column>
+                <p:column sortBy="#{item.activo}" filterBy="#{item.activo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_activo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.activo}"/>
+                </p:column>
+                <p:column sortBy="#{item.usuarioRegistro}" filterBy="#{item.usuarioRegistro}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_usuarioRegistro}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioRegistro}"/>
+                </p:column>
+                <p:column sortBy="#{item.fechaRegistro}" filterBy="#{item.fechaRegistro}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_fechaRegistro}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaRegistro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.usuarioUltimamodificacion}" filterBy="#{item.usuarioUltimamodificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_usuarioUltimamodificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioUltimamodificacion}"/>
+                </p:column>
+                <p:column sortBy="#{item.fechaUltimamodificacion}" filterBy="#{item.fechaUltimamodificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_fechaUltimamodificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaUltimamodificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.rghValidar}" filterBy="#{item.rghValidar}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_rghValidar}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="rghValidar" value="#{item.rghValidar}" title="#{myBundle.EditRegistrogarantiahipotecariaTitle_rghValidar}"  disabled="true"/>
+                </p:column>
+                <p:column sortBy="#{item.analisisId.analisisId}" filterBy="#{item.analisisId.analisisId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrogarantiahipotecariaTitle_analisisId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.analisisId.analisisId}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{registrogarantiahipotecariaController.prepareCreate}" update=":RegistrogarantiahipotecariaCreateForm" oncomplete="RegistrogarantiahipotecariaCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":RegistrogarantiahipotecariaViewForm" oncomplete="RegistrogarantiahipotecariaViewDialog.show()" disabled="#{empty registrogarantiahipotecariaController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":RegistrogarantiahipotecariaEditForm" oncomplete="RegistrogarantiahipotecariaEditDialog.show()" disabled="#{empty registrogarantiahipotecariaController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{registrogarantiahipotecariaController.delete}" update=":growl,datalist" disabled="#{empty registrogarantiahipotecariaController.selected}"/>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

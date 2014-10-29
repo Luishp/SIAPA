@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">
+        <title>Consulta préstamos </title>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="preatamosVigentesListForm">
+            <br/>
+            <br/>
+            <p:fieldset legend="Parametros de busqueda." style="width: 70%; margin: auto;">
+                <p:panelGrid columns="2" styleClass="panelGridCenter">
+
+                    <p:outputLabel value="Código:" for="idasociado"/>
+                    <h:panelGroup>
+                        <p:inputText id="idasociado" value="#{rptTablaAmortizacionManagedBean.asociado.idasociados}" title="Codigo del asociado" required="true" requiredMessage="Codigo del asociado, es Requerido" size="100" maxlength="100"/>
+                        <p:tooltip for="idasociado" value="Ingresa codigo del asociado."/>
+                    </h:panelGroup>
+                    <p:outputLabel value="Nombre:" for="nombreAsociado"/>
+                    <h:panelGroup>
+                        <p:inputText id="nombreAsociado" value="#{rptTablaAmortizacionManagedBean.asociado.idasocnatu.conyNombre1}" title="Nombre del asociado" readonly="true" size="100" maxlength="100"/>
+                    </h:panelGroup>
+
+                    <h:outputLabel value="Línea de credito:" for="linea"/>
+                    <h:panelGroup>
+                        <p:inputText id="linea" value="#{rptTablaAmortizacionManagedBean.lineaCredito}" title="Linea de Credito:" required="true" requiredMessage="linea de credito, es Requerido" size="50" maxlength="50" />
+                        <p:tooltip for="linea" value="Ingresa la linea de credito"/>
+                    </h:panelGroup>
+
+                    <h:outputLabel value="Fecha de Resolucion:" for="fechaResolucion"/>
+                    <h:panelGroup>
+                        <p:calendar  id="fechaResolucion"  value="#{rptTablaAmortizacionManagedBean.fechaResolucion}" title="fechaResolucion" required="true" requiredMessage="fecha de resolucion, es Requerido" />
+                        <p:tooltip for="fechaResolucion" value="Ingresa la fecha de la resolucion"/>
+                    </h:panelGroup>
+                    <p:commandButton id="buscarButton"  icon="ui-icon-search" value="Buscar" />
+                </p:panelGrid>
+            </p:fieldset>
+            <p:panel id="detallesTable">
+                <p:dataTable id="desembolsoTable" var="desembolso" value="#{solicitudesAprobadasManagedBean.listadoTabla}" rowKey="#{desembolso.asociado.codigo}" paginatorPosition="bottom"
+                             paginator="true" rows="5"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                             rowsPerPageTemplate="5,10"
+                             emptyMessage="No se encontraron solicitudes aprobadas.">
+
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Fecha:" />  
+                        </f:facet>    
+                    </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Linea de credito" />  
+                        </f:facet>  
+                        <h:outputText value="#{desembolso.lineaCredito.lineacreditoNombre}" />  
+                    </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Nombre del Asociado" />  
+                        </f:facet>  
+                        <h:outputText value="#{desembolso.asociado.idasocnatu.conyNombre1}" />  
+                    </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Monto" />  
+                        </f:facet>  
+                        <h:outputText value="#{desembolso.analisis.analisisMonto}" />  
+                    </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Liquido" />  
+                        </f:facet>  
+
+                    </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Taza" />  
+                        </f:facet>  
+                        <h:outputText value="#{desembolso.analisis.analisisTasa}" />  
+                    </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Plazo" />  
+                        </f:facet>  
+                        <h:outputText value="#{desembolso.analisis.analisisPlazo}" />  
+                    </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Cuota" />  
+                        </f:facet>  
+                        <h:outputText value="#{desembolso.analisis.analisisCuotacapitalmasintereses}" />  
+                    </p:column>                    
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Resolucion" />  
+                        </f:facet>
+                        <h:outputText value="#{desembolso.tipoResolucion.tiporesolucionNombre}" />  
+                    </p:column>  
+                </p:dataTable> 
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="reportButton" icon="ui-icon-print"  value="Generar tabla" actionListener="#{rptTablaAmortizacionManagedBean.print}" oncomplete="print(xhr, status, args)"/>                        
+                    </div>
+                </f:facet>
+            </p:panel>
+       
+        </h:form>
+    </ui:define>
+</ui:composition>

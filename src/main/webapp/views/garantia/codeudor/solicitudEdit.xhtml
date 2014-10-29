@@ -1,0 +1,79 @@
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">
+        <title>Asesorias</title>
+    </ui:define>
+
+    <ui:define name="content">
+        <style>
+            .ui-fieldset .ui-fieldset-legend
+            {
+                font-size: small;
+            }
+
+        </style>
+        <h:form id="AsesoriaListForm">
+            <p:fieldset legend="Solicitudes Listas para Analisis">
+                <p:dataTable id="datalist" var="item" value="#{solicitudManagedBean.lazyItems}" paginator="true" rows="5"  
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                             rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
+                             selectionMode="single" selection="#{solicitudManagedBean.selected}"
+                             rowKey="#{item.solicitudId}" paginatorPosition="bottom">
+
+                    <p:ajax event="rowSelect"   update="editButton reportButton"/>
+                    <p:ajax event="rowUnselect" update="editButton reportButton"/>
+
+                    <f:facet name="header">  
+                        Solicitudes
+                    </f:facet>  
+                    <p:column width="10%" >
+                        <f:facet name="header">
+                            <h:outputText value="cod Solicitud"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solicitudId}"/>
+                    </p:column>
+
+                    <p:column width="10%" >
+                        <f:facet name="header">
+                            <h:outputText value="Cod Asociado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solicitudCodigoasociado}"/>
+                    </p:column>
+
+                    <p:column width="40%" >
+                        <f:facet name="header">
+                            <h:outputText value="Asociado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombreCompleto}"/>
+                    </p:column>
+                    <p:column width="15%" style="text-align: center;" >
+                        <f:facet name="header">
+                            <h:outputText value="Fecha Solicitud"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <div class="footer-section">
+                            <p:commandButton id="editButton" icon="ui-icon-pencil" value="#{crudbundle.Edit}" actionListener="#{solicitudManagedBean.toEdit}" />
+                            
+                            <p:commandButton id="reportButton" icon="ui-icon-print"  value="#{crudbundle.Print}" actionListener="#{solicitudManagedBean.print}" disabled="#{empty solicitudManagedBean.selected}" oncomplete="print(xhr, status, args)"/>                        
+
+                        </div>
+                    </f:facet>
+
+                </p:dataTable>
+
+            </p:fieldset>
+        </h:form>
+                    <ui:include src="../common/Print.xhtml"/>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PropiedadViewDlg" widgetVar="PropiedadViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.ViewPropiedadTitle}" closeOnEscape="true">
+
+            <h:form id="PropiedadViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudManagedBean.propiedadSelected != null}">
+
+                        <h:outputText value="#{crudbundle.propiedad_id}"/>
+                        <h:outputText value="#{solicitudManagedBean.propiedadSelected.propiedadId}" title="#{crudbundle.propiedad_id}"/>
+
+                        <h:outputText value="#{crudbundle.propiedad_clase}"/>
+                        <h:outputText value="#{solicitudManagedBean.propiedadSelected.propiedadClase}" title="#{crudbundle.propiedad_clase}"/>
+
+                        <h:outputText value="#{crudbundle.propiedad_activo}"/>
+                        <h:outputText value="#{solicitudManagedBean.propiedadSelected.activo}" title="#{crudbundle.propiedad_activo}"/>
+
+                        <h:outputText value="#{crudbundle.propiedad_usuarioRegistro}"/>
+                        <h:outputText value="#{solicitudManagedBean.propiedadSelected.usuarioRegistro}" title="#{crudbundle.propiedad_usuarioRegistro}"/>
+
+                        <h:outputText value="#{crudbundle.propiedad_fechaRegistro}"/>
+                        <h:outputText value="#{solicitudManagedBean.propiedadSelected.fechaRegistro}" title="#{crudbundle.propiedad_fechaRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{crudbundle.propiedad_usuarioUltimamodificacion}"/>
+                        <h:outputText value="#{solicitudManagedBean.propiedadSelected.usuarioUltimamodificacion}" title="#{crudbundle.propiedad_usuarioUltimamodificacion}"/>
+
+                        <h:outputText value="#{crudbundle.propiedad_fechaUltimamodificacion}"/>
+                        <h:outputText value="#{solicitudManagedBean.propiedadSelected.fechaUltimamodificacion}" title="#{crudbundle.propiedad_fechaUltimamodificacion}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" onclick="PropiedadViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

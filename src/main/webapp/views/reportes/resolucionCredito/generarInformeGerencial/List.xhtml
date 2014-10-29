@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form id="InformeGerencialListForm">
+        <br/>
+        <br/>
+        <p:fieldset legend="Generar informe gerencial">
+            <p:dataTable id="datalist" var="item" value="#{agendaComiteCreditosManagedBean.reunionesPendientes}" paginator="true" rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" resizableColumns="true"  
+                         selectionMode="single" selection="#{agendaComiteCreditosManagedBean.agendaSelected}"
+                         rowKey="#{item.accId}" paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="viewButton generateButton"/>
+                <p:ajax event="rowUnselect" update="viewButton generateButton"/>
+
+                <f:facet name="header">  
+                    Reuniones Programadas
+                </f:facet>  
+
+                <p:column width="9%" style="text-align: center" >
+                    <f:facet name="header">
+                        <h:outputText value="Fecha"/>
+                    </f:facet>
+                    <h:outputText value="#{item.accFechareunion}">
+                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column width="8%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Hora"/>
+                    </f:facet>
+                    <h:outputText value="#{item.accHorareunion}">
+                        <f:convertDateTime pattern="hh:mm" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column filterBy="#{item.accLugarreunion}" filterMatchMode="contains" width="34%" >
+                    <f:facet name="header">
+                        <h:outputText value="Lugar"/>
+                    </f:facet>
+                    <h:outputText value="#{item.accLugarreunion}"/>
+                </p:column>
+
+                <p:column width="16%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Asistentes esperados"/>
+                    </f:facet>
+                    <h:outputText value="#{item.esperados}"/>
+                </p:column>
+
+                <p:column width="17%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Miembros Con Permiso"/>
+                    </f:facet>
+                    <h:outputText value="#{item.permisos}"/>
+                </p:column>
+
+                <p:column width="16%" style="text-align: center">
+                    <f:facet name="header">
+                        <h:outputText value="Numero de solicitudes"/>
+                    </f:facet>
+                    <h:outputText value="#{item.solicitudes}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" actionListener="#{agendaComiteCreditosManagedBean.prepareViewRptGerencial}"   update="@(#InformeGerencialViewForm)" oncomplete="InformeGerencialViewDialog.show()" disabled="#{empty agendaComiteCreditosManagedBean.agendaSelected}"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="generateButton"   icon="ui-icon-gear" value="Generar Informe" actionListener="#{agendaComiteCreditosManagedBean.prepareViewRptGerencial}"   update="@(#InformeGerencialPrintForm)" oncomplete="InformeGerencialPrintDialog.show()" disabled="#{empty agendaComiteCreditosManagedBean.agendaSelected}"/>
+                        <span>&nbsp;</span>
+                        <p:commandButton id="refreshButton"   icon="ui-icon-refresh" value="Actualizar" actionListener="#{agendaComiteCreditosManagedBean.refreshPendientes()}" update="@(#InformeGerencialListForm)"/>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:fieldset>
+
+    </h:form>
+</ui:composition>

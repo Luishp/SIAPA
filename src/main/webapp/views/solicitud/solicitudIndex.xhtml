@@ -1,0 +1,39 @@
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">
+        <title>Nueva Solicitud de Credito</title>
+    </ui:define>
+
+    <ui:define name="content">
+        <h1 style="text-align: center">Solicitud de Crédito</h1>
+       
+        <ui:include src="/views/solicitud/form.xhtml"/>
+        <ui:include src="/views/solicitud/documentos/Create.xhtml"/>
+        <ui:include src="/views/solicitud/fuenteingreso/Create.xhtml"/>
+        <ui:include src="/views/solicitud/propiedades/List.xhtml"/>
+        <ui:include src="/views/solicitud/propiedades/Create.xhtml"/>
+        <ui:include src="/views/solicitud/propiedades/View.xhtml"/>
+        <ui:include src="/views/solicitud/prestamos/List.xhtml"/>
+        <ui:include src="/views/solicitud/prestamos/View.xhtml"/> 
+         <ui:include src="/views/solicitud/prestamosfin/List.xhtml"/>
+        <ui:include src="/views/solicitud/prestamosfin/Create.xhtml"/>
+        <ui:include src="/views/solicitud/prestamosfin/View.xhtml"/> 
+        <ui:include src="/views/solicitud/deudasc/List.xhtml"/>
+        <ui:include src="/views/solicitud/deudasc/Create.xhtml"/>
+        <ui:include src="/views/solicitud/deudasc/View.xhtml"/> 
+        <ui:include src="/views/solicitud/deudast/List.xhtml"/>
+        <ui:include src="/views/solicitud/deudast/Create.xhtml"/>
+        <ui:include src="/views/solicitud/deudast/View.xhtml"/> 
+        <ui:include src="/views/solicitud/referenciaFam/List.xhtml"/>
+        <ui:include src="/views/solicitud/referenciaFam/Create.xhtml"/>
+        <ui:include src="/views/solicitud/referenciaFam/View.xhtml"/>
+        <ui:include src="/views/solicitud/referenciaPer/List.xhtml"/>
+        <ui:include src="/views/solicitud/referenciaPer/Create.xhtml"/>
+        <ui:include src="/views/solicitud/referenciaPer/View.xhtml"/>
+    </ui:define>
+</ui:composition>

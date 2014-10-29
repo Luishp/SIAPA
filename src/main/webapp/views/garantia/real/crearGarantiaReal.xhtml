@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <script type="text/javascript">
+        function validaSoloNumeros() {
+            if (((event.keyCode &gt; 47) &amp; (event.keyCode &lt; 58)) || (event.keyCode == 46)) {
+                return true;
+            } else{
+                return false;
+            }
+        }
+
+        function validaSoloNumerosSinPunto() {
+            if ((event.keyCode &lt; 48) || (event.keyCode &gt; 57)) {
+                return false;
+            }
+        }
+    </script>
+    <ui:composition>
+
+        <p:dialog id="GarantiaRealCreateDlg" widgetVar="GarantiaRealCreateDialog" modal="true" resizable="false"  appendTo="@(body)" header="Crear Garantia Real" closeOnEscape="true">
+
+            <h:form id="GarantiaRealCreateForm">
+                    <h:panelGroup id="display">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="#{crudbundle.CreateRegistrogarantiarealLabel_rgrTipo}" for="rgrTipo" />
+                                <p:inputText id="rgrTipo" value="#{garantiaRealManagedBean.garantiaReal.rgrTipo}" title="#{crudbundle.CreateRegistrogarantiarealTitle_rgrTipo}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiarealRequiredMessage_rgrTipo}"/>
+
+                                <p:outputLabel value="#{crudbundle.CreateRegistrogarantiarealLabel_rgrNumerocuenta}" for="rgrNumerocuenta" />
+                                <p:inputText id="rgrNumerocuenta" value="#{garantiaRealManagedBean.garantiaReal.rgrNumerocuenta}" title="#{crudbundle.CreateRegistrogarantiarealTitle_rgrNumerocuenta}" maxlength="10" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiarealRequiredMessage_rgrNumerocuenta}" onkeypress="return validaSoloNumeros(event)"/>
+
+                                <p:outputLabel value="#{crudbundle.CreateRegistrogarantiarealLabel_rgrNumerodeposito}" for="rgrNumerodeposito" />
+                                <p:inputText id="rgrNumerodeposito" value="#{garantiaRealManagedBean.garantiaReal.rgrNumerodeposito}" title="#{crudbundle.CreateRegistrogarantiarealTitle_rgrNumerodeposito}" maxlength="10" onkeypress="return validaSoloNumeros(event)"/>
+
+                                <p:outputLabel value="#{crudbundle.CreateRegistrogarantiarealLabel_rgrPorcentajepignorado}" for="rgrPorcentajepignorado" />
+                                <pe:inputNumber id="rgrPorcentajepignorado" value="#{garantiaRealManagedBean.garantiaReal.rgrPorcentajepignorado}" title="#{crudbundle.CreateRegistrogarantiarealTitle_rgrPorcentajepignorado}" minValue="-99.99" maxValue="99.99" decimalSeparator="." thousandSeparator="," symbol="%" symbolPosition="s" required="true"  requiredMessage="#{crudbundle.CreateRegistrogarantiarealRequiredMessage_rgrPorcentajepignorado}"/>
+                               
+                                <p:outputLabel value="#{crudbundle.CreateRegistrogarantiarealLabel_rgrMontodeposito}" for="rgrMontodeposito" />
+                                <pe:inputNumber id="rgrMontodeposito" value="#{garantiaRealManagedBean.garantiaReal.rgrMontodeposito}" title="#{crudbundle.CreateRegistrogarantiarealTitle_rgrMontodeposito}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiarealRequiredMessage_rgrMontodeposito}"/>
+                                
+                                <p:outputLabel value="#{crudbundle.CreateRegistrogarantiarealLabel_rgrMontopignorado}" for="rgrMontopignorado" />
+                                <pe:inputNumber id="rgrMontopignorado" value="#{garantiaRealManagedBean.garantiaReal.rgrMontopignorado}" title="#{crudbundle.CreateRegistrogarantiarealTitle_rgrMontopignorado}" required="true" requiredMessage="#{crudbundle.CreateRegistrogarantiarealRequiredMessage_rgrMontopignorado}"/>
+                            </p:panelGrid>
+
+                            <center>
+                                <br></br>
+                                <p:commandButton actionListener="#{garantiaRealManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:RegistroGarantiaRealCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,GarantiaRealCreateDialog);"/>
+                               <p:commandButton icon="ui-icon-closethick" value="Cancelar" onclick="GarantiaRealCreateDialog.hide()"/>
+                            </center>
+                    </h:panelGroup>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

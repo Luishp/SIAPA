@@ -1,0 +1,27 @@
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">
+        <title>Registrar Analisis de Credito</title>
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:include src="/views/analisis/form.xhtml"/>
+         <ui:include src="/views/analisis/asignarGarantia.xhtml"/>
+         <ui:include src="/views/analisis/consultaburocredito/Create.xhtml"/>
+         <ui:include src="/views/analisis/consultaburocredito/Edit.xhtml"/>
+         <ui:include src="/views/analisis/consultaburocredito/View.xhtml"/>
+         <ui:include src="/views/analisis/deudasc/Create.xhtml"/>
+         <ui:include src="/views/analisis/deudasc/View.xhtml"/>
+         <ui:include src="/views/analisis/deudast/Create.xhtml"/>
+         <ui:include src="/views/analisis/deudast/View.xhtml"/>
+         <ui:include src="/views/analisis/prestamosfin/Create.xhtml"/>
+         <ui:include src="/views/analisis/prestamosfin/View.xhtml"/>
+         
+         
+    </ui:define>
+</ui:composition>

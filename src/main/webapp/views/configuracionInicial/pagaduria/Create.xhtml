@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagaduriaCreateDlg" widgetVar="PagaduriaCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{crudbundle.CreatePagaduriaTitle}" closeOnEscape="true">
+
+            <h:form id="PagaduriaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="#{crudbundle.PagaduriaLabel_pagaduriaNombre}" for="pagaduriaNombre" />
+                        <p:inputText id="pagaduriaNombre" value="#{pagaduriaManagedBean.selected.pagaduriaNombre}" title="#{crudbundle.PagaduriaTitle_pagaduriaNombre}" required="true" requiredMessage="#{crudbundle.PagaduriaRequiredMessage_pagaduriaNombre}" size="100" maxlength="100"/>
+
+
+                        <p:outputLabel value="#{crudbundle.PagaduriaLabel_pagaduriaDescripcion}" for="pagaduriaDescripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="pagaduriaDescripcion" value="#{pagaduriaManagedBean.selected.pagaduriaDescripcion}" title="#{crudbundle.PagaduriaTitle_pagaduriaDescripcion}" />
+
+
+                        <p:outputLabel value="#{crudbundle.Label_activo}" for="activo" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="activo" value="#{pagaduriaManagedBean.selected.activo}" required="true" requiredMessage="#{crudbundle.RequiredMessage_activo}">
+                                <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{pagaduriaManagedBean.activoOptions}"
+                                               var="activoItem"
+                                               itemValue="#{activoItem.value}"
+                                               itemLabel="#{activoItem.description}"/>
+                            </p:selectOneMenu>
+                            <p:tooltip for="activo" value="#{pagaduriaManagedBean.getComponentMessages('activo', crudbundle.HelpText_activo)}"/>
+                        </h:panelGroup>
+
+
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{pagaduriaManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:PagaduriaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PagaduriaCreateDialog);"/>
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="PagaduriaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

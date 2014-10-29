@@ -1,0 +1,47 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:form id="lineaCreditoForm">
+            <p:growl id="growl" showDetail="true" sticky="false" />
+        <p:panel id="datosLinea" header="Línea de crédito" >  
+            <p:panelGrid columns="2">
+                <p:panelGrid >
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel value="Nombre linea:" for="nombreLinea"/>
+                        </p:column>
+                        <p:column>
+                           <p:inputText id="nombreLinea" value="#{lineaCreditoManagedBean.lineaCredito.lineacreditoNombre}" title="Nombre Linea de Credito" required="true" requiredMessage="Nombre de linea de credito, es Requerido" size="100" maxlength="100"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputLabel value="Grupo:" for="grupo"/>
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="grupo" value="#{lineaCreditoManagedBean.lineaCredito.lineacreditoGrupo}" title="Grupo de Linea de Credito:" required="true" requiredMessage="Grupo de linea de credito, es Requerido" />
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputLabel value="Destino:" for="destino"/>
+                        </p:column>
+                        <p:column>
+                           <p:inputTextarea  rows="10" cols="50" id="destino" queryDelay="500" minQueryLength="4"  value="#{lineaCreditoManagedBean.lineaCredito.lineacreditoDestino}" title="Destino:" required="true" requiredMessage="Destino de linea de credito, es Requerido" maxlength="500"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </p:panelGrid>
+            <center>
+                
+                <p:commandButton icon="ui-icon-disk" actionListener="#{lineaCreditoManagedBean.update}" value="Guardar" ajax="false"/>
+                <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Close}" actionListener="#{lineaCreditoManagedBean.cancelar}"/>
+            </center>
+        </p:panel>
+    </h:form>
+</ui:composition>
+

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditUsuarioTitle}" closeOnEscape="true">
+
+            <h:form id="UsuarioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:tabView id="UsuarioTabView">
+
+                        <p:tab id="UsuarioTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:panelGrid  columns="2" columnClasses="column" rendered="#{ssUsuariosController.selected != null}">
+
+                                <h:outputLabel value="#{myBundle.EditUsuarioLabel_idUsuario}" for="idUsuario" />
+                                <h:outputText id="idUsuario" value="#{ssUsuariosController.selected.idUsuario}" />
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_codigoUsuario}" for="codigoUsuario" />
+                                <p:inputText id="codigoUsuario" value="#{ssUsuariosController.selected.codigoUsuario}" title="#{myBundle.EditUsuarioTitle_codigoUsuario}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_nombreUsuario}" for="nombreUsuario" />
+                                <p:inputText id="nombreUsuario" value="#{ssUsuariosController.selected.nombreUsuario}" title="#{myBundle.EditUsuarioTitle_nombreUsuario}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_telefono}" for="telefono" />
+                                <p:inputText id="telefono" value="#{ssUsuariosController.selected.telefono}" title="#{myBundle.EditUsuarioTitle_telefono}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_email}" for="email" />
+                                <p:inputText id="email" value="#{ssUsuariosController.selected.email}" title="#{myBundle.EditUsuarioTitle_email}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_cargo}" for="cargo" />
+                                <p:inputText id="cargo" value="#{ssUsuariosController.selected.cargo}" title="#{myBundle.EditUsuarioTitle_cargo}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_descripcion}" for="descripcion" />
+                                <p:inputText id="descripcion" value="#{ssUsuariosController.selected.descripcion}" title="#{myBundle.EditUsuarioTitle_descripcion}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_bloqueado}" for="bloqueado" />
+                                <p:inputText id="bloqueado" value="#{ssUsuariosController.selected.bloqueado}" title="#{myBundle.EditUsuarioTitle_bloqueado}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_clave}" for="clave" />
+                                <p:inputText id="clave" value="#{ssUsuariosController.selected.clave}" title="#{myBundle.EditUsuarioTitle_clave}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_intentosAccesoFallidos}" for="intentosAccesoFallidos" />
+                                <p:inputText id="intentosAccesoFallidos" value="#{ssUsuariosController.selected.intentosAccesoFallidos}" title="#{myBundle.EditUsuarioTitle_intentosAccesoFallidos}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_usuarioRegistro}" for="usuarioRegistro" />
+                                <p:inputText id="usuarioRegistro" value="#{ssUsuariosController.selected.usuarioRegistro}" title="#{myBundle.EditUsuarioTitle_usuarioRegistro}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_fechaRegistro}" for="fechaRegistro" />
+                                <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{ssUsuariosController.selected.fechaRegistro}" title="#{myBundle.EditUsuarioTitle_fechaRegistro}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_usuarioUltimamodificacion}" for="usuarioUltimamodificacion" />
+                                <p:inputText id="usuarioUltimamodificacion" value="#{ssUsuariosController.selected.usuarioUltimamodificacion}" title="#{myBundle.EditUsuarioTitle_usuarioUltimamodificacion}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_fechaUltimamodificacion}" for="fechaUltimamodificacion" />
+                                <p:calendar id="fechaUltimamodificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{ssUsuariosController.selected.fechaUltimamodificacion}" title="#{myBundle.EditUsuarioTitle_fechaUltimamodificacion}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_fechaUltimoAcceso}" for="fechaUltimoAcceso" />
+                                <p:calendar id="fechaUltimoAcceso" pattern="MM/dd/yyyy HH:mm:ss" value="#{ssUsuariosController.selected.fechaUltimoAcceso}" title="#{myBundle.EditUsuarioTitle_fechaUltimoAcceso}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_direccionAcceso}" for="direccionAcceso" />
+                                <p:inputText id="direccionAcceso" value="#{ssUsuariosController.selected.direccionAcceso}" title="#{myBundle.EditUsuarioTitle_direccionAcceso}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_detalleUltimoAcceso}" for="detalleUltimoAcceso" />
+                                <p:inputText id="detalleUltimoAcceso" value="#{ssUsuariosController.selected.detalleUltimoAcceso}" title="#{myBundle.EditUsuarioTitle_detalleUltimoAcceso}"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_fechaCambioClave}" for="fechaCambioClave" />
+                                <p:calendar id="fechaCambioClave" pattern="MM/dd/yyyy HH:mm:ss" value="#{ssUsuariosController.selected.fechaCambioClave}" title="#{myBundle.EditUsuarioTitle_fechaCambioClave}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditUsuarioLabel_codigoSucursal}" for="codigoSucursal" />
+                                <p:inputText id="codigoSucursal" value="#{ssUsuariosController.selected.codigoSucursal}" title="#{myBundle.EditUsuarioTitle_codigoSucursal}"/>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton actionListener="#{ssUsuariosController.save}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="UsuarioEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        <style>
+            .ui-panelgrid td, .ui-panelgrid tr
+            {
+                border-style: none !important
+            }
+
+        </style>
+
+        <p:dialog id="ReferenciaPerCreateDlg" widgetVar="ReferenciaPerCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="ReferenciaPer" closeOnEscape="true">
+            <p:ajax event="close" oncomplete="myrefresh();"></p:ajax>  
+
+            <h:form id="ReferenciaPerCreateForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Nombre Completo" for="refPerNombreCompleto" />
+                        <h:panelGroup>
+                            <p:inputText id="refPerNombreCompleto" value="#{solicitudManagedBean.refPerSelected.rpNombrecompleto}" title="Nombre Completo" required="true" requiredMessage="Nombre Completo" size="40" maxlength="60"/>
+                            <p:tooltip for="refPerNombreCompleto" value="Nombre Completo"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Direccion" for="refPerDireccion" />
+                        <h:panelGroup>
+                            <p:inputText id="refPerDireccion" value="#{solicitudManagedBean.refPerSelected.rpDireccion}" title="Direccion" required="true" requiredMessage="Direccion" size="40" maxlength="300"/>
+                            <p:tooltip for="refPerDireccion" value="Direccion"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Telefono" for="refPerTelefono" />
+                        <h:panelGroup>
+                            <p:inputMask id="refPerTelefono" mask="9999-9999" value="#{solicitudManagedBean.refPerSelected.rpTelefono}" title="Telefono" required="true" requiredMessage="Telefono" size="10" />
+                            <p:tooltip for="refPerTelefono" value="Telefono"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Tiempo de conocerlo" for="refPerTiempoConocer" />
+                        <h:panelGroup>
+                            <p:inputText id="refPerTiempoConocer" value="#{solicitudManagedBean.refPerSelected.rfTiempoconocerlo}" title="Tiempo de conocerlo" requiredMessage="Tiempo de conocerlo" size="10" maxlength="25"/>
+                            <p:tooltip for="refPerTiempoConocer" value="Tiempo de conocerlo"/>
+                        </h:panelGroup>
+                      
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{solicitudManagedBean.saveReferenciaPer}" value="Guardar" update="display,:ReferenciaPerListForm,:growl" oncomplete="handleSubmit(xhr,status,args,ReferenciaPerCreateDialog);"/>
+                    <p:commandButton icon="ui-icon-closethick" value="Cancelar" onclick="ReferenciaPerCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

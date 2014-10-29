@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ChequeViewDlg" widgetVar="ChequeViewDialog" modal="true" resizable="false"  appendToBody="true" header="Ver Cheque" closeOnEscape="true">
+
+            <h:form id="ChequeViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{desembolsoCreditoManagedBean.chequeSelected != null}">
+
+                        <h:outputText value="Id"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.chequeSelected.chequeId}" title="#{crudbundle.ViewChequeTitle_chequeId}"/>
+
+                        <h:outputText value="Fecha"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.chequeSelected.chequeFecha}" title="#{crudbundle.ViewChequeTitle_chequeFecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="Monto"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.chequeSelected.chequeMonto}" title="#{crudbundle.ViewChequeTitle_chequeMonto}"/>
+
+                        <h:outputText value="Beneficiario"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.chequeSelected.chequeBeneficiario}" title="#{crudbundle.ViewChequeTitle_chequeBeneficiario}"/>
+
+                        <h:outputText value="Concepto"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.chequeSelected.chequeConcepto}" title="#{crudbundle.ViewChequeTitle_chequeConcepto}"/>
+                                              
+                        <h:outputText value="Banco"/>
+                        <h:outputText value="#{desembolsoCreditoManagedBean.chequeSelected.bancoId.bancoNombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="ChequeViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
