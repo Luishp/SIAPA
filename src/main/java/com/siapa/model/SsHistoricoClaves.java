@@ -20,24 +20,19 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author marlon.andrade
+ * @author Angel
  */
 @Entity
 @Table(name = "ss_historico_claves", catalog = "siapa", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SsHistoricoClaves.findAll", query = "SELECT s FROM SsHistoricoClaves s")})
 public class SsHistoricoClaves implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID_HISTORICO_CLAVE", nullable = false)
     private Integer idHistoricoClave;
     @Column(name = "ID_USUARIO2")
@@ -45,7 +40,6 @@ public class SsHistoricoClaves implements Serializable {
     @Column(name = "FECHA_CLAVE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaClave;
-    @Size(max = 100)
     @Column(length = 100)
     private String clave2;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
@@ -121,7 +115,7 @@ public class SsHistoricoClaves implements Serializable {
 
     @Override
     public String toString() {
-        return "com.siacofinges.model.SsHistoricoClaves[ idHistoricoClave=" + idHistoricoClave + " ]";
+        return "com.siapa.model.SsHistoricoClaves[ idHistoricoClave=" + idHistoricoClave + " ]";
     }
     
 }

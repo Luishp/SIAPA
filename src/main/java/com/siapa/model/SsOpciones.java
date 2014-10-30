@@ -8,7 +8,7 @@ package com.siapa.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,56 +20,43 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author marlon.andrade
+ * @author Angel
  */
 @Entity
 @Table(name = "ss_opciones", catalog = "siapa", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SsOpciones.findAll", query = "SELECT s FROM SsOpciones s")})
 public class SsOpciones implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID_OPCION", nullable = false)
     private Integer idOpcion;
-    @Size(max = 100)
     @Column(name = "NOMBRE_OPCION", length = 100)
     private String nombreOpcion;
-    @Size(max = 300)
     @Column(length = 300)
     private String url;
-    @Size(max = 1)
     @Column(length = 1)
     private String visible;
-    @Size(max = 15)
     @Column(name = "USUARIO_REGISTRO", length = 15)
     private String usuarioRegistro;
     @Column(name = "FECHA_REGISTRO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
-    @Size(max = 15)
     @Column(name = "USUARIO_ULTIMAMODIFICACION", length = 15)
     private String usuarioUltimamodificacion;
     @Column(name = "FECHA_ULTIMAMODIFICACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaUltimamodificacion;
-    @Size(max = 15)
     @Column(name = "IMAGEN_OPCION", length = 45)
     private String imagenOpcion;
-    @ManyToMany(mappedBy = "ssOpcionesList", fetch = FetchType.LAZY)
-    private List<SsRoles> ssRolesList;
-    @ManyToMany(mappedBy = "ssOpcionesList", fetch = FetchType.LAZY)
-    private List<SsMenus> ssMenusList;
+    @ManyToMany(mappedBy = "ssOpcionesSet", fetch = FetchType.LAZY)
+    private Set<SsMenus> ssMenusSet;
+    @ManyToMany(mappedBy = "ssOpcionesSet", fetch = FetchType.LAZY)
+    private Set<SsRoles> ssRolesSet;
 
     public SsOpciones() {
     }
@@ -141,7 +128,7 @@ public class SsOpciones implements Serializable {
     public void setFechaUltimamodificacion(Date fechaUltimamodificacion) {
         this.fechaUltimamodificacion = fechaUltimamodificacion;
     }
-    
+
     public String getImagenOpcion() {
         return imagenOpcion;
     }
@@ -149,25 +136,21 @@ public class SsOpciones implements Serializable {
     public void setImagenOpcion(String imagenOpcion) {
         this.imagenOpcion = imagenOpcion;
     }
-    
-    @XmlTransient
-    @JsonIgnore
-    public List<SsRoles> getSsRolesList() {
-        return ssRolesList;
+
+    public Set<SsMenus> getSsMenusSet() {
+        return ssMenusSet;
     }
 
-    public void setSsRolesList(List<SsRoles> ssRolesList) {
-        this.ssRolesList = ssRolesList;
+    public void setSsMenusSet(Set<SsMenus> ssMenusSet) {
+        this.ssMenusSet = ssMenusSet;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<SsMenus> getSsMenusList() {
-        return ssMenusList;
+    public Set<SsRoles> getSsRolesSet() {
+        return ssRolesSet;
     }
 
-    public void setSsMenusList(List<SsMenus> ssMenusList) {
-        this.ssMenusList = ssMenusList;
+    public void setSsRolesSet(Set<SsRoles> ssRolesSet) {
+        this.ssRolesSet = ssRolesSet;
     }
 
     @Override
@@ -192,7 +175,7 @@ public class SsOpciones implements Serializable {
 
     @Override
     public String toString() {
-        return "com.siacofinges.model.SsOpciones[ idOpcion=" + idOpcion + " ]";
+        return "com.siapa.model.SsOpciones[ idOpcion=" + idOpcion + " ]";
     }
-
+    
 }

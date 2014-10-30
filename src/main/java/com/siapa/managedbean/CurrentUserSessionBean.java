@@ -59,7 +59,7 @@ public class CurrentUserSessionBean {
             AppUserDetails usuario = getSessionUser();
             if (usuario != null && usuario.getUsuario() != null) {
                 getForm().setMenusLst(new ArrayList<MenuList>());
-                for (SsRoles rol : usuario.getUsuario().getSsRolesList()) {
+                for (SsRoles rol : usuario.getUsuario().getSsRolesSet()) {
                     List<SsMenus> mns = ssMenusService.getMenusByrol(rol);
                     getForm().setMenusLst(MenuList.GenerarMenu(mns));
                     for (MenuList menu : getForm().getMenusLst()) {

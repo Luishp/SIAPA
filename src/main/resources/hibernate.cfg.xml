@@ -9,6 +9,6 @@
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">root</property>
         -->
-    <mapping package="com.siacofinges.model" />
+    <mapping package="com.siapa.model" />
   </session-factory>
 </hibernate-configuration>

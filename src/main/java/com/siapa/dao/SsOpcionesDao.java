@@ -13,8 +13,8 @@ public class SsOpcionesDao extends GenericDao<SsOpciones, Integer> {
 
     public List<SsOpciones> getOpcionesByMenuRol(SsMenus menu, SsRoles rol) {
         Query q = getSessionFactory().getCurrentSession().createQuery("SELECT o  FROM SsOpciones o "
-                + "LEFT OUTER JOIN o.ssMenusList m  "
-                + "LEFT OUTER JOIN o.ssRolesList r  "
+                + "LEFT OUTER JOIN o.ssMenusSet m  "
+                + "LEFT OUTER JOIN o.ssRolesSet r  "
                 + "WHERE o.visible='S' AND r.idRol = :rol  AND m.idMenu =:menu  ");
         q.setParameter("rol", rol.getIdRol());
         q.setParameter("menu", menu.getIdMenu());

@@ -25,8 +25,8 @@ public class AppUserDetails implements UserDetails {
         List<GrantedAuthority> authorities = new ArrayList();
         if (usuario != null) {
             try {
-                if (usuario.getSsRolesList() != null && !usuario.getSsRolesList().isEmpty()) {
-                    for (SsRoles role : usuario.getSsRolesList()) {
+                if (usuario.getSsRolesSet() != null && !usuario.getSsRolesSet().isEmpty()) {
+                    for (SsRoles role : usuario.getSsRolesSet()) {
                         authorities.add(new GrantedAuthorityImpl(role.getCodigoRol()));
                     }
                 }

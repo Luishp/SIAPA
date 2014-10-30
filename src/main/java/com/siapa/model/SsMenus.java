@@ -8,7 +8,7 @@ package com.siapa.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,57 +24,47 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author marlon.andrade
+ * @author Angel
  */
 @Entity
 @Table(name = "ss_menus", catalog = "siapa", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SsMenus.findAll", query = "SELECT s FROM SsMenus s")})
 public class SsMenus implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID_MENU", nullable = false)
     private Integer idMenu;
-    @Size(max = 100)
     @Column(name = "NOMBRE_MENU", length = 100)
     private String nombreMenu;
-    @Size(max = 15)
     @Column(name = "USUARIO_REGISTRO", length = 15)
     private String usuarioRegistro;
     @Column(name = "FECHA_REGISTRO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
-    @Size(max = 15)
     @Column(name = "USUARIO_ULTIMAMODIFICACION", length = 15)
     private String usuarioUltimamodificacion;
     @Column(name = "FECHA_ULTIMAMODIFICACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaUltimamodificacion;
+    @JoinTable(name = "ss_roles_menu", joinColumns = {
+        @JoinColumn(name = "ID_MENU", referencedColumnName = "ID_MENU", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_ROL", referencedColumnName = "ID_ROL", nullable = false)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<SsRoles> ssRolesSet;
     @JoinTable(name = "ss_menus_opciones", joinColumns = {
         @JoinColumn(name = "ID_MENU", referencedColumnName = "ID_MENU", nullable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "ID_OPCION", referencedColumnName = "ID_OPCION", nullable = false)})
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<SsOpciones> ssOpcionesList;
-    @JoinTable(name = "ss_roles_menu", joinColumns = {
-        @JoinColumn(name = "ID_MENU", referencedColumnName = "ID_MENU", nullable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "ID_ROL", referencedColumnName = "ID_ROL", nullable = false)})
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<SsRoles> ssRolesList;
-    @OneToMany(mappedBy = "ssIdMenu", fetch = FetchType.EAGER)
-    private List<SsMenus> ssMenusList;
+    private Set<SsOpciones> ssOpcionesSet;
+    @OneToMany(mappedBy = "ssIdMenu", fetch = FetchType.LAZY)
+    private Set<SsMenus> ssMenusSet;
     @JoinColumn(name = "SS__ID_MENU", referencedColumnName = "ID_MENU")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private SsMenus ssIdMenu;
 
     public SsMenus() {
@@ -132,34 +122,28 @@ public class SsMenus implements Serializable {
         this.fechaUltimamodificacion = fechaUltimamodificacion;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<SsOpciones> getSsOpcionesList() {
-        return ssOpcionesList;
+    public Set<SsRoles> getSsRolesSet() {
+        return ssRolesSet;
     }
 
-    public void setSsOpcionesList(List<SsOpciones> ssOpcionesList) {
-        this.ssOpcionesList = ssOpcionesList;
+    public void setSsRolesSet(Set<SsRoles> ssRolesSet) {
+        this.ssRolesSet = ssRolesSet;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<SsRoles> getSsRolesList() {
-        return ssRolesList;
+    public Set<SsOpciones> getSsOpcionesSet() {
+        return ssOpcionesSet;
     }
 
-    public void setSsRolesList(List<SsRoles> ssRolesList) {
-        this.ssRolesList = ssRolesList;
+    public void setSsOpcionesSet(Set<SsOpciones> ssOpcionesSet) {
+        this.ssOpcionesSet = ssOpcionesSet;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<SsMenus> getSsMenusList() {
-        return ssMenusList;
+    public Set<SsMenus> getSsMenusSet() {
+        return ssMenusSet;
     }
 
-    public void setSsMenusList(List<SsMenus> ssMenusList) {
-        this.ssMenusList = ssMenusList;
+    public void setSsMenusSet(Set<SsMenus> ssMenusSet) {
+        this.ssMenusSet = ssMenusSet;
     }
 
     public SsMenus getSsIdMenu() {
@@ -192,7 +176,7 @@ public class SsMenus implements Serializable {
 
     @Override
     public String toString() {
-        return "com.siacofinges.model.SsMenus[ idMenu=" + idMenu + " ]";
+        return "com.siapa.model.SsMenus[ idMenu=" + idMenu + " ]";
     }
     
 }

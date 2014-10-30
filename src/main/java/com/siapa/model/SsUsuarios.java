@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.siapa.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -21,64 +21,44 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author marlon.andrade
+ * @author Angel
  */
 @Entity
 @Table(name = "ss_usuarios", catalog = "siapa", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SsUsuarios.findAll", query = "SELECT s FROM SsUsuarios s")})
 public class SsUsuarios implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID_USUARIO", nullable = false)
     private Integer idUsuario;
-    @Size(max = 15)
     @Column(name = "CODIGO_USUARIO", length = 15)
     private String codigoUsuario;
-    @Size(max = 100)
     @Column(name = "NOMBRE_USUARIO", length = 100)
     private String nombreUsuario;
-    @Size(max = 20)
     @Column(length = 20)
     private String telefono;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 100)
     @Column(length = 100)
     private String email;
-    @Size(max = 100)
     @Column(length = 100)
     private String cargo;
-    @Size(max = 150)
     @Column(length = 150)
     private String descripcion;
-    @Size(max = 1)
     @Column(length = 1)
     private String bloqueado;
-    @Size(max = 100)
     @Column(length = 100)
     private String clave;
     @Column(name = "INTENTOS_ACCESO_FALLIDOS")
     private Short intentosAccesoFallidos;
-    @Size(max = 15)
     @Column(name = "USUARIO_REGISTRO", length = 15)
     private String usuarioRegistro;
     @Column(name = "FECHA_REGISTRO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
-    @Size(max = 15)
     @Column(name = "USUARIO_ULTIMAMODIFICACION", length = 15)
     private String usuarioUltimamodificacion;
     @Column(name = "FECHA_ULTIMAMODIFICACION")
@@ -87,22 +67,19 @@ public class SsUsuarios implements Serializable {
     @Column(name = "FECHA_ULTIMO_ACCESO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaUltimoAcceso;
-    @Size(max = 100)
     @Column(name = "DIRECCION_ACCESO", length = 100)
     private String direccionAcceso;
-    @Size(max = 300)
     @Column(name = "DETALLE_ULTIMO_ACCESO", length = 300)
     private String detalleUltimoAcceso;
     @Column(name = "FECHA_CAMBIO_CLAVE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCambioClave;
-    @Size(max = 2)
     @Column(name = "CODIGO_SUCURSAL", length = 2)
     private String codigoSucursal;
-    @ManyToMany(mappedBy = "ssUsuariosList", fetch = FetchType.LAZY)
-    private List<SsRoles> ssRolesList;
+    @ManyToMany(mappedBy = "ssUsuariosSet", fetch = FetchType.LAZY)
+    private Set<SsRoles> ssRolesSet;
     @OneToMany(mappedBy = "idUsuario", fetch = FetchType.LAZY)
-    private List<SsHistoricoClaves> ssHistoricoClavesList;
+    private Set<SsHistoricoClaves> ssHistoricoClavesSet;
 
     public SsUsuarios() {
     }
@@ -263,24 +240,20 @@ public class SsUsuarios implements Serializable {
         this.codigoSucursal = codigoSucursal;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<SsRoles> getSsRolesList() {
-        return ssRolesList;
+    public Set<SsRoles> getSsRolesSet() {
+        return ssRolesSet;
     }
 
-    public void setSsRolesList(List<SsRoles> ssRolesList) {
-        this.ssRolesList = ssRolesList;
+    public void setSsRolesSet(Set<SsRoles> ssRolesSet) {
+        this.ssRolesSet = ssRolesSet;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<SsHistoricoClaves> getSsHistoricoClavesList() {
-        return ssHistoricoClavesList;
+    public Set<SsHistoricoClaves> getSsHistoricoClavesSet() {
+        return ssHistoricoClavesSet;
     }
 
-    public void setSsHistoricoClavesList(List<SsHistoricoClaves> ssHistoricoClavesList) {
-        this.ssHistoricoClavesList = ssHistoricoClavesList;
+    public void setSsHistoricoClavesSet(Set<SsHistoricoClaves> ssHistoricoClavesSet) {
+        this.ssHistoricoClavesSet = ssHistoricoClavesSet;
     }
 
     @Override
@@ -305,7 +278,7 @@ public class SsUsuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "com.siacofinges.model.SsUsuarios[ idUsuario=" + idUsuario + " ]";
+        return "com.siapa.model.SsUsuarios[ idUsuario=" + idUsuario + " ]";
     }
-
+    
 }

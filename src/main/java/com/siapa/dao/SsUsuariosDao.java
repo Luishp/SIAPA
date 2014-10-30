@@ -13,7 +13,7 @@ public class SsUsuariosDao extends GenericDao<SsUsuarios, Integer> {
         SsUsuarios ret = null;
         Query q = getSessionFactory().getCurrentSession().createQuery("SELECT o "
                 + " FROM SsUsuarios o "
-                + " LEFT OUTER JOIN FETCH o.ssRolesList "
+                + " LEFT OUTER JOIN FETCH o.ssRolesSet "
                 + " WHERE o.codigoUsuario=:codigoUsuario ");
         q.setParameter("codigoUsuario", user);
         List<SsUsuarios> list = q.list();
@@ -27,7 +27,7 @@ public class SsUsuariosDao extends GenericDao<SsUsuarios, Integer> {
         SsUsuarios ret = null;
         Query q = getSessionFactory().getCurrentSession().createQuery("SELECT o "
                 + " FROM SsUsuarios o "
-                + " LEFT OUTER JOIN FETCH o.ssRolesList "
+                + " LEFT OUTER JOIN FETCH o.ssRolesSet "
                 + " WHERE o.codigoUsuario=:codigoUsuario "
                 + " AND o.clave=:clave ");
         q.setParameter("codigoUsuario", user);
