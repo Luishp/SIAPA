@@ -77,7 +77,7 @@ body{
     padding-right: 5%;
     text-align: right;
     height:18px;
-    background: #1f7a18;
+    background: #009fdb;
     font-size: 14px;
     font-weight: bold;
     color:white;
@@ -104,7 +104,7 @@ body{
     margin-top: 0.2%;
     width:290px;
     height:40px;
-    background:url(../img/logo_1.png) no-repeat;
+    background:url(../img/logo_1s.png) no-repeat;
 }
 
 /*el tamaño del menu*/
