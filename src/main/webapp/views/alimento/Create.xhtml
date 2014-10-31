@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlimentoCreateDlg" widgetVar="AlimentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateAlimentoTitle}" closeOnEscape="true">
+
+            <h:form id="AlimentoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{alimentoManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_idAlimento}" for="idAlimento" />
+                        <p:inputText id="idAlimento" value="#{alimentoManagedBean.selected.idAlimento}" title="#{crudbundle.CreateAlimentoTitle_idAlimento}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_idAlimento}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_marcaAlimento}" for="marcaAlimento" />
+                        <p:inputText id="marcaAlimento" value="#{alimentoManagedBean.selected.marcaAlimento}" title="#{crudbundle.CreateAlimentoTitle_marcaAlimento}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_existenciaAlimento}" for="existenciaAlimento" />
+                        <p:inputText id="existenciaAlimento" value="#{alimentoManagedBean.selected.existenciaAlimento}" title="#{crudbundle.CreateAlimentoTitle_existenciaAlimento}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_idTipoAlimento}" for="idTipoAlimento" />
+                        <p:selectOneMenu id="idTipoAlimento" value="#{alimentoManagedBean.selected.idTipoAlimento}" >
+                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoAlimentoController.items}"
+                                           var="idTipoAlimentoItem"
+                                           itemValue="#{idTipoAlimentoItem}"
+                                           itemLabel="#{idTipoAlimentoItem.descricionTipoAlimento.toString()}"
+                                           />
+                            <f:converter binding="#{tipoAlimentoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:AlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlimentoCreateDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('AlimentoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

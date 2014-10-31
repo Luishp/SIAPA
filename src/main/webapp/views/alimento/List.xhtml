@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AlimentoListForm">
+
+        <p:panel header="#{crudbundle.ListAlimentoTitle}">
+            <p:contextMenu id="AlimentoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('AlimentoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('AlimentoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('AlimentoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('AlimentoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{crudbundle.AlimentoMenuItem_registroAlimentacionSet}" icon="ui-icon-search"  action="#{alimentoController.navigateRegistroAlimentacionSet}" disabled="#{empty alimentoController.selected.registroAlimentacionSet}" ajax="false"/>  
+                <p:menuitem value="#{crudbundle.AlimentoMenuItem_detalleCompraAlimentoSet}" icon="ui-icon-search"  action="#{alimentoController.navigateDetalleCompraAlimentoSet}" disabled="#{empty alimentoController.selected.detalleCompraAlimentoSet}" ajax="false"/>  
+                <p:menuitem value="#{crudbundle.AlimentoMenuItem_idTipoAlimento}" icon="ui-icon-search"  actionListener="#{alimentoController.prepareIdTipoAlimento}" update=":TipoAlimentoViewForm" oncomplete="PF('TipoAlimentoViewDialog').show()" disabled="#{empty alimentoController.selected.idTipoAlimento}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{alimentoController.items}"
+                         var="item"
+                         rowKey="#{item.idAlimento}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{alimentoController.selected}">
+
+                <p:ajax event="rowSelect"   update=":AlimentoListForm:createButton :AlimentoListForm:viewButton :AlimentoListForm:editButton :AlimentoListForm:deleteButton :AlimentoListForm:AlimentoDataTableContextMenu" listener="#{alimentoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":AlimentoListForm:createButton :AlimentoListForm:viewButton :AlimentoListForm:editButton :AlimentoListForm:deleteButton :AlimentoListForm:AlimentoDataTableContextMenu" listener="#{alimentoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AlimentoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idAlimento}" filterBy="#{item.idAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListAlimentoTitle_idAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idAlimento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.marcaAlimento}" filterBy="#{item.marcaAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListAlimentoTitle_marcaAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcaAlimento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.existenciaAlimento}" filterBy="#{item.existenciaAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListAlimentoTitle_existenciaAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.existenciaAlimento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idTipoAlimento.descricionTipoAlimento}" filterBy="#{item.idTipoAlimento.descricionTipoAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListAlimentoTitle_idTipoAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoAlimento.descricionTipoAlimento}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{alimentoController.prepareCreate}" update=":AlimentoCreateForm" oncomplete="PF('AlimentoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":AlimentoViewForm" oncomplete="PF('AlimentoViewDialog').show()" disabled="#{empty alimentoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":AlimentoEditForm" oncomplete="PF('AlimentoEditDialog').show()" disabled="#{empty alimentoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{alimentoController.delete}" update=":growl,datalist" disabled="#{empty alimentoController.selected}">
+                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

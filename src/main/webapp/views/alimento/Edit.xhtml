@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AlimentoEditDlg" widgetVar="AlimentoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditAlimentoTitle}" closeOnEscape="true">
+
+            <h:form id="AlimentoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{alimentoController.selected != null}">
+
+
+                        <h:outputLabel value="#{crudbundle.EditAlimentoLabel_idAlimento}" for="idAlimento" />
+                        <h:outputText id="idAlimento" value="#{alimentoController.selected.idAlimento}" />
+
+                        <p:outputLabel value="#{crudbundle.EditAlimentoLabel_marcaAlimento}" for="marcaAlimento" />
+                        <p:inputText id="marcaAlimento" value="#{alimentoController.selected.marcaAlimento}" title="#{crudbundle.EditAlimentoTitle_marcaAlimento}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.EditAlimentoLabel_existenciaAlimento}" for="existenciaAlimento" />
+                        <p:inputText id="existenciaAlimento" value="#{alimentoController.selected.existenciaAlimento}" title="#{crudbundle.EditAlimentoTitle_existenciaAlimento}" required="true" requiredMessage="#{crudbundle.EditAlimentoRequiredMessage_existenciaAlimento}"/>
+
+                        <p:outputLabel value="#{crudbundle.EditAlimentoLabel_idTipoAlimento}" for="idTipoAlimento" />
+                        <p:selectOneMenu id="idTipoAlimento" value="#{alimentoController.selected.idTipoAlimento}" >
+                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoAlimentoController.items}"
+                                           var="idTipoAlimentoItem"
+                                           itemValue="#{idTipoAlimentoItem}"
+                                           itemLabel="#{idTipoAlimentoItem.descricionTipoAlimento.toString()}"
+                                           />
+                            <f:converter binding="#{tipoAlimentoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alimentoController.save}" value="#{crudbundle.Save}" update="display,:AlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlimentoEditDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('AlimentoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

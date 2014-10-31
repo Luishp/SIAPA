@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteViewDlg" widgetVar="ClienteViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewClienteTitle}" closeOnEscape="true">
+
+            <h:form id="ClienteViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{clienteManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewClienteLabel_idCliente}"/>
+                        <h:outputText value="#{clienteManagedBean.selected.idCliente}" title="#{crudbundle.ViewClienteTitle_idCliente}"/>
+
+                        <h:outputText value="#{crudbundle.ViewClienteLabel_nombreClienteCompVenta}"/>
+                        <h:outputText value="#{clienteManagedBean.selected.nombreClienteCompVenta}" title="#{crudbundle.ViewClienteTitle_nombreClienteCompVenta}"/>
+
+                        <h:outputText value="#{crudbundle.ViewClienteLabel_apellidosCliente}"/>
+                        <h:outputText value="#{clienteManagedBean.selected.apellidosCliente}" title="#{crudbundle.ViewClienteTitle_apellidosCliente}"/>
+
+                        <h:outputText value="#{crudbundle.ViewClienteLabel_direccionCliente}"/>
+                        <h:outputText value="#{clienteManagedBean.selected.direccionCliente}" title="#{crudbundle.ViewClienteTitle_direccionCliente}"/>
+
+                        <h:outputText value="#{crudbundle.ViewClienteLabel_tipoCliente}"/>
+                        <h:outputText value="#{clienteManagedBean.selected.tipoCliente}" title="#{crudbundle.ViewClienteTitle_tipoCliente}"/>
+
+                        <h:outputText value="#{crudbundle.ViewClienteLabel_idPersona}"/>
+                        <h:outputText value="#{clienteManagedBean.selected.idPersona.idPersona}"/>
+
+                        <h:outputText value="#{crudbundle.ViewClienteLabel_idCategorias}"/>
+                        <h:outputText value="#{clienteManagedBean.selected.idCategorias.descripcionCategorias}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="PF('ClienteViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
