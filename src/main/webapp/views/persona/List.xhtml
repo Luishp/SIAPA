@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PersonaListForm">
+
+        <p:panel header="#{crudbundle.ListPersonaTitle}">
+            <p:contextMenu id="PersonaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('PersonaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('PersonaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('PersonaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('PersonaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{crudbundle.PersonaMenuItem_proveedorSet}" icon="ui-icon-search"  action="#{personaManagedBean.navigateProveedorSet}" disabled="#{empty personaManagedBean.selected.proveedorSet}" ajax="false"/>  
+                <p:menuitem value="#{crudbundle.PersonaMenuItem_clienteContactoSet}" icon="ui-icon-search"  action="#{personaManagedBean.navigateClienteContactoSet}" disabled="#{empty personaManagedBean.selected.clienteContactoSet}" ajax="false"/>  
+                <p:menuitem value="#{crudbundle.PersonaMenuItem_clienteSet}" icon="ui-icon-search"  action="#{personaManagedBean.navigateClienteSet}" disabled="#{empty personaManagedBean.selected.clienteSet}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{personaManagedBean.items}"
+                         var="item"
+                         rowKey="#{item.idPersona}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{personaManagedBean.selected}">
+
+                <p:ajax event="rowSelect"   update=":PersonaListForm:createButton :PersonaListForm:viewButton :PersonaListForm:editButton :PersonaListForm:deleteButton :PersonaListForm:PersonaDataTableContextMenu" listener="#{personaManagedBean.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":PersonaListForm:createButton :PersonaListForm:viewButton :PersonaListForm:editButton :PersonaListForm:deleteButton :PersonaListForm:PersonaDataTableContextMenu" listener="#{personaManagedBean.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PersonaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idPersona}" filterBy="#{item.idPersona}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListPersonaTitle_idPersona}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idPersona}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombrePersona}" filterBy="#{item.nombrePersona}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListPersonaTitle_nombrePersona}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombrePersona}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.direccionPersona}" filterBy="#{item.direccionPersona}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListPersonaTitle_direccionPersona}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.direccionPersona}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nrcPersona}" filterBy="#{item.nrcPersona}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListPersonaTitle_nrcPersona}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nrcPersona}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nitPersona}" filterBy="#{item.nitPersona}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListPersonaTitle_nitPersona}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nitPersona}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.duiPersona}" filterBy="#{item.duiPersona}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListPersonaTitle_duiPersona}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.duiPersona}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.tipoPersona}" filterBy="#{item.tipoPersona}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{crudbundle.ListPersonaTitle_tipoPersona}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tipoPersona}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{personaManagedBean.prepareCreate}" update=":PersonaCreateForm" oncomplete="PF('PersonaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":PersonaViewForm" oncomplete="PF('PersonaViewDialog').show()" disabled="#{empty personaManagedBean.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":PersonaEditForm" oncomplete="PF('PersonaEditDialog').show()" disabled="#{empty personaManagedBean.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{personaManagedBean.delete}" update=":growl,datalist" disabled="#{empty personaManagedBean.selected}">
+                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

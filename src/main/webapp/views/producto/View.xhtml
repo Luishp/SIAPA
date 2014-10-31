@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductoViewDlg" widgetVar="ProductoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewProductoTitle}" closeOnEscape="true">
+
+            <h:form id="ProductoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{productoManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewProductoLabel_idProducto}"/>
+                        <h:outputText value="#{productoManagedBean.selected.idProducto}" title="#{crudbundle.ViewProductoTitle_idProducto}"/>
+
+                        <h:outputText value="#{crudbundle.ViewProductoLabel_nombreProducto}"/>
+                        <h:outputText value="#{productoManagedBean.selected.nombreProducto}" title="#{crudbundle.ViewProductoTitle_nombreProducto}"/>
+
+                        <h:outputText value="#{crudbundle.ViewProductoLabel_descripcionProducto}"/>
+                        <h:outputText value="#{productoManagedBean.selected.descripcionProducto}" title="#{crudbundle.ViewProductoTitle_descripcionProducto}"/>
+
+                        <h:outputText value="#{crudbundle.ViewProductoLabel_activoProducto}"/>
+                        <h:selectBooleanCheckbox id="activoProducto" value="#{productoManagedBean.selected.activoProducto}" title="#{crudbundle.EditProductoTitle_activoProducto}" required="true" requiredMessage="#{crudbundle.EditProductoRequiredMessage_activoProducto}" disabled="true"/>
+
+                        <h:outputText value="#{crudbundle.ViewProductoLabel_precioProducto}"/>
+                        <h:outputText value="#{productoManagedBean.selected.precioProducto}" title="#{crudbundle.ViewProductoTitle_precioProducto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="PF('ProductoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
