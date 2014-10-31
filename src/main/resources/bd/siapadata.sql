@@ -1,14 +1,9 @@
-
------------------------------------------------------------------------------
---
---PRIMERA PARTE SIAPA
------------------------------------------------------------------------------
 -- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2014 a las 23:00:14
+-- Tiempo de generación: 31-10-2014 a las 23:07:20
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -35,13 +30,20 @@ USE `siapa`;
 
 DROP TABLE IF EXISTS `alimento`;
 CREATE TABLE IF NOT EXISTS `alimento` (
-  `ID_ALIMENTO` decimal(18,0) NOT NULL,
+  `ID_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `ID_TIPO_ALIMENTO` decimal(18,0) DEFAULT NULL,
   `MARCA_ALIMENTO` varchar(50) DEFAULT NULL,
   `EXISTENCIA_ALIMENTO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_ALIMENTO`),
   KEY `FK_RELATIONSHIP_13` (`ID_TIPO_ALIMENTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `alimento`
+--
+
+INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES
+(2, NULL, 'ALCON', '100.00');
 
 -- --------------------------------------------------------
 
@@ -177,13 +179,13 @@ DROP TABLE IF EXISTS `detalle_compra_alimento`;
 CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   `ID_DETALLE_COMPRA_ALIMENTO` decimal(18,0) NOT NULL,
   `ID_COMPRA` decimal(18,0) DEFAULT NULL,
-  `ID_ALIMENTO` decimal(18,0) DEFAULT NULL,
+  `ID_ALIMENTO` int(11) DEFAULT NULL,
   `CANT_DETALLE_COMPRA_ALIMENTO` decimal(10,2) NOT NULL,
   `PRECIO_DETALLE_COMPRA_ALIMENTO` decimal(10,2) NOT NULL,
   `IMPUESTO_DET_COMPRA_ALIMENTO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_DETALLE_COMPRA_ALIMENTO`),
-  KEY `FK_RELATIONSHIP_12` (`ID_ALIMENTO`),
-  KEY `FK_RELATIONSHIP_14` (`ID_COMPRA`)
+  KEY `FK_RELATIONSHIP_14` (`ID_COMPRA`),
+  KEY `ID_ALIMENTO` (`ID_ALIMENTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -358,14 +360,14 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
 DROP TABLE IF EXISTS `registro_alimentacion`;
 CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
   `ID_REGISTRO_ALIMENTACION` decimal(18,0) NOT NULL,
-  `ID_ALIMENTO` decimal(18,0) DEFAULT NULL,
+  `ID_ALIMENTO` int(11) DEFAULT NULL,
   `ID_JAULA` decimal(18,0) DEFAULT NULL,
   `CANTIDAD_REGISTRO_ALIMENTACION` decimal(10,2) NOT NULL,
   `FECHA_HORA_REG_ALIMENTACION` date NOT NULL,
   `USUARIO_REGISTRO_ALIMENTACION` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_REGISTRO_ALIMENTACION`),
-  KEY `FK_RELATIONSHIP_11` (`ID_ALIMENTO`),
-  KEY `FK_RELATIONSHIP_16` (`ID_JAULA`)
+  KEY `FK_RELATIONSHIP_16` (`ID_JAULA`),
+  KEY `ID_ALIMENTO` (`ID_ALIMENTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -515,7 +517,7 @@ ALTER TABLE `descuento`
 -- Filtros para la tabla `detalle_compra_alimento`
 --
 ALTER TABLE `detalle_compra_alimento`
-  ADD CONSTRAINT `FK_RELATIONSHIP_12` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`),
+  ADD CONSTRAINT `detalle_compra_alimento_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`),
   ADD CONSTRAINT `FK_RELATIONSHIP_14` FOREIGN KEY (`ID_COMPRA`) REFERENCES `compra` (`ID_COMPRA`);
 
 --
@@ -567,7 +569,7 @@ ALTER TABLE `proveedor`
 -- Filtros para la tabla `registro_alimentacion`
 --
 ALTER TABLE `registro_alimentacion`
-  ADD CONSTRAINT `FK_RELATIONSHIP_11` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`),
+  ADD CONSTRAINT `registro_alimentacion_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`),
   ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
 
 --
@@ -593,6 +595,7 @@ ALTER TABLE `venta`
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
+
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 ----------------------------------         SEGURIDAD     --------------------------------
@@ -605,7 +608,7 @@ ALTER TABLE `venta`
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2014 a las 23:03:57
+-- Tiempo de generación: 31-10-2014 a las 23:05:27
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -732,19 +735,19 @@ CREATE TABLE IF NOT EXISTS `ss_opciones` (
 --
 
 INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES
-('1', 'Home', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('2', 'Gestion de Ventas', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('3', 'Ingresar Cliente', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('4', 'Gestion de Clientes', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('5', 'Ingreso Peces Muertos', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('6', 'Ingreso de Muestreo', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('7', 'Ingreso Alimento a Jaula', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('8', 'Gestion de Compra de Peces', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('9', 'Movimiento Entre Jaulas', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('10', 'Gestion de Jaulas', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('11', 'Gestion de Alimento', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('12', 'Compra de Alimento', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('13', 'Gestionar Producto', '/siapa/views/index.xhtml', '1', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+('1', 'Home', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('2', 'Gestion de Ventas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('3', 'Ingresar Cliente', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('4', 'Gestion de Clientes', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('5', 'Ingreso Peces Muertos', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('6', 'Ingreso de Muestreo', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('7', 'Ingreso Alimento a Jaula', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('8', 'Gestion de Compra de Peces', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('9', 'Movimiento Entre Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('10', 'Gestion de Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('12', 'Compra de Alimento', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('13', 'Gestionar Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
