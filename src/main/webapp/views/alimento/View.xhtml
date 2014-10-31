@@ -13,19 +13,17 @@
             <h:form id="AlimentoViewForm">
 
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" columnClasses="column" rendered="#{alimentoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{alimentoManagedBean.selected != null}">
 
                         <h:outputText value="#{crudbundle.ViewAlimentoLabel_idAlimento}"/>
-                        <h:outputText value="#{alimentoController.selected.idAlimento}" title="#{crudbundle.ViewAlimentoTitle_idAlimento}"/>
+                        <h:outputText value="#{alimentoManagedBean.selected.idAlimento}" title="#{crudbundle.ViewAlimentoTitle_idAlimento}"/>
 
                         <h:outputText value="#{crudbundle.ViewAlimentoLabel_marcaAlimento}"/>
-                        <h:outputText value="#{alimentoController.selected.marcaAlimento}" title="#{crudbundle.ViewAlimentoTitle_marcaAlimento}"/>
+                        <h:outputText value="#{alimentoManagedBean.selected.marcaAlimento}" title="#{crudbundle.ViewAlimentoTitle_marcaAlimento}"/>
 
                         <h:outputText value="#{crudbundle.ViewAlimentoLabel_existenciaAlimento}"/>
-                        <h:outputText value="#{alimentoController.selected.existenciaAlimento}" title="#{crudbundle.ViewAlimentoTitle_existenciaAlimento}"/>
-
-                        <h:outputText value="#{crudbundle.ViewAlimentoLabel_idTipoAlimento}"/>
-                        <h:outputText value="#{alimentoController.selected.idTipoAlimento.descricionTipoAlimento}"/>
+                        <h:outputText value="#{alimentoManagedBean.selected.existenciaAlimento}" title="#{crudbundle.ViewAlimentoTitle_existenciaAlimento}"/>
+                       
                     </p:panelGrid>
                     <p:commandButton value="#{crudbundle.Close}" onclick="PF('AlimentoViewDialog').hide()"/>
                 </h:panelGroup>

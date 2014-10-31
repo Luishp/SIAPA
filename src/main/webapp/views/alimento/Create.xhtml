@@ -14,24 +14,13 @@
                 <h:panelGroup id="display" >
                     <p:panelGrid columns="2" rendered="#{alimentoManagedBean.selected != null}">
 
-                        <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_idAlimento}" for="idAlimento" />
-                        <p:inputText id="idAlimento" value="#{alimentoManagedBean.selected.idAlimento}" title="#{crudbundle.CreateAlimentoTitle_idAlimento}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_idAlimento}"/>
-
                         <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_marcaAlimento}" for="marcaAlimento" />
                         <p:inputText id="marcaAlimento" value="#{alimentoManagedBean.selected.marcaAlimento}" title="#{crudbundle.CreateAlimentoTitle_marcaAlimento}" size="50" maxlength="50"/>
 
                         <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_existenciaAlimento}" for="existenciaAlimento" />
                         <p:inputText id="existenciaAlimento" value="#{alimentoManagedBean.selected.existenciaAlimento}" title="#{crudbundle.CreateAlimentoTitle_existenciaAlimento}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}"/>
 
-                        <!--<p:outputLabel value="#{crudbundle.CreateAlimentoLabel_idTipoAlimento}" for="idTipoAlimento" />-->
-
-                    </p:panelGrid>
-<!--                    <p:commandButton actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:AlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlimentoCreateDialog'));">
-                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
-                    </p:commandButton>
-
-                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('AlimentoCreateDialog').hide()"/>-->
-
+                       </p:panelGrid>
 
                     <p:commandButton icon="ui-icon-disk" actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:AlimentoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,AlimentoCreateDialog);"/>
                     <span>&nbsp;</span>

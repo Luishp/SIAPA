@@ -27,7 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @Named("alimentoManagedBean")
 @Scope(WebApplicationContext.SCOPE_SESSION)
-public class AlimentoManangedBean extends GenericManagedBean<Alimento, Long> {
+public class AlimentoManangedBean extends GenericManagedBean<Alimento, Integer> {
 
     @Autowired
     @Qualifier(value = "alimentoService")
@@ -39,7 +39,7 @@ public class AlimentoManangedBean extends GenericManagedBean<Alimento, Long> {
     }
     
     @Override
-    public GenericService<Alimento, Long> getService() {
+    public GenericService<Alimento, Integer> getService() {
         return alimentoService;
     }
 

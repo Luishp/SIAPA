@@ -8,17 +8,6 @@
 
     <h:form id="AlimentoListForm">
         <p:fieldset legend="alimento">
-<!--        <p:panel header="#{crudbundle.ListAlimentoTitle}">-->
-            <!--            <p:contextMenu id="AlimentoDataTableContextMenu" for="datalist">  
-                            <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('AlimentoListForm:createButton').click();" icon="ui-icon-plus"/>
-                            <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('AlimentoListForm:viewButton').click();" icon="ui-icon-search"/>
-                            <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('AlimentoListForm:editButton').click();" icon="ui-icon-pencil"/>
-                            <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('AlimentoListForm:deleteButton').click();" icon="ui-icon-trash"/>
-                            <p:separator/>
-                            <p:menuitem value="#{crudbundle.AlimentoMenuItem_registroAlimentacionSet}" icon="ui-icon-search"  action="#{alimentoManagedBean.navigateRegistroAlimentacionSet}" disabled="#{empty alimentoManagedBean.selected.registroAlimentacionSet}" ajax="false"/>  
-                            <p:menuitem value="#{crudbundle.AlimentoMenuItem_detalleCompraAlimentoSet}" icon="ui-icon-search"  action="#{alimentoManagedBean.navigateDetalleCompraAlimentoSet}" disabled="#{empty alimentoManagedBean.selected.detalleCompraAlimentoSet}" ajax="false"/>  
-                            <p:menuitem value="#{crudbundle.AlimentoMenuItem_idTipoAlimento}" icon="ui-icon-search"  actionListener="#{alimentoManagedBean.prepareIdTipoAlimento}" update=":TipoAlimentoViewForm" oncomplete="PF('TipoAlimentoViewDialog').show()" disabled="#{empty alimentoManagedBean.selected.idTipoAlimento}"/>  
-                        </p:contextMenu>-->
 
             <p:dataTable id="datalist" var="item" value="#{alimentoManagedBean.lazyItems}" paginator="true" rows="5"  
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
@@ -26,11 +15,8 @@
                          selectionMode="single" selection="#{alimentoManagedBean.selected}"
                          rowKey="#{item.idAlimento}" paginatorPosition="bottom">
 
-                <p:ajax event="rowSelect"   update="createButton"/>
-                <p:ajax event="rowUnselect" update="createButton"/>
-<!--                <p:ajax event="rowSelect"   update=":AlimentoListForm:createButton :AlimentoListForm:viewButton :AlimentoListForm:editButton :AlimentoListForm:deleteButton :AlimentoListForm:AlimentoDataTableContextMenu" listener="#{alimentoManagedBean.resetParents}"/>
-<p:ajax event="rowUnselect" update=":AlimentoListForm:createButton :AlimentoListForm:viewButton :AlimentoListForm:editButton :AlimentoListForm:deleteButton :AlimentoListForm:AlimentoDataTableContextMenu" listener="#{alimentoManagedBean.resetParents}"/>
-<p:ajax event="rowDblselect" onsuccess="document.getElementById('AlimentoListForm:viewButton').click();"/>-->
+                <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
 
                 <p:column sortBy="#{item.idAlimento}" filterBy="#{item.idAlimento}">
                     <f:facet name="header">
@@ -55,40 +41,19 @@
                     <h:outputText value="#{item.existenciaAlimento}"/>
                 </p:column>
 
-
                 <f:facet name="footer">
                     <div class="footer-section">
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{alimentoManagedBean.prepareCreate}" update=" @(#AlimentoCreateForm)" oncomplete="AlimentoCreateDialog.show()"/>        
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{alimentoManagedBean.prepareCreate}" update=" @(#AlimentoCreateForm)" oncomplete="AlimentoCreateDialog.show()"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#AlimentoEditForm)" oncomplete="AlimentoEditDialog.show()" disabled="#{empty alimentoManagedBean.selected}"/>
+                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{alimentoManagedBean.delete}" update=":growl,datalist" disabled="#{empty alimentoManagedBean.selected}"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#AlimentoViewForm)" oncomplete="AlimentoViewDialog.show()" disabled="#{empty alimentoManagedBean.selected}"/>
+
                     </div>
                 </f:facet>
-
-
-
-                <!--<span>&nbsp;</span>-->
-<!--                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#AlimentoViewForm)" oncomplete="AlimentoViewDialog.show()" disabled="#{empty alimentoManagedBean.selected}"/>
-                <span>&nbsp;</span>
-                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#AlimentoEditForm)" oncomplete="AlimentoEditDialog.show()" disabled="#{empty alimentoManagedBean.selected}"/>-->
-
-<!--                <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{alimentoManagedBean.prepareCreate}" update=":AlimentoCreateForm" oncomplete="PF('AlimentoCreateDialog').show()"/>
-        <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":AlimentoViewForm" oncomplete="PF('AlimentoViewDialog').show()" disabled="#{empty alimentoManagedBean.selected}"/>
-        <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":AlimentoEditForm" oncomplete="PF('AlimentoEditDialog').show()" disabled="#{empty alimentoManagedBean.selected}"/>
-        <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{alimentoManagedBean.delete}" update=":growl,datalist" disabled="#{empty alimentoManagedBean.selected}">
-            <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
-        </p:commandButton>-->
 
             </p:dataTable>
         </p:fieldset>
 
-<!--          <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{bancoManagedBean.prepareCreate}" update=" @(#BancoCreateForm)" oncomplete="BancoCreateDialog.show()"/>
-                        <span>&nbsp;</span>
-                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#BancoViewForm)" oncomplete="BancoViewDialog.show()" disabled="#{empty bancoManagedBean.selected}"/>
-                        <span>&nbsp;</span>
-                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#BancoEditForm)" oncomplete="BancoEditDialog.show()" disabled="#{empty bancoManagedBean.selected}"/>
-        -->
-
-
-        <!--</p:panel>-->
-        <!--<ui:include src="/confirmation.xhtml"/>-->
     </h:form>
 
 </ui:composition>

@@ -15,35 +15,18 @@
                     <p:panelGrid  columns="2" rendered="#{alimentoManagedBean.selected != null}">
 
 
-                        <h:outputLabel value="#{crudbundle.EditAlimentoLabel_idAlimento}" for="idAlimento" />
-                        <h:outputText id="idAlimento" value="#{alimentoManagedBean.selected.idAlimento}" />
-
                         <p:outputLabel value="#{crudbundle.EditAlimentoLabel_marcaAlimento}" for="marcaAlimento" />
                         <p:inputText id="marcaAlimento" value="#{alimentoManagedBean.selected.marcaAlimento}" title="#{crudbundle.EditAlimentoTitle_marcaAlimento}" size="50" maxlength="50"/>
 
                         <p:outputLabel value="#{crudbundle.EditAlimentoLabel_existenciaAlimento}" for="existenciaAlimento" />
                         <p:inputText id="existenciaAlimento" value="#{alimentoManagedBean.selected.existenciaAlimento}" title="#{crudbundle.EditAlimentoTitle_existenciaAlimento}" required="true" requiredMessage="#{crudbundle.EditAlimentoRequiredMessage_existenciaAlimento}"/>
 
-                        <p:outputLabel value="#{crudbundle.EditAlimentoLabel_idTipoAlimento}" for="idTipoAlimento" />
-                        <p:selectOneMenu id="idTipoAlimento" value="#{alimentoManagedBean.selected.idTipoAlimento}" >
-                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tipoAlimentoController.items}"
-                                           var="idTipoAlimentoItem"
-                                           itemValue="#{idTipoAlimentoItem}"
-                                           itemLabel="#{idTipoAlimentoItem.descricionTipoAlimento.toString()}"
-                                           />
-                            <f:converter binding="#{tipoAlimentoConverter}"/>
-                        </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{alimentoManagedBean.save}" value="#{crudbundle.Save}" update="display,:AlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlimentoEditDialog'));">
-                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
-                    </p:commandButton>
-                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('AlimentoEditDialog').hide()"/>
-<!--
-                    <p:commandButton icon="ui-icon-disk" actionListener="#{bancoManagedBean.save}" value="#{crudbundle.Save}" update="display,:BancoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,BancoEditDialog);"/>
-                    <span>&nbsp;</span>
-                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="BancoEditDialog.hide()"/>-->
 
+                    <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{alimentoManagedBean.save}" value="#{crudbundle.Save}" update="display,:AlimentoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,AlimentoEditDialog);"/>
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="AlimentoEditDialog.hide()"/>
 
                 </h:panelGroup>
 
