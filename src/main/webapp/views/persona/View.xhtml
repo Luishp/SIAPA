@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaViewDlg" widgetVar="PersonaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewPersonaTitle}" closeOnEscape="true">
+
+            <h:form id="PersonaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{personaManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewPersonaLabel_idPersona}"/>
+                        <h:outputText value="#{personaManagedBean.selected.idPersona}" title="#{crudbundle.ViewPersonaTitle_idPersona}"/>
+
+                        <h:outputText value="#{crudbundle.ViewPersonaLabel_nombrePersona}"/>
+                        <h:outputText value="#{personaManagedBean.selected.nombrePersona}" title="#{crudbundle.ViewPersonaTitle_nombrePersona}"/>
+
+                        <h:outputText value="#{crudbundle.ViewPersonaLabel_direccionPersona}"/>
+                        <h:outputText value="#{personaManagedBean.selected.direccionPersona}" title="#{crudbundle.ViewPersonaTitle_direccionPersona}"/>
+
+                        <h:outputText value="#{crudbundle.ViewPersonaLabel_nrcPersona}"/>
+                        <h:outputText value="#{personaManagedBean.selected.nrcPersona}" title="#{crudbundle.ViewPersonaTitle_nrcPersona}"/>
+
+                        <h:outputText value="#{crudbundle.ViewPersonaLabel_nitPersona}"/>
+                        <h:outputText value="#{personaManagedBean.selected.nitPersona}" title="#{crudbundle.ViewPersonaTitle_nitPersona}"/>
+
+                        <h:outputText value="#{crudbundle.ViewPersonaLabel_duiPersona}"/>
+                        <h:outputText value="#{personaManagedBean.selected.duiPersona}" title="#{crudbundle.ViewPersonaTitle_duiPersona}"/>
+
+                        <h:outputText value="#{crudbundle.ViewPersonaLabel_tipoPersona}"/>
+                        <h:outputText value="#{personaManagedBean.selected.tipoPersona}" title="#{crudbundle.ViewPersonaTitle_tipoPersona}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="PF('PersonaViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

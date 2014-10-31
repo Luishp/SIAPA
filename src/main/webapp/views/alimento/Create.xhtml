@@ -7,13 +7,12 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog id="AlimentoCreateDlg" widgetVar="AlimentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateAlimentoTitle}" closeOnEscape="true">
-
+            <p:ajax event="close"  oncomplete="myrefresh();"></p:ajax>
             <h:form id="AlimentoCreateForm">
 
-                <h:panelGroup id="display" rendered="#{alimentoManagedBean.selected != null}">
-                    <p:panelGrid columns="2" columnClasses="column">
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2" rendered="#{alimentoManagedBean.selected != null}">
 
                         <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_idAlimento}" for="idAlimento" />
                         <p:inputText id="idAlimento" value="#{alimentoManagedBean.selected.idAlimento}" title="#{crudbundle.CreateAlimentoTitle_idAlimento}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_idAlimento}"/>
@@ -24,22 +23,19 @@
                         <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_existenciaAlimento}" for="existenciaAlimento" />
                         <p:inputText id="existenciaAlimento" value="#{alimentoManagedBean.selected.existenciaAlimento}" title="#{crudbundle.CreateAlimentoTitle_existenciaAlimento}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}"/>
 
-                        <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_idTipoAlimento}" for="idTipoAlimento" />
-                        <p:selectOneMenu id="idTipoAlimento" value="#{alimentoManagedBean.selected.idTipoAlimento}" >
-                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tipoAlimentoController.items}"
-                                           var="idTipoAlimentoItem"
-                                           itemValue="#{idTipoAlimentoItem}"
-                                           itemLabel="#{idTipoAlimentoItem.descricionTipoAlimento.toString()}"
-                                           />
-                            <f:converter binding="#{tipoAlimentoConverter}"/>
-                        </p:selectOneMenu>
+                        <!--<p:outputLabel value="#{crudbundle.CreateAlimentoLabel_idTipoAlimento}" for="idTipoAlimento" />-->
+
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:AlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlimentoCreateDialog'));">
+<!--                    <p:commandButton actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:AlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlimentoCreateDialog'));">
                         <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('AlimentoCreateDialog').hide()"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('AlimentoCreateDialog').hide()"/>-->
+
+
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:AlimentoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,AlimentoCreateDialog);"/>
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="AlimentoCreateDialog.hide()"/>
                 </h:panelGroup>
 
             </h:form>

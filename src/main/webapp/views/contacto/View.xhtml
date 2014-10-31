@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContactoViewDlg" widgetVar="ContactoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewContactoTitle}" closeOnEscape="true">
+
+            <h:form id="ContactoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{contactoManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewContactoLabel_idContacto}"/>
+                        <h:outputText value="#{contactoManagedBean.selected.idContacto}" title="#{crudbundle.ViewContactoTitle_idContacto}"/>
+
+                        <h:outputText value="#{crudbundle.ViewContactoLabel_nombreContacto}"/>
+                        <h:outputText value="#{contactoManagedBean.selected.nombreContacto}" title="#{crudbundle.ViewContactoTitle_nombreContacto}"/>
+
+                        <h:outputText value="#{crudbundle.ViewContactoLabel_descripcionContacto}"/>
+                        <h:outputText value="#{contactoManagedBean.selected.descripcionContacto}" title="#{crudbundle.ViewContactoTitle_descripcionContacto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="PF('ContactoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -6,11 +6,13 @@
 package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
+import com.siapa.managedbean.lazymodel.AlimentoLazyModel;
 import com.siapa.model.Alimento;
 import com.siapa.service.AlimentoService;
 import com.siapa.service.generic.GenericService;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
@@ -31,35 +33,40 @@ public class AlimentoManangedBean extends GenericManagedBean<Alimento, Long> {
     @Qualifier(value = "alimentoService")
     private AlimentoService alimentoService;
 
+    @PostConstruct
+    public void init() {
+        loadLazyModels();
+    }
+    
     @Override
     public GenericService<Alimento, Long> getService() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return alimentoService;
     }
 
     @Override
     public LazyDataModel<Alimento> getNewLazyModel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new AlimentoLazyModel(alimentoService);
     }
 
     
-    @Override
-    public void saveNew(ActionEvent event) {
-       if(getUsuario()!=null){
-        String msg = ResourceBundle.getBundle("/crudbundle").getString(Alimento.class.getSimpleName() + "Usuario creado con exito");
-//        getSelected().setUsuarioRegistro(getUsuario());
-//        getSelected().setFechaRegistro(new Date());
-        persist(PersistAction.CREATE, msg);
-       }
-    }
-
-    @Override
-    public void save(ActionEvent event) {
-        String msg = ResourceBundle.getBundle("/crudbundle").getString(Alimento.class.getSimpleName() + "Usuario actualizado con exito");
-//        getSelected().setUsuarioUltimamodificacion(getUsuario());
-//        getSelected().setFechaUltimamodificacion(new Date());
-        persist(PersistAction.UPDATE, msg);
-        if (!isValidationFailed()) {
-           items = null; // Invalidate list of items to trigger re-query.
-        }
-    }
+//    @Override
+//    public void saveNew(ActionEvent event) {
+//       if(getUsuario()!=null){
+//        String msg = ResourceBundle.getBundle("/crudbundle").getString(Alimento.class.getSimpleName() + "Usuario creado con exito");
+////        getSelected().setUsuarioRegistro(getUsuario());
+////        getSelected().setFechaRegistro(new Date());
+//        persist(PersistAction.CREATE, msg);
+//       }
+//    }
+//
+//    @Override
+//    public void save(ActionEvent event) {
+//        String msg = ResourceBundle.getBundle("/crudbundle").getString(Alimento.class.getSimpleName() + "Usuario actualizado con exito");
+////        getSelected().setUsuarioUltimamodificacion(getUsuario());
+////        getSelected().setFechaUltimamodificacion(new Date());
+//        persist(PersistAction.UPDATE, msg);
+//        if (!isValidationFailed()) {
+//           items = null; // Invalidate list of items to trigger re-query.
+//        }
+//    }
 }

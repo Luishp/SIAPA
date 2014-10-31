@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TipoComprobanteListForm">
+
+        <p:panel header="#{crudbundle.ListTipoComprobanteTitle}">
+<!--            <p:contextMenu id="TipoComprobanteDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('TipoComprobanteListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('TipoComprobanteListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('TipoComprobanteListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('TipoComprobanteListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{crudbundle.TipoComprobanteMenuItem_comprobanteVentaSet}" icon="ui-icon-search"  action="#{tipoComprobanteManagedBean.navigateComprobanteVentaSet}" disabled="#{empty tipoComprobanteManagedBean.selected.comprobanteVentaSet}" ajax="false"/>  
+            </p:contextMenu>-->
+            <p:dataTable id="datalist"
+                         value="#{tipoComprobanteManagedBean.items}"
+                         var="item"
+                         rowKey="#{item.idTipoComprobante}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{tipoComprobanteManagedBean.selected}">
+
+                <p:ajax event="rowSelect"   update=":TipoComprobanteListForm:createButton :TipoComprobanteListForm:viewButton :TipoComprobanteListForm:editButton :TipoComprobanteListForm:deleteButton :TipoComprobanteListForm:TipoComprobanteDataTableContextMenu" listener="#{tipoComprobanteManagedBean.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":TipoComprobanteListForm:createButton :TipoComprobanteListForm:viewButton :TipoComprobanteListForm:editButton :TipoComprobanteListForm:deleteButton :TipoComprobanteListForm:TipoComprobanteDataTableContextMenu" listener="#{tipoComprobanteManagedBean.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TipoComprobanteListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idTipoComprobante}" filterBy="#{item.idTipoComprobante}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListTipoComprobanteTitle_idTipoComprobante}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoComprobante}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombreTipoComprobante}" filterBy="#{item.nombreTipoComprobante}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListTipoComprobanteTitle_nombreTipoComprobante}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreTipoComprobante}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcionTipoComprobante}" filterBy="#{item.descripcionTipoComprobante}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListTipoComprobanteTitle_descripcionTipoComprobante}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcionTipoComprobante}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{tipoComprobanteManagedBean.prepareCreate}" update=":TipoComprobanteCreateForm" oncomplete="PF('TipoComprobanteCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":TipoComprobanteViewForm" oncomplete="PF('TipoComprobanteViewDialog').show()" disabled="#{empty tipoComprobanteManagedBean.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":TipoComprobanteEditForm" oncomplete="PF('TipoComprobanteEditDialog').show()" disabled="#{empty tipoComprobanteManagedBean.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{tipoComprobanteManagedBean.delete}" update=":growl,datalist" disabled="#{empty tipoComprobanteManagedBean.selected}">
+                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

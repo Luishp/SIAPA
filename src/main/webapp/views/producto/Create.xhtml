@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductoCreateDlg" widgetVar="ProductoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateProductoTitle}" closeOnEscape="true">
+
+            <h:form id="ProductoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{productoManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_idProducto}" for="idProducto" />
+                        <p:inputText id="idProducto" value="#{productoManagedBean.selected.idProducto}" title="#{crudbundle.CreateProductoTitle_idProducto}" required="true" requiredMessage="#{crudbundle.CreateProductoRequiredMessage_idProducto}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_nombreProducto}" for="nombreProducto" />
+                        <p:inputText id="nombreProducto" value="#{productoManagedBean.selected.nombreProducto}" title="#{crudbundle.CreateProductoTitle_nombreProducto}" required="true" requiredMessage="#{crudbundle.CreateProductoRequiredMessage_nombreProducto}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_descripcionProducto}" for="descripcionProducto" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionProducto" value="#{productoManagedBean.selected.descripcionProducto}" title="#{crudbundle.CreateProductoTitle_descripcionProducto}" />
+
+                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_activoProducto}" for="activoProducto" />
+                        <p:selectBooleanCheckbox id="activoProducto" value="#{productoManagedBean.selected.activoProducto}" required="true" requiredMessage="#{crudbundle.CreateProductoRequiredMessage_activoProducto}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_precioProducto}" for="precioProducto" />
+                        <p:inputText id="precioProducto" value="#{productoManagedBean.selected.precioProducto}" title="#{crudbundle.CreateProductoTitle_precioProducto}" required="true" requiredMessage="#{crudbundle.CreateProductoRequiredMessage_precioProducto}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{productoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:ProductoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ProductoCreateDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('ProductoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

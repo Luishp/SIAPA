@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ContactoEditDlg" widgetVar="ContactoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditContactoTitle}" closeOnEscape="true">
+
+            <h:form id="ContactoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{contactoManagedBean.selected != null}">
+
+
+                        <h:outputLabel value="#{crudbundle.EditContactoLabel_idContacto}" for="idContacto" />
+                        <h:outputText id="idContacto" value="#{contactoManagedBean.selected.idContacto}" />
+
+                        <p:outputLabel value="#{crudbundle.EditContactoLabel_nombreContacto}" for="nombreContacto" />
+                        <p:inputText id="nombreContacto" value="#{contactoManagedBean.selected.nombreContacto}" title="#{crudbundle.EditContactoTitle_nombreContacto}" required="true" requiredMessage="#{crudbundle.EditContactoRequiredMessage_nombreContacto}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.EditContactoLabel_descripcionContacto}" for="descripcionContacto" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionContacto" value="#{contactoManagedBean.selected.descripcionContacto}" title="#{crudbundle.EditContactoTitle_descripcionContacto}" required="true" requiredMessage="#{crudbundle.EditContactoRequiredMessage_descripcionContacto}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{contactoManagedBean.save}" value="#{crudbundle.Save}" update="display,:ContactoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ContactoEditDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('ContactoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

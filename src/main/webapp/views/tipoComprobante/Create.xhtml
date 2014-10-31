@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoComprobanteCreateDlg" widgetVar="TipoComprobanteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateTipoComprobanteTitle}" closeOnEscape="true">
+
+            <h:form id="TipoComprobanteCreateForm">
+
+                <h:panelGroup id="display" rendered="#{tipoComprobanteManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{crudbundle.CreateTipoComprobanteLabel_idTipoComprobante}" for="idTipoComprobante" />
+                        <p:inputText id="idTipoComprobante" value="#{tipoComprobanteManagedBean.selected.idTipoComprobante}" title="#{crudbundle.CreateTipoComprobanteTitle_idTipoComprobante}" required="true" requiredMessage="#{crudbundle.CreateTipoComprobanteRequiredMessage_idTipoComprobante}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateTipoComprobanteLabel_nombreTipoComprobante}" for="nombreTipoComprobante" />
+                        <p:inputText id="nombreTipoComprobante" value="#{tipoComprobanteManagedBean.selected.nombreTipoComprobante}" title="#{crudbundle.CreateTipoComprobanteTitle_nombreTipoComprobante}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateTipoComprobanteLabel_descripcionTipoComprobante}" for="descripcionTipoComprobante" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionTipoComprobante" value="#{tipoComprobanteManagedBean.selected.descripcionTipoComprobante}" title="#{crudbundle.CreateTipoComprobanteTitle_descripcionTipoComprobante}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoComprobanteManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:TipoComprobanteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TipoComprobanteCreateDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('TipoComprobanteCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

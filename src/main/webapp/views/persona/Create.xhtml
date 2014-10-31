@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaCreateDlg" widgetVar="PersonaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreatePersonaTitle}" closeOnEscape="true">
+
+            <h:form id="PersonaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{personaManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{crudbundle.CreatePersonaLabel_idPersona}" for="idPersona" />
+                        <p:inputText id="idPersona" value="#{personaManagedBean.selected.idPersona}" title="#{crudbundle.CreatePersonaTitle_idPersona}" required="true" requiredMessage="#{crudbundle.CreatePersonaRequiredMessage_idPersona}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePersonaLabel_nombrePersona}" for="nombrePersona" />
+                        <p:inputText id="nombrePersona" value="#{personaManagedBean.selected.nombrePersona}" title="#{crudbundle.CreatePersonaTitle_nombrePersona}" required="true" requiredMessage="#{crudbundle.CreatePersonaRequiredMessage_nombrePersona}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePersonaLabel_direccionPersona}" for="direccionPersona" />
+                        <p:inputTextarea rows="4" cols="30" id="direccionPersona" value="#{personaManagedBean.selected.direccionPersona}" title="#{crudbundle.CreatePersonaTitle_direccionPersona}" />
+
+                        <p:outputLabel value="#{crudbundle.CreatePersonaLabel_nrcPersona}" for="nrcPersona" />
+                        <p:inputText id="nrcPersona" value="#{personaManagedBean.selected.nrcPersona}" title="#{crudbundle.CreatePersonaTitle_nrcPersona}" size="14" maxlength="14"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePersonaLabel_nitPersona}" for="nitPersona" />
+                        <p:inputText id="nitPersona" value="#{personaManagedBean.selected.nitPersona}" title="#{crudbundle.CreatePersonaTitle_nitPersona}" size="17" maxlength="17"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePersonaLabel_duiPersona}" for="duiPersona" />
+                        <p:inputText id="duiPersona" value="#{personaManagedBean.selected.duiPersona}" title="#{crudbundle.CreatePersonaTitle_duiPersona}" size="14" maxlength="14"/>
+
+                        <p:outputLabel value="#{crudbundle.CreatePersonaLabel_tipoPersona}" for="tipoPersona" />
+                        <p:inputText id="tipoPersona" value="#{personaManagedBean.selected.tipoPersona}" title="#{crudbundle.CreatePersonaTitle_tipoPersona}" required="true" requiredMessage="#{crudbundle.CreatePersonaRequiredMessage_tipoPersona}" size="1" maxlength="1"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personaManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PersonaCreateDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('PersonaCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

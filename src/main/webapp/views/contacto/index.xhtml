@@ -4,21 +4,18 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/templates/commonLayout.xhtml">
+                template="/template.xhtml">
 
     <ui:define name="title">
-        <h:outputText value="#{crudbundle.AlimentoTitle}"/>
+        <h:outputText value="#{crudbundle.ContactoTitle}"/>
     </ui:define>
 
-    <ui:define name="content">
+    <ui:define name="body">
 
-        <ui:include src="List.xhtml"/>
-        <ui:include src="Create.xhtml"/>
-    
-<!--        <ui:include src="View.xhtml"/>
-            <ui:include src="Edit.xhtml"/>
-        <ui:include src="Create.xhtml"/>-->
-        <!--<ui:include src="/tipoAlimento/View.xhtml"/>-->
+        <ui:include src="/contacto/List.xhtml"/>
+        <ui:include src="/contacto/View.xhtml"/>
+        <ui:include src="/contacto/Edit.xhtml"/>
+        <ui:include src="/contacto/Create.xhtml"/>
 
     </ui:define>
 

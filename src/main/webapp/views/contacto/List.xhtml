@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ContactoListForm">
+
+        <p:panel header="#{crudbundle.ListContactoTitle}">
+            <p:contextMenu id="ContactoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('ContactoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('ContactoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('ContactoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('ContactoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{crudbundle.ContactoMenuItem_clienteContactoSet}" icon="ui-icon-search"  action="#{contactoManagedBean.navigateClienteContactoSet}" disabled="#{empty contactoManagedBean.selected.clienteContactoSet}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{contactoManagedBean.items}"
+                         var="item"
+                         rowKey="#{item.idContacto}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{contactoManagedBean.selected}">
+
+                <p:ajax event="rowSelect"   update=":ContactoListForm:createButton :ContactoListForm:viewButton :ContactoListForm:editButton :ContactoListForm:deleteButton :ContactoListForm:ContactoDataTableContextMenu" listener="#{contactoManagedBean.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":ContactoListForm:createButton :ContactoListForm:viewButton :ContactoListForm:editButton :ContactoListForm:deleteButton :ContactoListForm:ContactoDataTableContextMenu" listener="#{contactoManagedBean.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ContactoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idContacto}" filterBy="#{item.idContacto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListContactoTitle_idContacto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idContacto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombreContacto}" filterBy="#{item.nombreContacto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListContactoTitle_nombreContacto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreContacto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcionContacto}" filterBy="#{item.descripcionContacto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListContactoTitle_descripcionContacto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcionContacto}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{contactoManagedBean.prepareCreate}" update=":ContactoCreateForm" oncomplete="PF('ContactoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":ContactoViewForm" oncomplete="PF('ContactoViewDialog').show()" disabled="#{empty contactoManagedBean.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":ContactoEditForm" oncomplete="PF('ContactoEditDialog').show()" disabled="#{empty contactoManagedBean.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{contactoManagedBean.delete}" update=":growl,datalist" disabled="#{empty contactoManagedBean.selected}">
+                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

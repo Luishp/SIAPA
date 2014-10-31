@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContactoCreateDlg" widgetVar="ContactoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateContactoTitle}" closeOnEscape="true">
+
+            <h:form id="ContactoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{contactoManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{crudbundle.CreateContactoLabel_idContacto}" for="idContacto" />
+                        <p:inputText id="idContacto" value="#{contactoManagedBean.selected.idContacto}" title="#{crudbundle.CreateContactoTitle_idContacto}" required="true" requiredMessage="#{crudbundle.CreateContactoRequiredMessage_idContacto}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateContactoLabel_nombreContacto}" for="nombreContacto" />
+                        <p:inputText id="nombreContacto" value="#{contactoManagedBean.selected.nombreContacto}" title="#{crudbundle.CreateContactoTitle_nombreContacto}" required="true" requiredMessage="#{crudbundle.CreateContactoRequiredMessage_nombreContacto}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateContactoLabel_descripcionContacto}" for="descripcionContacto" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionContacto" value="#{contactoManagedBean.selected.descripcionContacto}" title="#{crudbundle.CreateContactoTitle_descripcionContacto}" required="true" requiredMessage="#{crudbundle.CreateContactoRequiredMessage_descripcionContacto}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{contactoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:ContactoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ContactoCreateDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('ContactoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
