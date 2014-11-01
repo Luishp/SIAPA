@@ -603,12 +603,13 @@ ALTER TABLE `venta`
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 
+
 -- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2014 a las 23:05:27
+-- Tiempo de generación: 01-11-2014 a las 22:15:55
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -708,7 +709,8 @@ INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES
 ('4', '10'),
 ('5', '11'),
 ('5', '12'),
-('8', '13');
+('8', '13'),
+('8', '14');
 
 -- --------------------------------------------------------
 
@@ -747,7 +749,8 @@ INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUA
 ('10', 'Gestion de Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('12', 'Compra de Alimento', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('13', 'Gestionar Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+('13', 'Tipo de Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('14', 'Ingresar Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-11-01 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -804,6 +807,7 @@ INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES
 ('4', '1'),
 ('5', '1'),
 ('6', '1'),
+('8', '1'),
 ('1', '2'),
 ('2', '2'),
 ('3', '2'),
@@ -857,7 +861,8 @@ INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES
 ('2', '10'),
 ('1', '11'),
 ('1', '12'),
-('3', '13');
+('3', '13'),
+('1', '14');
 
 -- --------------------------------------------------------
 
@@ -974,3 +979,7 @@ ALTER TABLE `ss_roles_usuarios`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
