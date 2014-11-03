@@ -7,38 +7,30 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <h:form id="ClienteListForm">
-
-        <p:panel header="#{crudbundle.ListClienteTitle}">
-            <p:contextMenu id="ClienteDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('ClienteListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('ClienteListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('ClienteListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('ClienteListForm:deleteButton').click();" icon="ui-icon-trash"/>
-                <p:separator/>
-                <p:menuitem value="#{crudbundle.ClienteMenuItem_ventaSet}" icon="ui-icon-search"  action="#{clienteManagedBean.navigateVentaSet}" disabled="#{empty clienteManagedBean.selected.ventaSet}" ajax="false"/>  
-                <p:menuitem value="#{crudbundle.ClienteMenuItem_idPersona}" icon="ui-icon-search"  actionListener="#{clienteManagedBean.prepareIdPersona}" update=":PersonaViewForm" oncomplete="PF('PersonaViewDialog').show()" disabled="#{empty clienteManagedBean.selected.idPersona}"/>  
-                <p:menuitem value="#{crudbundle.ClienteMenuItem_idCategorias}" icon="ui-icon-search"  actionListener="#{clienteManagedBean.prepareIdCategorias}" update=":CategoriasViewForm" oncomplete="PF('CategoriasViewDialog').show()" disabled="#{empty clienteManagedBean.selected.idCategorias}"/>  
-            </p:contextMenu>
-            <p:dataTable id="datalist"
-                         value="#{clienteManagedBean.items}"
+        <p:fieldset legend="cliente">
+            <p:dataTable id="datalist" 
                          var="item"
-                         rowKey="#{item.idCliente}"
-                         paginator="true"
-                         rows="10"
-                         rowsPerPageTemplate="10,20,30,40,50"
+                         value="#{clienteManagedBean.lazyItems}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
                          selectionMode="single"
-                         selection="#{clienteManagedBean.selected}">
+                         selection="#{clienteManagedBean.selected}"
+                         rowKey="#{item.idCliente}" 
+                         paginatorPosition="bottom">   
 
-                <p:ajax event="rowSelect"   update=":ClienteListForm:createButton :ClienteListForm:viewButton :ClienteListForm:editButton :ClienteListForm:deleteButton :ClienteListForm:ClienteDataTableContextMenu" listener="#{clienteManagedBean.resetParents}"/>
-                <p:ajax event="rowUnselect" update=":ClienteListForm:createButton :ClienteListForm:viewButton :ClienteListForm:editButton :ClienteListForm:deleteButton :ClienteListForm:ClienteDataTableContextMenu" listener="#{clienteManagedBean.resetParents}"/>
-                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ClienteListForm:viewButton').click();"/>
+                <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
 
-                <p:column sortBy="#{item.idCliente}" filterBy="#{item.idCliente}">
+<!--                <p:column sortBy="#{item.idCliente}" filterBy="#{item.idCliente}">
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListClienteTitle_idCliente}"/>
                     </f:facet>
                     <h:outputText value="#{item.idCliente}"/>
-                </p:column>
+                </p:column>-->
 
 
                 <p:column sortBy="#{item.nombreClienteCompVenta}" filterBy="#{item.nombreClienteCompVenta}">
@@ -73,33 +65,42 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.idPersona.idPersona}" filterBy="#{item.idPersona.idPersona}">
+<!--                <p:column sortBy="#{item.idPersona.idPersona}" filterBy="#{item.idPersona.idPersona}">
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListClienteTitle_idPersona}"/>
                     </f:facet>
                     <h:outputText value="#{item.idPersona.idPersona}"/>
-                </p:column>
+                </p:column>-->
 
-                <!--
-                                    <p:column sortBy="#{item.idCategorias.descripcionCategorias}" filterBy="#{item.idCategorias.descripcionCategorias}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{crudbundle.ListClienteTitle_idCategorias}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.idCategorias.descripcionCategorias}"/>
-                                    </p:column>
+                <!--                
+                                                    <p:column sortBy="#{item.idCategorias.descripcionCategorias}" filterBy="#{item.idCategorias.descripcionCategorias}">
+                                                        <f:facet name="header">
+                                                            <h:outputText value="#{crudbundle.ListClienteTitle_idCategorias}"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.idCategorias.descripcionCategorias}"/>
+                                                    </p:column>
                 -->
+
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{clienteManagedBean.toCreateCliente}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#ClienteEditForm)" oncomplete="ClienteEditDialog.show()" disabled="#{empty clienteManagedBean.selected}"/>
+                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{clienteManagedBean.delete}" update=":growl,datalist" disabled="#{empty clienteManagedBean.selected}"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ClienteViewForm)" oncomplete="ClienteViewDialog.show()" disabled="#{empty clienteManagedBean.selected}"/>
+
+                    </div>
+                </f:facet>
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{clienteManagedBean.prepareCreate}" update=":ClienteCreateForm" oncomplete="PF('ClienteCreateDialog').show()"/>
+<!--            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{clienteManagedBean.prepareCreate}" update=":ClienteCreateForm" oncomplete="PF('ClienteCreateDialog').show()"/>
             <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":ClienteViewForm" oncomplete="PF('ClienteViewDialog').show()" disabled="#{empty clienteManagedBean.selected}"/>
             <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":ClienteEditForm" oncomplete="PF('ClienteEditDialog').show()" disabled="#{empty clienteManagedBean.selected}"/>
             <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{clienteManagedBean.delete}" update=":growl,datalist" disabled="#{empty clienteManagedBean.selected}">
                 <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
-            </p:commandButton>
+            </p:commandButton>-->
 
-        </p:panel>
-        <ui:include src="/confirmation.xhtml"/>
+        </p:fieldset>
     </h:form>
-
 </ui:composition>

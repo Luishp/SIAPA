@@ -7,30 +7,41 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
+        <!--<p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateClienteTitle}" closeOnEscape="true">-->  
+        <!--<p:ajax event="close"  oncomplete="myrefresh();"></p:ajax>-->        
+        <h:form id="ClienteCreateForm">
 
-        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateClienteTitle}" closeOnEscape="true">
+            <h:panelGroup id="display" >
+                <p:panelGrid columns="2">
 
-            <h:form id="ClienteCreateForm">
+                    <p:columnGroup>
+                        <p:outputLabel value="Persona" for="persona" />
+                        <p:selectOneMenu id="persona" value="#{clienteManagedBean.persona}" converter="#{personaConverter}" panelStyle="width:180px"
+                                         effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{clienteManagedBean.personas}" var="persona" itemLabel="#{persona.nombrePersona}" itemValue="#{persona}" />
 
-                <h:panelGroup id="display" rendered="#{clienteManagedBean.selected != null}">
-                    <p:panelGrid columns="2" columnClasses="column">
+                            <p:column>
+                                <h:outputText value="#{t.nombrePersona}" />
+                            </p:column>
+                        </p:selectOneMenu>
+                    </p:columnGroup>
 
-                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_idCliente}" for="idCliente" />
-                        <p:inputText id="idCliente" value="#{clienteManagedBean.selected.idCliente}" title="#{crudbundle.CreateClienteTitle_idCliente}" required="true" requiredMessage="#{crudbundle.CreateClienteRequiredMessage_idCliente}"/>
+<!--                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_idCliente}" for="idCliente" />
+<p:inputText id="idCliente" value="#{clienteManagedBean.selected.idCliente}" title="#{crudbundle.CreateClienteTitle_idCliente}" required="true" requiredMessage="#{crudbundle.CreateClienteRequiredMessage_idCliente}"/>-->
 
-                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_nombreClienteCompVenta}" for="nombreClienteCompVenta" />
-                        <p:inputText id="nombreClienteCompVenta" value="#{clienteManagedBean.selected.nombreClienteCompVenta}" title="#{crudbundle.CreateClienteTitle_nombreClienteCompVenta}" required="true" requiredMessage="#{crudbundle.CreateClienteRequiredMessage_nombreClienteCompVenta}" size="50" maxlength="50"/>
+                    <p:outputLabel value="#{crudbundle.CreateClienteLabel_nombreClienteCompVenta}" for="nombreClienteCompVenta" />
+                    <p:inputText id="nombreClienteCompVenta" value="#{clienteManagedBean.selected.nombreClienteCompVenta}" title="#{crudbundle.CreateClienteTitle_nombreClienteCompVenta}" required="true" requiredMessage="#{crudbundle.CreateClienteRequiredMessage_nombreClienteCompVenta}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_apellidosCliente}" for="apellidosCliente" />
-                        <p:inputText id="apellidosCliente" value="#{clienteManagedBean.selected.apellidosCliente}" title="#{crudbundle.CreateClienteTitle_apellidosCliente}" size="50" maxlength="50"/>
+                    <p:outputLabel value="#{crudbundle.CreateClienteLabel_apellidosCliente}" for="apellidosCliente" />
+                    <p:inputText id="apellidosCliente" value="#{clienteManagedBean.selected.apellidosCliente}" title="#{crudbundle.CreateClienteTitle_apellidosCliente}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_direccionCliente}" for="direccionCliente" />
-                        <p:inputTextarea rows="4" cols="30" id="direccionCliente" value="#{clienteManagedBean.selected.direccionCliente}" title="#{crudbundle.CreateClienteTitle_direccionCliente}" />
+                    <p:outputLabel value="#{crudbundle.CreateClienteLabel_direccionCliente}" for="direccionCliente" />
+                    <p:inputTextarea rows="4" cols="30" id="direccionCliente" value="#{clienteManagedBean.selected.direccionCliente}" title="#{crudbundle.CreateClienteTitle_direccionCliente}" />
 
-                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_tipoCliente}" for="tipoCliente" />
-                        <p:inputText id="tipoCliente" value="#{clienteManagedBean.selected.tipoCliente}" title="#{crudbundle.CreateClienteTitle_tipoCliente}" required="true" requiredMessage="#{crudbundle.CreateClienteRequiredMessage_tipoCliente}" size="1" maxlength="1"/>
+                    <p:outputLabel value="#{crudbundle.CreateClienteLabel_tipoCliente}" for="tipoCliente" />
+                    <p:inputText id="tipoCliente" value="#{clienteManagedBean.selected.tipoCliente}" title="#{crudbundle.CreateClienteTitle_tipoCliente}" required="true" requiredMessage="#{crudbundle.CreateClienteRequiredMessage_tipoCliente}" size="1" maxlength="1"/>
 
-                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_idPersona}" for="idPersona" />
+<!--                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_idPersona}" for="idPersona" />
                         <p:selectOneMenu id="idPersona" value="#{clienteManagedBean.selected.idPersona}" >
                             <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
                             <f:selectItems value="#{personaController.items}"
@@ -39,9 +50,9 @@
                                            itemLabel="#{idPersonaItem.idPersona.toString()}"
                                            />
                             <f:converter binding="#{personaConverter}"/>
-                        </p:selectOneMenu>
+                        </p:selectOneMenu>-->
 
-                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_idCategorias}" for="idCategorias" />
+<!--                        <p:outputLabel value="#{crudbundle.CreateClienteLabel_idCategorias}" for="idCategorias" />
                         <p:selectOneMenu id="idCategorias" value="#{clienteManagedBean.selected.idCategorias}" >
                             <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
                             <f:selectItems value="#{categoriasController.items}"
@@ -50,18 +61,25 @@
                                            itemLabel="#{idCategoriasItem.descripcionCategorias.toString()}"
                                            />
                             <f:converter binding="#{categoriasConverter}"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{clienteManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ClienteCreateDialog'));">
-                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
-                    </p:commandButton>
+                        </p:selectOneMenu>-->
+                </p:panelGrid>
+<!--                    <p:commandButton actionListener="#{clienteManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ClienteCreateDialog'));">
+                    <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
 
-                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('ClienteCreateDialog').hide()"/>
-                </h:panelGroup>
+                <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('ClienteCreateDialog').hide()"/>-->
 
-            </h:form>
 
-        </p:dialog>
+                <p:commandButton icon="ui-icon-disk" actionListener="#{clienteManagedBean.saveNew}" value="#{crudbundle.Save}" />
+                <span>&nbsp;</span>
+                <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="ClienteCreateDialog.hide()"/>
+
+
+            </h:panelGroup>
+
+        </h:form>
+
+        <!--</p:dialog>-->
 
     </ui:composition>
 

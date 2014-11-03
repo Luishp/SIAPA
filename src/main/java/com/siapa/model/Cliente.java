@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,11 +29,14 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")})
 public class Cliente implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_CLIENTE", nullable = false)
-    private Long idCliente;
+    @GeneratedValue
+    @Column(name = "ID_CLIENTE", nullable = true)
+    private Integer idCliente;
+
     @Basic(optional = false)
     @Column(name = "NOMBRE_CLIENTE_COMP_VENTA", nullable = false, length = 50)
     private String nombreClienteCompVenta;
@@ -56,21 +59,21 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long idCliente) {
+    public Cliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Long idCliente, String nombreClienteCompVenta, String tipoCliente) {
+    public Cliente(Integer idCliente, String nombreClienteCompVenta, String tipoCliente) {
         this.idCliente = idCliente;
         this.nombreClienteCompVenta = nombreClienteCompVenta;
         this.tipoCliente = tipoCliente;
     }
 
-    public Long getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Long idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -154,5 +157,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return "com.siapa.model.Cliente[ idCliente=" + idCliente + " ]";
     }
-    
+
 }
