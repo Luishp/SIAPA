@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2014 a las 23:07:20
+-- Tiempo de generación: 03-11-2014 a las 06:04:38
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -31,7 +31,7 @@ USE `siapa`;
 DROP TABLE IF EXISTS `alimento`;
 CREATE TABLE IF NOT EXISTS `alimento` (
   `ID_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_TIPO_ALIMENTO` decimal(18,0) DEFAULT NULL,
+  `ID_TIPO_ALIMENTO` int(11) DEFAULT NULL,
   `MARCA_ALIMENTO` varchar(50) DEFAULT NULL,
   `EXISTENCIA_ALIMENTO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_ALIMENTO`),
@@ -69,7 +69,7 @@ DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `ID_CLIENTE` decimal(18,0) NOT NULL,
   `ID_CATEGORIAS` decimal(18,0) DEFAULT NULL,
-  `ID_PERSONA` decimal(18,0) DEFAULT NULL,
+  `ID_PERSONA` int(11) DEFAULT NULL,
   `NOMBRE_CLIENTE_COMP_VENTA` varchar(50) NOT NULL,
   `APELLIDOS_CLIENTE` varchar(50) DEFAULT NULL,
   `DIRECCION_CLIENTE` varchar(500) DEFAULT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 DROP TABLE IF EXISTS `cliente_contacto`;
 CREATE TABLE IF NOT EXISTS `cliente_contacto` (
   `ID_CONTACTO` decimal(18,0) NOT NULL,
-  `ID_PERSONA` decimal(18,0) NOT NULL,
+  `ID_PERSONA` int(11) NOT NULL,
   `VALOR_CLIENTE_CONTACTO` varchar(100) NOT NULL,
   `ACTIVO_CLIENTE_CONTACTO` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID_CONTACTO`,`ID_PERSONA`),
@@ -309,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `muestreo` (
 
 DROP TABLE IF EXISTS `persona`;
 CREATE TABLE IF NOT EXISTS `persona` (
-  `ID_PERSONA` decimal(18,0) NOT NULL,
+  `ID_PERSONA` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_PERSONA` varchar(50) NOT NULL,
   `DIRECCION_PERSONA` varchar(500) DEFAULT NULL,
   `NRC_PERSONA` varchar(14) DEFAULT NULL,
@@ -317,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `DUI_PERSONA` varchar(14) DEFAULT NULL,
   `TIPO_PERSONA` varchar(1) NOT NULL,
   PRIMARY KEY (`ID_PERSONA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -344,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
 DROP TABLE IF EXISTS `proveedor`;
 CREATE TABLE IF NOT EXISTS `proveedor` (
   `ID_PROVEEDOR` decimal(18,0) NOT NULL,
-  `ID_PERSONA` decimal(18,0) DEFAULT NULL,
+  `ID_PERSONA` int(11) DEFAULT NULL,
   `FECHA_PROVEEDOR` date NOT NULL,
   `USUARIO_PROVEEDOR` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_PROVEEDOR`),
@@ -396,12 +396,23 @@ CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
 
 DROP TABLE IF EXISTS `tipo_alimento`;
 CREATE TABLE IF NOT EXISTS `tipo_alimento` (
-  `ID_TIPO_ALIMENTO` decimal(18,0) NOT NULL,
+  `ID_TIPO_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_TIPO_ALIMENTO` varchar(50) NOT NULL,
   `DESCRICION_TIPO_ALIMENTO` varchar(500) DEFAULT NULL,
   `PORCE_PROTEINA_TIPO_ALIMENTO` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`ID_TIPO_ALIMENTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `tipo_alimento`
+--
+
+INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES
+(3, 'asdasddsad', 'asdasdda', '123'),
+(4, 'prueba2', 'prieubabababa', '21.5'),
+(6, 'Actualizado', 'ksdjn jknkfjns  ', '5.5'),
+(7, 'compresnadas', 'aspmc', '.2.2'),
+(10, 'p2', 'p2', '2.3');
 
 -- --------------------------------------------------------
 
@@ -477,21 +488,21 @@ CREATE TABLE IF NOT EXISTS `venta` (
 -- Filtros para la tabla `alimento`
 --
 ALTER TABLE `alimento`
-  ADD CONSTRAINT `FK_RELATIONSHIP_13` FOREIGN KEY (`ID_TIPO_ALIMENTO`) REFERENCES `tipo_alimento` (`ID_TIPO_ALIMENTO`);
+  ADD CONSTRAINT `alimento_ibfk_1` FOREIGN KEY (`ID_TIPO_ALIMENTO`) REFERENCES `tipo_alimento` (`ID_TIPO_ALIMENTO`);
 
 --
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `FK_RELATIONSHIP_22` FOREIGN KEY (`ID_CATEGORIAS`) REFERENCES `categorias` (`ID_CATEGORIAS`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_25` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`);
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_22` FOREIGN KEY (`ID_CATEGORIAS`) REFERENCES `categorias` (`ID_CATEGORIAS`);
 
 --
 -- Filtros para la tabla `cliente_contacto`
 --
 ALTER TABLE `cliente_contacto`
-  ADD CONSTRAINT `FK_CLIENTE_CONTACTO` FOREIGN KEY (`ID_CONTACTO`) REFERENCES `contacto` (`ID_CONTACTO`),
-  ADD CONSTRAINT `FK_CLIENTE_CONTACTO2` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`);
+  ADD CONSTRAINT `cliente_contacto_ibfk_1` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`),
+  ADD CONSTRAINT `FK_CLIENTE_CONTACTO` FOREIGN KEY (`ID_CONTACTO`) REFERENCES `contacto` (`ID_CONTACTO`);
 
 --
 -- Filtros para la tabla `compra`
@@ -563,14 +574,14 @@ ALTER TABLE `muestreo`
 -- Filtros para la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  ADD CONSTRAINT `FK_RELATIONSHIP_26` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`);
+  ADD CONSTRAINT `proveedor_ibfk_1` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`);
 
 --
 -- Filtros para la tabla `registro_alimentacion`
 --
 ALTER TABLE `registro_alimentacion`
-  ADD CONSTRAINT `registro_alimentacion_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
+  ADD CONSTRAINT `registro_alimentacion_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`);
 
 --
 -- Filtros para la tabla `registro_mortalidad`
@@ -594,6 +605,7 @@ ALTER TABLE `venta`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
 
 -------------------------------------------------------------------------------------------------

@@ -9,11 +9,19 @@
     <h:form id="AlimentoListForm">
         <p:fieldset legend="alimento">
 
-            <p:dataTable id="datalist" var="item" value="#{alimentoManagedBean.lazyItems}" paginator="true" rows="5"  
+            <p:dataTable id="datalist" 
+                         var="item"
+                         value="#{alimentoManagedBean.lazyItems}" 
+                         paginator="true" 
+                         rows="5"  
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
-                         rowsPerPageTemplate="5,10,15"  lazy="true" resizableColumns="true"  
-                         selectionMode="single" selection="#{alimentoManagedBean.selected}"
-                         rowKey="#{item.idAlimento}" paginatorPosition="bottom">
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
+                         selectionMode="single"
+                         selection="#{alimentoManagedBean.selected}"
+                         rowKey="#{item.idAlimento}" 
+                         paginatorPosition="bottom">
 
                 <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
                 <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>

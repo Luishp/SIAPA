@@ -16,13 +16,14 @@ import org.springframework.stereotype.Service;
  *
  * @author Joao
  */
-@Service(value="PersonaService")
-public class PersonaService extends GenericService<Persona, Long>{
-      @Autowired
+@Service(value="personaService")
+public class PersonaService extends GenericService<Persona, Integer>{
+  
+    @Autowired
     private PersonaDao personaDao;
 
     @Override
-    public GenericDao<Persona, Long> getDao() {
+    public GenericDao<Persona, Integer> getDao() {
         return personaDao;
     }
 }

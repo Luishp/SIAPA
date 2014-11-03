@@ -7,32 +7,32 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <h:form id="PersonaListForm">
+        <p:fieldset legend="persona">
 
-        <p:panel header="#{crudbundle.ListPersonaTitle}">
-            <p:contextMenu id="PersonaDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('PersonaListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('PersonaListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('PersonaListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('PersonaListForm:deleteButton').click();" icon="ui-icon-trash"/>
-                <p:separator/>
-                <p:menuitem value="#{crudbundle.PersonaMenuItem_proveedorSet}" icon="ui-icon-search"  action="#{personaManagedBean.navigateProveedorSet}" disabled="#{empty personaManagedBean.selected.proveedorSet}" ajax="false"/>  
-                <p:menuitem value="#{crudbundle.PersonaMenuItem_clienteContactoSet}" icon="ui-icon-search"  action="#{personaManagedBean.navigateClienteContactoSet}" disabled="#{empty personaManagedBean.selected.clienteContactoSet}" ajax="false"/>  
-                <p:menuitem value="#{crudbundle.PersonaMenuItem_clienteSet}" icon="ui-icon-search"  action="#{personaManagedBean.navigateClienteSet}" disabled="#{empty personaManagedBean.selected.clienteSet}" ajax="false"/>  
-            </p:contextMenu>
-            <p:dataTable id="datalist"
-                         value="#{personaManagedBean.items}"
+
+            <p:dataTable id="datalist" 
                          var="item"
-                         rowKey="#{item.idPersona}"
-                         paginator="true"
-                         rows="10"
-                         rowsPerPageTemplate="10,20,30,40,50"
+                         value="#{personaManagedBean.lazyItems}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
                          selectionMode="single"
-                         selection="#{personaManagedBean.selected}">
+                         selection="#{personaManagedBean.selected}"
+                         rowKey="#{item.idPersona}" 
+                         paginatorPosition="bottom">
 
-                <p:ajax event="rowSelect"   update=":PersonaListForm:createButton :PersonaListForm:viewButton :PersonaListForm:editButton :PersonaListForm:deleteButton :PersonaListForm:PersonaDataTableContextMenu" listener="#{personaManagedBean.resetParents}"/>
+<!--                <p:ajax event="rowSelect"   update=":PersonaListForm:createButton :PersonaListForm:viewButton :PersonaListForm:editButton :PersonaListForm:deleteButton :PersonaListForm:PersonaDataTableContextMenu" listener="#{personaManagedBean.resetParents}"/>
                 <p:ajax event="rowUnselect" update=":PersonaListForm:createButton :PersonaListForm:viewButton :PersonaListForm:editButton :PersonaListForm:deleteButton :PersonaListForm:PersonaDataTableContextMenu" listener="#{personaManagedBean.resetParents}"/>
-                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PersonaListForm:viewButton').click();"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PersonaListForm:viewButton').click();"/>-->
 
+                 <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
+
+                
+                
                 <p:column sortBy="#{item.idPersona}" filterBy="#{item.idPersona}">
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListPersonaTitle_idPersona}"/>
@@ -80,26 +80,28 @@
                     <h:outputText value="#{item.duiPersona}"/>
                 </p:column>
 
-                <!--
-                                    <p:column sortBy="#{item.tipoPersona}" filterBy="#{item.tipoPersona}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{crudbundle.ListPersonaTitle_tipoPersona}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.tipoPersona}"/>
-                                    </p:column>
-                -->
+
+                <p:column sortBy="#{item.tipoPersona}" filterBy="#{item.tipoPersona}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListPersonaTitle_tipoPersona}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipoPersona}"/>
+                </p:column>
+
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{personaManagedBean.prepareCreate}" update=" @(#:PersonaCreateForm)" oncomplete="PersonaCreateDialog.show()"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#PersonaEditForm)" oncomplete="PersonaEditDialog.show()" disabled="#{empty personaManagedBean.selected}"/>
+                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{personaManagedBean.delete}" update=":growl,datalist" disabled="#{empty personaManagedBean.selected}"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#PersonaViewForm)" oncomplete="PersonaViewDialog.show()" disabled="#{empty personaManagedBean.selected}"/>
+
+                    </div>
+                </f:facet>    
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{personaManagedBean.prepareCreate}" update=":PersonaCreateForm" oncomplete="PF('PersonaCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":PersonaViewForm" oncomplete="PF('PersonaViewDialog').show()" disabled="#{empty personaManagedBean.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":PersonaEditForm" oncomplete="PF('PersonaEditDialog').show()" disabled="#{empty personaManagedBean.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{personaManagedBean.delete}" update=":growl,datalist" disabled="#{empty personaManagedBean.selected}">
-                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
-            </p:commandButton>
-
-        </p:panel>
-        <ui:include src="/confirmation.xhtml"/>
+        </p:fieldset>
     </h:form>
 
 </ui:composition>

@@ -7,16 +7,15 @@
                 template="/WEB-INF/templates/commonLayout.xhtml">
 
     <ui:define name="title">
-        <h:outputText value="#{crudbundle.PersonaTitle}"/>
+        <h:outputText value="#{crudbundle.TipoAlimentoTitle}"/>
     </ui:define>
 
     <ui:define name="content">
 
         <ui:include src="List.xhtml"/>
-        <ui:include src="Create.xhtml"/>
-        <ui:include src="Edit.xhtml"/>
         <ui:include src="View.xhtml"/>
-
+        <ui:include src="Edit.xhtml"/>
+        <ui:include src="Create.xhtml"/>
 
     </ui:define>
 

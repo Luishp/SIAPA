@@ -6,10 +6,11 @@
 package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
-import com.siapa.managedbean.lazymodel.PersonaLazyModel;
-import com.siapa.model.Persona;
-import com.siapa.service.PersonaService;
+import com.siapa.managedbean.lazymodel.TipoAlimentoLazyModel;
+import com.siapa.model.TipoAlimento;
+import com.siapa.service.TipoAlimentoService;
 import com.siapa.service.generic.GenericService;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
@@ -22,27 +23,31 @@ import org.springframework.web.context.WebApplicationContext;
  *
  * @author Joao
  */
-@Named("personaManagedBean")
+
+@Named("tipoAlimentoManageBean")
 @Scope(WebApplicationContext.SCOPE_SESSION)
-public class PersonaManagedBean extends GenericManagedBean<Persona, Integer> {
+public class TipoAlimentoManageBean extends GenericManagedBean<TipoAlimento, Integer>{
 
+    
     @Autowired
-    @Qualifier(value = "personaService")
-    private PersonaService personaService;
-
+    @Qualifier(value = "tipoAlimentoService")
+    private TipoAlimentoService tipoAlimentoService;
+    
+    
     @PostConstruct
     public void init() {
         loadLazyModels();
     }
-
+    
     @Override
-    public GenericService<Persona, Integer> getService() {
-        return personaService;
+    public GenericService<TipoAlimento, Integer> getService() {
+        return tipoAlimentoService;
     }
 
     @Override
-    public LazyDataModel<Persona> getNewLazyModel() {
-        return new PersonaLazyModel(personaService);
+    public LazyDataModel<TipoAlimento> getNewLazyModel() {
+        return new TipoAlimentoLazyModel(tipoAlimentoService);
     }
-
+    
+    
 }

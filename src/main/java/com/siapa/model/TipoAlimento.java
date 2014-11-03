@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,10 +29,14 @@ import javax.persistence.Table;
     @NamedQuery(name = "TipoAlimento.findAll", query = "SELECT t FROM TipoAlimento t")})
 public class TipoAlimento implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+   
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_TIPO_ALIMENTO", nullable = false)
-    private Long idTipoAlimento;
+    @GeneratedValue
+    @Column(name = "ID_TIPO_ALIMENTO", nullable = true)
+    private Integer idTipoAlimento;
+    
+    
     @Basic(optional = false)
     @Column(name = "NOMBRE_TIPO_ALIMENTO", nullable = false, length = 50)
     private String nombreTipoAlimento;
@@ -45,20 +50,20 @@ public class TipoAlimento implements Serializable {
     public TipoAlimento() {
     }
 
-    public TipoAlimento(Long idTipoAlimento) {
+    public TipoAlimento(Integer idTipoAlimento) {
         this.idTipoAlimento = idTipoAlimento;
     }
 
-    public TipoAlimento(Long idTipoAlimento, String nombreTipoAlimento) {
+    public TipoAlimento(Integer idTipoAlimento, String nombreTipoAlimento) {
         this.idTipoAlimento = idTipoAlimento;
         this.nombreTipoAlimento = nombreTipoAlimento;
     }
 
-    public Long getIdTipoAlimento() {
+    public Integer getIdTipoAlimento() {
         return idTipoAlimento;
     }
 
-    public void setIdTipoAlimento(Long idTipoAlimento) {
+    public void setIdTipoAlimento(Integer idTipoAlimento) {
         this.idTipoAlimento = idTipoAlimento;
     }
 

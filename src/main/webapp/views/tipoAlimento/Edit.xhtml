@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TipoAlimentoEditDlg" widgetVar="TipoAlimentoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditTipoAlimentoTitle}" closeOnEscape="true">
+
+            <h:form id="TipoAlimentoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{tipoAlimentoManageBean.selected != null}">
+
+
+                        <h:outputLabel value="#{crudbundle.EditTipoAlimentoLabel_idTipoAlimento}" for="idTipoAlimento" />
+                        <h:outputText id="idTipoAlimento" value="#{tipoAlimentoManageBean.selected.idTipoAlimento}" />
+
+                        <p:outputLabel value="#{crudbundle.EditTipoAlimentoLabel_nombreTipoAlimento}" for="nombreTipoAlimento" />
+                        <p:inputText id="nombreTipoAlimento" value="#{tipoAlimentoManageBean.selected.nombreTipoAlimento}" title="#{crudbundle.EditTipoAlimentoTitle_nombreTipoAlimento}" required="true" requiredMessage="#{crudbundle.EditTipoAlimentoRequiredMessage_nombreTipoAlimento}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.EditTipoAlimentoLabel_descricionTipoAlimento}" for="descricionTipoAlimento" />
+                        <p:inputTextarea rows="4" cols="30" id="descricionTipoAlimento" value="#{tipoAlimentoManageBean.selected.descricionTipoAlimento}" title="#{crudbundle.EditTipoAlimentoTitle_descricionTipoAlimento}" />
+
+                        <p:outputLabel value="#{crudbundle.EditTipoAlimentoLabel_porceProteinaTipoAlimento}" for="porceProteinaTipoAlimento" />
+                        <p:inputText id="porceProteinaTipoAlimento" value="#{tipoAlimentoManageBean.selected.porceProteinaTipoAlimento}" title="#{crudbundle.EditTipoAlimentoTitle_porceProteinaTipoAlimento}" size="30" maxlength="30"/>
+                   
+                    </p:panelGrid>
+<!--                    <p:commandButton actionListener="#{tipoAlimentoManageBean.save}" value="#{crudbundle.Save}" update="display,:TipoAlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TipoAlimentoEditDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('TipoAlimentoEditDialog').hide()"/>
+                -->
+                 <br/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{tipoAlimentoManageBean.save}" value="#{crudbundle.Save}" update="display,:TipoAlimentoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,TipoAlimentoEditDialog);"/>
+                    
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="TipoAlimentoEditDialog.hide()"/>
+
+                
+                
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -13,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,11 +28,14 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p")})
 public class Persona implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_PERSONA", nullable = false)
-    private Long idPersona;
+    @GeneratedValue
+    @Column(name = "ID_PERSONA", nullable = true)
+    private Integer idPersona;
+
     @Basic(optional = false)
     @Column(name = "NOMBRE_PERSONA", nullable = false, length = 50)
     private String nombrePersona;
@@ -57,21 +60,21 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(Long idPersona) {
+    public Persona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 
-    public Persona(Long idPersona, String nombrePersona, String tipoPersona) {
+    public Persona(Integer idPersona, String nombrePersona, String tipoPersona) {
         this.idPersona = idPersona;
         this.nombrePersona = nombrePersona;
         this.tipoPersona = tipoPersona;
     }
 
-    public Long getIdPersona() {
+    public Integer getIdPersona() {
         return idPersona;
     }
 
-    public void setIdPersona(Long idPersona) {
+    public void setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 
@@ -171,5 +174,5 @@ public class Persona implements Serializable {
     public String toString() {
         return "com.siapa.model.Persona[ idPersona=" + idPersona + " ]";
     }
-    
+
 }
