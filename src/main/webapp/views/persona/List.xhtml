@@ -24,22 +24,10 @@
                          rowKey="#{item.idPersona}" 
                          paginatorPosition="bottom">
 
-<!--                <p:ajax event="rowSelect"   update=":PersonaListForm:createButton :PersonaListForm:viewButton :PersonaListForm:editButton :PersonaListForm:deleteButton :PersonaListForm:PersonaDataTableContextMenu" listener="#{personaManagedBean.resetParents}"/>
-                <p:ajax event="rowUnselect" update=":PersonaListForm:createButton :PersonaListForm:viewButton :PersonaListForm:editButton :PersonaListForm:deleteButton :PersonaListForm:PersonaDataTableContextMenu" listener="#{personaManagedBean.resetParents}"/>
-                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PersonaListForm:viewButton').click();"/>-->
-
                  <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
                 <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
 
                 
-                
-                <p:column sortBy="#{item.idPersona}" filterBy="#{item.idPersona}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListPersonaTitle_idPersona}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idPersona}"/>
-                </p:column>
-
 
                 <p:column sortBy="#{item.nombrePersona}" filterBy="#{item.nombrePersona}">
                     <f:facet name="header">
@@ -91,7 +79,7 @@
 
                 <f:facet name="footer">
                     <div class="footer-section">
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{personaManagedBean.prepareCreate}" update=" @(#:PersonaCreateForm)" oncomplete="PersonaCreateDialog.show()"/>
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{personaManagedBean.prepareCreate}" update=" @(#PersonaCreateForm)" oncomplete="PersonaCreateDialog.show()"/>
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#PersonaEditForm)" oncomplete="PersonaEditDialog.show()" disabled="#{empty personaManagedBean.selected}"/>
                         <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{personaManagedBean.delete}" update=":growl,datalist" disabled="#{empty personaManagedBean.selected}"/>
                         <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#PersonaViewForm)" oncomplete="PersonaViewDialog.show()" disabled="#{empty personaManagedBean.selected}"/>

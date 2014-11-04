@@ -15,9 +15,6 @@
                 <h:panelGroup id="display" rendered="#{personaManagedBean.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{crudbundle.CreatePersonaLabel_idPersona}" for="idPersona" />
-                        <p:inputText id="idPersona" value="#{personaManagedBean.selected.idPersona}" title="#{crudbundle.CreatePersonaTitle_idPersona}" required="true" requiredMessage="#{crudbundle.CreatePersonaRequiredMessage_idPersona}"/>
-
                         <p:outputLabel value="#{crudbundle.CreatePersonaLabel_nombrePersona}" for="nombrePersona" />
                         <p:inputText id="nombrePersona" value="#{personaManagedBean.selected.nombrePersona}" title="#{crudbundle.CreatePersonaTitle_nombrePersona}" required="true" requiredMessage="#{crudbundle.CreatePersonaRequiredMessage_nombrePersona}" size="50" maxlength="50"/>
 
@@ -36,11 +33,12 @@
                         <p:outputLabel value="#{crudbundle.CreatePersonaLabel_tipoPersona}" for="tipoPersona" />
                         <p:inputText id="tipoPersona" value="#{personaManagedBean.selected.tipoPersona}" title="#{crudbundle.CreatePersonaTitle_tipoPersona}" required="true" requiredMessage="#{crudbundle.CreatePersonaRequiredMessage_tipoPersona}" size="1" maxlength="1"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{personaManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PersonaCreateDialog'));">
-                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
-                    </p:commandButton>
 
-                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('PersonaCreateDialog').hide()"/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{personaManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:PersonaListForm,:growl" oncomplete="handleSubmit(xhr,status,args,PersonaCreateDialog);"/>
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="PersonaCreateDialog.hide()"/>
+
+
                 </h:panelGroup>
 
             </h:form>

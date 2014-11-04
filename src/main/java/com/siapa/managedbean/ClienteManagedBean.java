@@ -63,6 +63,7 @@ public class ClienteManagedBean extends GenericManagedBean<Cliente, Integer> {
         try {
             FacesContext contex = FacesContext.getCurrentInstance();
             personas=personaService.findAll();
+            setSelected(new Cliente());
             contex.getExternalContext().redirect("/siapa/views/cliente/Create.xhtml");
         } catch (IOException ex) {
          //   log.error("Error al rederigir a la pagina de asesoria", null, ex);

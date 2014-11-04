@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2014 a las 06:04:38
+-- Tiempo de generación: 04-11-2014 a las 21:40:15
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `siapa`
 --
-CREATE DATABASE IF NOT EXISTS `siapa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `siapa`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +26,6 @@ USE `siapa`;
 -- Estructura de tabla para la tabla `alimento`
 --
 
-DROP TABLE IF EXISTS `alimento`;
 CREATE TABLE IF NOT EXISTS `alimento` (
   `ID_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `ID_TIPO_ALIMENTO` int(11) DEFAULT NULL,
@@ -51,7 +48,6 @@ INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EX
 -- Estructura de tabla para la tabla `categorias`
 --
 
-DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE IF NOT EXISTS `categorias` (
   `ID_CATEGORIAS` decimal(18,0) NOT NULL,
   `NOMBRE_CATEGORIAS` varchar(50) NOT NULL,
@@ -65,9 +61,8 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 -- Estructura de tabla para la tabla `cliente`
 --
 
-DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
-  `ID_CLIENTE` decimal(18,0) NOT NULL,
+  `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT,
   `ID_CATEGORIAS` decimal(18,0) DEFAULT NULL,
   `ID_PERSONA` int(11) DEFAULT NULL,
   `NOMBRE_CLIENTE_COMP_VENTA` varchar(50) NOT NULL,
@@ -77,7 +72,15 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   PRIMARY KEY (`ID_CLIENTE`),
   KEY `FK_RELATIONSHIP_22` (`ID_CATEGORIAS`),
   KEY `FK_RELATIONSHIP_25` (`ID_PERSONA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `APELLIDOS_CLIENTE`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES
+(1, NULL, NULL, 'dg', 'fg', 'gfhfgh', 'A'),
+(2, NULL, NULL, 'kklllllpppp', 'ppppp', 'lolololol', 'A');
 
 -- --------------------------------------------------------
 
@@ -85,7 +88,6 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 -- Estructura de tabla para la tabla `cliente_contacto`
 --
 
-DROP TABLE IF EXISTS `cliente_contacto`;
 CREATE TABLE IF NOT EXISTS `cliente_contacto` (
   `ID_CONTACTO` decimal(18,0) NOT NULL,
   `ID_PERSONA` int(11) NOT NULL,
@@ -101,7 +103,6 @@ CREATE TABLE IF NOT EXISTS `cliente_contacto` (
 -- Estructura de tabla para la tabla `compra`
 --
 
-DROP TABLE IF EXISTS `compra`;
 CREATE TABLE IF NOT EXISTS `compra` (
   `ID_COMPRA` decimal(18,0) NOT NULL,
   `ID_PROVEEDOR` decimal(18,0) DEFAULT NULL,
@@ -118,7 +119,6 @@ CREATE TABLE IF NOT EXISTS `compra` (
 -- Estructura de tabla para la tabla `comprobante_venta`
 --
 
-DROP TABLE IF EXISTS `comprobante_venta`;
 CREATE TABLE IF NOT EXISTS `comprobante_venta` (
   `ID_COMPROBANTE_VENTA` decimal(18,0) NOT NULL,
   `ID_VENTA` decimal(18,0) DEFAULT NULL,
@@ -142,7 +142,6 @@ CREATE TABLE IF NOT EXISTS `comprobante_venta` (
 -- Estructura de tabla para la tabla `contacto`
 --
 
-DROP TABLE IF EXISTS `contacto`;
 CREATE TABLE IF NOT EXISTS `contacto` (
   `ID_CONTACTO` decimal(18,0) NOT NULL,
   `NOMBRE_CONTACTO` varchar(50) NOT NULL,
@@ -156,7 +155,6 @@ CREATE TABLE IF NOT EXISTS `contacto` (
 -- Estructura de tabla para la tabla `descuento`
 --
 
-DROP TABLE IF EXISTS `descuento`;
 CREATE TABLE IF NOT EXISTS `descuento` (
   `ID_DESCUENTO` decimal(18,0) NOT NULL,
   `ID_CATEGORIAS` decimal(18,0) DEFAULT NULL,
@@ -175,7 +173,6 @@ CREATE TABLE IF NOT EXISTS `descuento` (
 -- Estructura de tabla para la tabla `detalle_compra_alimento`
 --
 
-DROP TABLE IF EXISTS `detalle_compra_alimento`;
 CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   `ID_DETALLE_COMPRA_ALIMENTO` decimal(18,0) NOT NULL,
   `ID_COMPRA` decimal(18,0) DEFAULT NULL,
@@ -194,7 +191,6 @@ CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
 -- Estructura de tabla para la tabla `detalle_comprobante_venta`
 --
 
-DROP TABLE IF EXISTS `detalle_comprobante_venta`;
 CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
   `ID_DETALLE_COMPROBANTE_VENTA` decimal(18,0) NOT NULL,
   `ID_COMPROBANTE_VENTA` decimal(18,0) DEFAULT NULL,
@@ -214,7 +210,6 @@ CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
 -- Estructura de tabla para la tabla `detalle_muestreo`
 --
 
-DROP TABLE IF EXISTS `detalle_muestreo`;
 CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
   `ID_DETALLE_MUESTREO` decimal(18,0) NOT NULL,
   `ID_MUESTREO` decimal(18,0) DEFAULT NULL,
@@ -230,7 +225,6 @@ CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
 -- Estructura de tabla para la tabla `detalle_venta`
 --
 
-DROP TABLE IF EXISTS `detalle_venta`;
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
   `ID_DETALLE_VENTA` decimal(18,0) NOT NULL,
   `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
@@ -250,7 +244,6 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 -- Estructura de tabla para la tabla `ingreso_producto`
 --
 
-DROP TABLE IF EXISTS `ingreso_producto`;
 CREATE TABLE IF NOT EXISTS `ingreso_producto` (
   `ID_INGRESO_PRODUCTO` decimal(18,0) NOT NULL,
   `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
@@ -269,7 +262,6 @@ CREATE TABLE IF NOT EXISTS `ingreso_producto` (
 -- Estructura de tabla para la tabla `jaula`
 --
 
-DROP TABLE IF EXISTS `jaula`;
 CREATE TABLE IF NOT EXISTS `jaula` (
   `ID_JAULA` decimal(18,0) NOT NULL,
   `ID_TIPO_JAULA` decimal(18,0) DEFAULT NULL,
@@ -289,7 +281,6 @@ CREATE TABLE IF NOT EXISTS `jaula` (
 -- Estructura de tabla para la tabla `muestreo`
 --
 
-DROP TABLE IF EXISTS `muestreo`;
 CREATE TABLE IF NOT EXISTS `muestreo` (
   `ID_MUESTREO` decimal(18,0) NOT NULL,
   `ID_JAULA` decimal(18,0) DEFAULT NULL,
@@ -307,7 +298,6 @@ CREATE TABLE IF NOT EXISTS `muestreo` (
 -- Estructura de tabla para la tabla `persona`
 --
 
-DROP TABLE IF EXISTS `persona`;
 CREATE TABLE IF NOT EXISTS `persona` (
   `ID_PERSONA` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_PERSONA` varchar(50) NOT NULL,
@@ -317,7 +307,20 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `DUI_PERSONA` varchar(14) DEFAULT NULL,
   `TIPO_PERSONA` varchar(1) NOT NULL,
   PRIMARY KEY (`ID_PERSONA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES
+(1, 'Joao Hernandez', 'San Marcos', '123456', '321564', '2348949879', 'A'),
+(2, 'Walter Hernandez', 'Mejicanos', '789467868', '46416876416', '645468465746', 'B'),
+(3, 'Ricardo Armando Flamenco', 'San Martin #3', '1654891354', '12213123', '232323222', 'A'),
+(4, 'Alessandra Ambrosio ', 'Brasil', '78916946198', '1654768162165', '65431894651657', 'A'),
+(5, 'Behati Prinsloo ', '(Namibia)()', '92512436146', '913434161657', '16541364655165', 'C'),
+(6, 'Izabel Goulart', 'Brasil', '1891564545615', '005961261', '0651364130', 'B'),
+(7, 'Kasia Struss', '(Polonia) ', '004405055', '0011224105', '0000521205', 'B');
 
 -- --------------------------------------------------------
 
@@ -325,7 +328,6 @@ CREATE TABLE IF NOT EXISTS `persona` (
 -- Estructura de tabla para la tabla `producto`
 --
 
-DROP TABLE IF EXISTS `producto`;
 CREATE TABLE IF NOT EXISTS `producto` (
   `ID_PRODUCTO` decimal(18,0) NOT NULL,
   `NOMBRE_PRODUCTO` varchar(50) NOT NULL,
@@ -341,7 +343,6 @@ CREATE TABLE IF NOT EXISTS `producto` (
 -- Estructura de tabla para la tabla `proveedor`
 --
 
-DROP TABLE IF EXISTS `proveedor`;
 CREATE TABLE IF NOT EXISTS `proveedor` (
   `ID_PROVEEDOR` decimal(18,0) NOT NULL,
   `ID_PERSONA` int(11) DEFAULT NULL,
@@ -357,7 +358,6 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
 -- Estructura de tabla para la tabla `registro_alimentacion`
 --
 
-DROP TABLE IF EXISTS `registro_alimentacion`;
 CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
   `ID_REGISTRO_ALIMENTACION` decimal(18,0) NOT NULL,
   `ID_ALIMENTO` int(11) DEFAULT NULL,
@@ -376,7 +376,6 @@ CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
 -- Estructura de tabla para la tabla `registro_mortalidad`
 --
 
-DROP TABLE IF EXISTS `registro_mortalidad`;
 CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
   `ID_REGISTRO_MORTALIDAD` decimal(18,0) NOT NULL,
   `ID_JAULA` decimal(18,0) DEFAULT NULL,
@@ -394,7 +393,6 @@ CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
 -- Estructura de tabla para la tabla `tipo_alimento`
 --
 
-DROP TABLE IF EXISTS `tipo_alimento`;
 CREATE TABLE IF NOT EXISTS `tipo_alimento` (
   `ID_TIPO_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_TIPO_ALIMENTO` varchar(50) NOT NULL,
@@ -420,7 +418,6 @@ INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRI
 -- Estructura de tabla para la tabla `tipo_comprobante`
 --
 
-DROP TABLE IF EXISTS `tipo_comprobante`;
 CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
   `ID_TIPO_COMPROBANTE` decimal(18,0) NOT NULL,
   `NOMBRE_TIPO_COMPROBANTE` varchar(50) DEFAULT NULL,
@@ -434,7 +431,6 @@ CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
 -- Estructura de tabla para la tabla `tipo_jaula`
 --
 
-DROP TABLE IF EXISTS `tipo_jaula`;
 CREATE TABLE IF NOT EXISTS `tipo_jaula` (
   `ID_TIPO_JAULA` decimal(18,0) NOT NULL,
   `NOMBRE_TIPO_JAULA` varchar(50) NOT NULL,
@@ -451,7 +447,6 @@ CREATE TABLE IF NOT EXISTS `tipo_jaula` (
 -- Estructura de tabla para la tabla `traslados`
 --
 
-DROP TABLE IF EXISTS `traslados`;
 CREATE TABLE IF NOT EXISTS `traslados` (
   `ID_TRASLADOS` decimal(18,0) NOT NULL,
   `ID_JAULA` decimal(18,0) DEFAULT NULL,
@@ -468,10 +463,9 @@ CREATE TABLE IF NOT EXISTS `traslados` (
 -- Estructura de tabla para la tabla `venta`
 --
 
-DROP TABLE IF EXISTS `venta`;
 CREATE TABLE IF NOT EXISTS `venta` (
   `ID_VENTA` decimal(18,0) NOT NULL,
-  `ID_CLIENTE` decimal(18,0) DEFAULT NULL,
+  `ID_CLIENTE` int(11) DEFAULT NULL,
   `ID_COMPROBANTE_VENTA` decimal(18,0) DEFAULT NULL,
   `FECHA_HORA_VENTA` date NOT NULL,
   `USUARIO_VENTA` varchar(30) NOT NULL,
@@ -495,7 +489,7 @@ ALTER TABLE `alimento`
 --
 ALTER TABLE `cliente`
   ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_22` FOREIGN KEY (`ID_CATEGORIAS`) REFERENCES `categorias` (`ID_CATEGORIAS`);
+  ADD CONSTRAINT `cliente_ibfk_2` FOREIGN KEY (`ID_CATEGORIAS`) REFERENCES `categorias` (`ID_CATEGORIAS`);
 
 --
 -- Filtros para la tabla `cliente_contacto`
@@ -599,12 +593,13 @@ ALTER TABLE `traslados`
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `FK_RELATIONSHIP_23` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `cliente` (`ID_CLIENTE`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`ID_COMPROBANTE_VENTA`) REFERENCES `comprobante_venta` (`ID_COMPROBANTE_VENTA`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`ID_COMPROBANTE_VENTA`) REFERENCES `comprobante_venta` (`ID_COMPROBANTE_VENTA`),
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `cliente` (`ID_CLIENTE`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
 
 
@@ -614,14 +609,12 @@ ALTER TABLE `venta`
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
-
-
 -- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2014 a las 22:15:55
+-- Tiempo de generación: 04-11-2014 a las 21:40:44
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -637,8 +630,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `siapa`
 --
-CREATE DATABASE IF NOT EXISTS `siapa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `siapa`;
 
 -- --------------------------------------------------------
 
@@ -646,7 +637,6 @@ USE `siapa`;
 -- Estructura de tabla para la tabla `ss_historico_claves`
 --
 
-DROP TABLE IF EXISTS `ss_historico_claves`;
 CREATE TABLE IF NOT EXISTS `ss_historico_claves` (
   `ID_HISTORICO_CLAVE` decimal(9,0) NOT NULL COMMENT 'ID del histórico de clave.',
   `ID_USUARIO` decimal(9,0) DEFAULT NULL,
@@ -664,7 +654,6 @@ CREATE TABLE IF NOT EXISTS `ss_historico_claves` (
 -- Estructura de tabla para la tabla `ss_menus`
 --
 
-DROP TABLE IF EXISTS `ss_menus`;
 CREATE TABLE IF NOT EXISTS `ss_menus` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `SS__ID_MENU` decimal(9,0) DEFAULT NULL COMMENT 'Correlativo que identifica al menú.',
@@ -697,7 +686,6 @@ INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGIST
 -- Estructura de tabla para la tabla `ss_menus_opciones`
 --
 
-DROP TABLE IF EXISTS `ss_menus_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_menus_opciones` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
@@ -730,7 +718,6 @@ INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES
 -- Estructura de tabla para la tabla `ss_opciones`
 --
 
-DROP TABLE IF EXISTS `ss_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_opciones` (
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
   `NOMBRE_OPCION` varchar(100) DEFAULT NULL COMMENT 'Nombre de la opción',
@@ -754,13 +741,13 @@ INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUA
 ('3', 'Ingresar Cliente', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('4', 'Gestion de Clientes', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('5', 'Ingreso Peces Muertos', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('6', 'Ingreso de Muestreo', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('6', 'Ingreso de Muestreo', '/siapa/views/persona/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('7', 'Ingreso Alimento a Jaula', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('8', 'Gestion de Compra de Peces', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('9', 'Movimiento Entre Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('10', 'Gestion de Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('12', 'Compra de Alimento', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('12', 'Compra de Alimento', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('13', 'Tipo de Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('14', 'Ingresar Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-11-01 00:00:00', NULL, NULL, NULL);
 
@@ -770,7 +757,6 @@ INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUA
 -- Estructura de tabla para la tabla `ss_roles`
 --
 
-DROP TABLE IF EXISTS `ss_roles`;
 CREATE TABLE IF NOT EXISTS `ss_roles` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `CODIGO_ROL` varchar(50) DEFAULT NULL COMMENT 'Código que identifica al rol.',
@@ -802,7 +788,6 @@ INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `US
 -- Estructura de tabla para la tabla `ss_roles_menu`
 --
 
-DROP TABLE IF EXISTS `ss_roles_menu`;
 CREATE TABLE IF NOT EXISTS `ss_roles_menu` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
@@ -838,7 +823,6 @@ INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES
 -- Estructura de tabla para la tabla `ss_roles_opciones`
 --
 
-DROP TABLE IF EXISTS `ss_roles_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_roles_opciones` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
@@ -882,7 +866,6 @@ INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES
 -- Estructura de tabla para la tabla `ss_roles_usuarios`
 --
 
-DROP TABLE IF EXISTS `ss_roles_usuarios`;
 CREATE TABLE IF NOT EXISTS `ss_roles_usuarios` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `ID_USUARIO` decimal(9,0) NOT NULL,
@@ -908,7 +891,6 @@ INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES
 -- Estructura de tabla para la tabla `ss_usuarios`
 --
 
-DROP TABLE IF EXISTS `ss_usuarios`;
 CREATE TABLE IF NOT EXISTS `ss_usuarios` (
   `ID_USUARIO` decimal(9,0) NOT NULL,
   `CODIGO_USUARIO` varchar(15) DEFAULT NULL,
@@ -991,7 +973,3 @@ ALTER TABLE `ss_roles_usuarios`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-

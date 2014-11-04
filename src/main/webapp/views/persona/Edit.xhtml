@@ -36,10 +36,12 @@
                         <p:outputLabel value="#{crudbundle.EditPersonaLabel_tipoPersona}" for="tipoPersona" />
                         <p:inputText id="tipoPersona" value="#{personaManagedBean.selected.tipoPersona}" title="#{crudbundle.EditPersonaTitle_tipoPersona}" required="true" requiredMessage="#{crudbundle.EditPersonaRequiredMessage_tipoPersona}" size="1" maxlength="1"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{personaManagedBean.save}" value="#{crudbundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PersonaEditDialog'));">
-                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
-                    </p:commandButton>
-                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('PersonaEditDialog').hide()"/>
+                            
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{personaManagedBean.save}" value="#{crudbundle.Save}" update="display,:PersonaListForm,:growl" oncomplete="handleSubmit(xhr,status,args,PersonaEditDialog);"/>
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="PersonaEditDialog.hide()"/>
+
+                
                 </h:panelGroup>
 
             </h:form>

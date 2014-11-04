@@ -20,7 +20,7 @@
                         <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_existenciaAlimento}" for="existenciaAlimento" />
                         <p:inputText id="existenciaAlimento" value="#{alimentoManagedBean.selected.existenciaAlimento}" title="#{crudbundle.CreateAlimentoTitle_existenciaAlimento}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}"/>
 
-                       </p:panelGrid>
+                    </p:panelGrid>
 
                     <p:commandButton icon="ui-icon-disk" actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:AlimentoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,AlimentoCreateDialog);"/>
                     <span>&nbsp;</span>
