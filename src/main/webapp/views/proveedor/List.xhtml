@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ProveedorListForm">
+        <p:fieldset legend="proveedor">       
+            <p:dataTable id="datalist" 
+                         var="item"
+                         value="#{proveedorManagedBean.lazyItems}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
+                         selectionMode="single"
+                         selection="#{proveedorManagedBean.selected}"
+                         rowKey="#{item.idCliente}" 
+                         paginatorPosition="bottom">      
+
+                <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
+
+                <p:column sortBy="#{item.fechaProveedor}" filterBy="#{item.fechaProveedor}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListProveedorTitle_fechaProveedor}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaProveedor}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.usuarioProveedor}" filterBy="#{item.usuarioProveedor}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListProveedorTitle_usuarioProveedor}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioProveedor}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idPersona.idPersona}" filterBy="#{item.idPersona.idPersona}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListProveedorTitle_idPersona}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idPersona.idPersona}"/>
+                </p:column>
+
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{proveedorManagedBean.toCreateProveedor}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#ProveedorEditForm)" oncomplete="ProveedorEditDialog.show()" disabled="#{empty ProveedorManagedBean.selected}"/>
+                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{clienteManagedBean.delete}" update=":growl,datalist" disabled="#{empty ProveedorManagedBean.selected}"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ProveedorViewForm)" oncomplete="ProveedorViewDialog.show()" disabled="#{empty ProveedorManagedBean.selected}"/>
+
+                    </div>
+                </f:facet>             
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+
+</ui:composition>

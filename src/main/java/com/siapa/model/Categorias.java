@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,10 +29,13 @@ import javax.persistence.Table;
     @NamedQuery(name = "Categorias.findAll", query = "SELECT c FROM Categorias c")})
 public class Categorias implements Serializable {
     private static final long serialVersionUID = 1L;
+  
+    
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_CATEGORIAS", nullable = false)
-    private Long idCategorias;
+    @GeneratedValue
+    @Column(name = "ID_CATEGORIAS", nullable = true)
+    private Integer idCategorias;
+    
     @Basic(optional = false)
     @Column(name = "NOMBRE_CATEGORIAS", nullable = false, length = 50)
     private String nombreCategorias;
@@ -46,21 +50,23 @@ public class Categorias implements Serializable {
     public Categorias() {
     }
 
-    public Categorias(Long idCategorias) {
+    public Categorias(Integer idCategorias) {
         this.idCategorias = idCategorias;
     }
 
-    public Categorias(Long idCategorias, String nombreCategorias, String descripcionCategorias) {
+    public Categorias(Integer idCategorias, String nombreCategorias, String descripcionCategorias) {
         this.idCategorias = idCategorias;
         this.nombreCategorias = nombreCategorias;
         this.descripcionCategorias = descripcionCategorias;
     }
 
-    public Long getIdCategorias() {
+    
+
+    public Integer getIdCategorias() {
         return idCategorias;
     }
 
-    public void setIdCategorias(Long idCategorias) {
+    public void setIdCategorias(Integer idCategorias) {
         this.idCategorias = idCategorias;
     }
 

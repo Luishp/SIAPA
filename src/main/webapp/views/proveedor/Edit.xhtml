@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ProveedorEditDlg" widgetVar="ProveedorEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditProveedorTitle}" closeOnEscape="true">
+
+            <h:form id="ProveedorEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{ProveedorManagedBean.selected != null}">
+
+
+                        <p:outputLabel value="#{crudbundle.EditProveedorLabel_fechaProveedor}" for="fechaProveedor" />
+                        <p:calendar id="fechaProveedor" pattern="MM/dd/yyyy" value="#{ProveedorManagedBean.selected.fechaProveedor}" title="#{crudbundle.EditProveedorTitle_fechaProveedor}" required="true" requiredMessage="#{crudbundle.EditProveedorRequiredMessage_fechaProveedor}" showOn="button"/>
+
+                        <p:outputLabel value="#{crudbundle.EditProveedorLabel_usuarioProveedor}" for="usuarioProveedor" />
+                        <p:inputText id="usuarioProveedor" value="#{ProveedorManagedBean.selected.usuarioProveedor}" title="#{crudbundle.EditProveedorTitle_usuarioProveedor}" required="true" requiredMessage="#{crudbundle.EditProveedorRequiredMessage_usuarioProveedor}" size="30" maxlength="30"/>
+
+<!--                        <p:outputLabel value="#{crudbundle.EditProveedorLabel_idPersona}" for="idPersona" />
+                        <p:selectOneMenu id="idPersona" value="#{ProveedorManagedBean.selected.idPersona}" >
+                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personaController.items}"
+                                           var="idPersonaItem"
+                                           itemValue="#{idPersonaItem}"
+                                           itemLabel="#{idPersonaItem.idPersona.toString()}"
+                                           />
+                            <f:converter binding="#{personaConverter}"/>
+                        </p:selectOneMenu>-->
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ProveedorManagedBean.save}" value="#{crudbundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ProveedorEditDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('ProveedorEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

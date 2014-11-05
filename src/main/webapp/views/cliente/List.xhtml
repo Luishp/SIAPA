@@ -25,29 +25,12 @@
                 <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
                 <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
 
-<!--                <p:column sortBy="#{item.idCliente}" filterBy="#{item.idCliente}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListClienteTitle_idCliente}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idCliente}"/>
-                </p:column>-->
-
-
                 <p:column sortBy="#{item.nombreClienteCompVenta}" filterBy="#{item.nombreClienteCompVenta}">
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListClienteTitle_nombreClienteCompVenta}"/>
                     </f:facet>
                     <h:outputText value="#{item.nombreClienteCompVenta}"/>
                 </p:column>
-
-
-                <p:column sortBy="#{item.apellidosCliente}" filterBy="#{item.apellidosCliente}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListClienteTitle_apellidosCliente}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.apellidosCliente}"/>
-                </p:column>
-
 
                 <p:column sortBy="#{item.direccionCliente}" filterBy="#{item.direccionCliente}">
                     <f:facet name="header">
@@ -65,22 +48,6 @@
                 </p:column>
 
 
-<!--                <p:column sortBy="#{item.idPersona.idPersona}" filterBy="#{item.idPersona.idPersona}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListClienteTitle_idPersona}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idPersona.idPersona}"/>
-                </p:column>-->
-
-                <!--                
-                                                    <p:column sortBy="#{item.idCategorias.descripcionCategorias}" filterBy="#{item.idCategorias.descripcionCategorias}">
-                                                        <f:facet name="header">
-                                                            <h:outputText value="#{crudbundle.ListClienteTitle_idCategorias}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.idCategorias.descripcionCategorias}"/>
-                                                    </p:column>
-                -->
-
 
                 <f:facet name="footer">
                     <div class="footer-section">
@@ -91,9 +58,7 @@
 
                     </div>
                 </f:facet>
-
             </p:dataTable>
-
         </p:fieldset>
     </h:form>
 </ui:composition>

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -13,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,11 +32,14 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Proveedor.findAll", query = "SELECT p FROM Proveedor p")})
 public class Proveedor implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_PROVEEDOR", nullable = false)
-    private Long idProveedor;
+    @GeneratedValue
+    @Column(name = "ID_PROVEEDOR", nullable = true)
+    private Integer idProveedor;
+
     @Basic(optional = false)
     @Column(name = "FECHA_PROVEEDOR", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -53,21 +56,21 @@ public class Proveedor implements Serializable {
     public Proveedor() {
     }
 
-    public Proveedor(Long idProveedor) {
+    public Proveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 
-    public Proveedor(Long idProveedor, Date fechaProveedor, String usuarioProveedor) {
+    public Proveedor(Integer idProveedor, Date fechaProveedor, String usuarioProveedor) {
         this.idProveedor = idProveedor;
         this.fechaProveedor = fechaProveedor;
         this.usuarioProveedor = usuarioProveedor;
     }
 
-    public Long getIdProveedor() {
+    public Integer getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(Long idProveedor) {
+    public void setIdProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 
@@ -127,5 +130,5 @@ public class Proveedor implements Serializable {
     public String toString() {
         return "com.siapa.model.Proveedor[ idProveedor=" + idProveedor + " ]";
     }
-    
+
 }

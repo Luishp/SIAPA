@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2014 a las 21:40:15
+-- Tiempo de generación: 05-11-2014 a las 23:39:53
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `siapa`
 --
+CREATE DATABASE IF NOT EXISTS `siapa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `siapa`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `alimento`
 --
 
+DROP TABLE IF EXISTS `alimento`;
 CREATE TABLE IF NOT EXISTS `alimento` (
   `ID_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `ID_TIPO_ALIMENTO` int(11) DEFAULT NULL,
@@ -48,12 +51,21 @@ INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EX
 -- Estructura de tabla para la tabla `categorias`
 --
 
+DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE IF NOT EXISTS `categorias` (
-  `ID_CATEGORIAS` decimal(18,0) NOT NULL,
+  `ID_CATEGORIAS` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_CATEGORIAS` varchar(50) NOT NULL,
   `DESCRIPCION_CATEGORIAS` varchar(500) NOT NULL,
   PRIMARY KEY (`ID_CATEGORIAS`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES
+(1, 'Catgoria1', 'categoria 1 de prueba'),
+(2, 'Categoria2', 'categoria 2 de prueba');
 
 -- --------------------------------------------------------
 
@@ -61,12 +73,12 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 -- Estructura de tabla para la tabla `cliente`
 --
 
+DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_CATEGORIAS` decimal(18,0) DEFAULT NULL,
+  `ID_CATEGORIAS` int(11) DEFAULT NULL,
   `ID_PERSONA` int(11) DEFAULT NULL,
   `NOMBRE_CLIENTE_COMP_VENTA` varchar(50) NOT NULL,
-  `APELLIDOS_CLIENTE` varchar(50) DEFAULT NULL,
   `DIRECCION_CLIENTE` varchar(500) DEFAULT NULL,
   `TIPO_CLIENTE` varchar(1) NOT NULL,
   PRIMARY KEY (`ID_CLIENTE`),
@@ -78,9 +90,9 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `APELLIDOS_CLIENTE`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES
-(1, NULL, NULL, 'dg', 'fg', 'gfhfgh', 'A'),
-(2, NULL, NULL, 'kklllllpppp', 'ppppp', 'lolololol', 'A');
+INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES
+(1, NULL, NULL, 'dg', 'gfhfgh', 'A'),
+(2, NULL, NULL, 'kklllllpppp', 'lolololol', 'A');
 
 -- --------------------------------------------------------
 
@@ -88,6 +100,7 @@ INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIE
 -- Estructura de tabla para la tabla `cliente_contacto`
 --
 
+DROP TABLE IF EXISTS `cliente_contacto`;
 CREATE TABLE IF NOT EXISTS `cliente_contacto` (
   `ID_CONTACTO` decimal(18,0) NOT NULL,
   `ID_PERSONA` int(11) NOT NULL,
@@ -103,6 +116,7 @@ CREATE TABLE IF NOT EXISTS `cliente_contacto` (
 -- Estructura de tabla para la tabla `compra`
 --
 
+DROP TABLE IF EXISTS `compra`;
 CREATE TABLE IF NOT EXISTS `compra` (
   `ID_COMPRA` decimal(18,0) NOT NULL,
   `ID_PROVEEDOR` decimal(18,0) DEFAULT NULL,
@@ -119,6 +133,7 @@ CREATE TABLE IF NOT EXISTS `compra` (
 -- Estructura de tabla para la tabla `comprobante_venta`
 --
 
+DROP TABLE IF EXISTS `comprobante_venta`;
 CREATE TABLE IF NOT EXISTS `comprobante_venta` (
   `ID_COMPROBANTE_VENTA` decimal(18,0) NOT NULL,
   `ID_VENTA` decimal(18,0) DEFAULT NULL,
@@ -142,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `comprobante_venta` (
 -- Estructura de tabla para la tabla `contacto`
 --
 
+DROP TABLE IF EXISTS `contacto`;
 CREATE TABLE IF NOT EXISTS `contacto` (
   `ID_CONTACTO` decimal(18,0) NOT NULL,
   `NOMBRE_CONTACTO` varchar(50) NOT NULL,
@@ -155,9 +171,10 @@ CREATE TABLE IF NOT EXISTS `contacto` (
 -- Estructura de tabla para la tabla `descuento`
 --
 
+DROP TABLE IF EXISTS `descuento`;
 CREATE TABLE IF NOT EXISTS `descuento` (
   `ID_DESCUENTO` decimal(18,0) NOT NULL,
-  `ID_CATEGORIAS` decimal(18,0) DEFAULT NULL,
+  `ID_CATEGORIAS` int(11) DEFAULT NULL,
   `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
   `NOMBRE_DESCUENTO` varchar(50) NOT NULL,
   `DESCRIPCION_DESCUENTO` varchar(500) NOT NULL,
@@ -173,6 +190,7 @@ CREATE TABLE IF NOT EXISTS `descuento` (
 -- Estructura de tabla para la tabla `detalle_compra_alimento`
 --
 
+DROP TABLE IF EXISTS `detalle_compra_alimento`;
 CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   `ID_DETALLE_COMPRA_ALIMENTO` decimal(18,0) NOT NULL,
   `ID_COMPRA` decimal(18,0) DEFAULT NULL,
@@ -191,6 +209,7 @@ CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
 -- Estructura de tabla para la tabla `detalle_comprobante_venta`
 --
 
+DROP TABLE IF EXISTS `detalle_comprobante_venta`;
 CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
   `ID_DETALLE_COMPROBANTE_VENTA` decimal(18,0) NOT NULL,
   `ID_COMPROBANTE_VENTA` decimal(18,0) DEFAULT NULL,
@@ -210,6 +229,7 @@ CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
 -- Estructura de tabla para la tabla `detalle_muestreo`
 --
 
+DROP TABLE IF EXISTS `detalle_muestreo`;
 CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
   `ID_DETALLE_MUESTREO` decimal(18,0) NOT NULL,
   `ID_MUESTREO` decimal(18,0) DEFAULT NULL,
@@ -225,6 +245,7 @@ CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
 -- Estructura de tabla para la tabla `detalle_venta`
 --
 
+DROP TABLE IF EXISTS `detalle_venta`;
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
   `ID_DETALLE_VENTA` decimal(18,0) NOT NULL,
   `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
@@ -244,6 +265,7 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 -- Estructura de tabla para la tabla `ingreso_producto`
 --
 
+DROP TABLE IF EXISTS `ingreso_producto`;
 CREATE TABLE IF NOT EXISTS `ingreso_producto` (
   `ID_INGRESO_PRODUCTO` decimal(18,0) NOT NULL,
   `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
@@ -262,6 +284,7 @@ CREATE TABLE IF NOT EXISTS `ingreso_producto` (
 -- Estructura de tabla para la tabla `jaula`
 --
 
+DROP TABLE IF EXISTS `jaula`;
 CREATE TABLE IF NOT EXISTS `jaula` (
   `ID_JAULA` decimal(18,0) NOT NULL,
   `ID_TIPO_JAULA` decimal(18,0) DEFAULT NULL,
@@ -281,6 +304,7 @@ CREATE TABLE IF NOT EXISTS `jaula` (
 -- Estructura de tabla para la tabla `muestreo`
 --
 
+DROP TABLE IF EXISTS `muestreo`;
 CREATE TABLE IF NOT EXISTS `muestreo` (
   `ID_MUESTREO` decimal(18,0) NOT NULL,
   `ID_JAULA` decimal(18,0) DEFAULT NULL,
@@ -298,6 +322,7 @@ CREATE TABLE IF NOT EXISTS `muestreo` (
 -- Estructura de tabla para la tabla `persona`
 --
 
+DROP TABLE IF EXISTS `persona`;
 CREATE TABLE IF NOT EXISTS `persona` (
   `ID_PERSONA` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_PERSONA` varchar(50) NOT NULL,
@@ -328,6 +353,7 @@ INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC
 -- Estructura de tabla para la tabla `producto`
 --
 
+DROP TABLE IF EXISTS `producto`;
 CREATE TABLE IF NOT EXISTS `producto` (
   `ID_PRODUCTO` decimal(18,0) NOT NULL,
   `NOMBRE_PRODUCTO` varchar(50) NOT NULL,
@@ -343,6 +369,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
 -- Estructura de tabla para la tabla `proveedor`
 --
 
+DROP TABLE IF EXISTS `proveedor`;
 CREATE TABLE IF NOT EXISTS `proveedor` (
   `ID_PROVEEDOR` decimal(18,0) NOT NULL,
   `ID_PERSONA` int(11) DEFAULT NULL,
@@ -358,6 +385,7 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
 -- Estructura de tabla para la tabla `registro_alimentacion`
 --
 
+DROP TABLE IF EXISTS `registro_alimentacion`;
 CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
   `ID_REGISTRO_ALIMENTACION` decimal(18,0) NOT NULL,
   `ID_ALIMENTO` int(11) DEFAULT NULL,
@@ -376,6 +404,7 @@ CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
 -- Estructura de tabla para la tabla `registro_mortalidad`
 --
 
+DROP TABLE IF EXISTS `registro_mortalidad`;
 CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
   `ID_REGISTRO_MORTALIDAD` decimal(18,0) NOT NULL,
   `ID_JAULA` decimal(18,0) DEFAULT NULL,
@@ -393,6 +422,7 @@ CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
 -- Estructura de tabla para la tabla `tipo_alimento`
 --
 
+DROP TABLE IF EXISTS `tipo_alimento`;
 CREATE TABLE IF NOT EXISTS `tipo_alimento` (
   `ID_TIPO_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_TIPO_ALIMENTO` varchar(50) NOT NULL,
@@ -418,6 +448,7 @@ INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRI
 -- Estructura de tabla para la tabla `tipo_comprobante`
 --
 
+DROP TABLE IF EXISTS `tipo_comprobante`;
 CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
   `ID_TIPO_COMPROBANTE` decimal(18,0) NOT NULL,
   `NOMBRE_TIPO_COMPROBANTE` varchar(50) DEFAULT NULL,
@@ -431,6 +462,7 @@ CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
 -- Estructura de tabla para la tabla `tipo_jaula`
 --
 
+DROP TABLE IF EXISTS `tipo_jaula`;
 CREATE TABLE IF NOT EXISTS `tipo_jaula` (
   `ID_TIPO_JAULA` decimal(18,0) NOT NULL,
   `NOMBRE_TIPO_JAULA` varchar(50) NOT NULL,
@@ -447,6 +479,7 @@ CREATE TABLE IF NOT EXISTS `tipo_jaula` (
 -- Estructura de tabla para la tabla `traslados`
 --
 
+DROP TABLE IF EXISTS `traslados`;
 CREATE TABLE IF NOT EXISTS `traslados` (
   `ID_TRASLADOS` decimal(18,0) NOT NULL,
   `ID_JAULA` decimal(18,0) DEFAULT NULL,
@@ -463,6 +496,7 @@ CREATE TABLE IF NOT EXISTS `traslados` (
 -- Estructura de tabla para la tabla `venta`
 --
 
+DROP TABLE IF EXISTS `venta`;
 CREATE TABLE IF NOT EXISTS `venta` (
   `ID_VENTA` decimal(18,0) NOT NULL,
   `ID_CLIENTE` int(11) DEFAULT NULL,
@@ -515,8 +549,8 @@ ALTER TABLE `comprobante_venta`
 -- Filtros para la tabla `descuento`
 --
 ALTER TABLE `descuento`
-  ADD CONSTRAINT `FK_RELATIONSHIP_19` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_20` FOREIGN KEY (`ID_CATEGORIAS`) REFERENCES `categorias` (`ID_CATEGORIAS`);
+  ADD CONSTRAINT `descuento_ibfk_1` FOREIGN KEY (`ID_CATEGORIAS`) REFERENCES `categorias` (`ID_CATEGORIAS`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_19` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`);
 
 --
 -- Filtros para la tabla `detalle_compra_alimento`

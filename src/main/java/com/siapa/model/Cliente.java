@@ -40,8 +40,7 @@ public class Cliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "NOMBRE_CLIENTE_COMP_VENTA", nullable = false, length = 50)
     private String nombreClienteCompVenta;
-    @Column(name = "APELLIDOS_CLIENTE", length = 50)
-    private String apellidosCliente;
+
     @Column(name = "DIRECCION_CLIENTE", length = 500)
     private String direccionCliente;
     @Basic(optional = false)
@@ -83,14 +82,6 @@ public class Cliente implements Serializable {
 
     public void setNombreClienteCompVenta(String nombreClienteCompVenta) {
         this.nombreClienteCompVenta = nombreClienteCompVenta;
-    }
-
-    public String getApellidosCliente() {
-        return apellidosCliente;
-    }
-
-    public void setApellidosCliente(String apellidosCliente) {
-        this.apellidosCliente = apellidosCliente;
     }
 
     public String getDireccionCliente() {
