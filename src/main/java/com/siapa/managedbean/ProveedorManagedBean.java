@@ -1,4 +1,3 @@
-
 package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
@@ -37,12 +36,14 @@ public class ProveedorManagedBean extends GenericManagedBean<Proveedor, Integer>
     private PersonaService personaService;
 
     private Persona persona;
-
+    private Proveedor proveedor;
     private List<Persona> personas;
 
     @PostConstruct
     public void init() {
         loadLazyModels();
+        personas = personaService.findAll();
+        proveedor =new Proveedor();
     }
 
     @Override
@@ -66,6 +67,20 @@ public class ProveedorManagedBean extends GenericManagedBean<Proveedor, Integer>
         }
     }
 
+    @Override
+    public void saveNew(ActionEvent event) {
+
+        Proveedor proveedor = getProveedor();
+        proveedor.setIdPersona(persona);
+        proveedor.setUsuarioProveedor(getUsuario());
+        proveedorService.save(proveedor);
+    }
+
+    public void llenar() {
+        System.out.println("punto");
+
+    }
+
     public List<Persona> getPersonas() {
         return personas;
     }
@@ -80,6 +95,14 @@ public class ProveedorManagedBean extends GenericManagedBean<Proveedor, Integer>
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 
 }

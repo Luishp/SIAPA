@@ -7,7 +7,7 @@ package com.siapa.dao;
 
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.Proveedor;
-import java.io.Serializable;
+
 import org.springframework.stereotype.Repository;
 
 /**

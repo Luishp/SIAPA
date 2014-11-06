@@ -78,7 +78,7 @@ public class ClienteManagedBean extends GenericManagedBean<Cliente, Integer> {
     
     
     @Override
-        public void save(ActionEvent event) {
+        public void saveNew(ActionEvent event) {
             
         Cliente cliente=new Cliente();
         cliente.setIdPersona(persona);
@@ -87,12 +87,6 @@ public class ClienteManagedBean extends GenericManagedBean<Cliente, Integer> {
         cliente.setDireccionCliente(persona.getDireccionPersona());
         cliente.setTipoCliente(categoria.getNombreCategorias());
         clienteService.save(cliente);
-        
-        System.out.println(""+getSelected());    
-        System.out.println(""+getPersona());    
-        System.out.println(""+categoria);    
-        
-            
         
     }
     

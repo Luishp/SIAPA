@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2014 a las 23:39:53
+-- Tiempo de generación: 07-11-2014 a las 00:22:18
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -39,6 +39,11 @@ CREATE TABLE IF NOT EXISTS `alimento` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
+-- Truncar tablas antes de insertar `alimento`
+--
+
+TRUNCATE TABLE `alimento`;
+--
 -- Volcado de datos para la tabla `alimento`
 --
 
@@ -57,15 +62,21 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `NOMBRE_CATEGORIAS` varchar(50) NOT NULL,
   `DESCRIPCION_CATEGORIAS` varchar(500) NOT NULL,
   PRIMARY KEY (`ID_CATEGORIAS`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+--
+-- Truncar tablas antes de insertar `categorias`
+--
+
+TRUNCATE TABLE `categorias`;
 --
 -- Volcado de datos para la tabla `categorias`
 --
 
 INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES
-(1, 'Catgoria1', 'categoria 1 de prueba'),
-(2, 'Categoria2', 'categoria 2 de prueba');
+(1, 'A', 'categoria 1 de prueba'),
+(2, 'B', 'categoria 2 de prueba'),
+(3, 'C', 'Categoria de prueba ');
 
 -- --------------------------------------------------------
 
@@ -84,15 +95,21 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   PRIMARY KEY (`ID_CLIENTE`),
   KEY `FK_RELATIONSHIP_22` (`ID_CATEGORIAS`),
   KEY `FK_RELATIONSHIP_25` (`ID_PERSONA`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+--
+-- Truncar tablas antes de insertar `cliente`
+--
+
+TRUNCATE TABLE `cliente`;
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
 INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES
-(1, NULL, NULL, 'dg', 'gfhfgh', 'A'),
-(2, NULL, NULL, 'kklllllpppp', 'lolololol', 'A');
+(3, 3, 6, 'Izabel Goulart', 'Brasil', 'C'),
+(4, 1, 5, 'Behati Prinsloo ', '(Namibia)()', 'A'),
+(5, 3, 5, 'Behati Prinsloo ', '(Namibia)()', 'C');
 
 -- --------------------------------------------------------
 
@@ -110,6 +127,11 @@ CREATE TABLE IF NOT EXISTS `cliente_contacto` (
   KEY `FK_CLIENTE_CONTACTO2` (`ID_PERSONA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `cliente_contacto`
+--
+
+TRUNCATE TABLE `cliente_contacto`;
 -- --------------------------------------------------------
 
 --
@@ -119,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `cliente_contacto` (
 DROP TABLE IF EXISTS `compra`;
 CREATE TABLE IF NOT EXISTS `compra` (
   `ID_COMPRA` decimal(18,0) NOT NULL,
-  `ID_PROVEEDOR` decimal(18,0) DEFAULT NULL,
+  `ID_PROVEEDOR` int(11) DEFAULT NULL,
   `FECHA_HORA_COMPRA` date NOT NULL,
   `USUARIO_COMPRA` varchar(30) NOT NULL,
   `TOTAL_COMPRA` decimal(10,2) NOT NULL,
@@ -127,6 +149,11 @@ CREATE TABLE IF NOT EXISTS `compra` (
   KEY `FK_RELATIONSHIP_15` (`ID_PROVEEDOR`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `compra`
+--
+
+TRUNCATE TABLE `compra`;
 -- --------------------------------------------------------
 
 --
@@ -151,6 +178,11 @@ CREATE TABLE IF NOT EXISTS `comprobante_venta` (
   KEY `FK_RELATIONSHIP_3` (`ID_VENTA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `comprobante_venta`
+--
+
+TRUNCATE TABLE `comprobante_venta`;
 -- --------------------------------------------------------
 
 --
@@ -165,6 +197,11 @@ CREATE TABLE IF NOT EXISTS `contacto` (
   PRIMARY KEY (`ID_CONTACTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `contacto`
+--
+
+TRUNCATE TABLE `contacto`;
 -- --------------------------------------------------------
 
 --
@@ -184,6 +221,11 @@ CREATE TABLE IF NOT EXISTS `descuento` (
   KEY `FK_RELATIONSHIP_20` (`ID_CATEGORIAS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `descuento`
+--
+
+TRUNCATE TABLE `descuento`;
 -- --------------------------------------------------------
 
 --
@@ -203,6 +245,11 @@ CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   KEY `ID_ALIMENTO` (`ID_ALIMENTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `detalle_compra_alimento`
+--
+
+TRUNCATE TABLE `detalle_compra_alimento`;
 -- --------------------------------------------------------
 
 --
@@ -223,6 +270,11 @@ CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
   KEY `FK_RELATIONSHIP_2` (`ID_COMPROBANTE_VENTA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `detalle_comprobante_venta`
+--
+
+TRUNCATE TABLE `detalle_comprobante_venta`;
 -- --------------------------------------------------------
 
 --
@@ -239,6 +291,11 @@ CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
   KEY `FK_RELATIONSHIP_9` (`ID_MUESTREO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `detalle_muestreo`
+--
+
+TRUNCATE TABLE `detalle_muestreo`;
 -- --------------------------------------------------------
 
 --
@@ -259,6 +316,11 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
   KEY `FK_RELATIONSHIP_21` (`ID_VENTA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `detalle_venta`
+--
+
+TRUNCATE TABLE `detalle_venta`;
 -- --------------------------------------------------------
 
 --
@@ -278,6 +340,11 @@ CREATE TABLE IF NOT EXISTS `ingreso_producto` (
   KEY `FK_RELATIONSHIP_6` (`ID_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `ingreso_producto`
+--
+
+TRUNCATE TABLE `ingreso_producto`;
 -- --------------------------------------------------------
 
 --
@@ -298,6 +365,11 @@ CREATE TABLE IF NOT EXISTS `jaula` (
   KEY `FK_RELATIONSHIP_7` (`ID_TIPO_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `jaula`
+--
+
+TRUNCATE TABLE `jaula`;
 -- --------------------------------------------------------
 
 --
@@ -316,6 +388,11 @@ CREATE TABLE IF NOT EXISTS `muestreo` (
   KEY `FK_RELATIONSHIP_8` (`ID_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `muestreo`
+--
+
+TRUNCATE TABLE `muestreo`;
 -- --------------------------------------------------------
 
 --
@@ -335,6 +412,11 @@ CREATE TABLE IF NOT EXISTS `persona` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
+-- Truncar tablas antes de insertar `persona`
+--
+
+TRUNCATE TABLE `persona`;
+--
 -- Volcado de datos para la tabla `persona`
 --
 
@@ -342,7 +424,7 @@ INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC
 (1, 'Joao Hernandez', 'San Marcos', '123456', '321564', '2348949879', 'A'),
 (2, 'Walter Hernandez', 'Mejicanos', '789467868', '46416876416', '645468465746', 'B'),
 (3, 'Ricardo Armando Flamenco', 'San Martin #3', '1654891354', '12213123', '232323222', 'A'),
-(4, 'Alessandra Ambrosio ', 'Brasil', '78916946198', '1654768162165', '65431894651657', 'A'),
+(4, 'Alessandra Ambrosio ', 'Brasil #12, San Jacinto', '78916946198', '1654768162165', '65431894651657', 'A'),
 (5, 'Behati Prinsloo ', '(Namibia)()', '92512436146', '913434161657', '16541364655165', 'C'),
 (6, 'Izabel Goulart', 'Brasil', '1891564545615', '005961261', '0651364130', 'B'),
 (7, 'Kasia Struss', '(Polonia) ', '004405055', '0011224105', '0000521205', 'B');
@@ -363,6 +445,11 @@ CREATE TABLE IF NOT EXISTS `producto` (
   PRIMARY KEY (`ID_PRODUCTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `producto`
+--
+
+TRUNCATE TABLE `producto`;
 -- --------------------------------------------------------
 
 --
@@ -371,13 +458,26 @@ CREATE TABLE IF NOT EXISTS `producto` (
 
 DROP TABLE IF EXISTS `proveedor`;
 CREATE TABLE IF NOT EXISTS `proveedor` (
-  `ID_PROVEEDOR` decimal(18,0) NOT NULL,
+  `ID_PROVEEDOR` int(11) NOT NULL AUTO_INCREMENT,
   `ID_PERSONA` int(11) DEFAULT NULL,
   `FECHA_PROVEEDOR` date NOT NULL,
   `USUARIO_PROVEEDOR` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_PROVEEDOR`),
   KEY `FK_RELATIONSHIP_26` (`ID_PERSONA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Truncar tablas antes de insertar `proveedor`
+--
+
+TRUNCATE TABLE `proveedor`;
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUARIO_PROVEEDOR`) VALUES
+(1, 5, '2014-11-20', 'EAD'),
+(2, 6, '2014-11-28', 'EAD');
 
 -- --------------------------------------------------------
 
@@ -398,6 +498,11 @@ CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
   KEY `ID_ALIMENTO` (`ID_ALIMENTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `registro_alimentacion`
+--
+
+TRUNCATE TABLE `registro_alimentacion`;
 -- --------------------------------------------------------
 
 --
@@ -416,6 +521,11 @@ CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
   KEY `FK_RELATIONSHIP_10` (`ID_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `registro_mortalidad`
+--
+
+TRUNCATE TABLE `registro_mortalidad`;
 -- --------------------------------------------------------
 
 --
@@ -431,6 +541,11 @@ CREATE TABLE IF NOT EXISTS `tipo_alimento` (
   PRIMARY KEY (`ID_TIPO_ALIMENTO`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
+--
+-- Truncar tablas antes de insertar `tipo_alimento`
+--
+
+TRUNCATE TABLE `tipo_alimento`;
 --
 -- Volcado de datos para la tabla `tipo_alimento`
 --
@@ -456,6 +571,11 @@ CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
   PRIMARY KEY (`ID_TIPO_COMPROBANTE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `tipo_comprobante`
+--
+
+TRUNCATE TABLE `tipo_comprobante`;
 -- --------------------------------------------------------
 
 --
@@ -473,6 +593,11 @@ CREATE TABLE IF NOT EXISTS `tipo_jaula` (
   PRIMARY KEY (`ID_TIPO_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `tipo_jaula`
+--
+
+TRUNCATE TABLE `tipo_jaula`;
 -- --------------------------------------------------------
 
 --
@@ -490,6 +615,11 @@ CREATE TABLE IF NOT EXISTS `traslados` (
   KEY `FK_RELATIONSHIP_5` (`ID_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `traslados`
+--
+
+TRUNCATE TABLE `traslados`;
 -- --------------------------------------------------------
 
 --
@@ -508,6 +638,11 @@ CREATE TABLE IF NOT EXISTS `venta` (
   KEY `FK_RELATIONSHIP_4` (`ID_COMPROBANTE_VENTA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `venta`
+--
+
+TRUNCATE TABLE `venta`;
 --
 -- Restricciones para tablas volcadas
 --
@@ -536,7 +671,7 @@ ALTER TABLE `cliente_contacto`
 -- Filtros para la tabla `compra`
 --
 ALTER TABLE `compra`
-  ADD CONSTRAINT `FK_RELATIONSHIP_15` FOREIGN KEY (`ID_PROVEEDOR`) REFERENCES `proveedor` (`ID_PROVEEDOR`);
+  ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`ID_PROVEEDOR`) REFERENCES `proveedor` (`ID_PROVEEDOR`);
 
 --
 -- Filtros para la tabla `comprobante_venta`
@@ -633,8 +768,6 @@ ALTER TABLE `venta`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
 
 
 -------------------------------------------------------------------------------------------------

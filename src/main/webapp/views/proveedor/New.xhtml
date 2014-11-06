@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    
+    <ui:composition>
+        <h:form id="ProveedorCreateForm">
+            <h:panelGroup id="display" >
+               
+
+                    <h3>Persona</h3>
+                    <p:panelGrid columns="2"  >           
+
+                        <p:selectOneMenu id="persona" value="#{proveedorManagedBean.persona}" converter="#{personaConverter}" panelStyle="width:180px"
+                                         effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{proveedorManagedBean.personas}" var="persona" itemLabel="#{persona.nombrePersona}" itemValue="#{persona}" />
+                            <p:ajax event="change" listener="#{proveedorManagedBean.llenar}" update="nombreClienteCompVenta" />
+                            <p:column>
+                                <h:outputText value="#{t.nombrePersona}" />
+                            </p:column>
+                        </p:selectOneMenu>
+
+                        <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true"   value="#{crudbundle.Create}" actionListener="#{personaManagedBean.toCreatePersona}"/>
+
+                    </p:panelGrid>
+
+
+                    <p:separator/>
+
+                    <h3>Proveedor</h3>
+                    <p:panelGrid columns="2">                        
+                        <h:outputLabel for="nombre" value="Nombre Proveedor: " />
+                        <p:inputText id="nombreClienteCompVenta" readonly="true" value="#{proveedorManagedBean.persona.nombrePersona}" title="#{crudbundle.CreateClienteTitle_nombreClienteCompVenta}" required="true" requiredMessage="#{crudbundle.CreateClienteRequiredMessage_nombreClienteCompVenta}" size="50" maxlength="50" style="text-align: center"/>
+
+                        <h:outputLabel for="fecha" value="Fecha: " />
+                        <p:calendar id="button" style="text-align: center" value="#{proveedorManagedBean.proveedor.fechaProveedor}" showOn="button"  />
+
+                        <p:commandButton icon="ui-icon-disk" actionListener="#{proveedorManagedBean.saveNew}" value="#{crudbundle.Save}" />
+
+                    </p:panelGrid>
+                    <p:separator/>
+
+              
+            </h:panelGroup>
+        </h:form>
+    </ui:composition>
+</html>
