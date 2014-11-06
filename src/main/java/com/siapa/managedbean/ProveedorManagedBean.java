@@ -66,6 +66,11 @@ public class ProveedorManagedBean extends GenericManagedBean<Proveedor, Integer>
             //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
         }
     }
+    
+    public void llenar() {
+        System.out.println("punto");
+
+    }
 
     @Override
     public void saveNew(ActionEvent event) {
