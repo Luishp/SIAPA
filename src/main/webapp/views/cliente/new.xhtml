@@ -44,16 +44,13 @@
 
                     <p:outputLabel value="#{crudbundle.CreateClienteLabel_tipoCliente}" for="tipoCliente" />
                     
-                    <p:selectOneMenu id="tipoCliente" value="#{clienteManagedBean.categoria}" converter="#{categoriasConverter}" 
-                                     effect="fade"  style="width:200px" >
-
+                    <p:selectOneMenu id="tipoCliente" value="#{clienteManagedBean.categoria}" converter="#{categoriasConverter}" effect="fade"  style="width:200px" >
                         <f:selectItems value="#{clienteManagedBean.categorias}" var="categorias" itemLabel="#{categorias.nombreCategorias}" itemValue="#{categorias}" />       
-
                     </p:selectOneMenu>
 
 
                 </p:panelGrid>
-                <p:commandButton icon="ui-icon-disk" actionListener="#{clienteManagedBean.save}" value="#{crudbundle.Save}" />
+                <p:commandButton icon="ui-icon-disk" actionListener="#{clienteManagedBean.saveNew}" value="#{crudbundle.Save}" />
                 <!--<p:commandButton icon="ui-icon-disk" actionListener="#{clienteManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:ClienteListForm,:growl" oncomplete="handleSubmit(xhr,status,args,ClienteCreateDialog);"/>-->
                 <span>&nbsp;</span>
                 <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="ClienteCreateDialog.hide()"/>

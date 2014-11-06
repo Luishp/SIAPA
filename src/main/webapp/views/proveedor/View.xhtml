@@ -8,28 +8,28 @@
 
     <ui:composition>
 
-        <p:dialog id="ProveedorViewDlg" widgetVar="ProveedorViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewProveedorTitle}" closeOnEscape="true">
+        <p:dialog id="ProveedorViewDlg" widgetVar="ProveedorViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewProveedorTitle}" closeOnEscape="true">
 
             <h:form id="ProveedorViewForm">
 
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" columnClasses="column" rendered="#{ProveedorManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{proveedorController.selected != null}">
 
-                        <h:outputText value="#{crudbundle.ViewProveedorLabel_idProveedor}"/>
-                        <h:outputText value="#{ProveedorManagedBean.selected.idProveedor}" title="#{crudbundle.ViewProveedorTitle_idProveedor}"/>
+                        <h:outputText value="#{myBundle.ViewProveedorLabel_idProveedor}"/>
+                        <h:outputText value="#{proveedorController.selected.idProveedor}" title="#{myBundle.ViewProveedorTitle_idProveedor}"/>
 
-                        <h:outputText value="#{crudbundle.ViewProveedorLabel_fechaProveedor}"/>
-                        <h:outputText value="#{ProveedorManagedBean.selected.fechaProveedor}" title="#{crudbundle.ViewProveedorTitle_fechaProveedor}">
+                        <h:outputText value="#{myBundle.ViewProveedorLabel_fechaProveedor}"/>
+                        <h:outputText value="#{proveedorController.selected.fechaProveedor}" title="#{myBundle.ViewProveedorTitle_fechaProveedor}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
-                        <h:outputText value="#{crudbundle.ViewProveedorLabel_usuarioProveedor}"/>
-                        <h:outputText value="#{ProveedorManagedBean.selected.usuarioProveedor}" title="#{crudbundle.ViewProveedorTitle_usuarioProveedor}"/>
+                        <h:outputText value="#{myBundle.ViewProveedorLabel_usuarioProveedor}"/>
+                        <h:outputText value="#{proveedorController.selected.usuarioProveedor}" title="#{myBundle.ViewProveedorTitle_usuarioProveedor}"/>
 
-                        <h:outputText value="#{crudbundle.ViewProveedorLabel_idPersona}"/>
-                        <h:outputText value="#{ProveedorManagedBean.selected.idPersona.idPersona}"/>
+                        <h:outputText value="#{myBundle.ViewProveedorLabel_idPersona}"/>
+                        <h:outputText value="#{proveedorController.selected.idPersona.idPersona}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{crudbundle.Close}" onclick="PF('ProveedorViewDialog').hide()"/>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ProveedorViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

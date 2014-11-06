@@ -1,9 +1,10 @@
+
 -- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2014 a las 23:39:53
+-- Tiempo de generación: 06-11-2014 a las 06:55:38
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -57,15 +58,16 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `NOMBRE_CATEGORIAS` varchar(50) NOT NULL,
   `DESCRIPCION_CATEGORIAS` varchar(500) NOT NULL,
   PRIMARY KEY (`ID_CATEGORIAS`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `categorias`
 --
 
 INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES
-(1, 'Catgoria1', 'categoria 1 de prueba'),
-(2, 'Categoria2', 'categoria 2 de prueba');
+(1, 'A', 'categoria 1 de prueba'),
+(2, 'B', 'categoria 2 de prueba'),
+(3, 'C', 'Categoria de prueba ');
 
 -- --------------------------------------------------------
 
@@ -84,15 +86,16 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   PRIMARY KEY (`ID_CLIENTE`),
   KEY `FK_RELATIONSHIP_22` (`ID_CATEGORIAS`),
   KEY `FK_RELATIONSHIP_25` (`ID_PERSONA`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
 INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES
-(1, NULL, NULL, 'dg', 'gfhfgh', 'A'),
-(2, NULL, NULL, 'kklllllpppp', 'lolololol', 'A');
+(3, 3, 6, 'Izabel Goulart', 'Brasil', 'C'),
+(4, 1, 5, 'Behati Prinsloo ', '(Namibia)()', 'A'),
+(5, 3, 5, 'Behati Prinsloo ', '(Namibia)()', 'C');
 
 -- --------------------------------------------------------
 
@@ -119,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `cliente_contacto` (
 DROP TABLE IF EXISTS `compra`;
 CREATE TABLE IF NOT EXISTS `compra` (
   `ID_COMPRA` decimal(18,0) NOT NULL,
-  `ID_PROVEEDOR` decimal(18,0) DEFAULT NULL,
+  `ID_PROVEEDOR` int(11) DEFAULT NULL,
   `FECHA_HORA_COMPRA` date NOT NULL,
   `USUARIO_COMPRA` varchar(30) NOT NULL,
   `TOTAL_COMPRA` decimal(10,2) NOT NULL,
@@ -342,7 +345,7 @@ INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC
 (1, 'Joao Hernandez', 'San Marcos', '123456', '321564', '2348949879', 'A'),
 (2, 'Walter Hernandez', 'Mejicanos', '789467868', '46416876416', '645468465746', 'B'),
 (3, 'Ricardo Armando Flamenco', 'San Martin #3', '1654891354', '12213123', '232323222', 'A'),
-(4, 'Alessandra Ambrosio ', 'Brasil', '78916946198', '1654768162165', '65431894651657', 'A'),
+(4, 'Alessandra Ambrosio ', 'Brasil #12, San Jacinto', '78916946198', '1654768162165', '65431894651657', 'A'),
 (5, 'Behati Prinsloo ', '(Namibia)()', '92512436146', '913434161657', '16541364655165', 'C'),
 (6, 'Izabel Goulart', 'Brasil', '1891564545615', '005961261', '0651364130', 'B'),
 (7, 'Kasia Struss', '(Polonia) ', '004405055', '0011224105', '0000521205', 'B');
@@ -371,13 +374,13 @@ CREATE TABLE IF NOT EXISTS `producto` (
 
 DROP TABLE IF EXISTS `proveedor`;
 CREATE TABLE IF NOT EXISTS `proveedor` (
-  `ID_PROVEEDOR` decimal(18,0) NOT NULL,
+  `ID_PROVEEDOR` int(11) NOT NULL AUTO_INCREMENT,
   `ID_PERSONA` int(11) DEFAULT NULL,
   `FECHA_PROVEEDOR` date NOT NULL,
   `USUARIO_PROVEEDOR` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_PROVEEDOR`),
   KEY `FK_RELATIONSHIP_26` (`ID_PERSONA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -536,7 +539,7 @@ ALTER TABLE `cliente_contacto`
 -- Filtros para la tabla `compra`
 --
 ALTER TABLE `compra`
-  ADD CONSTRAINT `FK_RELATIONSHIP_15` FOREIGN KEY (`ID_PROVEEDOR`) REFERENCES `proveedor` (`ID_PROVEEDOR`);
+  ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`ID_PROVEEDOR`) REFERENCES `proveedor` (`ID_PROVEEDOR`);
 
 --
 -- Filtros para la tabla `comprobante_venta`
@@ -633,8 +636,6 @@ ALTER TABLE `venta`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
 
 
 -------------------------------------------------------------------------------------------------

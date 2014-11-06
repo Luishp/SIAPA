@@ -7,7 +7,9 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <h:form id="ProveedorListForm">
-        <p:fieldset legend="proveedor">       
+
+        <p:fieldset legend="Proveedor">
+
             <p:dataTable id="datalist" 
                          var="item"
                          value="#{proveedorManagedBean.lazyItems}" 
@@ -19,48 +21,43 @@
                          resizableColumns="true"  
                          selectionMode="single"
                          selection="#{proveedorManagedBean.selected}"
-                         rowKey="#{item.idCliente}" 
-                         paginatorPosition="bottom">      
+                         rowKey="#{item.idProveedor}" 
+                         paginatorPosition="bottom">    
 
                 <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
                 <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
 
-                <p:column sortBy="#{item.fechaProveedor}" filterBy="#{item.fechaProveedor}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProveedorTitle_fechaProveedor}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.fechaProveedor}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                </p:column>
 
 
-                <p:column sortBy="#{item.usuarioProveedor}" filterBy="#{item.usuarioProveedor}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProveedorTitle_usuarioProveedor}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.usuarioProveedor}"/>
-                </p:column>
+                <p:columnGroup>
+                    <p:outputLabel value="Persona"  for="persona"  /> 
+                    <span>&nbsp;</span>
+                    <p:selectOneMenu id="persona" value="#{proveedorManagedBean.persona}" converter="#{personaConverter}" panelStyle="width:180px"
+                                     effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+
+                        <f:selectItems value="#{proveedorManagedBean.personas}" var="persona" itemLabel="#{persona.nombrePersona}" itemValue="#{persona}" />
+                        <p:ajax event="change" listener="#{proveedorManagedBean.llenar}" update="nombreClienteCompVenta,apellidosCliente,direccionCliente,tipoCliente" />
+                        <p:column>
+                            <h:outputText value="#{t.nombrePersona}" />
+                        </p:column>
+                    </p:selectOneMenu>
+                </p:columnGroup>
 
 
-                <p:column sortBy="#{item.idPersona.idPersona}" filterBy="#{item.idPersona.idPersona}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProveedorTitle_idPersona}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idPersona.idPersona}"/>
-                </p:column>
 
 
-                <f:facet name="footer">
-                    <div class="footer-section">
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{proveedorManagedBean.toCreateProveedor}"/>
-                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#ProveedorEditForm)" oncomplete="ProveedorEditDialog.show()" disabled="#{empty ProveedorManagedBean.selected}"/>
-                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{clienteManagedBean.delete}" update=":growl,datalist" disabled="#{empty ProveedorManagedBean.selected}"/>
-                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ProveedorViewForm)" oncomplete="ProveedorViewDialog.show()" disabled="#{empty ProveedorManagedBean.selected}"/>
 
-                    </div>
-                </f:facet>             
             </p:dataTable>
+
+<!--            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{proveedorManagedBean.prepareCreate}" update=":ProveedorCreateForm" oncomplete="PF('ProveedorCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":ProveedorViewForm" oncomplete="PF('ProveedorViewDialog').show()" disabled="#{empty proveedorManagedBean.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":ProveedorEditForm" oncomplete="PF('ProveedorEditDialog').show()" disabled="#{empty proveedorManagedBean.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{proveedorManagedBean.delete}" update=":growl,datalist" disabled="#{empty proveedorManagedBean.selected}">
+                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>-->
+
+            
+
         </p:fieldset>
     </h:form>
 

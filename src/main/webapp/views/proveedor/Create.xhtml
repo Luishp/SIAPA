@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/templates/commonLayout.xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
+    <ui:composition>
 
-    <ui:define name="title">
-        <h:outputText value="#{crudbundle.ClienteTitle}"/>
-    </ui:define>
+        <p:dialog id="ProveedorCreateDlg" widgetVar="ProveedorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateProveedorTitle}" closeOnEscape="true">
 
-    <ui:define name="content">
-        <ui:include src="new.xhtml"/>
-    </ui:define>
+            <h:form id="ProveedorCreateForm">
 
-</ui:composition>
+                <h:panelGroup id="display" rendered="#{proveedorController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
 
+                        <p:outputLabel value="#{myBundle.CreateProveedorLabel_idProveedor}" for="idProveedor" />
+                        <p:inputText id="idProveedor" value="#{proveedorController.selected.idProveedor}" title="#{myBundle.CreateProveedorTitle_idProveedor}" required="true" requiredMessage="#{myBundle.CreateProveedorRequiredMessage_idProveedor}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateProveedorLabel_fechaProveedor}" for="fechaProveedor" />
+                        <p:calendar id="fechaProveedor" pattern="MM/dd/yyyy" value="#{proveedorController.selected.fechaProveedor}" title="#{myBundle.CreateProveedorTitle_fechaProveedor}" required="true" requiredMessage="#{myBundle.CreateProveedorRequiredMessage_fechaProveedor}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateProveedorLabel_usuarioProveedor}" for="usuarioProveedor" />
+                        <p:inputText id="usuarioProveedor" value="#{proveedorController.selected.usuarioProveedor}" title="#{myBundle.CreateProveedorTitle_usuarioProveedor}" required="true" requiredMessage="#{myBundle.CreateProveedorRequiredMessage_usuarioProveedor}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.CreateProveedorLabel_idPersona}" for="idPersona" />
+                        <p:selectOneMenu id="idPersona" value="#{proveedorController.selected.idPersona}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personaController.items}"
+                                           var="idPersonaItem"
+                                           itemValue="#{idPersonaItem}"
+                                           itemLabel="#{idPersonaItem.idPersona.toString()}"
+                                           />
+                            <f:converter binding="#{personaConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proveedorController.saveNew}" value="#{myBundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ProveedorCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('ProveedorCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
