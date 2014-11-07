@@ -9,6 +9,7 @@ import com.siapa.dao.AlimentoDao;
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.Alimento;
 import com.siapa.service.generic.GenericService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,15 @@ public class AlimentoService extends GenericService<Alimento, Integer>{
      @Autowired
     private AlimentoDao alimentoDao;
 
+     
+     
+     
     @Override
     public GenericDao<Alimento, Integer> getDao() {
         return alimentoDao;
+    }
+    
+    public List<Alimento> getTypeFood(){
+         return alimentoDao.getTypeFood();
     }
 }

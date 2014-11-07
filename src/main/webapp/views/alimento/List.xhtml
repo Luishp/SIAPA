@@ -10,7 +10,7 @@
         <p:fieldset legend="Alimento">
             <p:dataTable id="datalist" 
                          var="item"
-                         value="#{alimentoManagedBean.lazyItems}" 
+                         value="#{alimentoManagedBean.alimentoList}" 
                          paginator="true" 
                          rows="5"  
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
@@ -25,31 +25,47 @@
                 <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
                 <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
 
-                <p:column sortBy="#{item.idAlimento}" filterBy="#{item.idAlimento}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListAlimentoTitle_idAlimento}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idAlimento}"/>
-                </p:column>
 
 
-                <p:column sortBy="#{item.marcaAlimento}" filterBy="#{item.marcaAlimento}">
+                <p:column >
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListAlimentoTitle_marcaAlimento}"/>
                     </f:facet>
                     <h:outputText value="#{item.marcaAlimento}"/>
                 </p:column>
 
-
-                <p:column sortBy="#{item.existenciaAlimento}" filterBy="#{item.existenciaAlimento}">
+                <p:column  >
                     <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListAlimentoTitle_existenciaAlimento}"/>
+                        <h:outputText value="Nombre Alimento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoAlimento.nombreTipoAlimento}"/>
+                </p:column>
+
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Descripcion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoAlimento.descricionTipoAlimento}"/>
+                </p:column>
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Proteinas"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoAlimento.porceProteinaTipoAlimento}"/>
+                </p:column>
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Existencias"/>
                     </f:facet>
                     <h:outputText value="#{item.existenciaAlimento}"/>
                 </p:column>
 
                 <f:facet name="footer">
                     <div class="footer-section">
+                       
                         <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{alimentoManagedBean.prepareCreate}" update=" @(#AlimentoCreateForm)" oncomplete="AlimentoCreateDialog.show()"/>
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#AlimentoEditForm)" oncomplete="AlimentoEditDialog.show()" disabled="#{empty alimentoManagedBean.selected}"/>
                         <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{alimentoManagedBean.delete}" update=":growl,datalist" disabled="#{empty alimentoManagedBean.selected}"/>

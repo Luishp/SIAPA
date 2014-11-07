@@ -13,6 +13,10 @@
 
                 <h:panelGroup id="display" >
                     <p:panelGrid columns="2" rendered="#{alimentoManagedBean.selected != null}">
+                        <p:outputLabel value="Tipo de Alimento"/>
+                        <p:selectOneMenu id="tipoAlimento" value="#{alimentoManagedBean.tipoAlimento}" converter="#{tipoAlimentoConverter}" effect="fade" style="width:200px">
+                            <f:selectItems value="#{alimentoManagedBean.tipoAlimentoList}" var="tipo" itemLabel="#{tipo.nombreTipoAlimento}" itemValue="#{tipo}" />
+                        </p:selectOneMenu>
 
                         <p:outputLabel value="#{crudbundle.CreateAlimentoLabel_marcaAlimento}" for="marcaAlimento" />
                         <p:inputText id="marcaAlimento" value="#{alimentoManagedBean.selected.marcaAlimento}" title="#{crudbundle.CreateAlimentoTitle_marcaAlimento}" size="50" maxlength="50"/>
@@ -22,7 +26,7 @@
 
                     </p:panelGrid>
 
-                    <p:commandButton icon="ui-icon-disk" actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:AlimentoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,AlimentoCreateDialog);"/>
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{alimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update=":AlimentoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,AlimentoCreateDialog);"/>
                     <span>&nbsp;</span>
                     <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="AlimentoCreateDialog.hide()"/>
                 </h:panelGroup>

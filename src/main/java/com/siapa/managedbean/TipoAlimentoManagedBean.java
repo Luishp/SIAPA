@@ -10,7 +10,6 @@ import com.siapa.managedbean.lazymodel.TipoAlimentoLazyModel;
 import com.siapa.model.TipoAlimento;
 import com.siapa.service.TipoAlimentoService;
 import com.siapa.service.generic.GenericService;
-import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
@@ -24,30 +23,27 @@ import org.springframework.web.context.WebApplicationContext;
  * @author Joao
  */
 
-@Named("tipoAlimentoManageBean")
+@Named("tipoAlimentoManagedBean")
 @Scope(WebApplicationContext.SCOPE_SESSION)
-public class TipoAlimentoManageBean extends GenericManagedBean<TipoAlimento, Integer>{
+public class TipoAlimentoManagedBean extends GenericManagedBean<TipoAlimento, Integer>  {
 
     
     @Autowired
     @Qualifier(value = "tipoAlimentoService")
     private TipoAlimentoService tipoAlimentoService;
-    
-    
+
     @PostConstruct
     public void init() {
         loadLazyModels();
     }
     
+    
     @Override
     public GenericService<TipoAlimento, Integer> getService() {
-        return tipoAlimentoService;
-    }
-
-    @Override
+       return tipoAlimentoService;
+     }
+    @Override 
     public LazyDataModel<TipoAlimento> getNewLazyModel() {
-        return new TipoAlimentoLazyModel(tipoAlimentoService);
+       return new TipoAlimentoLazyModel(tipoAlimentoService);
     }
-    
-    
 }

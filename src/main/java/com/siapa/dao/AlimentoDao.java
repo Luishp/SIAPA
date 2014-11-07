@@ -7,6 +7,8 @@ package com.siapa.dao;
 
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.Alimento;
+import java.util.List;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +18,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AlimentoDao extends GenericDao<Alimento, Integer> {
+    
+    
+    
+    public List <Alimento>getTypeFood(){
+        
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT food FROM Alimento food JOIN FETCH food.idTipoAlimento");
+        return q.list();
+        
+    }
     
 }

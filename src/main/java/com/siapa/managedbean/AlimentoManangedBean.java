@@ -8,9 +8,13 @@ package com.siapa.managedbean;
 import com.siapa.managedbean.generic.GenericManagedBean;
 import com.siapa.managedbean.lazymodel.AlimentoLazyModel;
 import com.siapa.model.Alimento;
+import com.siapa.model.TipoAlimento;
 import com.siapa.service.AlimentoService;
+import com.siapa.service.TipoAlimentoService;
 import com.siapa.service.generic.GenericService;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.faces.event.ActionEvent;
@@ -32,10 +36,19 @@ public class AlimentoManangedBean extends GenericManagedBean<Alimento, Integer> 
     @Autowired
     @Qualifier(value = "alimentoService")
     private AlimentoService alimentoService;
-
+    
+    @Autowired
+    @Qualifier(value = "tipoAlimentoService")
+    private TipoAlimentoService tipoAlimentoService;
+ 
+    private List<Alimento> alimentoList;
+    private List<TipoAlimento> tipoAlimentoList;
+    private TipoAlimento tipoAlimento;
+    
     @PostConstruct
     public void init() {
-        loadLazyModels();
+       alimentoList=alimentoService.getTypeFood();
+       tipoAlimentoList=tipoAlimentoService.findAll();
     }
     
     @Override
@@ -49,24 +62,45 @@ public class AlimentoManangedBean extends GenericManagedBean<Alimento, Integer> 
     }
 
     
-//    @Override
-//    public void saveNew(ActionEvent event) {
-//       if(getUsuario()!=null){
-//        String msg = ResourceBundle.getBundle("/crudbundle").getString(Alimento.class.getSimpleName() + "Usuario creado con exito");
-////        getSelected().setUsuarioRegistro(getUsuario());
-////        getSelected().setFechaRegistro(new Date());
-//        persist(PersistAction.CREATE, msg);
-//       }
-//    }
-//
-//    @Override
-//    public void save(ActionEvent event) {
-//        String msg = ResourceBundle.getBundle("/crudbundle").getString(Alimento.class.getSimpleName() + "Usuario actualizado con exito");
-////        getSelected().setUsuarioUltimamodificacion(getUsuario());
-////        getSelected().setFechaUltimamodificacion(new Date());
-//        persist(PersistAction.UPDATE, msg);
-//        if (!isValidationFailed()) {
-//           items = null; // Invalidate list of items to trigger re-query.
-//        }
-//    }
+     @Override
+        public void saveNew(ActionEvent event) {
+
+        Alimento newAlimento=new Alimento();
+                
+        newAlimento.setMarcaAlimento(getSelected().getMarcaAlimento());
+        newAlimento.setExistenciaAlimento(getSelected().getExistenciaAlimento());
+        newAlimento.setIdTipoAlimento(tipoAlimento);
+       
+        alimentoService.save(newAlimento);
+        tipoAlimentoList=tipoAlimentoService.findAll();
+        
+    }
+    
+    
+  
+    public List<Alimento> getAlimentoList() {
+        return alimentoList;
+    }
+
+    public void setAlimentoList(List<Alimento> alimentoList) {
+        this.alimentoList = alimentoList;
+    }
+
+    public List<TipoAlimento> getTipoAlimentoList() {
+        return tipoAlimentoList;
+    }
+
+    public void setTipoAlimentoList(List<TipoAlimento> tipoAlimentoList) {
+        this.tipoAlimentoList = tipoAlimentoList;
+    }
+
+    public TipoAlimento getTipoAlimento() {
+        return tipoAlimento;
+    }
+
+    public void setTipoAlimento(TipoAlimento tipoAlimento) {
+        this.tipoAlimento = tipoAlimento;
+    }
+    
+    
 }

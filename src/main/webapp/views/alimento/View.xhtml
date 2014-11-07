@@ -21,8 +21,17 @@
                         <h:outputText value="#{crudbundle.ViewAlimentoLabel_marcaAlimento}"/>
                         <h:outputText value="#{alimentoManagedBean.selected.marcaAlimento}" title="#{crudbundle.ViewAlimentoTitle_marcaAlimento}"/>
 
-                        <h:outputText value="#{crudbundle.ViewAlimentoLabel_existenciaAlimento}"/>
-                        <h:outputText value="#{alimentoManagedBean.selected.existenciaAlimento}" title="#{crudbundle.ViewAlimentoTitle_existenciaAlimento}"/>
+                        <h:outputText value="Nombre de Alimento"/>
+                        <h:outputText value="#{alimentoManagedBean.selected.idTipoAlimento.nombreTipoAlimento}" />
+                                
+                        <h:outputText value="Descripcion"/>
+                        <h:outputText value="#{alimentoManagedBean.selected.idTipoAlimento.descricionTipoAlimento}"/>
+                      
+                        <h:outputText value="Proteinas"/>
+                        <h:outputText value="#{alimentoManagedBean.selected.idTipoAlimento.porceProteinaTipoAlimento}"/>
+                       
+                        <h:outputText value="Cantidad"/>
+                        <h:outputText value="#{alimentoManagedBean.selected.existenciaAlimento}"/>
                        
                     </p:panelGrid>
                     <p:commandButton value="#{crudbundle.Close}" onclick="PF('AlimentoViewDialog').hide()"/>

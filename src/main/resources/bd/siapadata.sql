@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2014 a las 17:54:47
+-- Tiempo de generación: 07-11-2014 a las 23:48:20
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -36,14 +36,19 @@ CREATE TABLE IF NOT EXISTS `alimento` (
   `EXISTENCIA_ALIMENTO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_ALIMENTO`),
   KEY `FK_RELATIONSHIP_13` (`ID_TIPO_ALIMENTO`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `alimento`
 --
 
 INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES
-(2, NULL, 'ALCON', '100.00');
+(2, 3, 'ALCON', '100.00'),
+(4, 4, 'ALCON', '150.00'),
+(5, 7, 'Alianza', '1501.00'),
+(6, 6, 'DELTA', '234.00'),
+(7, 7, 'OMEGA', '159.00'),
+(8, 7, 'OMEGA', '159.00');
 
 -- --------------------------------------------------------
 
@@ -446,11 +451,10 @@ CREATE TABLE IF NOT EXISTS `tipo_alimento` (
 --
 
 INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES
-(3, 'asdasddsad', 'asdasdda', '123'),
-(4, 'prueba2', 'prieubabababa', '21.5'),
-(6, 'Actualizado', 'ksdjn jknkfjns  ', '5.5'),
-(7, 'compresnadas', 'aspmc', '.2.2'),
-(10, 'p2', 'p2', '2.3');
+(3, 'Alimento liofilizado', 'Son alimentos deshidratados mediante una técnica especial que les permite conservar todos sus nutrientes\n\n\n', '12.5'),
+(4, 'Papillas', ' El alimento se presenta en forma de papilla, después de haber mezclado y batido los ingredientes correspondientes.\n\n\n', '21.5'),
+(6, ' Alimento Fresco', 'Mejillones, gambas, corazón de res... Estos alimentos pueden proporcionarse ocasionalmente en su forma natural, siempre troceados en función del tamaño de los peces\n', '5.5'),
+(7, 'daphnia', 'las larvas de mosquito, camarones recién eclosionados o adultos (según el tipo de pez a alimentar) y las pequeñas lombrices Tubifex.\n', '.2.2');
 
 -- --------------------------------------------------------
 
@@ -645,7 +649,6 @@ ALTER TABLE `venta`
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
-
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 ----------------------------------         SEGURIDAD     --------------------------------
@@ -657,7 +660,7 @@ ALTER TABLE `venta`
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2014 a las 17:55:09
+-- Tiempo de generación: 07-11-2014 a las 23:48:41
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
