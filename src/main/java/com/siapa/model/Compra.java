@@ -14,6 +14,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,10 +35,14 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c")})
 public class Compra implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_COMPRA", nullable = false)
-    private Long idCompra;
+    
+    
+    
+     @Id
+    @GeneratedValue
+    @Column(name = "ID_COMPRA", nullable = true)
+    private Integer idCompra;
+     
     @Basic(optional = false)
     @Column(name = "FECHA_HORA_COMPRA", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -58,22 +63,22 @@ public class Compra implements Serializable {
     public Compra() {
     }
 
-    public Compra(Long idCompra) {
+    public Compra(Integer idCompra) {
         this.idCompra = idCompra;
     }
 
-    public Compra(Long idCompra, Date fechaHoraCompra, String usuarioCompra, BigDecimal totalCompra) {
+    public Compra(Integer idCompra, Date fechaHoraCompra, String usuarioCompra, BigDecimal totalCompra) {
         this.idCompra = idCompra;
         this.fechaHoraCompra = fechaHoraCompra;
         this.usuarioCompra = usuarioCompra;
         this.totalCompra = totalCompra;
     }
 
-    public Long getIdCompra() {
+    public Integer getIdCompra() {
         return idCompra;
     }
 
-    public void setIdCompra(Long idCompra) {
+    public void setIdCompra(Integer idCompra) {
         this.idCompra = idCompra;
     }
 

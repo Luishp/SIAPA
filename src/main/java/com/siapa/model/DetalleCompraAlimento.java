@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,10 +30,14 @@ import javax.persistence.Table;
     @NamedQuery(name = "DetalleCompraAlimento.findAll", query = "SELECT d FROM DetalleCompraAlimento d")})
 public class DetalleCompraAlimento implements Serializable {
     private static final long serialVersionUID = 1L;
+   
+   
+    
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_DETALLE_COMPRA_ALIMENTO", nullable = false)
-    private Long idDetalleCompraAlimento;
+    @GeneratedValue
+    @Column(name = "ID_DETALLE_COMPRA_ALIMENTO", nullable = true)
+    private Integer idDetalleCompraAlimento;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "CANT_DETALLE_COMPRA_ALIMENTO", nullable = false, precision = 10, scale = 2)
@@ -53,22 +58,22 @@ public class DetalleCompraAlimento implements Serializable {
     public DetalleCompraAlimento() {
     }
 
-    public DetalleCompraAlimento(Long idDetalleCompraAlimento) {
+    public DetalleCompraAlimento(Integer idDetalleCompraAlimento) {
         this.idDetalleCompraAlimento = idDetalleCompraAlimento;
     }
 
-    public DetalleCompraAlimento(Long idDetalleCompraAlimento, BigDecimal cantDetalleCompraAlimento, BigDecimal precioDetalleCompraAlimento, BigDecimal impuestoDetCompraAlimento) {
+    public DetalleCompraAlimento(Integer idDetalleCompraAlimento, BigDecimal cantDetalleCompraAlimento, BigDecimal precioDetalleCompraAlimento, BigDecimal impuestoDetCompraAlimento) {
         this.idDetalleCompraAlimento = idDetalleCompraAlimento;
         this.cantDetalleCompraAlimento = cantDetalleCompraAlimento;
         this.precioDetalleCompraAlimento = precioDetalleCompraAlimento;
         this.impuestoDetCompraAlimento = impuestoDetCompraAlimento;
     }
 
-    public Long getIdDetalleCompraAlimento() {
+    public Integer getIdDetalleCompraAlimento() {
         return idDetalleCompraAlimento;
     }
 
-    public void setIdDetalleCompraAlimento(Long idDetalleCompraAlimento) {
+    public void setIdDetalleCompraAlimento(Integer idDetalleCompraAlimento) {
         this.idDetalleCompraAlimento = idDetalleCompraAlimento;
     }
 

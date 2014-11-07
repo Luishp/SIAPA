@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * @author Joao
  */
 @Repository
-public class CompraDao extends GenericDao<Compra, Long>{
+public class CompraDao extends GenericDao<Compra, Integer>{
     
 }

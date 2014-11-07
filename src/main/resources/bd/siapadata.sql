@@ -1,10 +1,9 @@
-
 -- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2014 a las 00:22:18
+-- Tiempo de generación: 07-11-2014 a las 17:54:47
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -40,11 +39,6 @@ CREATE TABLE IF NOT EXISTS `alimento` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Truncar tablas antes de insertar `alimento`
---
-
-TRUNCATE TABLE `alimento`;
---
 -- Volcado de datos para la tabla `alimento`
 --
 
@@ -65,11 +59,6 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   PRIMARY KEY (`ID_CATEGORIAS`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Truncar tablas antes de insertar `categorias`
---
-
-TRUNCATE TABLE `categorias`;
 --
 -- Volcado de datos para la tabla `categorias`
 --
@@ -99,11 +88,6 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Truncar tablas antes de insertar `cliente`
---
-
-TRUNCATE TABLE `cliente`;
---
 -- Volcado de datos para la tabla `cliente`
 --
 
@@ -128,11 +112,6 @@ CREATE TABLE IF NOT EXISTS `cliente_contacto` (
   KEY `FK_CLIENTE_CONTACTO2` (`ID_PERSONA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `cliente_contacto`
---
-
-TRUNCATE TABLE `cliente_contacto`;
 -- --------------------------------------------------------
 
 --
@@ -141,20 +120,15 @@ TRUNCATE TABLE `cliente_contacto`;
 
 DROP TABLE IF EXISTS `compra`;
 CREATE TABLE IF NOT EXISTS `compra` (
-  `ID_COMPRA` decimal(18,0) NOT NULL,
+  `ID_COMPRA` int(11) NOT NULL AUTO_INCREMENT,
   `ID_PROVEEDOR` int(11) DEFAULT NULL,
   `FECHA_HORA_COMPRA` date NOT NULL,
   `USUARIO_COMPRA` varchar(30) NOT NULL,
   `TOTAL_COMPRA` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_COMPRA`),
   KEY `FK_RELATIONSHIP_15` (`ID_PROVEEDOR`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Truncar tablas antes de insertar `compra`
---
-
-TRUNCATE TABLE `compra`;
 -- --------------------------------------------------------
 
 --
@@ -179,11 +153,6 @@ CREATE TABLE IF NOT EXISTS `comprobante_venta` (
   KEY `FK_RELATIONSHIP_3` (`ID_VENTA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `comprobante_venta`
---
-
-TRUNCATE TABLE `comprobante_venta`;
 -- --------------------------------------------------------
 
 --
@@ -198,11 +167,6 @@ CREATE TABLE IF NOT EXISTS `contacto` (
   PRIMARY KEY (`ID_CONTACTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `contacto`
---
-
-TRUNCATE TABLE `contacto`;
 -- --------------------------------------------------------
 
 --
@@ -222,11 +186,6 @@ CREATE TABLE IF NOT EXISTS `descuento` (
   KEY `FK_RELATIONSHIP_20` (`ID_CATEGORIAS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `descuento`
---
-
-TRUNCATE TABLE `descuento`;
 -- --------------------------------------------------------
 
 --
@@ -236,7 +195,7 @@ TRUNCATE TABLE `descuento`;
 DROP TABLE IF EXISTS `detalle_compra_alimento`;
 CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   `ID_DETALLE_COMPRA_ALIMENTO` decimal(18,0) NOT NULL,
-  `ID_COMPRA` decimal(18,0) DEFAULT NULL,
+  `ID_COMPRA` int(11) DEFAULT NULL,
   `ID_ALIMENTO` int(11) DEFAULT NULL,
   `CANT_DETALLE_COMPRA_ALIMENTO` decimal(10,2) NOT NULL,
   `PRECIO_DETALLE_COMPRA_ALIMENTO` decimal(10,2) NOT NULL,
@@ -246,11 +205,6 @@ CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   KEY `ID_ALIMENTO` (`ID_ALIMENTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `detalle_compra_alimento`
---
-
-TRUNCATE TABLE `detalle_compra_alimento`;
 -- --------------------------------------------------------
 
 --
@@ -271,11 +225,6 @@ CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
   KEY `FK_RELATIONSHIP_2` (`ID_COMPROBANTE_VENTA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `detalle_comprobante_venta`
---
-
-TRUNCATE TABLE `detalle_comprobante_venta`;
 -- --------------------------------------------------------
 
 --
@@ -292,11 +241,6 @@ CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
   KEY `FK_RELATIONSHIP_9` (`ID_MUESTREO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `detalle_muestreo`
---
-
-TRUNCATE TABLE `detalle_muestreo`;
 -- --------------------------------------------------------
 
 --
@@ -317,11 +261,6 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
   KEY `FK_RELATIONSHIP_21` (`ID_VENTA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `detalle_venta`
---
-
-TRUNCATE TABLE `detalle_venta`;
 -- --------------------------------------------------------
 
 --
@@ -341,11 +280,6 @@ CREATE TABLE IF NOT EXISTS `ingreso_producto` (
   KEY `FK_RELATIONSHIP_6` (`ID_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `ingreso_producto`
---
-
-TRUNCATE TABLE `ingreso_producto`;
 -- --------------------------------------------------------
 
 --
@@ -366,11 +300,6 @@ CREATE TABLE IF NOT EXISTS `jaula` (
   KEY `FK_RELATIONSHIP_7` (`ID_TIPO_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `jaula`
---
-
-TRUNCATE TABLE `jaula`;
 -- --------------------------------------------------------
 
 --
@@ -389,11 +318,6 @@ CREATE TABLE IF NOT EXISTS `muestreo` (
   KEY `FK_RELATIONSHIP_8` (`ID_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `muestreo`
---
-
-TRUNCATE TABLE `muestreo`;
 -- --------------------------------------------------------
 
 --
@@ -412,11 +336,6 @@ CREATE TABLE IF NOT EXISTS `persona` (
   PRIMARY KEY (`ID_PERSONA`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
---
--- Truncar tablas antes de insertar `persona`
---
-
-TRUNCATE TABLE `persona`;
 --
 -- Volcado de datos para la tabla `persona`
 --
@@ -446,11 +365,6 @@ CREATE TABLE IF NOT EXISTS `producto` (
   PRIMARY KEY (`ID_PRODUCTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `producto`
---
-
-TRUNCATE TABLE `producto`;
 -- --------------------------------------------------------
 
 --
@@ -465,13 +379,8 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `USUARIO_PROVEEDOR` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_PROVEEDOR`),
   KEY `FK_RELATIONSHIP_26` (`ID_PERSONA`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Truncar tablas antes de insertar `proveedor`
---
-
-TRUNCATE TABLE `proveedor`;
 --
 -- Volcado de datos para la tabla `proveedor`
 --
@@ -499,11 +408,6 @@ CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
   KEY `ID_ALIMENTO` (`ID_ALIMENTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `registro_alimentacion`
---
-
-TRUNCATE TABLE `registro_alimentacion`;
 -- --------------------------------------------------------
 
 --
@@ -522,11 +426,6 @@ CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
   KEY `FK_RELATIONSHIP_10` (`ID_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `registro_mortalidad`
---
-
-TRUNCATE TABLE `registro_mortalidad`;
 -- --------------------------------------------------------
 
 --
@@ -542,11 +441,6 @@ CREATE TABLE IF NOT EXISTS `tipo_alimento` (
   PRIMARY KEY (`ID_TIPO_ALIMENTO`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
---
--- Truncar tablas antes de insertar `tipo_alimento`
---
-
-TRUNCATE TABLE `tipo_alimento`;
 --
 -- Volcado de datos para la tabla `tipo_alimento`
 --
@@ -572,11 +466,6 @@ CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
   PRIMARY KEY (`ID_TIPO_COMPROBANTE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `tipo_comprobante`
---
-
-TRUNCATE TABLE `tipo_comprobante`;
 -- --------------------------------------------------------
 
 --
@@ -594,11 +483,6 @@ CREATE TABLE IF NOT EXISTS `tipo_jaula` (
   PRIMARY KEY (`ID_TIPO_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `tipo_jaula`
---
-
-TRUNCATE TABLE `tipo_jaula`;
 -- --------------------------------------------------------
 
 --
@@ -616,11 +500,6 @@ CREATE TABLE IF NOT EXISTS `traslados` (
   KEY `FK_RELATIONSHIP_5` (`ID_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `traslados`
---
-
-TRUNCATE TABLE `traslados`;
 -- --------------------------------------------------------
 
 --
@@ -639,11 +518,6 @@ CREATE TABLE IF NOT EXISTS `venta` (
   KEY `FK_RELATIONSHIP_4` (`ID_COMPROBANTE_VENTA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncar tablas antes de insertar `venta`
---
-
-TRUNCATE TABLE `venta`;
 --
 -- Restricciones para tablas volcadas
 --
@@ -692,8 +566,8 @@ ALTER TABLE `descuento`
 -- Filtros para la tabla `detalle_compra_alimento`
 --
 ALTER TABLE `detalle_compra_alimento`
-  ADD CONSTRAINT `detalle_compra_alimento_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_14` FOREIGN KEY (`ID_COMPRA`) REFERENCES `compra` (`ID_COMPRA`);
+  ADD CONSTRAINT `detalle_compra_alimento_ibfk_2` FOREIGN KEY (`ID_COMPRA`) REFERENCES `compra` (`ID_COMPRA`),
+  ADD CONSTRAINT `detalle_compra_alimento_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`);
 
 --
 -- Filtros para la tabla `detalle_comprobante_venta`
@@ -771,6 +645,7 @@ ALTER TABLE `venta`
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
+
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 ----------------------------------         SEGURIDAD     --------------------------------
@@ -782,7 +657,7 @@ ALTER TABLE `venta`
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2014 a las 21:40:44
+-- Tiempo de generación: 07-11-2014 a las 17:55:09
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -798,6 +673,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `siapa`
 --
+CREATE DATABASE IF NOT EXISTS `siapa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `siapa`;
 
 -- --------------------------------------------------------
 
@@ -805,6 +682,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `ss_historico_claves`
 --
 
+DROP TABLE IF EXISTS `ss_historico_claves`;
 CREATE TABLE IF NOT EXISTS `ss_historico_claves` (
   `ID_HISTORICO_CLAVE` decimal(9,0) NOT NULL COMMENT 'ID del histórico de clave.',
   `ID_USUARIO` decimal(9,0) DEFAULT NULL,
@@ -822,6 +700,7 @@ CREATE TABLE IF NOT EXISTS `ss_historico_claves` (
 -- Estructura de tabla para la tabla `ss_menus`
 --
 
+DROP TABLE IF EXISTS `ss_menus`;
 CREATE TABLE IF NOT EXISTS `ss_menus` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `SS__ID_MENU` decimal(9,0) DEFAULT NULL COMMENT 'Correlativo que identifica al menú.',
@@ -854,6 +733,7 @@ INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGIST
 -- Estructura de tabla para la tabla `ss_menus_opciones`
 --
 
+DROP TABLE IF EXISTS `ss_menus_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_menus_opciones` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
@@ -878,7 +758,8 @@ INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES
 ('5', '11'),
 ('5', '12'),
 ('8', '13'),
-('8', '14');
+('8', '14'),
+('2', '15');
 
 -- --------------------------------------------------------
 
@@ -886,6 +767,7 @@ INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES
 -- Estructura de tabla para la tabla `ss_opciones`
 --
 
+DROP TABLE IF EXISTS `ss_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_opciones` (
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
   `NOMBRE_OPCION` varchar(100) DEFAULT NULL COMMENT 'Nombre de la opción',
@@ -917,7 +799,8 @@ INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUA
 ('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('12', 'Compra de Alimento', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('13', 'Tipo de Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('14', 'Ingresar Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-11-01 00:00:00', NULL, NULL, NULL);
+('14', 'Ingresar Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-11-01 00:00:00', NULL, NULL, NULL),
+('15', 'Ingresar Proveedor', '/siapa/views/proveedor/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -925,6 +808,7 @@ INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUA
 -- Estructura de tabla para la tabla `ss_roles`
 --
 
+DROP TABLE IF EXISTS `ss_roles`;
 CREATE TABLE IF NOT EXISTS `ss_roles` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `CODIGO_ROL` varchar(50) DEFAULT NULL COMMENT 'Código que identifica al rol.',
@@ -956,6 +840,7 @@ INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `US
 -- Estructura de tabla para la tabla `ss_roles_menu`
 --
 
+DROP TABLE IF EXISTS `ss_roles_menu`;
 CREATE TABLE IF NOT EXISTS `ss_roles_menu` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
@@ -991,6 +876,7 @@ INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES
 -- Estructura de tabla para la tabla `ss_roles_opciones`
 --
 
+DROP TABLE IF EXISTS `ss_roles_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_roles_opciones` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
@@ -1026,7 +912,8 @@ INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES
 ('1', '11'),
 ('1', '12'),
 ('3', '13'),
-('1', '14');
+('1', '14'),
+('2', '15');
 
 -- --------------------------------------------------------
 
@@ -1034,6 +921,7 @@ INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES
 -- Estructura de tabla para la tabla `ss_roles_usuarios`
 --
 
+DROP TABLE IF EXISTS `ss_roles_usuarios`;
 CREATE TABLE IF NOT EXISTS `ss_roles_usuarios` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `ID_USUARIO` decimal(9,0) NOT NULL,
@@ -1059,6 +947,7 @@ INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES
 -- Estructura de tabla para la tabla `ss_usuarios`
 --
 
+DROP TABLE IF EXISTS `ss_usuarios`;
 CREATE TABLE IF NOT EXISTS `ss_usuarios` (
   `ID_USUARIO` decimal(9,0) NOT NULL,
   `CODIGO_USUARIO` varchar(15) DEFAULT NULL,
