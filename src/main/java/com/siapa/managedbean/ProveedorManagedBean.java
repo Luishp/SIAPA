@@ -81,10 +81,7 @@ public class ProveedorManagedBean extends GenericManagedBean<Proveedor, Integer>
         proveedorService.save(proveedor);
     }
 
-    public void llenar() {
-        System.out.println("punto");
-
-    }
+  
 
     public List<Persona> getPersonas() {
         return personas;
