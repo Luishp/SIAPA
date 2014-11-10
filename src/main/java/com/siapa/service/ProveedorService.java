@@ -9,6 +9,7 @@ import com.siapa.dao.ProveedorDao;
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.Proveedor;
 import com.siapa.service.generic.GenericService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,9 @@ public class ProveedorService extends GenericService<Proveedor, Integer> {
     @Override
     public GenericDao<Proveedor, Integer> getDao() {
         return proveedorDao;
+    }
+    
+     public List<Proveedor> getProveedor(){
+         return proveedorDao.getProveedor();
     }
 }

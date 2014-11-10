@@ -7,6 +7,8 @@ package com.siapa.dao;
 
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.Proveedor;
+import java.util.List;
+import org.hibernate.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +18,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ProveedorDao extends GenericDao<Proveedor, Integer>{
+    
+       public List <Proveedor>getProveedor(){
+        
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT prov FROM Proveedor prov JOIN FETCH prov.idPersona");
+        return q.list();
+        
+    }
+    
     
 }

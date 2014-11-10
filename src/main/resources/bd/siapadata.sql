@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2014 a las 23:48:20
+-- Tiempo de generación: 10-11-2014 a las 14:13:33
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -132,7 +132,15 @@ CREATE TABLE IF NOT EXISTS `compra` (
   `TOTAL_COMPRA` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_COMPRA`),
   KEY `FK_RELATIONSHIP_15` (`ID_PROVEEDOR`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `compra`
+--
+
+INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO_COMPRA`, `TOTAL_COMPRA`) VALUES
+(1, 2, '2014-11-03', 'AOP', '125.00'),
+(2, 2, '2014-11-08', 'juan', '1223.00');
 
 -- --------------------------------------------------------
 
@@ -199,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `descuento` (
 
 DROP TABLE IF EXISTS `detalle_compra_alimento`;
 CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
-  `ID_DETALLE_COMPRA_ALIMENTO` decimal(18,0) NOT NULL,
+  `ID_DETALLE_COMPRA_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `ID_COMPRA` int(11) DEFAULT NULL,
   `ID_ALIMENTO` int(11) DEFAULT NULL,
   `CANT_DETALLE_COMPRA_ALIMENTO` decimal(10,2) NOT NULL,
@@ -208,7 +216,15 @@ CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   PRIMARY KEY (`ID_DETALLE_COMPRA_ALIMENTO`),
   KEY `FK_RELATIONSHIP_14` (`ID_COMPRA`),
   KEY `ID_ALIMENTO` (`ID_ALIMENTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `detalle_compra_alimento`
+--
+
+INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`, `ID_ALIMENTO`, `CANT_DETALLE_COMPRA_ALIMENTO`, `PRECIO_DETALLE_COMPRA_ALIMENTO`, `IMPUESTO_DET_COMPRA_ALIMENTO`) VALUES
+(1, 1, 7, '12.00', '1.25', '13.00'),
+(2, 2, 7, '12.00', '1.25', '13.00');
 
 -- --------------------------------------------------------
 
@@ -444,7 +460,7 @@ CREATE TABLE IF NOT EXISTS `tipo_alimento` (
   `DESCRICION_TIPO_ALIMENTO` varchar(500) DEFAULT NULL,
   `PORCE_PROTEINA_TIPO_ALIMENTO` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`ID_TIPO_ALIMENTO`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `tipo_alimento`
@@ -570,8 +586,8 @@ ALTER TABLE `descuento`
 -- Filtros para la tabla `detalle_compra_alimento`
 --
 ALTER TABLE `detalle_compra_alimento`
-  ADD CONSTRAINT `detalle_compra_alimento_ibfk_2` FOREIGN KEY (`ID_COMPRA`) REFERENCES `compra` (`ID_COMPRA`),
-  ADD CONSTRAINT `detalle_compra_alimento_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`);
+  ADD CONSTRAINT `detalle_compra_alimento_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`),
+  ADD CONSTRAINT `detalle_compra_alimento_ibfk_2` FOREIGN KEY (`ID_COMPRA`) REFERENCES `compra` (`ID_COMPRA`);
 
 --
 -- Filtros para la tabla `detalle_comprobante_venta`
@@ -647,6 +663,7 @@ ALTER TABLE `venta`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
 
 -------------------------------------------------------------------------------------------------
