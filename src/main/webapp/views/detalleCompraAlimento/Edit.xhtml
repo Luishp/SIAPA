@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DetalleCompraAlimentoEditDlg" widgetVar="DetalleCompraAlimentoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditDetalleCompraAlimentoTitle}" closeOnEscape="true">
+
+            <h:form id="DetalleCompraAlimentoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{detalleCompraAlimentoController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditDetalleCompraAlimentoLabel_idDetalleCompraAlimento}" for="idDetalleCompraAlimento" />
+                        <h:outputText id="idDetalleCompraAlimento" value="#{detalleCompraAlimentoController.selected.idDetalleCompraAlimento}" />
+
+                        <p:outputLabel value="#{myBundle.EditDetalleCompraAlimentoLabel_cantDetalleCompraAlimento}" for="cantDetalleCompraAlimento" />
+                        <p:inputText id="cantDetalleCompraAlimento" value="#{detalleCompraAlimentoController.selected.cantDetalleCompraAlimento}" title="#{myBundle.EditDetalleCompraAlimentoTitle_cantDetalleCompraAlimento}" required="true" requiredMessage="#{myBundle.EditDetalleCompraAlimentoRequiredMessage_cantDetalleCompraAlimento}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDetalleCompraAlimentoLabel_precioDetalleCompraAlimento}" for="precioDetalleCompraAlimento" />
+                        <p:inputText id="precioDetalleCompraAlimento" value="#{detalleCompraAlimentoController.selected.precioDetalleCompraAlimento}" title="#{myBundle.EditDetalleCompraAlimentoTitle_precioDetalleCompraAlimento}" required="true" requiredMessage="#{myBundle.EditDetalleCompraAlimentoRequiredMessage_precioDetalleCompraAlimento}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDetalleCompraAlimentoLabel_impuestoDetCompraAlimento}" for="impuestoDetCompraAlimento" />
+                        <p:inputText id="impuestoDetCompraAlimento" value="#{detalleCompraAlimentoController.selected.impuestoDetCompraAlimento}" title="#{myBundle.EditDetalleCompraAlimentoTitle_impuestoDetCompraAlimento}" required="true" requiredMessage="#{myBundle.EditDetalleCompraAlimentoRequiredMessage_impuestoDetCompraAlimento}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDetalleCompraAlimentoLabel_idCompra}" for="idCompra" />
+                        <p:selectOneMenu id="idCompra" value="#{detalleCompraAlimentoController.selected.idCompra}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{compraController.items}"
+                                           var="idCompraItem"
+                                           itemValue="#{idCompraItem}"
+                                           itemLabel="#{idCompraItem.idCompra.toString()}"
+                                           />
+                            <f:converter binding="#{compraConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditDetalleCompraAlimentoLabel_idAlimento}" for="idAlimento" />
+                        <p:selectOneMenu id="idAlimento" value="#{detalleCompraAlimentoController.selected.idAlimento}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{alimentoController.items}"
+                                           var="idAlimentoItem"
+                                           itemValue="#{idAlimentoItem}"
+                                           itemLabel="#{idAlimentoItem.idAlimento.toString()}"
+                                           />
+                            <f:converter binding="#{alimentoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detalleCompraAlimentoController.save}" value="#{myBundle.Save}" update="display,:DetalleCompraAlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DetalleCompraAlimentoEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('DetalleCompraAlimentoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

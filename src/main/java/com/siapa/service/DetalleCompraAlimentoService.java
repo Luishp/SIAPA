@@ -9,6 +9,7 @@ import com.siapa.dao.DetalleCompraAlimentoDao;
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.DetalleCompraAlimento;
 import com.siapa.service.generic.GenericService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @author Joao
  */
 
-@Service(value="DetalleCompraAlimentoService")
+@Service(value="detalleCompraAlimentoService")
 public class DetalleCompraAlimentoService extends GenericService<DetalleCompraAlimento, Integer>{
     @Autowired
     private DetalleCompraAlimentoDao detalleCompraAlimentoDao;
@@ -26,4 +27,9 @@ public class DetalleCompraAlimentoService extends GenericService<DetalleCompraAl
     public GenericDao<DetalleCompraAlimento, Integer> getDao() {
         return detalleCompraAlimentoDao;
     }
+     public List<DetalleCompraAlimento> getDetalleCompraAlimento(){
+         return detalleCompraAlimentoDao.getDetalleCompraAlimento();
+    }
+     
+     
 }

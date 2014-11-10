@@ -8,6 +8,8 @@ package com.siapa.dao;
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.DetalleCompraAlimento;
 import java.io.Serializable;
+import java.util.List;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +18,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class DetalleCompraAlimentoDao extends GenericDao<DetalleCompraAlimento, Integer>{
+     
     
+    public List <DetalleCompraAlimento>getDetalleCompraAlimento(){
+        
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT detalle FROM DetalleCompraAlimento detalle JOIN FETCH detalle.idCompra");
+        return q.list();
+        
+    }
 }

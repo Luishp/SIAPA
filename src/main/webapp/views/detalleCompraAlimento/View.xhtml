@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetalleCompraAlimentoViewDlg" widgetVar="DetalleCompraAlimentoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewDetalleCompraAlimentoTitle}" closeOnEscape="true">
+
+            <h:form id="DetalleCompraAlimentoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{detalleCompraAlimentoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_idDetalleCompraAlimento}"/>
+                        <h:outputText value="#{detalleCompraAlimentoController.selected.idDetalleCompraAlimento}" title="#{myBundle.ViewDetalleCompraAlimentoTitle_idDetalleCompraAlimento}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_cantDetalleCompraAlimento}"/>
+                        <h:outputText value="#{detalleCompraAlimentoController.selected.cantDetalleCompraAlimento}" title="#{myBundle.ViewDetalleCompraAlimentoTitle_cantDetalleCompraAlimento}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_precioDetalleCompraAlimento}"/>
+                        <h:outputText value="#{detalleCompraAlimentoController.selected.precioDetalleCompraAlimento}" title="#{myBundle.ViewDetalleCompraAlimentoTitle_precioDetalleCompraAlimento}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_impuestoDetCompraAlimento}"/>
+                        <h:outputText value="#{detalleCompraAlimentoController.selected.impuestoDetCompraAlimento}" title="#{myBundle.ViewDetalleCompraAlimentoTitle_impuestoDetCompraAlimento}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_idCompra}"/>
+                        <h:outputText value="#{detalleCompraAlimentoController.selected.idCompra.idCompra}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_idAlimento}"/>
+                        <h:outputText value="#{detalleCompraAlimentoController.selected.idAlimento.idAlimento}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('DetalleCompraAlimentoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

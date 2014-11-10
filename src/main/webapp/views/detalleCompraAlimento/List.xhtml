@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DetalleCompraAlimentoListForm">
+         <p:fieldset legend="Alimento">
+        
+                <p:dataTable id="datalist" 
+                         var="item"
+                         value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimentoList}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
+                         selectionMode="single"
+                         selection="#{detalleCompraAlimentoManagedBean.selected}"
+                         rowKey="#{item.idDetalleCompraAlimento}" 
+                         paginatorPosition="bottom">
+ <!--               
+                
+                <p:ajax event="rowSelect"   update=":DetalleCompraAlimentoListForm:createButton :DetalleCompraAlimentoListForm:viewButton :DetalleCompraAlimentoListForm:editButton :DetalleCompraAlimentoListForm:deleteButton :DetalleCompraAlimentoListForm:DetalleCompraAlimentoDataTableContextMenu" listener="#{detalleCompraAlimentoManagedBean.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":DetalleCompraAlimentoListForm:createButton :DetalleCompraAlimentoListForm:viewButton :DetalleCompraAlimentoListForm:editButton :DetalleCompraAlimentoListForm:deleteButton :DetalleCompraAlimentoListForm:DetalleCompraAlimentoDataTableContextMenu" listener="#{detalleCompraAlimentoManagedBean.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('DetalleCompraAlimentoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idDetalleCompraAlimento}" filterBy="#{item.idDetalleCompraAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDetalleCompraAlimentoTitle_idDetalleCompraAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idDetalleCompraAlimento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cantDetalleCompraAlimento}" filterBy="#{item.cantDetalleCompraAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDetalleCompraAlimentoTitle_cantDetalleCompraAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cantDetalleCompraAlimento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.precioDetalleCompraAlimento}" filterBy="#{item.precioDetalleCompraAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDetalleCompraAlimentoTitle_precioDetalleCompraAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.precioDetalleCompraAlimento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.impuestoDetCompraAlimento}" filterBy="#{item.impuestoDetCompraAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDetalleCompraAlimentoTitle_impuestoDetCompraAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.impuestoDetCompraAlimento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idCompra.idCompra}" filterBy="#{item.idCompra.idCompra}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDetalleCompraAlimentoTitle_idCompra}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCompra.idCompra}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idAlimento.idAlimento}" filterBy="#{item.idAlimento.idAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDetalleCompraAlimentoTitle_idAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idAlimento.idAlimento}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreate}" update=":DetalleCompraAlimentoCreateForm" oncomplete="PF('DetalleCompraAlimentoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":DetalleCompraAlimentoViewForm" oncomplete="PF('DetalleCompraAlimentoViewDialog').show()" disabled="#{empty detalleCompraAlimentoManagedBean.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":DetalleCompraAlimentoEditForm" oncomplete="PF('DetalleCompraAlimentoEditDialog').show()" disabled="#{empty detalleCompraAlimentoManagedBean.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{detalleCompraAlimentoManagedBean.delete}" update=":growl,datalist" disabled="#{empty detalleCompraAlimentoManagedBean.selected}">
+                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+      -->
+       </p:dataTable>
+      </p:fieldset>
+    </h:form>
+
+</ui:composition>
