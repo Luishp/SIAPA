@@ -57,7 +57,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     
       @PostConstruct
     public void init() {
-     detalleCompraAlimentoList=detalleCompraAlimentoService.getDetalleCompraAlimento();
+     detalleCompraAlimentoList=detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
      proveedorList=proveedorService.getProveedor();
 // alimentoList=alimentoService.getTypeFood();
      //  tipoAlimentoList=tipoAlimentoService.findAll();

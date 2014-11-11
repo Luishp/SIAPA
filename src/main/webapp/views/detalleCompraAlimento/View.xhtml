@@ -8,32 +8,54 @@
 
     <ui:composition>
 
-        <p:dialog id="DetalleCompraAlimentoViewDlg" widgetVar="DetalleCompraAlimentoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewDetalleCompraAlimentoTitle}" closeOnEscape="true">
+        <p:dialog id="DetalleCompraAlimentoViewDlg" widgetVar="DetalleCompraAlimentoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewDetalleCompraAlimentoTitle}" closeOnEscape="true">
 
             <h:form id="DetalleCompraAlimentoViewForm">
 
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" columnClasses="column" rendered="#{detalleCompraAlimentoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{detalleCompraAlimentoManagedBean.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_idDetalleCompraAlimento}"/>
-                        <h:outputText value="#{detalleCompraAlimentoController.selected.idDetalleCompraAlimento}" title="#{myBundle.ViewDetalleCompraAlimentoTitle_idDetalleCompraAlimento}"/>
 
-                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_cantDetalleCompraAlimento}"/>
-                        <h:outputText value="#{detalleCompraAlimentoController.selected.cantDetalleCompraAlimento}" title="#{myBundle.ViewDetalleCompraAlimentoTitle_cantDetalleCompraAlimento}"/>
+                        <h:outputText value="Usuario :"/>
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.idCompra.usuarioCompra}"/>
 
-                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_precioDetalleCompraAlimento}"/>
-                        <h:outputText value="#{detalleCompraAlimentoController.selected.precioDetalleCompraAlimento}" title="#{myBundle.ViewDetalleCompraAlimentoTitle_precioDetalleCompraAlimento}"/>
+                        <h:outputText value="Fecha de Compra :"/>
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.idCompra.fechaHoraCompra}"/>
 
-                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_impuestoDetCompraAlimento}"/>
-                        <h:outputText value="#{detalleCompraAlimentoController.selected.impuestoDetCompraAlimento}" title="#{myBundle.ViewDetalleCompraAlimentoTitle_impuestoDetCompraAlimento}"/>
+                        <h:outputText value="Precio :"/>                          
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.precioDetalleCompraAlimento}"/>
 
-                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_idCompra}"/>
-                        <h:outputText value="#{detalleCompraAlimentoController.selected.idCompra.idCompra}"/>
 
-                        <h:outputText value="#{myBundle.ViewDetalleCompraAlimentoLabel_idAlimento}"/>
-                        <h:outputText value="#{detalleCompraAlimentoController.selected.idAlimento.idAlimento}"/>
+
+                        <h:outputText value="Cantidad :"/>    
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.cantDetalleCompraAlimento}"/>
+
+
+                        <h:outputText value="Total de Compra :"/>
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.idCompra.totalCompra}"/>
+
+
+
+                        <h:outputText value="Marca :"/>
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.idAlimento.marcaAlimento}"/>
+
+
+                        <h:outputText value="Existencia :"/>
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.idAlimento.existenciaAlimento}"/>
+
+
+
+                        <h:outputText value="Nombre Alimento :"/>
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.idAlimento.idTipoAlimento.nombreTipoAlimento}"/>
+                        <h:outputText value="Porcentaje Proteina :"/>
+                        <h:outputText value="#{detalleCompraAlimentoManagedBean.selected.idAlimento.idTipoAlimento.porceProteinaTipoAlimento}"/>
+
+
+
+
+
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('DetalleCompraAlimentoViewDialog').hide()"/>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="PF('DetalleCompraAlimentoViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>
