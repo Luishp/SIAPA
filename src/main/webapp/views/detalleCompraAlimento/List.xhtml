@@ -9,6 +9,33 @@
     <h:form id="DetalleCompraAlimentoListForm">
         <p:fieldset legend="Alimento">
 
+            <h3>Responsive</h3>
+            <p:panelGrid columns="3">           
+                <h:outputText value="Content" />
+                <h:outputText value="Content" />
+                <h:outputText value="Content" />
+
+                <h:outputText value="Content" />
+                <h:outputText value="Content" />
+                <h:outputText value="Content" />
+
+                <h:outputText value="Content" />
+                <h:outputText value="Content" />
+                <h:outputText value="Content" />
+            </p:panelGrid>
+
+
+            <h:panelGroup id="display" >
+                <p:panelGrid columns="2" >
+                    <p:outputLabel value="Proveedor : "/>
+                    <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{ProveedorConverter}" effect="fade" style="width:200px">
+                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
+                    </p:selectOneMenu>
+
+                </p:panelGrid>
+            </h:panelGroup>
+
+
             <p:dataTable id="datalist" 
                          var="item"
                          value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimentoList}" 
@@ -23,22 +50,67 @@
                          rowKey="#{item.idDetalleCompraAlimento}" 
                          paginatorPosition="bottom">
 
-                <h:panelGroup id="display" >
-                    <p:panelGrid columns="2" rendered="#{detalleCompraAlimentoManagedBean.selected != null}">
+                <!--                <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
+                                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>-->
 
-                        <p:outputLabel value="Tipo de Alimento"/>
-                        <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{ProveedorConverter}" effect="fade" style="width:200px">
-                            <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.usuarioProveedor}" itemValue="#{tipo}" />
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                </h:panelGroup>
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Usuario"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCompra.usuarioCompra}"/>
+                </p:column>
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Fecha de Compra"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCompra.fechaHoraCompra}"/>
+                </p:column>
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Precio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.precioDetalleCompraAlimento}"/>
+                </p:column>
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Cantidad"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cantDetalleCompraAlimento}"/>
+                </p:column>
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Total de Compra"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCompra.totalCompra}"/>
+                </p:column>
+                
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Marca"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idAlimento.marcaAlimento}"/>
+                </p:column>
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Existencia"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idAlimento.existenciaAlimento}"/>
+                </p:column>
+
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Alimento"/>
+                    </f:facet>
+                    <!--<h:outputText value="#{item.idAlimento.idTipoAlimento.nombreTipoAlimento}"/>-->
+                </p:column>
 
                 <!--               
                                
-                               <p:ajax event="rowSelect"   update=":DetalleCompraAlimentoListForm:createButton :DetalleCompraAlimentoListForm:viewButton :DetalleCompraAlimentoListForm:editButton :DetalleCompraAlimentoListForm:deleteButton :DetalleCompraAlimentoListForm:DetalleCompraAlimentoDataTableContextMenu" listener="#{detalleCompraAlimentoManagedBean.resetParents}"/>
-                               <p:ajax event="rowUnselect" update=":DetalleCompraAlimentoListForm:createButton :DetalleCompraAlimentoListForm:viewButton :DetalleCompraAlimentoListForm:editButton :DetalleCompraAlimentoListForm:deleteButton :DetalleCompraAlimentoListForm:DetalleCompraAlimentoDataTableContextMenu" listener="#{detalleCompraAlimentoManagedBean.resetParents}"/>
-                               <p:ajax event="rowDblselect" onsuccess="document.getElementById('DetalleCompraAlimentoListForm:viewButton').click();"/>
-               
+                             
                                <p:column sortBy="#{item.idDetalleCompraAlimento}" filterBy="#{item.idDetalleCompraAlimento}">
                                    <f:facet name="header">
                                        <h:outputText value="#{crudbundle.ListDetalleCompraAlimentoTitle_idDetalleCompraAlimento}"/>

@@ -26,4 +26,10 @@ public class DetalleCompraAlimentoDao extends GenericDao<DetalleCompraAlimento, 
         return q.list();
         
     }
+    public List <DetalleCompraAlimento>getDetalleCompraAlimentoAll(){
+        
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT detalle FROM DetalleCompraAlimento detalle JOIN FETCH detalle.idCompra JOIN FETCH detalle.idAlimento.idTipoAlimento");
+        return q.list();
+        
+    }
 }

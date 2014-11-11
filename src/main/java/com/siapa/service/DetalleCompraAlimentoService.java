@@ -30,6 +30,9 @@ public class DetalleCompraAlimentoService extends GenericService<DetalleCompraAl
      public List<DetalleCompraAlimento> getDetalleCompraAlimento(){
          return detalleCompraAlimentoDao.getDetalleCompraAlimento();
     }
+     public List<DetalleCompraAlimento> getDetalleCompraAlimentoAll(){
+         return detalleCompraAlimentoDao.getDetalleCompraAlimentoAll();
+    }
      
      
 }
