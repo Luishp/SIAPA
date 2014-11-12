@@ -14,9 +14,12 @@ import com.siapa.service.AlimentoService;
 import com.siapa.service.CompraService;
 import com.siapa.service.DetalleCompraAlimentoService;
 import com.siapa.service.ProveedorService;
+import com.siapa.service.TipoAlimentoService;
 import com.siapa.service.generic.GenericService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +50,16 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     @Autowired
     @Qualifier(value = "proveedorService")
     private ProveedorService proveedorService;
+   
+    @Autowired
+    @Qualifier(value = "tipoAlimentoService")
+    private TipoAlimentoService tipoAlimentoService;
 
     private List<Proveedor> proveedorList;
     private List<DetalleCompraAlimento> detalleCompraAlimentoList;
     private List<Alimento> alimentoList;
+    private List<Alimento> alimentoByIdList;
+    private List<TipoAlimento> tipoAlimentoList; 
 
     private TipoAlimento tipoAlimento;
     private Proveedor proveedor;
@@ -61,7 +70,14 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         detalleCompraAlimentoList = detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
         proveedorList = proveedorService.getProveedor();
         alimentoList = alimentoService.getTypeFood();
-
+        tipoAlimentoList = tipoAlimentoService.findAll();
+        alimentoByIdList = new ArrayList<Alimento>();
+    }
+    
+    
+    public void cargarComboAlimentoMarca(ActionEvent event){
+         alimentoByIdList = alimentoService.getByIdTypeFood(tipoAlimento.getIdTipoAlimento());
+    
     }
 
     @Override
@@ -114,5 +130,30 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.alimento = alimento;
     }
 
+    public TipoAlimento getTipoAlimento() {
+        return tipoAlimento;
+    }
+
+    public void setTipoAlimento(TipoAlimento tipoAlimento) {
+        this.tipoAlimento = tipoAlimento;
+    }
+
+    public List<TipoAlimento> getTipoAlimentoList() {
+        return tipoAlimentoList;
+    }
+
+    public void setTipoAlimentoList(List<TipoAlimento> tipoAlimentoList) {
+        this.tipoAlimentoList = tipoAlimentoList;
+    }
+
+    public List<Alimento> getAlimentoByIdList() {
+        return alimentoByIdList;
+    }
+
+    public void setAlimentoByIdList(List<Alimento> alimentoByIdList) {
+        this.alimentoByIdList = alimentoByIdList;
+    }
+
+    
     
 }

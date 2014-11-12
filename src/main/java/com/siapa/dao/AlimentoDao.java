@@ -28,4 +28,12 @@ public class AlimentoDao extends GenericDao<Alimento, Integer> {
         
     }
     
+    public List <Alimento>getByIdTypeFood(Integer tipo){
+        
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT food FROM Alimento food WHERE food.idTipoAlimento.idTipoAlimento = :tipo");
+        q.setParameter("tipo",tipo);
+        return q.list();
+        
+    }
+    
 }

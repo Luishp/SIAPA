@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2014 a las 14:13:33
--- Versión del servidor: 5.6.17
--- Versión de PHP: 5.5.12
+-- Tiempo de generación: 12-11-2014 a las 06:39:37
+-- Versión del servidor: 5.5.32
+-- Versión de PHP: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,7 +28,6 @@ USE `siapa`;
 -- Estructura de tabla para la tabla `alimento`
 --
 
-DROP TABLE IF EXISTS `alimento`;
 CREATE TABLE IF NOT EXISTS `alimento` (
   `ID_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `ID_TIPO_ALIMENTO` int(11) DEFAULT NULL,
@@ -42,13 +41,12 @@ CREATE TABLE IF NOT EXISTS `alimento` (
 -- Volcado de datos para la tabla `alimento`
 --
 
-INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES
-(2, 3, 'ALCON', '100.00'),
-(4, 4, 'ALCON', '150.00'),
-(5, 7, 'Alianza', '1501.00'),
-(6, 6, 'DELTA', '234.00'),
-(7, 7, 'OMEGA', '159.00'),
-(8, 7, 'OMEGA', '159.00');
+INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(2, 3, 'ALCON', '100.00');
+INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(4, 4, 'ALCON', '150.00');
+INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(5, 7, 'Alianza', '1501.00');
+INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(6, 6, 'DELTA', '234.00');
+INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(7, 7, 'OMEGA', '159.00');
+INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(8, 7, 'OMEGA', '159.00');
 
 -- --------------------------------------------------------
 
@@ -56,7 +54,6 @@ INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EX
 -- Estructura de tabla para la tabla `categorias`
 --
 
-DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE IF NOT EXISTS `categorias` (
   `ID_CATEGORIAS` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_CATEGORIAS` varchar(50) NOT NULL,
@@ -68,10 +65,9 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES
-(1, 'A', 'categoria 1 de prueba'),
-(2, 'B', 'categoria 2 de prueba'),
-(3, 'C', 'Categoria de prueba ');
+INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES(1, 'A', 'categoria 1 de prueba');
+INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES(2, 'B', 'categoria 2 de prueba');
+INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES(3, 'C', 'Categoria de prueba ');
 
 -- --------------------------------------------------------
 
@@ -79,7 +75,6 @@ INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CAT
 -- Estructura de tabla para la tabla `cliente`
 --
 
-DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT,
   `ID_CATEGORIAS` int(11) DEFAULT NULL,
@@ -96,10 +91,9 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES
-(3, 3, 6, 'Izabel Goulart', 'Brasil', 'C'),
-(4, 1, 5, 'Behati Prinsloo ', '(Namibia)()', 'A'),
-(5, 3, 5, 'Behati Prinsloo ', '(Namibia)()', 'C');
+INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES(3, 3, 6, 'Izabel Goulart', 'Brasil', 'C');
+INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES(4, 1, 5, 'Behati Prinsloo ', '(Namibia)()', 'A');
+INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES(5, 3, 5, 'Behati Prinsloo ', '(Namibia)()', 'C');
 
 -- --------------------------------------------------------
 
@@ -107,7 +101,6 @@ INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIE
 -- Estructura de tabla para la tabla `cliente_contacto`
 --
 
-DROP TABLE IF EXISTS `cliente_contacto`;
 CREATE TABLE IF NOT EXISTS `cliente_contacto` (
   `ID_CONTACTO` decimal(18,0) NOT NULL,
   `ID_PERSONA` int(11) NOT NULL,
@@ -123,7 +116,6 @@ CREATE TABLE IF NOT EXISTS `cliente_contacto` (
 -- Estructura de tabla para la tabla `compra`
 --
 
-DROP TABLE IF EXISTS `compra`;
 CREATE TABLE IF NOT EXISTS `compra` (
   `ID_COMPRA` int(11) NOT NULL AUTO_INCREMENT,
   `ID_PROVEEDOR` int(11) DEFAULT NULL,
@@ -138,9 +130,8 @@ CREATE TABLE IF NOT EXISTS `compra` (
 -- Volcado de datos para la tabla `compra`
 --
 
-INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO_COMPRA`, `TOTAL_COMPRA`) VALUES
-(1, 2, '2014-11-03', 'AOP', '125.00'),
-(2, 2, '2014-11-08', 'juan', '1223.00');
+INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO_COMPRA`, `TOTAL_COMPRA`) VALUES(1, 2, '2014-11-03', 'AOP', '125.00');
+INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO_COMPRA`, `TOTAL_COMPRA`) VALUES(2, 2, '2014-11-08', 'juan', '1223.00');
 
 -- --------------------------------------------------------
 
@@ -148,7 +139,6 @@ INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO
 -- Estructura de tabla para la tabla `comprobante_venta`
 --
 
-DROP TABLE IF EXISTS `comprobante_venta`;
 CREATE TABLE IF NOT EXISTS `comprobante_venta` (
   `ID_COMPROBANTE_VENTA` decimal(18,0) NOT NULL,
   `ID_VENTA` decimal(18,0) DEFAULT NULL,
@@ -172,7 +162,6 @@ CREATE TABLE IF NOT EXISTS `comprobante_venta` (
 -- Estructura de tabla para la tabla `contacto`
 --
 
-DROP TABLE IF EXISTS `contacto`;
 CREATE TABLE IF NOT EXISTS `contacto` (
   `ID_CONTACTO` decimal(18,0) NOT NULL,
   `NOMBRE_CONTACTO` varchar(50) NOT NULL,
@@ -186,7 +175,6 @@ CREATE TABLE IF NOT EXISTS `contacto` (
 -- Estructura de tabla para la tabla `descuento`
 --
 
-DROP TABLE IF EXISTS `descuento`;
 CREATE TABLE IF NOT EXISTS `descuento` (
   `ID_DESCUENTO` decimal(18,0) NOT NULL,
   `ID_CATEGORIAS` int(11) DEFAULT NULL,
@@ -205,7 +193,6 @@ CREATE TABLE IF NOT EXISTS `descuento` (
 -- Estructura de tabla para la tabla `detalle_compra_alimento`
 --
 
-DROP TABLE IF EXISTS `detalle_compra_alimento`;
 CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   `ID_DETALLE_COMPRA_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `ID_COMPRA` int(11) DEFAULT NULL,
@@ -222,9 +209,8 @@ CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
 -- Volcado de datos para la tabla `detalle_compra_alimento`
 --
 
-INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`, `ID_ALIMENTO`, `CANT_DETALLE_COMPRA_ALIMENTO`, `PRECIO_DETALLE_COMPRA_ALIMENTO`, `IMPUESTO_DET_COMPRA_ALIMENTO`) VALUES
-(1, 1, 7, '12.00', '1.25', '13.00'),
-(2, 2, 7, '12.00', '1.25', '13.00');
+INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`, `ID_ALIMENTO`, `CANT_DETALLE_COMPRA_ALIMENTO`, `PRECIO_DETALLE_COMPRA_ALIMENTO`, `IMPUESTO_DET_COMPRA_ALIMENTO`) VALUES(1, 1, 7, '12.00', '1.25', '13.00');
+INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`, `ID_ALIMENTO`, `CANT_DETALLE_COMPRA_ALIMENTO`, `PRECIO_DETALLE_COMPRA_ALIMENTO`, `IMPUESTO_DET_COMPRA_ALIMENTO`) VALUES(2, 2, 7, '12.00', '1.25', '13.00');
 
 -- --------------------------------------------------------
 
@@ -232,7 +218,6 @@ INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`
 -- Estructura de tabla para la tabla `detalle_comprobante_venta`
 --
 
-DROP TABLE IF EXISTS `detalle_comprobante_venta`;
 CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
   `ID_DETALLE_COMPROBANTE_VENTA` decimal(18,0) NOT NULL,
   `ID_COMPROBANTE_VENTA` decimal(18,0) DEFAULT NULL,
@@ -252,7 +237,6 @@ CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
 -- Estructura de tabla para la tabla `detalle_muestreo`
 --
 
-DROP TABLE IF EXISTS `detalle_muestreo`;
 CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
   `ID_DETALLE_MUESTREO` decimal(18,0) NOT NULL,
   `ID_MUESTREO` decimal(18,0) DEFAULT NULL,
@@ -268,11 +252,10 @@ CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
 -- Estructura de tabla para la tabla `detalle_venta`
 --
 
-DROP TABLE IF EXISTS `detalle_venta`;
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
   `ID_DETALLE_VENTA` decimal(18,0) NOT NULL,
   `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
-  `ID_JAULA` decimal(18,0) DEFAULT NULL,
+  `ID_JAULA` int(11) DEFAULT NULL,
   `ID_VENTA` decimal(18,0) DEFAULT NULL,
   `CANTIDAD_DETALLE_VENTA` decimal(10,2) NOT NULL,
   `PORCENTAJE_DES_DETALLE_VENTA` decimal(10,2) NOT NULL,
@@ -288,11 +271,10 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 -- Estructura de tabla para la tabla `ingreso_producto`
 --
 
-DROP TABLE IF EXISTS `ingreso_producto`;
 CREATE TABLE IF NOT EXISTS `ingreso_producto` (
   `ID_INGRESO_PRODUCTO` decimal(18,0) NOT NULL,
   `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
-  `ID_JAULA` decimal(18,0) DEFAULT NULL,
+  `ID_JAULA` int(11) DEFAULT NULL,
   `CANTIDAD_INGRESO_PRODUCTO` decimal(10,2) NOT NULL,
   `FECHA_HORA_INGRESO_PRODUCTO` date NOT NULL,
   `USUARIO_INGRESO_PRODUCTO` varchar(30) NOT NULL,
@@ -307,10 +289,9 @@ CREATE TABLE IF NOT EXISTS `ingreso_producto` (
 -- Estructura de tabla para la tabla `jaula`
 --
 
-DROP TABLE IF EXISTS `jaula`;
 CREATE TABLE IF NOT EXISTS `jaula` (
-  `ID_JAULA` decimal(18,0) NOT NULL,
-  `ID_TIPO_JAULA` decimal(18,0) DEFAULT NULL,
+  `ID_JAULA` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_TIPO_JAULA` int(11) DEFAULT NULL,
   `NOMBRE_JAULA` varchar(50) NOT NULL,
   `DESCRIPCION_JAULA` varchar(500) DEFAULT NULL,
   `LISTA_VENTA_JAULA` tinyint(1) DEFAULT NULL,
@@ -319,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `jaula` (
   `VENTA_JAULA` decimal(8,0) NOT NULL,
   PRIMARY KEY (`ID_JAULA`),
   KEY `FK_RELATIONSHIP_7` (`ID_TIPO_JAULA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -327,10 +308,9 @@ CREATE TABLE IF NOT EXISTS `jaula` (
 -- Estructura de tabla para la tabla `muestreo`
 --
 
-DROP TABLE IF EXISTS `muestreo`;
 CREATE TABLE IF NOT EXISTS `muestreo` (
   `ID_MUESTREO` decimal(18,0) NOT NULL,
-  `ID_JAULA` decimal(18,0) DEFAULT NULL,
+  `ID_JAULA` int(11) DEFAULT NULL,
   `PESO_PROMEDIO_MUESTREO` decimal(10,2) NOT NULL,
   `FECHA_MUESTREO` date NOT NULL,
   `USUARIO_MUESTREO` varchar(30) NOT NULL,
@@ -345,7 +325,6 @@ CREATE TABLE IF NOT EXISTS `muestreo` (
 -- Estructura de tabla para la tabla `persona`
 --
 
-DROP TABLE IF EXISTS `persona`;
 CREATE TABLE IF NOT EXISTS `persona` (
   `ID_PERSONA` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_PERSONA` varchar(50) NOT NULL,
@@ -361,14 +340,13 @@ CREATE TABLE IF NOT EXISTS `persona` (
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES
-(1, 'Joao Hernandez', 'San Marcos', '123456', '321564', '2348949879', 'A'),
-(2, 'Walter Hernandez', 'Mejicanos', '789467868', '46416876416', '645468465746', 'B'),
-(3, 'Ricardo Armando Flamenco', 'San Martin #3', '1654891354', '12213123', '232323222', 'A'),
-(4, 'Alessandra Ambrosio ', 'Brasil #12, San Jacinto', '78916946198', '1654768162165', '65431894651657', 'A'),
-(5, 'Behati Prinsloo ', '(Namibia)()', '92512436146', '913434161657', '16541364655165', 'C'),
-(6, 'Izabel Goulart', 'Brasil', '1891564545615', '005961261', '0651364130', 'B'),
-(7, 'Kasia Struss', '(Polonia) ', '004405055', '0011224105', '0000521205', 'B');
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(1, 'Joao Hernandez', 'San Marcos', '123456', '321564', '2348949879', 'A');
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(2, 'Walter Hernandez', 'Mejicanos', '789467868', '46416876416', '645468465746', 'B');
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(3, 'Ricardo Armando Flamenco', 'San Martin #3', '1654891354', '12213123', '232323222', 'A');
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(4, 'Alessandra Ambrosio ', 'Brasil #12, San Jacinto', '78916946198', '1654768162165', '65431894651657', 'A');
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(5, 'Behati Prinsloo ', '(Namibia)()', '92512436146', '913434161657', '16541364655165', 'C');
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(6, 'Izabel Goulart', 'Brasil', '1891564545615', '005961261', '0651364130', 'B');
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(7, 'Kasia Struss', '(Polonia) ', '004405055', '0011224105', '0000521205', 'B');
 
 -- --------------------------------------------------------
 
@@ -376,7 +354,6 @@ INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC
 -- Estructura de tabla para la tabla `producto`
 --
 
-DROP TABLE IF EXISTS `producto`;
 CREATE TABLE IF NOT EXISTS `producto` (
   `ID_PRODUCTO` decimal(18,0) NOT NULL,
   `NOMBRE_PRODUCTO` varchar(50) NOT NULL,
@@ -392,7 +369,6 @@ CREATE TABLE IF NOT EXISTS `producto` (
 -- Estructura de tabla para la tabla `proveedor`
 --
 
-DROP TABLE IF EXISTS `proveedor`;
 CREATE TABLE IF NOT EXISTS `proveedor` (
   `ID_PROVEEDOR` int(11) NOT NULL AUTO_INCREMENT,
   `ID_PERSONA` int(11) DEFAULT NULL,
@@ -406,9 +382,8 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUARIO_PROVEEDOR`) VALUES
-(1, 5, '2014-11-20', 'EAD'),
-(2, 6, '2014-11-28', 'EAD');
+INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUARIO_PROVEEDOR`) VALUES(1, 5, '2014-11-20', 'EAD');
+INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUARIO_PROVEEDOR`) VALUES(2, 6, '2014-11-28', 'EAD');
 
 -- --------------------------------------------------------
 
@@ -416,11 +391,10 @@ INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUAR
 -- Estructura de tabla para la tabla `registro_alimentacion`
 --
 
-DROP TABLE IF EXISTS `registro_alimentacion`;
 CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
   `ID_REGISTRO_ALIMENTACION` decimal(18,0) NOT NULL,
   `ID_ALIMENTO` int(11) DEFAULT NULL,
-  `ID_JAULA` decimal(18,0) DEFAULT NULL,
+  `ID_JAULA` int(11) DEFAULT NULL,
   `CANTIDAD_REGISTRO_ALIMENTACION` decimal(10,2) NOT NULL,
   `FECHA_HORA_REG_ALIMENTACION` date NOT NULL,
   `USUARIO_REGISTRO_ALIMENTACION` varchar(30) NOT NULL,
@@ -435,10 +409,9 @@ CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
 -- Estructura de tabla para la tabla `registro_mortalidad`
 --
 
-DROP TABLE IF EXISTS `registro_mortalidad`;
 CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
   `ID_REGISTRO_MORTALIDAD` decimal(18,0) NOT NULL,
-  `ID_JAULA` decimal(18,0) DEFAULT NULL,
+  `ID_JAULA` int(11) DEFAULT NULL,
   `CANTIDAD_REGISTRO_MORTALIDAD` decimal(10,2) NOT NULL,
   `FECHA_REGISTRO_MORTALIDAD` date NOT NULL,
   `USUARIO_REGISTRO_MORTALIDAD` varchar(30) NOT NULL,
@@ -453,7 +426,6 @@ CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
 -- Estructura de tabla para la tabla `tipo_alimento`
 --
 
-DROP TABLE IF EXISTS `tipo_alimento`;
 CREATE TABLE IF NOT EXISTS `tipo_alimento` (
   `ID_TIPO_ALIMENTO` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_TIPO_ALIMENTO` varchar(50) NOT NULL,
@@ -466,11 +438,10 @@ CREATE TABLE IF NOT EXISTS `tipo_alimento` (
 -- Volcado de datos para la tabla `tipo_alimento`
 --
 
-INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES
-(3, 'Alimento liofilizado', 'Son alimentos deshidratados mediante una técnica especial que les permite conservar todos sus nutrientes\n\n\n', '12.5'),
-(4, 'Papillas', ' El alimento se presenta en forma de papilla, después de haber mezclado y batido los ingredientes correspondientes.\n\n\n', '21.5'),
-(6, ' Alimento Fresco', 'Mejillones, gambas, corazón de res... Estos alimentos pueden proporcionarse ocasionalmente en su forma natural, siempre troceados en función del tamaño de los peces\n', '5.5'),
-(7, 'daphnia', 'las larvas de mosquito, camarones recién eclosionados o adultos (según el tipo de pez a alimentar) y las pequeñas lombrices Tubifex.\n', '.2.2');
+INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES(3, 'Alimento liofilizado', 'Son alimentos deshidratados mediante una técnica especial que les permite conservar todos sus nutrientes\n\n\n', '12.5');
+INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES(4, 'Papillas', ' El alimento se presenta en forma de papilla, después de haber mezclado y batido los ingredientes correspondientes.\n\n\n', '21.5');
+INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES(6, ' Alimento Fresco', 'Mejillones, gambas, corazón de res... Estos alimentos pueden proporcionarse ocasionalmente en su forma natural, siempre troceados en función del tamaño de los peces\n', '5.5');
+INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES(7, 'daphnia', 'las larvas de mosquito, camarones recién eclosionados o adultos (según el tipo de pez a alimentar) y las pequeñas lombrices Tubifex.\n', '.2.2');
 
 -- --------------------------------------------------------
 
@@ -478,7 +449,6 @@ INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRI
 -- Estructura de tabla para la tabla `tipo_comprobante`
 --
 
-DROP TABLE IF EXISTS `tipo_comprobante`;
 CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
   `ID_TIPO_COMPROBANTE` decimal(18,0) NOT NULL,
   `NOMBRE_TIPO_COMPROBANTE` varchar(50) DEFAULT NULL,
@@ -492,16 +462,21 @@ CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
 -- Estructura de tabla para la tabla `tipo_jaula`
 --
 
-DROP TABLE IF EXISTS `tipo_jaula`;
 CREATE TABLE IF NOT EXISTS `tipo_jaula` (
-  `ID_TIPO_JAULA` decimal(18,0) NOT NULL,
+  `ID_TIPO_JAULA` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_TIPO_JAULA` varchar(50) NOT NULL,
   `DESCRIPCION_TIPO_JAULA` varchar(500) DEFAULT NULL,
   `ANCHO_TIPO_JAULA` decimal(10,2) NOT NULL,
   `LARGO_TIPO_JAULA` decimal(10,2) NOT NULL,
   `PROFUNDIDAD_TIPO_JAULA` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_TIPO_JAULA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `tipo_jaula`
+--
+
+INSERT INTO `tipo_jaula` (`ID_TIPO_JAULA`, `NOMBRE_TIPO_JAULA`, `DESCRIPCION_TIPO_JAULA`, `ANCHO_TIPO_JAULA`, `LARGO_TIPO_JAULA`, `PROFUNDIDAD_TIPO_JAULA`) VALUES(1, 'V', 'Jaula de Ventas', '8.40', '6.70', '4.50');
 
 -- --------------------------------------------------------
 
@@ -509,10 +484,9 @@ CREATE TABLE IF NOT EXISTS `tipo_jaula` (
 -- Estructura de tabla para la tabla `traslados`
 --
 
-DROP TABLE IF EXISTS `traslados`;
 CREATE TABLE IF NOT EXISTS `traslados` (
   `ID_TRASLADOS` decimal(18,0) NOT NULL,
-  `ID_JAULA` decimal(18,0) DEFAULT NULL,
+  `ID_JAULA` int(11) DEFAULT NULL,
   `FECHA_HORA_TRASLADOS` date NOT NULL,
   `USUARIO_TRASLADOS` varchar(30) NOT NULL,
   `CANTIDAD_TRASLADOS` decimal(10,2) NOT NULL,
@@ -526,7 +500,6 @@ CREATE TABLE IF NOT EXISTS `traslados` (
 -- Estructura de tabla para la tabla `venta`
 --
 
-DROP TABLE IF EXISTS `venta`;
 CREATE TABLE IF NOT EXISTS `venta` (
   `ID_VENTA` decimal(18,0) NOT NULL,
   `ID_CLIENTE` int(11) DEFAULT NULL,
@@ -605,7 +578,7 @@ ALTER TABLE `detalle_muestreo`
 -- Filtros para la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  ADD CONSTRAINT `FK_RELATIONSHIP_17` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
+  ADD CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
   ADD CONSTRAINT `FK_RELATIONSHIP_18` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`),
   ADD CONSTRAINT `FK_RELATIONSHIP_21` FOREIGN KEY (`ID_VENTA`) REFERENCES `venta` (`ID_VENTA`);
 
@@ -613,20 +586,20 @@ ALTER TABLE `detalle_venta`
 -- Filtros para la tabla `ingreso_producto`
 --
 ALTER TABLE `ingreso_producto`
-  ADD CONSTRAINT `FK_RELATIONSHIP_24` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
+  ADD CONSTRAINT `ingreso_producto_ibfk_1` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_24` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`);
 
 --
 -- Filtros para la tabla `jaula`
 --
 ALTER TABLE `jaula`
-  ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`ID_TIPO_JAULA`) REFERENCES `tipo_jaula` (`ID_TIPO_JAULA`);
+  ADD CONSTRAINT `jaula_ibfk_1` FOREIGN KEY (`ID_TIPO_JAULA`) REFERENCES `tipo_jaula` (`ID_TIPO_JAULA`);
 
 --
 -- Filtros para la tabla `muestreo`
 --
 ALTER TABLE `muestreo`
-  ADD CONSTRAINT `FK_RELATIONSHIP_8` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
+  ADD CONSTRAINT `muestreo_ibfk_1` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
 
 --
 -- Filtros para la tabla `proveedor`
@@ -638,20 +611,20 @@ ALTER TABLE `proveedor`
 -- Filtros para la tabla `registro_alimentacion`
 --
 ALTER TABLE `registro_alimentacion`
-  ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
+  ADD CONSTRAINT `registro_alimentacion_ibfk_2` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
   ADD CONSTRAINT `registro_alimentacion_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`);
 
 --
 -- Filtros para la tabla `registro_mortalidad`
 --
 ALTER TABLE `registro_mortalidad`
-  ADD CONSTRAINT `FK_RELATIONSHIP_10` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
+  ADD CONSTRAINT `registro_mortalidad_ibfk_1` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
 
 --
 -- Filtros para la tabla `traslados`
 --
 ALTER TABLE `traslados`
-  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
+  ADD CONSTRAINT `traslados_ibfk_1` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
 
 --
 -- Filtros para la tabla `venta`
@@ -673,13 +646,13 @@ ALTER TABLE `venta`
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2014 a las 23:48:41
--- Versión del servidor: 5.6.17
--- Versión de PHP: 5.5.12
+-- Tiempo de generación: 12-11-2014 a las 06:40:56
+-- Versión del servidor: 5.5.32
+-- Versión de PHP: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -702,7 +675,6 @@ USE `siapa`;
 -- Estructura de tabla para la tabla `ss_historico_claves`
 --
 
-DROP TABLE IF EXISTS `ss_historico_claves`;
 CREATE TABLE IF NOT EXISTS `ss_historico_claves` (
   `ID_HISTORICO_CLAVE` decimal(9,0) NOT NULL COMMENT 'ID del histórico de clave.',
   `ID_USUARIO` decimal(9,0) DEFAULT NULL,
@@ -720,7 +692,6 @@ CREATE TABLE IF NOT EXISTS `ss_historico_claves` (
 -- Estructura de tabla para la tabla `ss_menus`
 --
 
-DROP TABLE IF EXISTS `ss_menus`;
 CREATE TABLE IF NOT EXISTS `ss_menus` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `SS__ID_MENU` decimal(9,0) DEFAULT NULL COMMENT 'Correlativo que identifica al menú.',
@@ -737,15 +708,14 @@ CREATE TABLE IF NOT EXISTS `ss_menus` (
 -- Volcado de datos para la tabla `ss_menus`
 --
 
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES
-('1', NULL, 'Ventas', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('2', NULL, 'Clientes', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('3', NULL, 'Administrar Producto', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('4', NULL, 'Jaulas', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('5', NULL, 'Alimento', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('6', NULL, 'Reportes', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('7', NULL, 'Configuracion', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('8', NULL, 'Producto', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('1', NULL, 'Ventas', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('2', NULL, 'Clientes', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('3', NULL, 'Administrar Producto', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('4', NULL, 'Jaulas', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('5', NULL, 'Alimento', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('6', NULL, 'Reportes', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('7', NULL, 'Configuracion', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('8', NULL, 'Producto', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -753,7 +723,6 @@ INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGIST
 -- Estructura de tabla para la tabla `ss_menus_opciones`
 --
 
-DROP TABLE IF EXISTS `ss_menus_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_menus_opciones` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
@@ -765,21 +734,20 @@ CREATE TABLE IF NOT EXISTS `ss_menus_opciones` (
 -- Volcado de datos para la tabla `ss_menus_opciones`
 --
 
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES
-('1', '2'),
-('1', '3'),
-('2', '4'),
-('3', '5'),
-('3', '6'),
-('3', '7'),
-('3', '8'),
-('3', '9'),
-('4', '10'),
-('5', '11'),
-('5', '12'),
-('8', '13'),
-('8', '14'),
-('2', '15');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('1', '2');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('1', '3');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('2', '4');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '5');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '6');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '7');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '8');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '9');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('4', '10');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('5', '11');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('5', '12');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('8', '13');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('8', '14');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('2', '15');
 
 -- --------------------------------------------------------
 
@@ -787,7 +755,6 @@ INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES
 -- Estructura de tabla para la tabla `ss_opciones`
 --
 
-DROP TABLE IF EXISTS `ss_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_opciones` (
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
   `NOMBRE_OPCION` varchar(100) DEFAULT NULL COMMENT 'Nombre de la opción',
@@ -805,22 +772,21 @@ CREATE TABLE IF NOT EXISTS `ss_opciones` (
 -- Volcado de datos para la tabla `ss_opciones`
 --
 
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES
-('1', 'Home', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('2', 'Gestion de Ventas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('3', 'Ingresar Cliente', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('4', 'Gestion de Clientes', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('5', 'Ingreso Peces Muertos', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('6', 'Ingreso de Muestreo', '/siapa/views/persona/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('7', 'Ingreso Alimento a Jaula', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('8', 'Gestion de Compra de Peces', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('9', 'Movimiento Entre Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('10', 'Gestion de Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('12', 'Compra de Alimento', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('13', 'Tipo de Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('14', 'Ingresar Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-11-01 00:00:00', NULL, NULL, NULL),
-('15', 'Ingresar Proveedor', '/siapa/views/proveedor/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('1', 'Home', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('2', 'Gestion de Ventas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('3', 'Ingresar Cliente', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('4', 'Gestion de Clientes', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('5', 'Ingreso Peces Muertos', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('6', 'Ingreso de Muestreo', '/siapa/views/persona/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('7', 'Ingreso Alimento a Jaula', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('8', 'Gestion de Compra de Peces', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('9', 'Movimiento Entre Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('10', 'Gestion de Jaulas', '/siapa/views/jaula/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('12', 'Compra de Alimento', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('13', 'Tipo de Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('14', 'Ingresar Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-11-01 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('15', 'Ingresar Proveedor', '/siapa/views/proveedor/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -828,7 +794,6 @@ INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUA
 -- Estructura de tabla para la tabla `ss_roles`
 --
 
-DROP TABLE IF EXISTS `ss_roles`;
 CREATE TABLE IF NOT EXISTS `ss_roles` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `CODIGO_ROL` varchar(50) DEFAULT NULL COMMENT 'Código que identifica al rol.',
@@ -846,13 +811,12 @@ CREATE TABLE IF NOT EXISTS `ss_roles` (
 -- Volcado de datos para la tabla `ss_roles`
 --
 
-INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES
-('1', 'EOP', 'Encargado Operativo', 'Posee privilegios ..', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('2', 'EAD', 'Encargado Administrativo', 'Posee Privilegios de ...', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('3', 'VEN', 'Vendedor', 'Encargado de registrar las ventas ', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('4', 'OPE', 'Operario', 'Encargado de Realizar ...', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('5', 'ADM', 'Administrador del Sistema', 'Tiene todos los provilegios de gestion de usuario y otras tareas de adminitracion del sistema', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
-('6', 'ASC', 'Asociado', 'puede ver los reportes que se generan desde el sistema', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('1', 'EOP', 'Encargado Operativo', 'Posee privilegios ..', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('2', 'EAD', 'Encargado Administrativo', 'Posee Privilegios de ...', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('3', 'VEN', 'Vendedor', 'Encargado de registrar las ventas ', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('4', 'OPE', 'Operario', 'Encargado de Realizar ...', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('5', 'ADM', 'Administrador del Sistema', 'Tiene todos los provilegios de gestion de usuario y otras tareas de adminitracion del sistema', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('6', 'ASC', 'Asociado', 'puede ver los reportes que se generan desde el sistema', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -860,7 +824,6 @@ INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `US
 -- Estructura de tabla para la tabla `ss_roles_menu`
 --
 
-DROP TABLE IF EXISTS `ss_roles_menu`;
 CREATE TABLE IF NOT EXISTS `ss_roles_menu` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
@@ -872,23 +835,22 @@ CREATE TABLE IF NOT EXISTS `ss_roles_menu` (
 -- Volcado de datos para la tabla `ss_roles_menu`
 --
 
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES
-('3', '1'),
-('4', '1'),
-('5', '1'),
-('6', '1'),
-('8', '1'),
-('1', '2'),
-('2', '2'),
-('3', '2'),
-('4', '2'),
-('7', '2'),
-('1', '3'),
-('8', '3'),
-('3', '4'),
-('7', '5'),
-('2', '6'),
-('6', '6');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('3', '1');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('4', '1');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('5', '1');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('6', '1');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('8', '1');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('1', '2');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('2', '2');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('3', '2');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('4', '2');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('7', '2');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('1', '3');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('8', '3');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('3', '4');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('7', '5');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('2', '6');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('6', '6');
 
 -- --------------------------------------------------------
 
@@ -896,7 +858,6 @@ INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES
 -- Estructura de tabla para la tabla `ss_roles_opciones`
 --
 
-DROP TABLE IF EXISTS `ss_roles_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_roles_opciones` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
@@ -908,32 +869,31 @@ CREATE TABLE IF NOT EXISTS `ss_roles_opciones` (
 -- Volcado de datos para la tabla `ss_roles_opciones`
 --
 
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES
-('1', '1'),
-('2', '1'),
-('3', '1'),
-('4', '1'),
-('5', '1'),
-('6', '1'),
-('2', '2'),
-('3', '2'),
-('2', '3'),
-('3', '3'),
-('2', '4'),
-('6', '4'),
-('4', '5'),
-('1', '6'),
-('4', '7'),
-('1', '8'),
-('2', '8'),
-('1', '9'),
-('1', '10'),
-('2', '10'),
-('1', '11'),
-('1', '12'),
-('3', '13'),
-('1', '14'),
-('2', '15');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '1');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '1');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('3', '1');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('4', '1');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('5', '1');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('6', '1');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '2');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('3', '2');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '3');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('3', '3');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '4');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('6', '4');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('4', '5');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '6');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('4', '7');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '8');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '8');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '9');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '10');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '10');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '11');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '12');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('3', '13');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '14');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '15');
 
 -- --------------------------------------------------------
 
@@ -941,7 +901,6 @@ INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES
 -- Estructura de tabla para la tabla `ss_roles_usuarios`
 --
 
-DROP TABLE IF EXISTS `ss_roles_usuarios`;
 CREATE TABLE IF NOT EXISTS `ss_roles_usuarios` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `ID_USUARIO` decimal(9,0) NOT NULL,
@@ -953,13 +912,12 @@ CREATE TABLE IF NOT EXISTS `ss_roles_usuarios` (
 -- Volcado de datos para la tabla `ss_roles_usuarios`
 --
 
-INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES
-('1', '1'),
-('2', '2'),
-('3', '3'),
-('4', '4'),
-('5', '5'),
-('6', '6');
+INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('1', '1');
+INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('2', '2');
+INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('3', '3');
+INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('4', '4');
+INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('5', '5');
+INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('6', '6');
 
 -- --------------------------------------------------------
 
@@ -967,7 +925,6 @@ INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES
 -- Estructura de tabla para la tabla `ss_usuarios`
 --
 
-DROP TABLE IF EXISTS `ss_usuarios`;
 CREATE TABLE IF NOT EXISTS `ss_usuarios` (
   `ID_USUARIO` decimal(9,0) NOT NULL,
   `CODIGO_USUARIO` varchar(15) DEFAULT NULL,
@@ -995,13 +952,12 @@ CREATE TABLE IF NOT EXISTS `ss_usuarios` (
 -- Volcado de datos para la tabla `ss_usuarios`
 --
 
-INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES
-('1', 'EOP', 'Encargado Operativo', '78421829', 'siapa@gmail.com', 'Encargado Operativo', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('2', 'EAD', 'Encargado Administrativo', '78421829', 'siapa@gmail.com', 'Encargado Administrativo', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('3', 'VEN', 'Vendedor', '78421829', 'siapa@gmail.com', 'Vendedor', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('4', 'OPE', 'Operario', '78421829', 'siapa@gmail.com', 'Operario', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('5', 'ADM', 'Administrador del Sistema', '78421829', 'siapa@gmail.com', 'Administrador del Sistema', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('6', 'ASC', 'Asociado', '78421829', 'siapa@gmail.com', 'Asociado', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('1', 'EOP', 'Encargado Operativo', '78421829', 'siapa@gmail.com', 'Encargado Operativo', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('2', 'EAD', 'Encargado Administrativo', '78421829', 'siapa@gmail.com', 'Encargado Administrativo', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('3', 'VEN', 'Vendedor', '78421829', 'siapa@gmail.com', 'Vendedor', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('4', 'OPE', 'Operario', '78421829', 'siapa@gmail.com', 'Operario', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('5', 'ADM', 'Administrador del Sistema', '78421829', 'siapa@gmail.com', 'Administrador del Sistema', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('6', 'ASC', 'Asociado', '78421829', 'siapa@gmail.com', 'Asociado', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Restricciones para tablas volcadas

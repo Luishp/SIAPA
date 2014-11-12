@@ -34,4 +34,8 @@ public class AlimentoService extends GenericService<Alimento, Integer>{
     public List<Alimento> getTypeFood(){
          return alimentoDao.getTypeFood();
     }
+    
+    public List<Alimento> getByIdTypeFood(Integer tipo){
+        return alimentoDao.getByIdTypeFood(tipo);
+    }
 }
