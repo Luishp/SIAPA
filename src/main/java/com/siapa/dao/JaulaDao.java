@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * @author Joao
  */
 @Repository
-public class JaulaDao extends GenericDao<Jaula, Long> {
+public class JaulaDao extends GenericDao<Jaula, Integer> {
     
 }

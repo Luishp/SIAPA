@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -13,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,11 +32,14 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Jaula.findAll", query = "SELECT j FROM Jaula j")})
 public class Jaula implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_JAULA", nullable = false)
-    private Long idJaula;
+    @GeneratedValue
+    @Column(name = "ID_JAULA", nullable = true)
+    private Integer idJaula;
+
     @Basic(optional = false)
     @Column(name = "NOMBRE_JAULA", nullable = false, length = 50)
     private String nombreJaula;
@@ -74,11 +77,11 @@ public class Jaula implements Serializable {
     public Jaula() {
     }
 
-    public Jaula(Long idJaula) {
+    public Jaula(Integer idJaula) {
         this.idJaula = idJaula;
     }
 
-    public Jaula(Long idJaula, String nombreJaula, Date fechaVentaJaula, Date fechaSiembraJaula, int ventaJaula) {
+    public Jaula(Integer idJaula, String nombreJaula, Date fechaVentaJaula, Date fechaSiembraJaula, int ventaJaula) {
         this.idJaula = idJaula;
         this.nombreJaula = nombreJaula;
         this.fechaVentaJaula = fechaVentaJaula;
@@ -86,11 +89,11 @@ public class Jaula implements Serializable {
         this.ventaJaula = ventaJaula;
     }
 
-    public Long getIdJaula() {
+    public Integer getIdJaula() {
         return idJaula;
     }
 
-    public void setIdJaula(Long idJaula) {
+    public void setIdJaula(Integer idJaula) {
         this.idJaula = idJaula;
     }
 
@@ -222,5 +225,5 @@ public class Jaula implements Serializable {
     public String toString() {
         return "com.siapa.model.Jaula[ idJaula=" + idJaula + " ]";
     }
-    
+
 }

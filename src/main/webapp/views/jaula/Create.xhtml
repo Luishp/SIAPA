@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="JaulaCreateDlg" widgetVar="JaulaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateJaulaTitle}" closeOnEscape="true">
+            <p:ajax event="close"  oncomplete="myrefresh();"></p:ajax>
+            <h:form id="JaulaCreateForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2" rendered="#{jaulaManagedBean.selected != null}">
+
+                        <p:outputLabel value="#{crudbundle.ListJaulaTitle_nombre}" for="nombreJaula" />
+                        <p:inputText id="nombreJaula" value="#{jaulaManagedBean.selected.nombreJaula}" title="#{crudbundle.ListJaulaTitle_nombre}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.ListJaulaTitle_descripcion}" for="descripcionJaula" />
+                        <p:inputText id="descripcionJaula" value="#{jaulaManagedBean.selected.descripcionJaula}" title="#{crudbundle.ListJaulaTitle_descripcion}"  size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.ListJaulaTitle_enVenta}"  for="listaVentaJaula"  />
+                        <p:selectOneMenu id="listaVentaJaula"  value="#{jaulaManagedBean.jaulaVenta}" >
+                            <f:selectItem itemLabel="Venta" itemValue="true"/>
+                            <f:selectItem itemLabel="Cultivo"   itemValue="false" />
+                        </p:selectOneMenu>
+                       
+                        <p:outputLabel value="Tipo de Jaula"/>
+                        <p:selectOneMenu id="tipoJaula" value="#{jaulaManagedBean.tipoJaula}" converter="#{tipoJaulaConverter}" effect="fade" style="width:200px">
+                            <f:selectItems value="#{jaulaManagedBean.jaulaList}" var="tipo" itemLabel="#{tipo.nombreTipoJaula}" itemValue="#{tipo}" />
+                        </p:selectOneMenu>
+                        
+                        
+                        <p:outputLabel value="#{crudbundle.ListJaulaTitle_cantidad}" for="ventaJaula" />
+                        <p:inputText id="ventaJaula" value="#{jaulaManagedBean.selected.ventaJaula}" title="#{crudbundle.ListJaulaTitle_cantidad}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}"/>
+
+                    </p:panelGrid>
+
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{jaulaManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:JaulaListForm,:growl" oncomplete="handleSubmit(xhr,status,args,JaulaCreateDialog);"/>
+                    <span>&nbsp;</span>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="JaulaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

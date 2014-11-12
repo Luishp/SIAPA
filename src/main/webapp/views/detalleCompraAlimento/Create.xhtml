@@ -8,28 +8,49 @@
 
     <ui:composition>
 
-        <p:dialog id="DetalleCompraAlimentoCreateDlg" widgetVar="DetalleCompraAlimentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateDetalleCompraAlimentoTitle}" closeOnEscape="true">
+        <p:dialog id="DetalleCompraAlimentoCreateDlg" widgetVar="DetalleCompraAlimentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateDetalleCompraAlimentoTitle}" closeOnEscape="true">
 
+            
+            
+            
             <h:form id="DetalleCompraAlimentoCreateForm">
 
-                <h:panelGroup id="display" rendered="#{detalleCompraAlimentoController.selected != null}">
+                 <p:panelGrid columns="2" >
+                <p:outputLabel value="Proveedor : "/>
+                        <p:selectOneMenu id="tipoPersona" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{ProveedorConverter}" effect="fade" style="width:200px">
+                            <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
+                        </p:selectOneMenu>
+                 <p:outputLabel value="Tipo Alimento : "/>
+                 <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.alimento}" converter="#{AlimentoConverter}" effect="fade" style="width:200px">
+                     <f:selectItems value="#{detalleCompraAlimentoManagedBean.alimentoList}" var="tipo" itemLabel="#{tipo.idTipoAlimento.nombreTipoAlimento}" itemValue="#{tipo}" />
+                        </p:selectOneMenu>
+                 
+                   </p:panelGrid>
+                
+              
+                
+                <h:panelGroup id="display" rendered="#{detalleCompraAlimentoManagedBean.selected != null}">
+                   
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{myBundle.CreateDetalleCompraAlimentoLabel_idDetalleCompraAlimento}" for="idDetalleCompraAlimento" />
-                        <p:inputText id="idDetalleCompraAlimento" value="#{detalleCompraAlimentoController.selected.idDetalleCompraAlimento}" title="#{myBundle.CreateDetalleCompraAlimentoTitle_idDetalleCompraAlimento}" required="true" requiredMessage="#{myBundle.CreateDetalleCompraAlimentoRequiredMessage_idDetalleCompraAlimento}"/>
+                        
 
-                        <p:outputLabel value="#{myBundle.CreateDetalleCompraAlimentoLabel_cantDetalleCompraAlimento}" for="cantDetalleCompraAlimento" />
-                        <p:inputText id="cantDetalleCompraAlimento" value="#{detalleCompraAlimentoController.selected.cantDetalleCompraAlimento}" title="#{myBundle.CreateDetalleCompraAlimentoTitle_cantDetalleCompraAlimento}" required="true" requiredMessage="#{myBundle.CreateDetalleCompraAlimentoRequiredMessage_cantDetalleCompraAlimento}"/>
+<!--
+                        <p:outputLabel value="#{crudbundle.CreateDetalleCompraAlimentoLabel_idDetalleCompraAlimento}" for="idDetalleCompraAlimento" />
+                        <p:inputText id="idDetalleCompraAlimento" value="#{detalleCompraAlimentoManagedBean.selected.idDetalleCompraAlimento}" title="#{crudbundle.CreateDetalleCompraAlimentoTitle_idDetalleCompraAlimento}" required="true" requiredMessage="#{crudbundle.CreateDetalleCompraAlimentoRequiredMessage_idDetalleCompraAlimento}"/>
 
-                        <p:outputLabel value="#{myBundle.CreateDetalleCompraAlimentoLabel_precioDetalleCompraAlimento}" for="precioDetalleCompraAlimento" />
-                        <p:inputText id="precioDetalleCompraAlimento" value="#{detalleCompraAlimentoController.selected.precioDetalleCompraAlimento}" title="#{myBundle.CreateDetalleCompraAlimentoTitle_precioDetalleCompraAlimento}" required="true" requiredMessage="#{myBundle.CreateDetalleCompraAlimentoRequiredMessage_precioDetalleCompraAlimento}"/>
+                        <p:outputLabel value="#{crudbundle.CreateDetalleCompraAlimentoLabel_cantDetalleCompraAlimento}" for="cantDetalleCompraAlimento" />
+                        <p:inputText id="cantDetalleCompraAlimento" value="#{detalleCompraAlimentoManagedBean.selected.cantDetalleCompraAlimento}" title="#{crudbundle.CreateDetalleCompraAlimentoTitle_cantDetalleCompraAlimento}" required="true" requiredMessage="#{crudbundle.CreateDetalleCompraAlimentoRequiredMessage_cantDetalleCompraAlimento}"/>
 
-                        <p:outputLabel value="#{myBundle.CreateDetalleCompraAlimentoLabel_impuestoDetCompraAlimento}" for="impuestoDetCompraAlimento" />
-                        <p:inputText id="impuestoDetCompraAlimento" value="#{detalleCompraAlimentoController.selected.impuestoDetCompraAlimento}" title="#{myBundle.CreateDetalleCompraAlimentoTitle_impuestoDetCompraAlimento}" required="true" requiredMessage="#{myBundle.CreateDetalleCompraAlimentoRequiredMessage_impuestoDetCompraAlimento}"/>
+                        <p:outputLabel value="#{crudbundle.CreateDetalleCompraAlimentoLabel_precioDetalleCompraAlimento}" for="precioDetalleCompraAlimento" />
+                        <p:inputText id="precioDetalleCompraAlimento" value="#{detalleCompraAlimentoManagedBean.selected.precioDetalleCompraAlimento}" title="#{crudbundle.CreateDetalleCompraAlimentoTitle_precioDetalleCompraAlimento}" required="true" requiredMessage="#{crudbundle.CreateDetalleCompraAlimentoRequiredMessage_precioDetalleCompraAlimento}"/>
 
-                        <p:outputLabel value="#{myBundle.CreateDetalleCompraAlimentoLabel_idCompra}" for="idCompra" />
-                        <p:selectOneMenu id="idCompra" value="#{detalleCompraAlimentoController.selected.idCompra}" >
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                        <p:outputLabel value="#{crudbundle.CreateDetalleCompraAlimentoLabel_impuestoDetCompraAlimento}" for="impuestoDetCompraAlimento" />
+                        <p:inputText id="impuestoDetCompraAlimento" value="#{detalleCompraAlimentoManagedBean.selected.impuestoDetCompraAlimento}" title="#{crudbundle.CreateDetalleCompraAlimentoTitle_impuestoDetCompraAlimento}" required="true" requiredMessage="#{crudbundle.CreateDetalleCompraAlimentoRequiredMessage_impuestoDetCompraAlimento}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateDetalleCompraAlimentoLabel_idCompra}" for="idCompra" />
+                        <p:selectOneMenu id="idCompra" value="#{detalleCompraAlimentoManagedBean.selected.idCompra}" >
+                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
                             <f:selectItems value="#{compraController.items}"
                                            var="idCompraItem"
                                            itemValue="#{idCompraItem}"
@@ -38,22 +59,22 @@
                             <f:converter binding="#{compraConverter}"/>
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{myBundle.CreateDetalleCompraAlimentoLabel_idAlimento}" for="idAlimento" />
-                        <p:selectOneMenu id="idAlimento" value="#{detalleCompraAlimentoController.selected.idAlimento}" >
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                        <p:outputLabel value="#{crudbundle.CreateDetalleCompraAlimentoLabel_idAlimento}" for="idAlimento" />
+                        <p:selectOneMenu id="idAlimento" value="#{detalleCompraAlimentoManagedBean.selected.idAlimento}" >
+                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
                             <f:selectItems value="#{alimentoController.items}"
                                            var="idAlimentoItem"
                                            itemValue="#{idAlimentoItem}"
                                            itemLabel="#{idAlimentoItem.idAlimento.toString()}"
                                            />
                             <f:converter binding="#{alimentoConverter}"/>
-                        </p:selectOneMenu>
+                        </p:selectOneMenu>-->
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{detalleCompraAlimentoController.saveNew}" value="#{myBundle.Save}" update="display,:DetalleCompraAlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DetalleCompraAlimentoCreateDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{detalleCompraAlimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:DetalleCompraAlimentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DetalleCompraAlimentoCreateDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('DetalleCompraAlimentoCreateDialog').hide()"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('DetalleCompraAlimentoCreateDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

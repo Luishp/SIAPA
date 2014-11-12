@@ -32,7 +32,7 @@ public class TipoJaula implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_TIPO_JAULA", nullable = false)
-    private Long idTipoJaula;
+    private Integer idTipoJaula;
     @Basic(optional = false)
     @Column(name = "NOMBRE_TIPO_JAULA", nullable = false, length = 50)
     private String nombreTipoJaula;
@@ -54,11 +54,11 @@ public class TipoJaula implements Serializable {
     public TipoJaula() {
     }
 
-    public TipoJaula(Long idTipoJaula) {
+    public TipoJaula(Integer idTipoJaula) {
         this.idTipoJaula = idTipoJaula;
     }
 
-    public TipoJaula(Long idTipoJaula, String nombreTipoJaula, BigDecimal anchoTipoJaula, BigDecimal largoTipoJaula, BigDecimal profundidadTipoJaula) {
+    public TipoJaula(Integer idTipoJaula, String nombreTipoJaula, BigDecimal anchoTipoJaula, BigDecimal largoTipoJaula, BigDecimal profundidadTipoJaula) {
         this.idTipoJaula = idTipoJaula;
         this.nombreTipoJaula = nombreTipoJaula;
         this.anchoTipoJaula = anchoTipoJaula;
@@ -66,11 +66,11 @@ public class TipoJaula implements Serializable {
         this.profundidadTipoJaula = profundidadTipoJaula;
     }
 
-    public Long getIdTipoJaula() {
+    public Integer getIdTipoJaula() {
         return idTipoJaula;
     }
 
-    public void setIdTipoJaula(Long idTipoJaula) {
+    public void setIdTipoJaula(Integer idTipoJaula) {
         this.idTipoJaula = idTipoJaula;
     }
 

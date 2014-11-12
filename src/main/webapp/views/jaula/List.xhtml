@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="JaulaListForm">
+        <p:fieldset legend="Jaula">
+            <p:dataTable id="datalist" 
+                         var="item"
+                         value="#{jaulaManagedBean.lazyItems}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
+                         selectionMode="single"
+                         selection="#{jaulaManagedBean.selected}"
+                         rowKey="#{item.idJaula}" 
+                         paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
+
+                <p:column sortBy="#{item.idJaula}" filterBy="#{item.idJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListJaulaTitle_idJaula}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idJaula}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombreJaula}" filterBy="#{item.nombreJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListJaulaTitle_nombre}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreJaula}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcionJaula}" filterBy="#{item.descripcionJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListJaulaTitle_descripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcionJaula}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.listaVentaJaula}" filterBy="#{item.listaVentaJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListJaulaTitle_enVenta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.listaVentaJaula}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.nombreTipoJaula}" filterBy="#{item.idTipoJaula.nombreTipoJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListJaulaTitle_tipoJaula}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoJaula.nombreTipoJaula}"/>
+                </p:column>
+                
+                
+                <p:column sortBy="#{item.fechaSiembraJaula}" filterBy="#{item.fechaSiembraJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListJaulaTitle_fechaSiembraJaula}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaSiembraJaula}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.fechaVentaJaula}" filterBy="#{item.fechaVentaJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListJaulaTitle_fechaVentaJaula}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaVentaJaula}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.ventaJaula}" filterBy="#{item.ventaJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListJaulaTitle_existencias}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ventaJaula}"/>
+                </p:column>
+
+
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{jaulaManagedBean.prepareCreate}" update=" @(#JaulaCreateForm)" oncomplete="JaulaCreateDialog.show()"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#JaulaEditForm)" oncomplete="JaulaEditDialog.show()" disabled="#{empty jaulaManagedBean.selected}"/>
+                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{jaulaManagedBean.delete}" update=":growl,datalist" disabled="#{empty jaulaManagedBean.selected}"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#JaulaViewForm)" oncomplete="JaulaViewDialog.show()" disabled="#{empty jaulaManagedBean.selected}"/>
+
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:composition>

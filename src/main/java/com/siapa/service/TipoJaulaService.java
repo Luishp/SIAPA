@@ -9,6 +9,7 @@ import com.siapa.dao.TipoJaulaDao;
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.TipoJaula;
 import com.siapa.service.generic.GenericService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,17 @@ import org.springframework.stereotype.Service;
  *
  * @author Joao
  */
-@Service(value="TipoJaulaService")
-public class TipoJaulaService extends GenericService<TipoJaula, Long> {
+@Service(value="tipoJaulaService")
+public class TipoJaulaService extends GenericService<TipoJaula, Integer> {
       @Autowired
     private TipoJaulaDao tipoJaulaDao;
 
     @Override
-    public GenericDao<TipoJaula, Long> getDao() {
+    public GenericDao<TipoJaula, Integer> getDao() {
         return tipoJaulaDao;
+    }
+    
+    public List<TipoJaula> findAllActives() {
+        return tipoJaulaDao.findAllActives();
     }
 }

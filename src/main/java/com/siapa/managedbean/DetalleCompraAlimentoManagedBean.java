@@ -6,6 +6,7 @@
 package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
+import com.siapa.model.Alimento;
 import com.siapa.model.DetalleCompraAlimento;
 import com.siapa.model.Proveedor;
 import com.siapa.model.TipoAlimento;
@@ -42,30 +43,30 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     @Autowired
     @Qualifier(value = "alimentoService")
     private AlimentoService alimentoService;
-    
+
     @Autowired
     @Qualifier(value = "proveedorService")
     private ProveedorService proveedorService;
-    
-    
+
     private List<Proveedor> proveedorList;
     private List<DetalleCompraAlimento> detalleCompraAlimentoList;
-    
+    private List<Alimento> alimentoList;
+
     private TipoAlimento tipoAlimento;
     private Proveedor proveedor;
+    private Alimento alimento;
 
-    
-      @PostConstruct
+    @PostConstruct
     public void init() {
-     detalleCompraAlimentoList=detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
-     proveedorList=proveedorService.getProveedor();
-// alimentoList=alimentoService.getTypeFood();
-     //  tipoAlimentoList=tipoAlimentoService.findAll();
+        detalleCompraAlimentoList = detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
+        proveedorList = proveedorService.getProveedor();
+        alimentoList = alimentoService.getTypeFood();
+
     }
-    
+
     @Override
     public GenericService<DetalleCompraAlimento, Integer> getService() {
-       return detalleCompraAlimentoService;
+        return detalleCompraAlimentoService;
     }
 
     @Override
@@ -97,6 +98,21 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.proveedor = proveedor;
     }
 
-    
+    public List<Alimento> getAlimentoList() {
+        return alimentoList;
+    }
+
+    public void setAlimentoList(List<Alimento> alimentoList) {
+        this.alimentoList = alimentoList;
+    }
+
+    public Alimento getAlimento() {
+        return alimento;
+    }
+
+    public void setAlimento(Alimento alimento) {
+        this.alimento = alimento;
+    }
+
     
 }
