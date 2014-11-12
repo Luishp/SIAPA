@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Joao
  */
-@Service(value="tipoJaulaService")
+@Service(value="TipoJaulaService")
 public class TipoJaulaService extends GenericService<TipoJaula, Integer> {
       @Autowired
     private TipoJaulaDao tipoJaulaDao;
