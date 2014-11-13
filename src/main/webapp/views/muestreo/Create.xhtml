@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MuestreoCreateDlg" widgetVar="MuestreoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateMuestreoTitle}" closeOnEscape="true">
+
+            <h:form id="MuestreoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{muestreoManagedBean.selected != null}">
+                  <p:panelGrid columns="2" columnClasses="column">
+
+                      <!--  <p:outputLabel value="#{crudbundle.CreateMuestreoLabel_idMuestreo}" for="idMuestreo" />
+                        <h:panelGroup>
+                            <p:inputText id="idMuestreo" value="#{muestreoManagedBean.selected.idMuestreo}" title="#{crudbundle.CreateMuestreoTitle_idMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_idMuestreo}"/>
+                            <p:tooltip for="idMuestreo" value="#{muestreoManagedBean.getComponentMessages('idMuestreo', crudbundle.CreateMuestreoHelpText_idMuestreo)}"/>
+                        </h:panelGroup> -->
+
+                        <p:outputLabel value="#{crudbundle.CreateMuestreoLabel_pesoPromedioMuestreo}" for="pesoPromedioMuestreo" />
+                        <h:panelGroup>
+                            <p:inputText id="pesoPromedioMuestreo" value="#{muestreoManagedBean.selected.pesoPromedioMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
+                            <p:tooltip for="pesoPromedioMuestreo" value="#{muestreoManagedBean.getComponentMessages('pesoPromedioMuestreo', crudbundle.CreateMuestreoHelpText_pesoPromedioMuestreo)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{crudbundle.CreateMuestreoLabel_fechaMuestreo}" for="fechaMuestreo"  />
+                        <h:panelGroup>
+                            <p:calendar id="fechaMuestreo" pattern="MM/dd/yyyy" value="#{muestreoManagedBean.selected.fechaMuestreo}" title="#{crudbundle.CreateMuestreoTitle_fechaMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_fechaMuestreo}" showOn="button"   />
+                            <p:tooltip for="fechaMuestreo" value="#{muestreoManagedBean.getComponentMessages('fechaMuestreo', crudbundle.CreateMuestreoHelpText_fechaMuestreo)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{crudbundle.CreateMuestreoLabel_usuarioMuestreo}" for="usuarioMuestreo" />
+                        <h:panelGroup>
+                            <p:inputText id="usuarioMuestreo" value="#{muestreoManagedBean.selected.usuarioMuestreo}" title="#{crudbundle.CreateMuestreoTitle_usuarioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_usuarioMuestreo}"/>
+                            <p:tooltip for="usuarioMuestreo" value="#{muestreoManagedBean.getComponentMessages('usuarioMuestreo', crudbundle.CreateMuestreoHelpText_usuarioMuestreo)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{crudbundle.CreateMuestreoLabel_fechaRegistroMuestreo}" for="fechaRegistroMuestreo" />
+                        <h:panelGroup>
+                            <p:calendar id="fechaRegistroMuestreo" pattern="MM/dd/yyyy" value="#{muestreoManagedBean.selected.fechaRegistroMuestreo}" title="#{crudbundle.CreateMuestreoTitle_fechaRegistroMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_fechaRegistroMuestreo}" showOn="button"/>
+                            <p:tooltip for="fechaRegistroMuestreo" value="#{muestreoManagedBean.getComponentMessages('fechaRegistroMuestreo', crudbundle.CreateMuestreoHelpText_fechaRegistroMuestreo)}"/>
+                        </h:panelGroup>
+
+                   <!--     <p:outputLabel value="#{crudbundle.CreateMuestreoLabel_idJaula}" for="idJaula" />
+                        <h:panelGroup>
+                           <p:selectOneMenu id="idJaula" value="#{muestreoManagedBean.selected.idJaula}"  converter="jaulaConverter">
+                                <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{jaulaController.items}"
+                                               var="idJaulaItem"
+                                               itemValue="#{idJaulaItem}"
+                                               itemLabel="#{idJaulaItem.descripcionJaula.toString()}"
+                                               />
+
+                            </p:selectOneMenu> 
+                            <p:tooltip for="idJaula" value="#{muestreoManagedBean.getComponentMessages('idJaula', crudbundle.CreateMuestreoHelpText_idJaula)}"/>
+                        </h:panelGroup> -->
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{muestreoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:MuestreoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MuestreoCreateDialog'));"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('MuestreoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

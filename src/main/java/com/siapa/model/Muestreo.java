@@ -14,6 +14,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,10 +35,13 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Muestreo.findAll", query = "SELECT m FROM Muestreo m")})
 public class Muestreo implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_MUESTREO", nullable = false)
-    private Long idMuestreo;
+
+    
+     @Id
+    @GeneratedValue
+    @Column(name = "ID_MUESTREO", nullable = true)
+    private Integer idMuestreo;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "PESO_PROMEDIO_MUESTREO", nullable = false, precision = 10, scale = 2)
@@ -62,11 +66,11 @@ public class Muestreo implements Serializable {
     public Muestreo() {
     }
 
-    public Muestreo(Long idMuestreo) {
+    public Muestreo(Integer idMuestreo) {
         this.idMuestreo = idMuestreo;
     }
 
-    public Muestreo(Long idMuestreo, BigDecimal pesoPromedioMuestreo, Date fechaMuestreo, String usuarioMuestreo, Date fechaRegistroMuestreo) {
+    public Muestreo(Integer idMuestreo, BigDecimal pesoPromedioMuestreo, Date fechaMuestreo, String usuarioMuestreo, Date fechaRegistroMuestreo) {
         this.idMuestreo = idMuestreo;
         this.pesoPromedioMuestreo = pesoPromedioMuestreo;
         this.fechaMuestreo = fechaMuestreo;
@@ -74,11 +78,11 @@ public class Muestreo implements Serializable {
         this.fechaRegistroMuestreo = fechaRegistroMuestreo;
     }
 
-    public Long getIdMuestreo() {
+    public Integer getIdMuestreo() {
         return idMuestreo;
     }
 
-    public void setIdMuestreo(Long idMuestreo) {
+    public void setIdMuestreo(Integer idMuestreo) {
         this.idMuestreo = idMuestreo;
     }
 
