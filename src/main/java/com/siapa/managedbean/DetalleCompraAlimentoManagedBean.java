@@ -67,6 +67,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     @PostConstruct
     public void init() {
+        tipoAlimento=new TipoAlimento();
         detalleCompraAlimentoList = detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
         proveedorList = proveedorService.getProveedor();
         alimentoList = alimentoService.getTypeFood();
@@ -75,7 +76,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     }
     
     
-    public void cargarComboAlimentoMarca(ActionEvent event){
+    public void cargarComboAlimentoMarca(){
          alimentoByIdList = alimentoService.getByIdTypeFood(tipoAlimento.getIdTipoAlimento());
     
     }
