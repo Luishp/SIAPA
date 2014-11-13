@@ -17,20 +17,25 @@
 
                 <p:panelGrid columns="2" >
                     <p:outputLabel value="Proveedor : "/>
-                    <p:selectOneMenu id="tipoPersona" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{ProveedorConverter}" effect="fade" style="width:200px">
-                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
+                    <p:selectOneMenu id="tipoPersona" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
+                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipop" itemLabel="#{tipop.idPersona.nombrePersona}" itemValue="#{tipop}" />
                     </p:selectOneMenu>
+
                     <p:outputLabel value="Tipo Alimento : "/>
-                    <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.tipoAlimento}" converter="#{TipoAlimentoConverter}" effect="fade" style="width:200px">
-                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.tipoAlimentoList}" var="tipo" itemLabel="#{tipo.nombreTipoAlimento}" itemValue="#{tipo}" />
-                        <p:ajax event="change" update="marca"   listener="#{detalleCompraAlimentoManagedBean.cargarComboAlimentoMarca}"></p:ajax>
+                    <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.tipoAlimento}" converter="#{tipoAlimentoConverter}" effect="fade" style="width:200px">
+                        <p:ajax listener="#{detalleCompraAlimentoManagedBean.cargarComboAlimentoMarca}" update="marca" process="tipoAlimento"></p:ajax>
+                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.tipoAlimentoList}" var="tipoc" itemLabel="#{tipoc.nombreTipoAlimento}" itemValue="#{tipoc}" />
                     </p:selectOneMenu>
-                    
+
                     <p:outputLabel value="Marca : "/>
-                    <p:selectOneMenu id="marca" value="#{detalleCompraAlimentoManagedBean.alimento}" converter="#{AlimentoConverter}" effect="fade" style="width:200px">
-                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.alimentoByIdList}" var="tipo" itemLabel="#{tipo.marcaAlimento}" itemValue="#{tipo}" />
+                    <p:selectOneMenu id="marca" value="#{detalleCompraAlimentoManagedBean.alimento}" converter="#{alimentoConverter}" effect="fade" style="width:200px">
+                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.alimentoByIdList}" var="tipoa" itemLabel="#{tipoa.marcaAlimento}" itemValue="#{tipo}" />
                     </p:selectOneMenu>
-                    
+
+<!--                    <h:outputLabel for="fecha" value="Fecha: " />
+                    <p:calendar id="button" style="text-align: center" value="#{proveedorManagedBean.proveedor.fechaProveedor}" showOn="button"  />-->
+
+
                 </p:panelGrid>
 
 
