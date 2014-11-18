@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
+
+
     <ui:composition>
 
-        <p:dialog id="DetalleCompraAlimentoCreateDlg" widgetVar="DetalleCompraAlimentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateDetalleCompraAlimentoTitle}" closeOnEscape="true">
+
+        <script >
+            function validate(evt) {
+                var theEvent = evt || window.event;
+                var key = theEvent.keyCode || theEvent.which;
+                key = String.fromCharCode(key);
+                var regex = /[0-9]|\./;
+                if (!regex.test(key)) {
+                    theEvent.returnValue = false;
+                    if (theEvent.preventDefault)
+                        theEvent.preventDefault();
+                }
+            }
+        </script>
+
+
+        <p:dialog id="DetalleCompraAlimentoCreateDlg" widgetVar="DetalleCompraAlimentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Detalle de Compra de Alimento" closeOnEscape="true">
 
 
 
@@ -32,8 +56,21 @@
                         <f:selectItems value="#{detalleCompraAlimentoManagedBean.alimentoByIdList}" var="tipoa" itemLabel="#{tipoa.marcaAlimento}" itemValue="#{tipo}" />
                     </p:selectOneMenu>
 
-<!--                    <h:outputLabel for="fecha" value="Fecha: " />
-                    <p:calendar id="button" style="text-align: center" value="#{proveedorManagedBean.proveedor.fechaProveedor}" showOn="button"  />-->
+                    <p:outputLabel value="Fecha : "/>
+                    <p:calendar id="popup" value="#{detalleCompraAlimentoManagedBean.date2}" size="10" />
+
+                    <p:outputLabel value="Cantidad :" />
+                    <p:inputText id="cantidad" value="" required="true" size="4" requiredMessage="#{crudbundle.CreateDetalleCompraAlimentoRequiredMessage_cantDetalleCompraAlimento}"/>
+
+                    <p:outputLabel value="Precio :" />
+                   <p:inputText type='text' value="" onkeypress='validate(event)' size="4" />
+
+                    <h:outputLabel value="Impuesto :" />
+                    <p:inputText type='text' value="13" onkeypress='validate(event)' size="4" />
+                    
+                   <h:outputLabel value="Total :" />
+                    <p:inputText type='text' value="" readonly="true" onkeypress='validate(event)' size="6" />
+
 
 
                 </p:panelGrid>

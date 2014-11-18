@@ -17,9 +17,14 @@ import com.siapa.service.ProveedorService;
 import com.siapa.service.TipoAlimentoService;
 import com.siapa.service.generic.GenericService;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +55,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     @Autowired
     @Qualifier(value = "proveedorService")
     private ProveedorService proveedorService;
-   
+
     @Autowired
     @Qualifier(value = "tipoAlimentoService")
     private TipoAlimentoService tipoAlimentoService;
@@ -59,31 +64,52 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private List<DetalleCompraAlimento> detalleCompraAlimentoList;
     private List<Alimento> alimentoList;
     private List<Alimento> alimentoByIdList;
-    private List<TipoAlimento> tipoAlimentoList; 
+    private List<TipoAlimento> tipoAlimentoList;
 
     private TipoAlimento tipoAlimento;
     private Proveedor proveedor;
     private Alimento alimento;
+    private Date date2;
+    public String textbox2;
 
     @PostConstruct
     public void init() {
-        tipoAlimento=new TipoAlimento();
+        tipoAlimento = new TipoAlimento();
         detalleCompraAlimentoList = detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
         proveedorList = proveedorService.getProveedor();
         alimentoList = alimentoService.getTypeFood();
         tipoAlimentoList = tipoAlimentoService.findAll();
         alimentoByIdList = new ArrayList<Alimento>();
     }
-    
-    
-    public void cargarComboAlimentoMarca(){
-         alimentoByIdList = alimentoService.getByIdTypeFood(tipoAlimento.getIdTipoAlimento());
-    
+
+    public void cargarComboAlimentoMarca() {
+        alimentoByIdList = alimentoService.getByIdTypeFood(tipoAlimento.getIdTipoAlimento());
+
     }
 
     @Override
     public GenericService<DetalleCompraAlimento, Integer> getService() {
         return detalleCompraAlimentoService;
+    }
+
+    public void validateTextBox(ComponentSystemEvent event) {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        UIComponent components = event.getComponent();
+
+        //get textbox2 value
+        UIInput uiText2 = (UIInput) components.findComponent("Precio");
+        String text2 = uiText2.getLocalValue().toString();
+
+//        if (!"developer.am".equals(text1.toUpperCase()) || (!"123".equals(text2))) {
+//
+//            FacesMessage msg = new FacesMessage("Textbox validation failed.", "Please enter 'developer.am' in Textbox1, '123' in Textbox2.");
+//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+//            //components.getClientId() = textPanel
+//            fc.addMessage(components.getClientId(), msg);
+//            //passed to the Render Response phase
+//            fc.renderResponse();
+//        }
+
     }
 
     @Override
@@ -155,6 +181,12 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.alimentoByIdList = alimentoByIdList;
     }
 
-    
-    
+    public Date getDate2() {
+        return date2;
+    }
+
+    public void setDate2(Date date2) {
+        this.date2 = date2;
+    }
+
 }
