@@ -16,10 +16,16 @@ import com.siapa.service.DetalleCompraAlimentoService;
 import com.siapa.service.ProveedorService;
 import com.siapa.service.TipoAlimentoService;
 import com.siapa.service.generic.GenericService;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +56,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     @Autowired
     @Qualifier(value = "proveedorService")
     private ProveedorService proveedorService;
-   
+
     @Autowired
     @Qualifier(value = "tipoAlimentoService")
     private TipoAlimentoService tipoAlimentoService;
@@ -59,31 +65,48 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private List<DetalleCompraAlimento> detalleCompraAlimentoList;
     private List<Alimento> alimentoList;
     private List<Alimento> alimentoByIdList;
-    private List<TipoAlimento> tipoAlimentoList; 
+    private List<TipoAlimento> tipoAlimentoList;
 
     private TipoAlimento tipoAlimento;
+    private DetalleCompraAlimento detalleCompraAlimento;
     private Proveedor proveedor;
     private Alimento alimento;
+    private Date date2;
+    private BigDecimal total;
 
     @PostConstruct
     public void init() {
-        tipoAlimento=new TipoAlimento();
+        tipoAlimento = new TipoAlimento();
         detalleCompraAlimentoList = detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
         proveedorList = proveedorService.getProveedor();
         alimentoList = alimentoService.getTypeFood();
         tipoAlimentoList = tipoAlimentoService.findAll();
         alimentoByIdList = new ArrayList<Alimento>();
+        detalleCompraAlimento = new DetalleCompraAlimento();
     }
-    
-    
-    public void cargarComboAlimentoMarca(){
-         alimentoByIdList = alimentoService.getByIdTypeFood(tipoAlimento.getIdTipoAlimento());
-    
+
+    public void cargarComboAlimentoMarca() {
+        alimentoByIdList = alimentoService.getByIdTypeFood(tipoAlimento.getIdTipoAlimento());
+
     }
 
     @Override
     public GenericService<DetalleCompraAlimento, Integer> getService() {
         return detalleCompraAlimentoService;
+    }
+
+    public BigDecimal calcularTotal() {
+        BigDecimal total1 = BigDecimal.ZERO;
+        BigDecimal imp = BigDecimal.ZERO;
+        if (detalleCompraAlimento.getCantDetalleCompraAlimento() != null) {
+            if (detalleCompraAlimento.getPrecioDetalleCompraAlimento() != null) {
+                if (detalleCompraAlimento.getImpuestoDetCompraAlimento() != null) {
+                    
+                    total1.add((detalleCompraAlimento.getCantDetalleCompraAlimento().multiply(detalleCompraAlimento.getPrecioDetalleCompraAlimento())).multiply(detalleCompraAlimento.getImpuestoDetCompraAlimento().divide(new BigDecimal(100)).add(new BigDecimal(1))));
+                }
+            }
+        }
+        return total1;
     }
 
     @Override
@@ -155,6 +178,29 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.alimentoByIdList = alimentoByIdList;
     }
 
-    
-    
+    public Date getDate2() {
+        return date2;
+    }
+
+    public void setDate2(Date date2) {
+        this.date2 = date2;
+    }
+
+    public BigDecimal getTotal() {
+        total = calcularTotal();
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public DetalleCompraAlimento getDetalleCompraAlimento() {
+        return detalleCompraAlimento;
+    }
+
+    public void setDetalleCompraAlimento(DetalleCompraAlimento detalleCompraAlimento) {
+        this.detalleCompraAlimento = detalleCompraAlimento;
+    }
+
 }
