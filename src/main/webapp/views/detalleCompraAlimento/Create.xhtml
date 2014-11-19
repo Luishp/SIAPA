@@ -49,26 +49,26 @@
 
                     <p:outputLabel value="Cantidad :" />
                     <pe:inputNumber id="cantidad" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.cantDetalleCompraAlimento}" required="true"  >
-                        <f:validateDoubleRange minimum="1"/>
-                        <f:ajax rendered="total" />
+<!--                        <f:validateDoubleRange minimum="1"/>-->
+                        <p:ajax update="total_calc" event="keyup" />
                     </pe:inputNumber>
 
-                    <p:outputLabel value="Precio :" />
+                    <p:outputLabel value="Precio :($)" />
                     <pe:inputNumber id="precio" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.precioDetalleCompraAlimento}" required="true">
-                        <f:validateDoubleRange minimum="1"/>  
-                        <f:ajax rendered="total" />
+<!--                        <f:validateDoubleRange minimum="1"/>  -->
+                        <p:ajax update="total_calc" event="keyup"  />
                     </pe:inputNumber>
 
 
                     <h:outputLabel value="Impuesto :" />
 
                     <pe:inputNumber id="impuesto" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.impuestoDetCompraAlimento}" required="true">
-                        <f:validateDoubleRange minimum="1"/>
-                         <f:ajax rendered="total" />
+<!--                        <f:validateDoubleRange minimum="1"/>-->
+                         <p:ajax update="total_calc" event="keyup"  />
                     </pe:inputNumber>
 
-                    <h:outputLabel value="Total :" />   
-                    <p:inputText id="total" value="#{detalleCompraAlimentoManagedBean.total}" readonly="true"  />
+                    <h:outputLabel value="Total :($)" />   
+                    <p:inputText id="total_calc" value="#{detalleCompraAlimentoManagedBean.total}" readonly="true"  />
 
                     <p:commandButton value="Ajax" update="grid" icon="ui-icon-check"  style="margin-right:10px"/>
 

@@ -646,13 +646,13 @@ ALTER TABLE `venta`
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2014 a las 06:40:56
--- Versión del servidor: 5.5.32
--- Versión de PHP: 5.4.16
+-- Tiempo de generación: 20-11-2014 a las 00:18:09
+-- Versión del servidor: 5.6.17
+-- Versión de PHP: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -675,6 +675,7 @@ USE `siapa`;
 -- Estructura de tabla para la tabla `ss_historico_claves`
 --
 
+DROP TABLE IF EXISTS `ss_historico_claves`;
 CREATE TABLE IF NOT EXISTS `ss_historico_claves` (
   `ID_HISTORICO_CLAVE` decimal(9,0) NOT NULL COMMENT 'ID del histórico de clave.',
   `ID_USUARIO` decimal(9,0) DEFAULT NULL,
@@ -692,6 +693,7 @@ CREATE TABLE IF NOT EXISTS `ss_historico_claves` (
 -- Estructura de tabla para la tabla `ss_menus`
 --
 
+DROP TABLE IF EXISTS `ss_menus`;
 CREATE TABLE IF NOT EXISTS `ss_menus` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `SS__ID_MENU` decimal(9,0) DEFAULT NULL COMMENT 'Correlativo que identifica al menú.',
@@ -708,14 +710,15 @@ CREATE TABLE IF NOT EXISTS `ss_menus` (
 -- Volcado de datos para la tabla `ss_menus`
 --
 
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('1', NULL, 'Ventas', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('2', NULL, 'Clientes', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('3', NULL, 'Administrar Producto', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('4', NULL, 'Jaulas', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('5', NULL, 'Alimento', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('6', NULL, 'Reportes', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('7', NULL, 'Configuracion', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('8', NULL, 'Producto', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES
+('1', NULL, 'Ventas', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('2', NULL, 'Clientes', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('3', NULL, 'Administrar Producto', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('4', NULL, 'Jaulas', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('5', NULL, 'Alimento', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('6', NULL, 'Reportes', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('7', NULL, 'Configuracion', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('8', NULL, 'Producto', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -723,6 +726,7 @@ INSERT INTO `ss_menus` (`ID_MENU`, `SS__ID_MENU`, `NOMBRE_MENU`, `USUARIO_REGIST
 -- Estructura de tabla para la tabla `ss_menus_opciones`
 --
 
+DROP TABLE IF EXISTS `ss_menus_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_menus_opciones` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
@@ -734,20 +738,21 @@ CREATE TABLE IF NOT EXISTS `ss_menus_opciones` (
 -- Volcado de datos para la tabla `ss_menus_opciones`
 --
 
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('1', '2');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('1', '3');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('2', '4');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '5');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '6');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '7');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '8');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('3', '9');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('4', '10');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('5', '11');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('5', '12');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('8', '13');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('8', '14');
-INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('2', '15');
+INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES
+('1', '2'),
+('1', '3'),
+('2', '4'),
+('3', '5'),
+('3', '6'),
+('3', '7'),
+('3', '8'),
+('3', '9'),
+('4', '10'),
+('5', '11'),
+('5', '12'),
+('8', '13'),
+('8', '14'),
+('2', '15');
 
 -- --------------------------------------------------------
 
@@ -755,6 +760,7 @@ INSERT INTO `ss_menus_opciones` (`ID_MENU`, `ID_OPCION`) VALUES('2', '15');
 -- Estructura de tabla para la tabla `ss_opciones`
 --
 
+DROP TABLE IF EXISTS `ss_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_opciones` (
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
   `NOMBRE_OPCION` varchar(100) DEFAULT NULL COMMENT 'Nombre de la opción',
@@ -772,21 +778,22 @@ CREATE TABLE IF NOT EXISTS `ss_opciones` (
 -- Volcado de datos para la tabla `ss_opciones`
 --
 
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('1', 'Home', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('2', 'Gestion de Ventas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('3', 'Ingresar Cliente', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('4', 'Gestion de Clientes', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('5', 'Ingreso Peces Muertos', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('6', 'Ingreso de Muestreo', '/siapa/views/persona/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('7', 'Ingreso Alimento a Jaula', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('8', 'Gestion de Compra de Peces', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('9', 'Movimiento Entre Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('10', 'Gestion de Jaulas', '/siapa/views/jaula/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('12', 'Compra de Alimento', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('13', 'Tipo de Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('14', 'Ingresar Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-11-01 00:00:00', NULL, NULL, NULL);
-INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES('15', 'Ingresar Proveedor', '/siapa/views/proveedor/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
+INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `IMAGEN_OPCION`) VALUES
+('1', 'Home', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('2', 'Gestion de Ventas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('3', 'Ingresar Cliente', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('4', 'Gestion de Clientes', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('5', 'Ingreso Peces Muertos', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('6', 'Ingreso de Muestreo', '/siapa/views/persona/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('7', 'Ingreso Alimento a Jaula', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('8', 'Gestion de Compra de Peces', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('9', 'Movimiento Entre Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('10', 'Gestion de Jaulas', '/siapa/views/jaula/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('12', 'Compra de Alimento', '/siapa/views/detalleCompraAlimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('13', 'Tipo de Producto', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('14', 'Ingresar Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-11-01 00:00:00', NULL, NULL, NULL),
+('15', 'Ingresar Proveedor', '/siapa/views/proveedor/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -794,6 +801,7 @@ INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUA
 -- Estructura de tabla para la tabla `ss_roles`
 --
 
+DROP TABLE IF EXISTS `ss_roles`;
 CREATE TABLE IF NOT EXISTS `ss_roles` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `CODIGO_ROL` varchar(50) DEFAULT NULL COMMENT 'Código que identifica al rol.',
@@ -811,12 +819,13 @@ CREATE TABLE IF NOT EXISTS `ss_roles` (
 -- Volcado de datos para la tabla `ss_roles`
 --
 
-INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('1', 'EOP', 'Encargado Operativo', 'Posee privilegios ..', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('2', 'EAD', 'Encargado Administrativo', 'Posee Privilegios de ...', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('3', 'VEN', 'Vendedor', 'Encargado de registrar las ventas ', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('4', 'OPE', 'Operario', 'Encargado de Realizar ...', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('5', 'ADM', 'Administrador del Sistema', 'Tiene todos los provilegios de gestion de usuario y otras tareas de adminitracion del sistema', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
-INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES('6', 'ASC', 'Asociado', 'puede ver los reportes que se generan desde el sistema', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
+INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`) VALUES
+('1', 'EOP', 'Encargado Operativo', 'Posee privilegios ..', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('2', 'EAD', 'Encargado Administrativo', 'Posee Privilegios de ...', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('3', 'VEN', 'Vendedor', 'Encargado de registrar las ventas ', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('4', 'OPE', 'Operario', 'Encargado de Realizar ...', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('5', 'ADM', 'Administrador del Sistema', 'Tiene todos los provilegios de gestion de usuario y otras tareas de adminitracion del sistema', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL),
+('6', 'ASC', 'Asociado', 'puede ver los reportes que se generan desde el sistema', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -824,6 +833,7 @@ INSERT INTO `ss_roles` (`ID_ROL`, `CODIGO_ROL`, `NOMBRE_ROL`, `DESCRIPCION`, `US
 -- Estructura de tabla para la tabla `ss_roles_menu`
 --
 
+DROP TABLE IF EXISTS `ss_roles_menu`;
 CREATE TABLE IF NOT EXISTS `ss_roles_menu` (
   `ID_MENU` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica al menú.',
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
@@ -835,22 +845,23 @@ CREATE TABLE IF NOT EXISTS `ss_roles_menu` (
 -- Volcado de datos para la tabla `ss_roles_menu`
 --
 
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('3', '1');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('4', '1');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('5', '1');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('6', '1');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('8', '1');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('1', '2');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('2', '2');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('3', '2');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('4', '2');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('7', '2');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('1', '3');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('8', '3');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('3', '4');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('7', '5');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('2', '6');
-INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('6', '6');
+INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES
+('3', '1'),
+('4', '1'),
+('5', '1'),
+('6', '1'),
+('8', '1'),
+('1', '2'),
+('2', '2'),
+('3', '2'),
+('4', '2'),
+('7', '2'),
+('1', '3'),
+('8', '3'),
+('3', '4'),
+('7', '5'),
+('2', '6'),
+('6', '6');
 
 -- --------------------------------------------------------
 
@@ -858,6 +869,7 @@ INSERT INTO `ss_roles_menu` (`ID_MENU`, `ID_ROL`) VALUES('6', '6');
 -- Estructura de tabla para la tabla `ss_roles_opciones`
 --
 
+DROP TABLE IF EXISTS `ss_roles_opciones`;
 CREATE TABLE IF NOT EXISTS `ss_roles_opciones` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `ID_OPCION` decimal(9,0) NOT NULL COMMENT 'Correlativo que identifica a la opción.',
@@ -869,31 +881,32 @@ CREATE TABLE IF NOT EXISTS `ss_roles_opciones` (
 -- Volcado de datos para la tabla `ss_roles_opciones`
 --
 
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '1');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '1');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('3', '1');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('4', '1');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('5', '1');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('6', '1');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '2');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('3', '2');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '3');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('3', '3');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '4');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('6', '4');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('4', '5');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '6');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('4', '7');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '8');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '8');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '9');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '10');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '10');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '11');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '12');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('3', '13');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('1', '14');
-INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '15');
+INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES
+('1', '1'),
+('2', '1'),
+('3', '1'),
+('4', '1'),
+('5', '1'),
+('6', '1'),
+('2', '2'),
+('3', '2'),
+('2', '3'),
+('3', '3'),
+('2', '4'),
+('6', '4'),
+('4', '5'),
+('1', '6'),
+('4', '7'),
+('1', '8'),
+('2', '8'),
+('1', '9'),
+('1', '10'),
+('2', '10'),
+('1', '11'),
+('1', '12'),
+('3', '13'),
+('1', '14'),
+('2', '15');
 
 -- --------------------------------------------------------
 
@@ -901,6 +914,7 @@ INSERT INTO `ss_roles_opciones` (`ID_ROL`, `ID_OPCION`) VALUES('2', '15');
 -- Estructura de tabla para la tabla `ss_roles_usuarios`
 --
 
+DROP TABLE IF EXISTS `ss_roles_usuarios`;
 CREATE TABLE IF NOT EXISTS `ss_roles_usuarios` (
   `ID_ROL` decimal(9,0) NOT NULL COMMENT 'Identificador único del rol',
   `ID_USUARIO` decimal(9,0) NOT NULL,
@@ -912,12 +926,13 @@ CREATE TABLE IF NOT EXISTS `ss_roles_usuarios` (
 -- Volcado de datos para la tabla `ss_roles_usuarios`
 --
 
-INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('1', '1');
-INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('2', '2');
-INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('3', '3');
-INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('4', '4');
-INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('5', '5');
-INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('6', '6');
+INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES
+('1', '1'),
+('2', '2'),
+('3', '3'),
+('4', '4'),
+('5', '5'),
+('6', '6');
 
 -- --------------------------------------------------------
 
@@ -925,6 +940,7 @@ INSERT INTO `ss_roles_usuarios` (`ID_ROL`, `ID_USUARIO`) VALUES('6', '6');
 -- Estructura de tabla para la tabla `ss_usuarios`
 --
 
+DROP TABLE IF EXISTS `ss_usuarios`;
 CREATE TABLE IF NOT EXISTS `ss_usuarios` (
   `ID_USUARIO` decimal(9,0) NOT NULL,
   `CODIGO_USUARIO` varchar(15) DEFAULT NULL,
@@ -952,12 +968,13 @@ CREATE TABLE IF NOT EXISTS `ss_usuarios` (
 -- Volcado de datos para la tabla `ss_usuarios`
 --
 
-INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('1', 'EOP', 'Encargado Operativo', '78421829', 'siapa@gmail.com', 'Encargado Operativo', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('2', 'EAD', 'Encargado Administrativo', '78421829', 'siapa@gmail.com', 'Encargado Administrativo', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('3', 'VEN', 'Vendedor', '78421829', 'siapa@gmail.com', 'Vendedor', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('4', 'OPE', 'Operario', '78421829', 'siapa@gmail.com', 'Operario', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('5', 'ADM', 'Administrador del Sistema', '78421829', 'siapa@gmail.com', 'Administrador del Sistema', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES('6', 'ASC', 'Asociado', '78421829', 'siapa@gmail.com', 'Asociado', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ss_usuarios` (`ID_USUARIO`, `CODIGO_USUARIO`, `NOMBRE_USUARIO`, `TELEFONO`, `EMAIL`, `CARGO`, `DESCRIPCION`, `BLOQUEADO`, `CLAVE`, `INTENTOS_ACCESO_FALLIDOS`, `USUARIO_REGISTRO`, `FECHA_REGISTRO`, `USUARIO_ULTIMAMODIFICACION`, `FECHA_ULTIMAMODIFICACION`, `FECHA_ULTIMO_ACCESO`, `DIRECCION_ACCESO`, `DETALLE_ULTIMO_ACCESO`, `FECHA_CAMBIO_CLAVE`, `CODIGO_SUCURSAL`) VALUES
+('1', 'EOP', 'Encargado Operativo', '78421829', 'siapa@gmail.com', 'Encargado Operativo', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('2', 'EAD', 'Encargado Administrativo', '78421829', 'siapa@gmail.com', 'Encargado Administrativo', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('3', 'VEN', 'Vendedor', '78421829', 'siapa@gmail.com', 'Vendedor', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('4', 'OPE', 'Operario', '78421829', 'siapa@gmail.com', 'Operario', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('5', 'ADM', 'Administrador del Sistema', '78421829', 'siapa@gmail.com', 'Administrador del Sistema', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('6', 'ASC', 'Asociado', '78421829', 'siapa@gmail.com', 'Asociado', NULL, 'N', 'e10adc3949ba59abbe56e057f20f883e', '0', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Restricciones para tablas volcadas

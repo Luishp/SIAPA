@@ -16,6 +16,8 @@ import com.siapa.service.DetalleCompraAlimentoService;
 import com.siapa.service.ProveedorService;
 import com.siapa.service.TipoAlimentoService;
 import com.siapa.service.generic.GenericService;
+import static java.lang.Math.round;
+import static java.lang.Math.round;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -102,7 +104,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
             if (detalleCompraAlimento.getPrecioDetalleCompraAlimento() != null) {
                 if (detalleCompraAlimento.getImpuestoDetCompraAlimento() != null) {
                     
-                    total1.add((detalleCompraAlimento.getCantDetalleCompraAlimento().multiply(detalleCompraAlimento.getPrecioDetalleCompraAlimento())).multiply(detalleCompraAlimento.getImpuestoDetCompraAlimento().divide(new BigDecimal(100)).add(new BigDecimal(1))));
+                    total1=total1.add((detalleCompraAlimento.getCantDetalleCompraAlimento().multiply(detalleCompraAlimento.getPrecioDetalleCompraAlimento())).multiply(detalleCompraAlimento.getImpuestoDetCompraAlimento().divide(new BigDecimal(100)).add(new BigDecimal(1))));
                 }
             }
         }
