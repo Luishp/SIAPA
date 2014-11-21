@@ -63,19 +63,19 @@ public class AlimentoManangedBean extends GenericManagedBean<Alimento, Integer> 
 
     
      @Override
-        public void saveNew(ActionEvent event) {
+    public void saveNew(ActionEvent event) {
 
-        Alimento newAlimento=new Alimento();
-                
+        Alimento newAlimento = new Alimento();
+
         newAlimento.setMarcaAlimento(getSelected().getMarcaAlimento());
         newAlimento.setExistenciaAlimento(getSelected().getExistenciaAlimento());
         newAlimento.setIdTipoAlimento(tipoAlimento);
-       
+
         alimentoService.save(newAlimento);
-        tipoAlimentoList=tipoAlimentoService.findAll();
-        
+        tipoAlimentoList = tipoAlimentoService.findAll();
+
     }
-    
+
     
   
     public List<Alimento> getAlimentoList() {

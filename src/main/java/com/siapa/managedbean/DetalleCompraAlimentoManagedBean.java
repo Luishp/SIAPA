@@ -7,6 +7,7 @@ package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
 import com.siapa.model.Alimento;
+import com.siapa.model.Compra;
 import com.siapa.model.DetalleCompraAlimento;
 import com.siapa.model.Proveedor;
 import com.siapa.model.TipoAlimento;
@@ -73,8 +74,11 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private DetalleCompraAlimento detalleCompraAlimento;
     private Proveedor proveedor;
     private Alimento alimento;
-    private Date date2;
+
     private BigDecimal total;
+    private BigDecimal cantidad;
+    private BigDecimal precio;
+    private BigDecimal impuesto;
 
     @PostConstruct
     public void init() {
@@ -103,12 +107,38 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         if (detalleCompraAlimento.getCantDetalleCompraAlimento() != null) {
             if (detalleCompraAlimento.getPrecioDetalleCompraAlimento() != null) {
                 if (detalleCompraAlimento.getImpuestoDetCompraAlimento() != null) {
-                    
-                    total1=total1.add((detalleCompraAlimento.getCantDetalleCompraAlimento().multiply(detalleCompraAlimento.getPrecioDetalleCompraAlimento())).multiply(detalleCompraAlimento.getImpuestoDetCompraAlimento().divide(new BigDecimal(100)).add(new BigDecimal(1))));
+
+                    total1 = total1.add((detalleCompraAlimento.getCantDetalleCompraAlimento().multiply(detalleCompraAlimento.getPrecioDetalleCompraAlimento())).multiply(detalleCompraAlimento.getImpuestoDetCompraAlimento().divide(new BigDecimal(100)).add(new BigDecimal(1))));
                 }
             }
         }
         return total1;
+    }
+
+    @Override
+    public void saveNew(ActionEvent event) {
+
+        Compra newcompra = new Compra();
+        newcompra.setIdProveedor(getProveedor());
+        newcompra.setFechaHoraCompra(new Date());
+        newcompra.setUsuarioCompra(getUsuario());
+        newcompra.setTotalCompra((BigDecimal) ((getTotal() != null) ? getTotal() : 0.0));
+        compraService.save(newcompra);
+
+        DetalleCompraAlimento newCompraAlimento = getDetalleCompraAlimento();
+        newCompraAlimento.setIdCompra(newcompra);
+        newCompraAlimento.setIdAlimento(getAlimento());
+        detalleCompraAlimentoService.save(newCompraAlimento);
+
+        Alimento newAlimento = getAlimento();
+        BigDecimal cactual = newAlimento.getExistenciaAlimento();
+        BigDecimal compra = newCompraAlimento.getCantDetalleCompraAlimento();
+
+        BigDecimal existencia = cactual.add(compra);
+
+        newAlimento.setExistenciaAlimento(existencia);
+        alimentoService.merge(newAlimento);
+
     }
 
     @Override
@@ -180,14 +210,6 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.alimentoByIdList = alimentoByIdList;
     }
 
-    public Date getDate2() {
-        return date2;
-    }
-
-    public void setDate2(Date date2) {
-        this.date2 = date2;
-    }
-
     public BigDecimal getTotal() {
         total = calcularTotal();
         return total;
@@ -203,6 +225,30 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     public void setDetalleCompraAlimento(DetalleCompraAlimento detalleCompraAlimento) {
         this.detalleCompraAlimento = detalleCompraAlimento;
+    }
+
+    public BigDecimal getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(BigDecimal cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public BigDecimal getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+
+    public BigDecimal getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(BigDecimal impuesto) {
+        this.impuesto = impuesto;
     }
 
 }
