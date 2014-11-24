@@ -17,6 +17,7 @@ import com.siapa.service.DetalleCompraAlimentoService;
 import com.siapa.service.ProveedorService;
 import com.siapa.service.TipoAlimentoService;
 import com.siapa.service.generic.GenericService;
+import java.io.IOException;
 import static java.lang.Math.round;
 import static java.lang.Math.round;
 import java.math.BigDecimal;
@@ -141,6 +142,19 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     }
 
+    
+    public void toCreateCompra(ActionEvent event) {
+        try {
+            FacesContext contex = FacesContext.getCurrentInstance();
+//            proveedorList = proveedorService.getProveedor();
+
+            setSelected(new DetalleCompraAlimento());
+            contex.getExternalContext().redirect("/siapa/views/detalleCompraAlimento/Create.xhtml");
+        } catch (IOException ex) {
+            //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+        }
+    }
+    
     @Override
     public LazyDataModel<DetalleCompraAlimento> getNewLazyModel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

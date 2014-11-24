@@ -9,18 +9,7 @@
     <h:form id="DetalleCompraAlimentoListForm">
         <p:fieldset legend="Compra de Alimento">
 
-         
 
-
-            <h:panelGroup id="display" >
-                <p:panelGrid columns="2" >
-                    <p:outputLabel value="Proveedor : "/>
-                    <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{ProveedorConverter}" effect="fade" style="width:200px">
-                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
-                    </p:selectOneMenu>
-
-                </p:panelGrid>
-            </h:panelGroup>
 
 
             <p:dataTable id="datalist" 
@@ -93,8 +82,8 @@
 
                 <f:facet name="footer">
                     <div class="footer-section">
-
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreate}" update=" @(#DetalleCompraAlimentoCreateForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.toCreateCompra(event)}"/>
+                        <!--<p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreate}" update=" @(#DetalleCompraAlimentoCreateForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>-->
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#DetalleCompraAlimentoEditForm)" oncomplete="DetalleCompraAlimentoEditDialog.show()" disabled="#{empty detalleCompraAlimentoManagedBean.selected}"/>
                         <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{detalleCompraAlimentoManagedBean.delete}" update=":growl,datalist" disabled="#{empty detalleCompraAlimentoManagedBean.selected}"/>
                         <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#DetalleCompraAlimentoViewForm)" oncomplete="DetalleCompraAlimentoViewDialog.show()" disabled="#{empty detalleCompraAlimentoManagedBean.selected}"/>
