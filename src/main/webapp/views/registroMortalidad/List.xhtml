@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="RegistroMortalidadListForm">
+        <p:fieldset legend="Listado Registro Mortalidad">
+            <p:dataTable id="datalist" 
+                         var="item"
+                         value="#{registroMortalidadManagedBean.lazyItems}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
+                         selectionMode="single"
+                         selection="#{registroMortalidadManagedBean.selected}"
+                         rowKey="#{item.idRegistroMortalidad}" 
+                         paginatorPosition="bottom">   
+
+                <p:ajax event="rowSelect"   update="createButton  deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton  deleteButton viewButton"/>
+
+                <p:column sortBy="#{item.idRegistroMortalidad}" filterBy="#{item.idRegistroMortalidad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroMortalidadTitle_idRegistroMortalidad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idRegistroMortalidad}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.cantidadRegistroMortalidad}" filterBy="#{item.cantidadRegistroMortalidad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroMortalidadTitle_cantidadRegistroMortalidad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cantidadRegistroMortalidad}">
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.fechaRegistroMortalidad}" filterBy="#{item.fechaRegistroMortalidad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroMortalidadTitle_fechaRegistroMoratalidad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaRegistroMortalidad}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                
+                <p:column sortBy="#{item.usuarioRegistroMortalidad}" filterBy="#{item.usuarioRegistroMortalidad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroMortalidadTitle_usuarioRegistroMortalidad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioRegistroMortalidad}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.idJaula.idJaula}" filterBy="#{item.idJaula.idJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroMortalidadTitle_idjaula}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idJaula.idJaula}"/>
+                </p:column>
+                                
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{registroMortalidadManagedBean.toCreateRegistroMortalidad}"/>      
+                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{registroMortalidadManagedBean.delete}" update=":growl,datalist" disabled="#{empty registroMortalidadManagedBean.selected}"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#RegistroMortalidadViewForm)" oncomplete="RegistroMortalidadViewDialog.show()" disabled="#{empty registroMortalidadManagedBean.selected}"/>
+
+                    </div>
+                </f:facet>
+            </p:dataTable>
+
+        </p:fieldset>
+    </h:form>
+</ui:composition>

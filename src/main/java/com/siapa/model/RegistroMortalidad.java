@@ -13,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,9 +34,9 @@ import javax.persistence.TemporalType;
 public class RegistroMortalidad implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @GeneratedValue
     @Column(name = "ID_REGISTRO_MORTALIDAD", nullable = false)
-    private Long idRegistroMortalidad;
+    private Integer idRegistroMortalidad;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "CANTIDAD_REGISTRO_MORTALIDAD", nullable = false, precision = 10, scale = 2)
@@ -58,11 +59,11 @@ public class RegistroMortalidad implements Serializable {
     public RegistroMortalidad() {
     }
 
-    public RegistroMortalidad(Long idRegistroMortalidad) {
+    public RegistroMortalidad(Integer idRegistroMortalidad) {
         this.idRegistroMortalidad = idRegistroMortalidad;
     }
 
-    public RegistroMortalidad(Long idRegistroMortalidad, BigDecimal cantidadRegistroMortalidad, Date fechaRegistroMortalidad, String usuarioRegistroMortalidad, Date fechaIngresoRegMortalidad) {
+    public RegistroMortalidad(Integer idRegistroMortalidad, BigDecimal cantidadRegistroMortalidad, Date fechaRegistroMortalidad, String usuarioRegistroMortalidad, Date fechaIngresoRegMortalidad) {
         this.idRegistroMortalidad = idRegistroMortalidad;
         this.cantidadRegistroMortalidad = cantidadRegistroMortalidad;
         this.fechaRegistroMortalidad = fechaRegistroMortalidad;
@@ -70,11 +71,11 @@ public class RegistroMortalidad implements Serializable {
         this.fechaIngresoRegMortalidad = fechaIngresoRegMortalidad;
     }
 
-    public Long getIdRegistroMortalidad() {
+    public Integer getIdRegistroMortalidad() {
         return idRegistroMortalidad;
     }
 
-    public void setIdRegistroMortalidad(Long idRegistroMortalidad) {
+    public void setIdRegistroMortalidad(Integer idRegistroMortalidad) {
         this.idRegistroMortalidad = idRegistroMortalidad;
     }
 

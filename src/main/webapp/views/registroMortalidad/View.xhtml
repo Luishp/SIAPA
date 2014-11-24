@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegistroMortalidadViewDlg" widgetVar="RegistroMortalidadViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewRegistroMortalidadTitle}" closeOnEscape="true">
+
+            <h:form id="RegistroMortalidadViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{registroMortalidadManagedBean.selected != null}">
+
+                        <h:outputText value="#{crudbundle.ViewRegistroMoralidadLabel_idRegistroMortalidad}"/>
+                        <h:outputText value="#{registroMortalidadManagedBean.selected.idRegistroMortalidad}" title="#{crudbundle.ViewRegistroMortalidadTitle_idRegistroMoralidad}"/>
+
+                        <h:outputText value="#{crudbundle.ViewRegistroMortalidadLabel_cantidadRegistroMortalidad}"/>
+                        <h:outputText value="#{registroMortalidadManagedBean.selected.cantidadRegistroMortalidad}" title="#{crudbundle.ViewRegistroMortalidadTitle_cantidadRegistroMortalidad}"/>
+
+                        <h:outputText value="#{crudbundle.ViewRegistroMortalidadLabel_fechaRegistroMortalidad}"/>
+                        <h:outputText value="#{registroMortalidadManagedBean.selected.fechaRegistroMortalidad}" title="#{crudbundle.ViewRegistroMortalidadTitle_fechaRegistroMoratalidad}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="Usuario de registro"/>
+                        <h:outputText value="#{registroMortalidadManagedBean.selected.usuarioRegistroMortalidad}" title="#{crudbundle.ViewRegistroMortalidadTitle_usuarioRegistroMortalidad}"/>
+
+                        <h:outputText value="Identificador de Jaula"/>
+                        <h:outputText value="#{registroMortalidadManagedBean.selected.idJaula.idJaula}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="PF('RegistroMortalidadViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

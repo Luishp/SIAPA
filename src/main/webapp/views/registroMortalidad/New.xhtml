@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    
+    <ui:composition>
+        <h:form id="RegistroMortalidadCreateForm">
+            <h:panelGroup id="display" >
+               
+
+                    <h3>Jaula</h3>
+                    <p:panelGrid columns="2"  >           
+
+                        <p:selectOneMenu id="jaula" value="#{registroMortalidadManagedBean.jaula}" converter="#{jaulaConverter}" panelStyle="width:180px"
+                                         effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{registroMortalidadManagedBean.jaulas}" var="jaula" itemLabel="#{jaula.idJaula}" itemValue="#{jaula}" />
+                            <p:ajax event="change" listener="#{registroMortalidadManagedBean.llenar}" update="idetyJaula" />
+                            <p:column>
+                                <h:outputText value="#{t.idJaula}" />
+                            </p:column>
+                        </p:selectOneMenu>
+
+                        
+                    </p:panelGrid>
+
+
+                    <p:separator/>
+
+                    <h3>Registro de Mortalidad</h3>
+                    <p:panelGrid columns="2">                        
+                        
+                        <h:outputLabel for="idetyJaula" value="Identificador de Jaula: " />
+                        <p:inputText id="idetyJaula" readonly="true" value="#{registroMortalidadManagedBean.jaula.idJaula}" title="#{crudbundle.CreateRegistroMortalidadTitle_idJaula}" required="true" requiredMessage="#{crudbundle.CreateRegistroMortalidadRequiredMessage_idJaula}" size="50" maxlength="50" style="text-align: center"/>
+
+                       <h:outputLabel for="cantidad" value="Cantidad de peces muertos: " />
+                        <p:inputText id="cantidad" value="#{registroMortalidadManagedBean.registroMortalidad.cantidadRegistroMortalidad}"/>
+                        
+                        <h:outputLabel for="fecha" value="Fecha del conteo de peces: " />
+                        <p:calendar id="button" style="text-align: center" value="#{registroMortalidadManagedBean.registroMortalidad.fechaRegistroMortalidad}" showOn="button"  />
+                        
+                        <h:outputLabel for="fecha2" value="Fecha del registro: " />
+                        <p:calendar id="buttonn" style="text-align: center" value="#{registroMortalidadManagedBean.registroMortalidad.fechaIngresoRegMortalidad}" showOn="button"  />
+                        
+
+                        <p:commandButton icon="ui-icon-disk" actionListener="#{registroMortalidadManagedBean.saveNew}" value="#{crudbundle.Save}" />
+
+                    </p:panelGrid>
+                    <p:separator/>
+
+              
+            </h:panelGroup>
+        </h:form>
+    </ui:composition>
+</html>

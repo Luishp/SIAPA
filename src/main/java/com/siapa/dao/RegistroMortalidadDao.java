@@ -7,7 +7,8 @@ package com.siapa.dao;
 
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.RegistroMortalidad;
-import java.io.Serializable;
+import java.util.List;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,6 +16,12 @@ import org.springframework.stereotype.Repository;
  * @author Joao
  */
 @Repository
-public class RegistroMortalidadDao extends GenericDao<RegistroMortalidad, Long>{
+public class RegistroMortalidadDao extends GenericDao<RegistroMortalidad, Integer>{
+    public List <RegistroMortalidad>getRegistroMortalidad(){
+        
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT prov FROM registro_mortalidad prov JOIN FETCH prov.idJaula");
+        return q.list();
+        
+    }
     
 }
