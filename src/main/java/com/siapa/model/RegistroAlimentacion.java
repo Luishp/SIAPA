@@ -13,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,9 +34,9 @@ import javax.persistence.TemporalType;
 public class RegistroAlimentacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @GeneratedValue
     @Column(name = "ID_REGISTRO_ALIMENTACION", nullable = false)
-    private Long idRegistroAlimentacion;
+    private Integer idRegistroAlimentacion;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "CANTIDAD_REGISTRO_ALIMENTACION", nullable = false, precision = 10, scale = 2)
@@ -57,22 +58,22 @@ public class RegistroAlimentacion implements Serializable {
     public RegistroAlimentacion() {
     }
 
-    public RegistroAlimentacion(Long idRegistroAlimentacion) {
+    public RegistroAlimentacion(Integer idRegistroAlimentacion) {
         this.idRegistroAlimentacion = idRegistroAlimentacion;
     }
 
-    public RegistroAlimentacion(Long idRegistroAlimentacion, BigDecimal cantidadRegistroAlimentacion, Date fechaHoraRegAlimentacion, String usuarioRegistroAlimentacion) {
+    public RegistroAlimentacion(Integer idRegistroAlimentacion, BigDecimal cantidadRegistroAlimentacion, Date fechaHoraRegAlimentacion, String usuarioRegistroAlimentacion) {
         this.idRegistroAlimentacion = idRegistroAlimentacion;
         this.cantidadRegistroAlimentacion = cantidadRegistroAlimentacion;
         this.fechaHoraRegAlimentacion = fechaHoraRegAlimentacion;
         this.usuarioRegistroAlimentacion = usuarioRegistroAlimentacion;
     }
 
-    public Long getIdRegistroAlimentacion() {
+    public Integer getIdRegistroAlimentacion() {
         return idRegistroAlimentacion;
     }
 
-    public void setIdRegistroAlimentacion(Long idRegistroAlimentacion) {
+    public void setIdRegistroAlimentacion(Integer idRegistroAlimentacion) {
         this.idRegistroAlimentacion = idRegistroAlimentacion;
     }
 

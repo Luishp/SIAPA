@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="RegistroAlimentacionListForm">
+        <p:fieldset legend="Listado Registro Alimentacion">
+            <p:dataTable id="datalist" 
+                         var="item"
+                         value="#{registroAlimentacionManagedBean.lazyItems}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
+                         selectionMode="single"
+                         selection="#{registroAlimentacionManagedBean.selected}"
+                         rowKey="#{item.idRegistroAlimentacion}" 
+                         paginatorPosition="bottom">   
+
+                <p:ajax event="rowSelect"   update="createButton  deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton  deleteButton viewButton"/>
+
+                <p:column sortBy="#{item.idRegistroAlimentacion}" filterBy="#{item.idRegistroAlimentacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroAlimentacionTitle_idRegistroAlimentacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idRegistroAlimentacion}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.cantidadRegistroAlimentacion}" filterBy="#{item.cantidadRegistroAlimentacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroAlimentacionTitle_cantidadRegistroAlimentacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cantidadRegistroAlimentacion}">
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.fechaHoraRegAlimentacion}" filterBy="#{item.fechaHoraRegAlimentacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroAlimentacionTitle_fechaHoraRegAlimentacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaHoraRegAlimentacion}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                
+                <p:column sortBy="#{item.usuarioRegistroAlimentacion}" filterBy="#{item.usuarioRegistroAlimentacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroAlimentacionTitle_usuarioRegistroAlimentacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioRegistroAlimentacion}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.idJaula.idJaula}" filterBy="#{item.idJaula.idJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroAlimentacionTitle_idjaula}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idJaula.idJaula}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.idAlimento.idAlimento}" filterBy="#{item.idAlimento.idAlimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListRegistroAlimentacionTitle_idAlimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idAlimento.idAlimento}"/>
+                </p:column>
+                                
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{registroAlimentacionManagedBean.toCreateRegistroAlimentacion}"/>      
+                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{registroAlimentacionManagedBean.delete}" update=":growl,datalist" disabled="#{empty registroAlimentacionManagedBean.selected}"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#RegistroAlimentacionViewForm)" oncomplete="RegistroAlimentacionViewDialog.show()" disabled="#{empty registroAlimentacionManagedBean.selected}"/>
+
+                    </div>
+                </f:facet>
+            </p:dataTable>
+
+        </p:fieldset>
+    </h:form>
+</ui:composition>

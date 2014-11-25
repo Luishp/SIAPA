@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    
+    <ui:composition>
+        <h:form id="RegistroAlimentacionCreateForm">
+            <h:panelGroup id="display" >
+               
+
+                    <h3>Jaula y Alimento</h3>
+                    <p:panelGrid columns="2"  >           
+
+                        <p:selectOneMenu id="jaula" value="#{registroAlimentacionManagedBean.jaula}" converter="#{jaulaConverter}" panelStyle="width:180px"
+                                         effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{registroAlimentacionManagedBean.jaulas}" var="jaula" itemLabel="#{jaula.idJaula}" itemValue="#{jaula}" />
+                            <p:ajax event="change" listener="#{registroAlimentacionManagedBean.llenar}" update="idetyJaula" />
+                            <p:column>
+                                <h:outputText value="#{t.idJaula}" />
+                            </p:column>
+                        </p:selectOneMenu>
+                        
+                        <p:selectOneMenu id="alimento" value="#{registroAlimentacionManagedBean.alimento}" converter="#{alimentoConverter}" panelStyle="width:180px"
+                                         effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{registroAlimentacionManagedBean.alimentos}" var="alimento" itemLabel="#{alimento.idAlimento}" itemValue="#{alimento}" />
+                            <p:ajax event="change" listener="#{registroAlimentacionManagedBean.llenar}" update="idetyAlimento" />
+                            <p:column>
+                                <h:outputText value="#{t.idAlimento}" />
+                            </p:column>
+                        </p:selectOneMenu>
+
+                        
+                    </p:panelGrid>
+
+
+                    <p:separator/>
+
+                    <h3>Registro de Alimentacion</h3>
+                    <p:panelGrid columns="2">                        
+                        
+                        <h:outputLabel for="idetyJaula" value="Identificador de Jaula: " />
+                        <p:inputText id="idetyJaula" readonly="true" value="#{registroAlimentacionManagedBean.jaula.idJaula}" title="#{crudbundle.CreateRegistroAlimentacionTitle_idJaula}" required="true" requiredMessage="#{crudbundle.CreateRegistroAlimentacionRequiredMessage_idJaula}" size="50" maxlength="50" style="text-align: center"/>
+                        
+                        <h:outputLabel for="idetyAlimento" value="Identificador de Alimento: " />
+                        <p:inputText id="idetyAlimento" readonly="true" value="#{registroAlimentacionManagedBean.alimento.idAlimento}" title="#{crudbundle.CreateRegistroAlimentacionTitle_idAlimento}" required="true" requiredMessage="#{crudbundle.CreateRegistroAlimentacionRequiredMessage_idAlimento}" size="50" maxlength="50" style="text-align: center"/>
+
+
+                       <h:outputLabel for="cantidad" value="Cantidad de alimentacion administrada: " />
+                        <p:inputText id="cantidad" value="#{registroAlimentacionManagedBean.registroAlimentacion.cantidadRegistroAlimentacion}"/>
+                        
+                        <h:outputLabel for="fecha" value="Fecha del conteo de peces: " />
+                        <p:calendar id="button" style="text-align: center" value="#{registroAlimentacionManagedBean.registroAlimentacion.fechaHoraRegAlimentacion}" showOn="button"  />
+                        
+
+                        <p:commandButton icon="ui-icon-disk" actionListener="#{registroAlimentacionManagedBean.saveNew}" value="#{crudbundle.Save}" />
+
+                    </p:panelGrid>
+                    <p:separator/>
+
+              
+            </h:panelGroup>
+        </h:form>
+    </ui:composition>
+</html>
