@@ -81,10 +81,10 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private BigDecimal cantidad;
     private BigDecimal precio;
     private BigDecimal impuesto;
-    
-    
+
     TablaDetalleAlimentoPojo tablaDetalleAlimentoPojo;
     private List<TablaDetalleAlimentoPojo> tablaDetalleAlimentoPojoList;
+
     @PostConstruct
     public void init() {
         tipoAlimento = new TipoAlimento();
@@ -94,7 +94,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         tipoAlimentoList = tipoAlimentoService.findAll();
         alimentoByIdList = new ArrayList<Alimento>();
         detalleCompraAlimento = new DetalleCompraAlimento();
-        
+
         tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
         tablaDetalleAlimentoPojoList = new ArrayList<TablaDetalleAlimentoPojo>();
     }
@@ -128,20 +128,26 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 //
 //        return detalleCompraAlimento;
 //    }
-    
-    public void cargar(){
+
+    public void cargar() {
         tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
-        tablaDetalleAlimentoPojo.setCantidad(getCantidad());
-        tablaDetalleAlimentoPojo.setImpuesto(impuesto);
+        tablaDetalleAlimentoPojo.setCantidad(getDetalleCompraAlimento().getCantDetalleCompraAlimento());
+        tablaDetalleAlimentoPojo.setImpuesto(getDetalleCompraAlimento().getImpuestoDetCompraAlimento());
         tablaDetalleAlimentoPojo.setMarca(getAlimento().getMarcaAlimento());
-        
+
+        tablaDetalleAlimentoPojo.setIdAlimento(getAlimento().getIdAlimento());
+        tablaDetalleAlimentoPojo.setIdTipoAlimento(getAlimento().getIdTipoAlimento().getIdTipoAlimento());
+        tablaDetalleAlimentoPojo.setIdProveedor(getProveedor().getIdProveedor());
+        tablaDetalleAlimentoPojo.setTipoAlimento(getTipoAlimento().getNombreTipoAlimento());
+        tablaDetalleAlimentoPojo.setTotal(getTotal());
+        tablaDetalleAlimentoPojo.setProveedor(getProveedor().getIdPersona().getNombrePersona());
+        tablaDetalleAlimentoPojo.setPrecio(getDetalleCompraAlimento().getPrecioDetalleCompraAlimento());
+
         tablaDetalleAlimentoPojoList.add(tablaDetalleAlimentoPojo);
+
        
-                
-        System.out.println("cargar");
     }
-    
-    
+
     @Override
     public void saveNew(ActionEvent event) {
 
@@ -167,11 +173,9 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     }
 
-    
     public void toCreateCompra() {
         try {
             FacesContext contex = FacesContext.getCurrentInstance();
-
 
             setSelected(new DetalleCompraAlimento());
             contex.getExternalContext().redirect("/siapa/views/detalleCompraAlimento/Create.xhtml");
@@ -179,7 +183,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
             //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
         }
     }
-    
+
     @Override
     public LazyDataModel<DetalleCompraAlimento> getNewLazyModel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -306,5 +310,4 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.tablaDetalleAlimentoPojoList = tablaDetalleAlimentoPojoList;
     }
 
-    
 }

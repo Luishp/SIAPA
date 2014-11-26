@@ -14,8 +14,15 @@ import java.math.BigDecimal;
  */
 public class TablaDetalleAlimentoPojo implements Serializable{
     
+    
+    private Integer idAlimento;
+   
+    private Integer idProveedor;
+    private Integer idTipoAlimento;
+    
     private String tipoAlimento;
     private String marca;
+    private String proveedor;
     private BigDecimal cantidad;
     private BigDecimal precio;
     private BigDecimal impuesto;
@@ -67,6 +74,40 @@ public class TablaDetalleAlimentoPojo implements Serializable{
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public Integer getIdAlimento() {
+        return idAlimento;
+    }
+
+    public void setIdAlimento(Integer idAlimento) {
+        this.idAlimento = idAlimento;
+    }
+
+  
+
+    public Integer getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(Integer idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public Integer getIdTipoAlimento() {
+        return idTipoAlimento;
+    }
+
+    public void setIdTipoAlimento(Integer idTipoAlimento) {
+        this.idTipoAlimento = idTipoAlimento;
+    }
+
+    public String getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
     }
     
     
