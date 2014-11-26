@@ -115,7 +115,15 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         }
         return total1;
     }
-
+//    
+//    public DetalleCompraAlimento todetalleCompra() {
+//        detalleCompraAlimento = new DetalleCompraAlimento();
+//
+//        return detalleCompraAlimento;
+//    }
+    
+    
+    
     @Override
     public void saveNew(ActionEvent event) {
 
@@ -143,7 +151,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     }
 
     
-    public void toCreateCompra(ActionEvent event) {
+    public void toCreateCompra() {
         try {
             FacesContext contex = FacesContext.getCurrentInstance();
 //            proveedorList = proveedorService.getProveedor();

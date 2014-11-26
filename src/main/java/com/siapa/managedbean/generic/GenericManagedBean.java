@@ -159,6 +159,9 @@ public abstract class GenericManagedBean<T, ID extends Serializable> {
         }
         return null;
     }
+    
+    
+    
 
     public boolean isValidationFailed() {
         return JsfUtil.isValidationFailed();

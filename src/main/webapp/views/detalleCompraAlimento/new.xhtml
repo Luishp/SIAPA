@@ -13,21 +13,13 @@
 
     <ui:composition>
 
-
-
-
         <p:dialog id="DetalleCompraAlimentoCreateDlg" widgetVar="DetalleCompraAlimentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Detalle de Compra de Alimento" closeOnEscape="true">
-
 
 
 
             <h:form id="DetalleCompraAlimentoCreateForm">
 
                 <p:panelGrid columns="2" id="grid"  >
-                    <p:outputLabel value="Proveedor : "/>
-                    <p:selectOneMenu id="tipoPersona" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
-                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipop" itemLabel="#{tipop.idPersona.nombrePersona}" itemValue="#{tipop}" />
-                    </p:selectOneMenu>
 
                     <p:outputLabel value="Tipo Alimento : "/>
                     <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.tipoAlimento}" converter="#{tipoAlimentoConverter}" effect="fade" style="width:200px">
