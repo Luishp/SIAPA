@@ -1,4 +1,4 @@
-package com.siapa.pojos.rpt.actacomitecredito;
+package com.siapa.pojos;
 
 import java.io.Serializable;
 

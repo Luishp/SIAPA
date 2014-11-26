@@ -32,7 +32,7 @@
                         <f:selectItems value="#{detalleCompraAlimentoManagedBean.alimentoByIdList}" var="tipoa" itemLabel="#{tipoa.marcaAlimento}" itemValue="#{tipo}" />
                     </p:selectOneMenu>
 
-                   
+
 
                     <p:outputLabel value="Cantidad :" />
                     <pe:inputNumber id="cantidad" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.cantDetalleCompraAlimento}" required="true"  >
@@ -58,7 +58,9 @@
                     <p:inputText id="total_calc" value="#{detalleCompraAlimentoManagedBean.total}" readonly="true"  />
 
 
-                    <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);"/>
+                     <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.cargar}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);" onclick="PF('ContactoCreateDialog').hide()"/>
+                    
+                  
 
 
                 </p:panelGrid>

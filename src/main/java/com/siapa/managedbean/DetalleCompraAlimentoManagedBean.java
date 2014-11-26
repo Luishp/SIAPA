@@ -11,6 +11,7 @@ import com.siapa.model.Compra;
 import com.siapa.model.DetalleCompraAlimento;
 import com.siapa.model.Proveedor;
 import com.siapa.model.TipoAlimento;
+import com.siapa.pojos.TablaDetalleAlimentoPojo;
 import com.siapa.service.AlimentoService;
 import com.siapa.service.CompraService;
 import com.siapa.service.DetalleCompraAlimentoService;
@@ -80,7 +81,10 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private BigDecimal cantidad;
     private BigDecimal precio;
     private BigDecimal impuesto;
-
+    
+    
+    TablaDetalleAlimentoPojo tablaDetalleAlimentoPojo;
+    private List<TablaDetalleAlimentoPojo> tablaDetalleAlimentoPojoList;
     @PostConstruct
     public void init() {
         tipoAlimento = new TipoAlimento();
@@ -90,6 +94,9 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         tipoAlimentoList = tipoAlimentoService.findAll();
         alimentoByIdList = new ArrayList<Alimento>();
         detalleCompraAlimento = new DetalleCompraAlimento();
+        
+        tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
+        tablaDetalleAlimentoPojoList = new ArrayList<TablaDetalleAlimentoPojo>();
     }
 
     public void cargarComboAlimentoMarca() {
@@ -122,6 +129,17 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 //        return detalleCompraAlimento;
 //    }
     
+    public void cargar(){
+        tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
+        tablaDetalleAlimentoPojo.setCantidad(getCantidad());
+        tablaDetalleAlimentoPojo.setImpuesto(impuesto);
+        tablaDetalleAlimentoPojo.setMarca(getAlimento().getMarcaAlimento());
+        
+        tablaDetalleAlimentoPojoList.add(tablaDetalleAlimentoPojo);
+       
+                
+        System.out.println("cargar");
+    }
     
     
     @Override
@@ -142,7 +160,6 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         Alimento newAlimento = getAlimento();
         BigDecimal cactual = newAlimento.getExistenciaAlimento();
         BigDecimal compra = newCompraAlimento.getCantDetalleCompraAlimento();
-
         BigDecimal existencia = cactual.add(compra);
 
         newAlimento.setExistenciaAlimento(existencia);
@@ -154,7 +171,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     public void toCreateCompra() {
         try {
             FacesContext contex = FacesContext.getCurrentInstance();
-//            proveedorList = proveedorService.getProveedor();
+
 
             setSelected(new DetalleCompraAlimento());
             contex.getExternalContext().redirect("/siapa/views/detalleCompraAlimento/Create.xhtml");
@@ -273,4 +290,21 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.impuesto = impuesto;
     }
 
+    public TablaDetalleAlimentoPojo getTablaDetalleAlimentoPojo() {
+        return tablaDetalleAlimentoPojo;
+    }
+
+    public void setTablaDetalleAlimentoPojo(TablaDetalleAlimentoPojo tablaDetalleAlimentoPojo) {
+        this.tablaDetalleAlimentoPojo = tablaDetalleAlimentoPojo;
+    }
+
+    public List<TablaDetalleAlimentoPojo> getTablaDetalleAlimentoPojoList() {
+        return tablaDetalleAlimentoPojoList;
+    }
+
+    public void setTablaDetalleAlimentoPojoList(List<TablaDetalleAlimentoPojo> tablaDetalleAlimentoPojoList) {
+        this.tablaDetalleAlimentoPojoList = tablaDetalleAlimentoPojoList;
+    }
+
+    
 }
