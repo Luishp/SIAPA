@@ -1,20 +1,6 @@
 package com.siapa.managedbean;
 
-///*
-// * To change this template, choose Tools | Templates
-// * and open the template in the editor.
-// */
-//package com.siacofinges.managedbean;
-//
-//import com.siacofinges.model.SsMenus;
-//import com.siacofinges.model.SsOpciones;
-//import com.siacofinges.model.SsRoles;
-//import com.siacofinges.model.SsUsuarios;
-//import com.siacofinges.service.SsMenusService;
-//import com.siacofinges.service.SsOpcionesService;
-//import com.siacofinges.service.SsUsuariosService;
-//import com.siacofinges.utils.Md5Generator;
-//import com.siacofinges.utils.MenuList;
+
 //import java.io.Serializable;
 //import java.util.ArrayList;
 //import java.util.Iterator;

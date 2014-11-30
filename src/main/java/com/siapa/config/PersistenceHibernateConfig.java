@@ -47,8 +47,8 @@ public class PersistenceHibernateConfig {
     public DataSource dataSource() throws Exception {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-//        ds.setUrl("jdbc:mysql://5.56.58.10:3306/siacofinges");
-//        ds.setUsername("siacofinges");
+//        ds.setUrl("jdbc:mysql://5.56.58.10:3306/siapa");
+//        ds.setUsername("siapa");
 //        ds.setPassword("s1ac0fing3s_UES");
         ds.setUrl("jdbc:mysql://localhost:3306/siapa");
         ds.setUsername("siapa");

@@ -1,11 +1,6 @@
 //package com.siapa.managedbean;
 //
-//import com.siacofinges.jasper.Reporte;
-//import com.siacofinges.managedbean.generic.GenericManagedBean;
-//import com.siacofinges.managedbean.lazymodel.BancoLazyModel;
-//import com.siacofinges.model.Banco;
-//import com.siacofinges.service.BancoService;
-//import com.siacofinges.service.generic.GenericService;
+
 //import java.util.Date;
 //import java.util.HashSet;
 //import java.util.ResourceBundle;

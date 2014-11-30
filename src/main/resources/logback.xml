@@ -1,6 +1,6 @@
 <configuration scan="true" debug="false">
     <property name="BASE_FOLDER" value="${catalina.home}" />
-    <property name="APP_NAME" value="SIACOFINGES" />
+    <property name="APP_NAME" value="SIAPA" />
     
     <property name="LOGS_FOLDER" value="${BASE_FOLDER}${file.separator}logs" />
     <property name="LOGS_TO_COLLECT_FOLDER" value="${BASE_FOLDER}${file.separator}logs-to-collect" />

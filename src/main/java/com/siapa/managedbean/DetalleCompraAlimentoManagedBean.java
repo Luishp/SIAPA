@@ -94,7 +94,6 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         tipoAlimentoList = tipoAlimentoService.findAll();
         alimentoByIdList = new ArrayList<Alimento>();
         detalleCompraAlimento = new DetalleCompraAlimento();
-
         tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
         tablaDetalleAlimentoPojoList = new ArrayList<TablaDetalleAlimentoPojo>();
     }
@@ -130,22 +129,27 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 //    }
 
     public void cargar() {
+        try {
+            
         tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
-        tablaDetalleAlimentoPojo.setCantidad(getDetalleCompraAlimento().getCantDetalleCompraAlimento());
+
+//        tablaDetalleAlimentoPojo.setIdProveedor(getProveedor().getIdProveedor());
+        
+        tablaDetalleAlimentoPojo.setIdTipoAlimento(getTipoAlimento().getIdTipoAlimento());
+        tablaDetalleAlimentoPojo.setIdAlimento(getAlimento().getIdAlimento());
+        
         tablaDetalleAlimentoPojo.setImpuesto(getDetalleCompraAlimento().getImpuestoDetCompraAlimento());
         tablaDetalleAlimentoPojo.setMarca(getAlimento().getMarcaAlimento());
-
-        tablaDetalleAlimentoPojo.setIdAlimento(getAlimento().getIdAlimento());
-        tablaDetalleAlimentoPojo.setIdTipoAlimento(getAlimento().getIdTipoAlimento().getIdTipoAlimento());
-        tablaDetalleAlimentoPojo.setIdProveedor(getProveedor().getIdProveedor());
         tablaDetalleAlimentoPojo.setTipoAlimento(getTipoAlimento().getNombreTipoAlimento());
-        tablaDetalleAlimentoPojo.setTotal(getTotal());
-        tablaDetalleAlimentoPojo.setProveedor(getProveedor().getIdPersona().getNombrePersona());
         tablaDetalleAlimentoPojo.setPrecio(getDetalleCompraAlimento().getPrecioDetalleCompraAlimento());
+        tablaDetalleAlimentoPojo.setCantidad(getDetalleCompraAlimento().getCantDetalleCompraAlimento());
+        tablaDetalleAlimentoPojo.setTotal(getTotal());/**/
+
+        //    tablaDetalleAlimentoPojo.setProveedor(getProveedor().getIdPersona().getNombrePersona());
 
         tablaDetalleAlimentoPojoList.add(tablaDetalleAlimentoPojo);
-
-       
+    } catch (Exception e) {
+        }
     }
 
     @Override

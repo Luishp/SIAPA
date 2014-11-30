@@ -1,7 +1,6 @@
 package com.siapa.jasper.test;
 
-//package com.siacofinges.jasper.test;
-//
+
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 //import org.apache.commons.logging.Log;
@@ -9,7 +8,7 @@ package com.siapa.jasper.test;
 //import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import sv.gob.mh.dgii.controller.configuration.MainController;
-//import com.siacofinges.jasper.Reporte;
+//import com.siapa.jasper.Reporte;
 //
 //@Controller
 //public class TestCorrReporteController extends MainController{

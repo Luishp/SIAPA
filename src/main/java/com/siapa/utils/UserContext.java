@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class UserContext {
 
-    public final static String SESSION_USER_VARIABLE = "SIACOFINGES_SESSION_USER";
+    public final static String SESSION_USER_VARIABLE = "SIAPA_SESSION_USER";
     private final static Log log = LogFactory.getLog(UserContext.class);
 
     public static SsUsuarios getSessionUser() {
