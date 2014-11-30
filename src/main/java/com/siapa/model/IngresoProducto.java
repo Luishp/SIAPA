@@ -13,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,9 +34,9 @@ import javax.persistence.TemporalType;
 public class IngresoProducto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_INGRESO_PRODUCTO", nullable = false)
-    private Long idIngresoProducto;
+    @GeneratedValue
+    @Column(name = "ID_INGRESO_PRODUCTO", nullable = true)
+    private Integer idIngresoProducto;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "CANTIDAD_INGRESO_PRODUCTO", nullable = false, precision = 10, scale = 2)
@@ -57,22 +58,22 @@ public class IngresoProducto implements Serializable {
     public IngresoProducto() {
     }
 
-    public IngresoProducto(Long idIngresoProducto) {
+    public IngresoProducto(Integer idIngresoProducto) {
         this.idIngresoProducto = idIngresoProducto;
     }
 
-    public IngresoProducto(Long idIngresoProducto, BigDecimal cantidadIngresoProducto, Date fechaHoraIngresoProducto, String usuarioIngresoProducto) {
+    public IngresoProducto(Integer idIngresoProducto, BigDecimal cantidadIngresoProducto, Date fechaHoraIngresoProducto, String usuarioIngresoProducto) {
         this.idIngresoProducto = idIngresoProducto;
         this.cantidadIngresoProducto = cantidadIngresoProducto;
         this.fechaHoraIngresoProducto = fechaHoraIngresoProducto;
         this.usuarioIngresoProducto = usuarioIngresoProducto;
     }
 
-    public Long getIdIngresoProducto() {
+    public Integer getIdIngresoProducto() {
         return idIngresoProducto;
     }
 
-    public void setIdIngresoProducto(Long idIngresoProducto) {
+    public void setIdIngresoProducto(Integer idIngresoProducto) {
         this.idIngresoProducto = idIngresoProducto;
     }
 

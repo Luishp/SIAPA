@@ -17,12 +17,12 @@ import org.springframework.stereotype.Service;
  * @author Joao
  */
 @Service(value="IngresoProductoService")
-public class IngresoProductoService extends GenericService<IngresoProducto, Long> {
+public class IngresoProductoService extends GenericService<IngresoProducto, Integer> {
     @Autowired
     private IngresoProductoDao ingresoProductoDao;
 
     @Override
-    public GenericDao<IngresoProducto, Long> getDao() {
+    public GenericDao<IngresoProducto, Integer> getDao() {
         return ingresoProductoDao;
     } 
 }
