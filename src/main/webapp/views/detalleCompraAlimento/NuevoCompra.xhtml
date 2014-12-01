@@ -14,29 +14,40 @@
         <h:form id="DetalleCompraListForm">
             <p:fieldset legend="Compra de Alimento">
 
-                <div align="center" style="background: #00426f"  > 
+                <div align="center" > 
                     <h:panelGroup id="display" >
-                        <p:panelGrid columns="2" >
-                            <p:outputLabel value="Proveedor : "/>
-                            <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
-                                <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
-                            </p:selectOneMenu>
+                        <p:panelGrid columns="4" >
 
-                            <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true"   value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreate(event)}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>
+
+                            <div align="center" > 
+                                <p:outputLabel value="Proveedor : "/>
+                                <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
+                                    <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
+                                </p:selectOneMenu>
+                            </div>
+                          
+                                <p:panel id="total" header="TOTAL" style="font-size:20px; width:120px; height:120px">
+                                    <h:outputText value="#{detalleCompraAlimentoManagedBean.sumaTotal}" style="font-size:20px; font-weight:bold;  alignment-adjust: central" />
+                                </p:panel>
+                           
+
 
 
                         </p:panelGrid>
                     </h:panelGroup>
-                  
+
+
                 </div>
-  
-  <p:separator />
-              
+
+
+
+                <p:separator />
+
                 <h:form id="form">
                     <p:growl id="msgs" />
 
 
-                    <p:outputPanel id="books">
+                    <p:outputPanel id="tabla">
                         <p:dataTable value="#{detalleCompraAlimentoManagedBean.tablaDetalleAlimentoPojoList}" var="pojo" id="booksTable">
 
                             <p:column headerText="Tipo Alimento">
@@ -85,11 +96,14 @@
                                                             <p:collector value="#{book}" removeFrom="#{detalleCompraAlimentoManagedBean.books}" unique="true"/>
                                                         </p:commandLink>
                                                     </p:column>-->
+                            <f:facet name="footer">
+                                <div align="center" class="footer-section" > 
+                                    <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true"   value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreate(event)}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>
 
-                            <div align="center" class="footer-section" > 
-                                <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);"/>
+                                    <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);"/>
 
-                            </div>
+                                </div>
+                            </f:facet>
                         </p:dataTable>
                     </p:outputPanel>
                 </h:form>

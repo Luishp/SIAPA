@@ -22,6 +22,8 @@ import java.io.IOException;
 import static java.lang.Math.round;
 import static java.lang.Math.round;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -80,7 +82,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private BigDecimal total;
     private BigDecimal cantidad;
     private BigDecimal precio;
-    private BigDecimal impuesto;
+    private BigDecimal sumaTotal = BigDecimal.ZERO;
 
     TablaDetalleAlimentoPojo tablaDetalleAlimentoPojo;
     private List<TablaDetalleAlimentoPojo> tablaDetalleAlimentoPojoList;
@@ -130,50 +132,57 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     public void cargar() {
         try {
-            
-        tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
 
-//        tablaDetalleAlimentoPojo.setIdProveedor(getProveedor().getIdProveedor());
-        
-        tablaDetalleAlimentoPojo.setIdTipoAlimento(getTipoAlimento().getIdTipoAlimento());
-        tablaDetalleAlimentoPojo.setIdAlimento(getAlimento().getIdAlimento());
-        
-        tablaDetalleAlimentoPojo.setImpuesto(getDetalleCompraAlimento().getImpuestoDetCompraAlimento());
-        tablaDetalleAlimentoPojo.setMarca(getAlimento().getMarcaAlimento());
-        tablaDetalleAlimentoPojo.setTipoAlimento(getTipoAlimento().getNombreTipoAlimento());
-        tablaDetalleAlimentoPojo.setPrecio(getDetalleCompraAlimento().getPrecioDetalleCompraAlimento());
-        tablaDetalleAlimentoPojo.setCantidad(getDetalleCompraAlimento().getCantDetalleCompraAlimento());
-        tablaDetalleAlimentoPojo.setTotal(getTotal());/**/
+            tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
 
-        //    tablaDetalleAlimentoPojo.setProveedor(getProveedor().getIdPersona().getNombrePersona());
+            tablaDetalleAlimentoPojo.setIdTipoAlimento(getTipoAlimento().getIdTipoAlimento());
+            tablaDetalleAlimentoPojo.setIdAlimento(getAlimento().getIdAlimento());
 
-        tablaDetalleAlimentoPojoList.add(tablaDetalleAlimentoPojo);
-    } catch (Exception e) {
+            tablaDetalleAlimentoPojo.setImpuesto(getDetalleCompraAlimento().getImpuestoDetCompraAlimento());
+            tablaDetalleAlimentoPojo.setMarca(getAlimento().getMarcaAlimento());
+            tablaDetalleAlimentoPojo.setTipoAlimento(getTipoAlimento().getNombreTipoAlimento());
+            tablaDetalleAlimentoPojo.setPrecio(getDetalleCompraAlimento().getPrecioDetalleCompraAlimento().setScale(2, BigDecimal.ROUND_HALF_UP));
+            tablaDetalleAlimentoPojo.setCantidad(getDetalleCompraAlimento().getCantDetalleCompraAlimento());
+            tablaDetalleAlimentoPojo.setTotal(getTotal().setScale(2, BigDecimal.ROUND_HALF_UP));/**/
+
+            sumaTotal = sumaTotal.add(getTotal().setScale(2, BigDecimal.ROUND_HALF_UP));
+
+            tablaDetalleAlimentoPojoList.add(tablaDetalleAlimentoPojo);
+        } catch (Exception e) {
         }
     }
 
     @Override
     public void saveNew(ActionEvent event) {
 
-        Compra newcompra = new Compra();
-        newcompra.setIdProveedor(getProveedor());
-        newcompra.setFechaHoraCompra(new Date());
-        newcompra.setUsuarioCompra(getUsuario());
-        newcompra.setTotalCompra((BigDecimal) ((getTotal() != null) ? getTotal() : 0.0));
-        compraService.save(newcompra);
+        try {
+           if(getSumaTotal().compareTo(BigDecimal.ZERO) > 0){
+            
+            Compra newcompra = new Compra();
+            newcompra.setIdProveedor(getProveedor());
+            newcompra.setFechaHoraCompra(new Date());
+            newcompra.setUsuarioCompra(getUsuario());
+            newcompra.setTotalCompra((BigDecimal) ((getSumaTotal() != null) ? getSumaTotal() : 0.0));
+ //               compraService.save(newcompra);
 
-        DetalleCompraAlimento newCompraAlimento = getDetalleCompraAlimento();
-        newCompraAlimento.setIdCompra(newcompra);
-        newCompraAlimento.setIdAlimento(getAlimento());
-        detalleCompraAlimentoService.save(newCompraAlimento);
+            for (TablaDetalleAlimentoPojo l : tablaDetalleAlimentoPojoList) {
 
-        Alimento newAlimento = getAlimento();
-        BigDecimal cactual = newAlimento.getExistenciaAlimento();
-        BigDecimal compra = newCompraAlimento.getCantDetalleCompraAlimento();
-        BigDecimal existencia = cactual.add(compra);
-
-        newAlimento.setExistenciaAlimento(existencia);
-        alimentoService.merge(newAlimento);
+//                DetalleCompraAlimento newCompraAlimento = getDetalleCompraAlimento();
+//                newCompraAlimento.setIdCompra(newcompra);
+//                newCompraAlimento.setIdAlimento(getAlimento());
+//                detalleCompraAlimentoService.save(newCompraAlimento);
+//
+//                Alimento newAlimento = getAlimento();
+//                BigDecimal cactual = newAlimento.getExistenciaAlimento();
+//                BigDecimal compra = newCompraAlimento.getCantDetalleCompraAlimento();
+//                BigDecimal existencia = cactual.add(compra);
+//
+//                newAlimento.setExistenciaAlimento(existencia);
+//                alimentoService.merge(newAlimento);
+            }
+           }
+        } catch (Exception e) {
+        }
 
     }
 
@@ -290,14 +299,6 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.precio = precio;
     }
 
-    public BigDecimal getImpuesto() {
-        return impuesto;
-    }
-
-    public void setImpuesto(BigDecimal impuesto) {
-        this.impuesto = impuesto;
-    }
-
     public TablaDetalleAlimentoPojo getTablaDetalleAlimentoPojo() {
         return tablaDetalleAlimentoPojo;
     }
@@ -312,6 +313,14 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     public void setTablaDetalleAlimentoPojoList(List<TablaDetalleAlimentoPojo> tablaDetalleAlimentoPojoList) {
         this.tablaDetalleAlimentoPojoList = tablaDetalleAlimentoPojoList;
+    }
+
+    public BigDecimal getSumaTotal() {
+        return sumaTotal;
+    }
+
+    public void setSumaTotal(BigDecimal sumaTotal) {
+        this.sumaTotal = sumaTotal;
     }
 
 }

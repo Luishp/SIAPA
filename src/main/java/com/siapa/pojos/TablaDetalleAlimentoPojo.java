@@ -17,12 +17,10 @@ public class TablaDetalleAlimentoPojo implements Serializable{
     
     private Integer idAlimento;
    
-    private Integer idProveedor;
+   
     private Integer idTipoAlimento;
-    
     private String tipoAlimento;
     private String marca;
-    private String proveedor;
     private BigDecimal cantidad;
     private BigDecimal precio;
     private BigDecimal impuesto;
@@ -86,13 +84,7 @@ public class TablaDetalleAlimentoPojo implements Serializable{
 
   
 
-    public Integer getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(Integer idProveedor) {
-        this.idProveedor = idProveedor;
-    }
+ 
 
     public Integer getIdTipoAlimento() {
         return idTipoAlimento;
@@ -102,14 +94,7 @@ public class TablaDetalleAlimentoPojo implements Serializable{
         this.idTipoAlimento = idTipoAlimento;
     }
 
-    public String getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(String proveedor) {
-        this.proveedor = proveedor;
-    }
-    
+ 
     
     
 }
