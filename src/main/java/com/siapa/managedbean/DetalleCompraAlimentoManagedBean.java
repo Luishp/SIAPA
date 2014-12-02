@@ -11,7 +11,7 @@ import com.siapa.model.Compra;
 import com.siapa.model.DetalleCompraAlimento;
 import com.siapa.model.Proveedor;
 import com.siapa.model.TipoAlimento;
-import com.siapa.pojos.TablaDetalleAlimentoPojo;
+
 import com.siapa.service.AlimentoService;
 import com.siapa.service.CompraService;
 import com.siapa.service.DetalleCompraAlimentoService;
@@ -51,41 +51,32 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     @Autowired
     @Qualifier(value = "detalleCompraAlimentoService")
     private DetalleCompraAlimentoService detalleCompraAlimentoService;
-
     @Autowired
     @Qualifier(value = "compraService")
     private CompraService compraService;
-
     @Autowired
     @Qualifier(value = "alimentoService")
     private AlimentoService alimentoService;
-
     @Autowired
     @Qualifier(value = "proveedorService")
     private ProveedorService proveedorService;
-
     @Autowired
     @Qualifier(value = "tipoAlimentoService")
     private TipoAlimentoService tipoAlimentoService;
-
     private List<Proveedor> proveedorList;
     private List<DetalleCompraAlimento> detalleCompraAlimentoList;
     private List<Alimento> alimentoList;
     private List<Alimento> alimentoByIdList;
     private List<TipoAlimento> tipoAlimentoList;
-
     private TipoAlimento tipoAlimento;
     private DetalleCompraAlimento detalleCompraAlimento;
     private Proveedor proveedor;
     private Alimento alimento;
-
-    private BigDecimal total;
+    public BigDecimal total;
     private BigDecimal cantidad;
     private BigDecimal precio;
     private BigDecimal sumaTotal = BigDecimal.ZERO;
-
-    TablaDetalleAlimentoPojo tablaDetalleAlimentoPojo;
-    private List<TablaDetalleAlimentoPojo> tablaDetalleAlimentoPojoList;
+    private List<DetalleCompraAlimento> tablaDetalleAlimentoPojoLista;
 
     @PostConstruct
     public void init() {
@@ -96,8 +87,8 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         tipoAlimentoList = tipoAlimentoService.findAll();
         alimentoByIdList = new ArrayList<Alimento>();
         detalleCompraAlimento = new DetalleCompraAlimento();
-        tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
-        tablaDetalleAlimentoPojoList = new ArrayList<TablaDetalleAlimentoPojo>();
+        tablaDetalleAlimentoPojoLista = new ArrayList<DetalleCompraAlimento>();
+
     }
 
     public void cargarComboAlimentoMarca() {
@@ -123,6 +114,17 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         }
         return total1;
     }
+
+    public DetalleCompraAlimento prepareCreateDetalle() {
+        DetalleCompraAlimento newItem;
+        try {
+            newItem = new DetalleCompraAlimento();
+            this.setDetalleCompraAlimento(newItem);
+            return newItem;
+        } catch (Exception ex) {
+        }
+        return null;
+    }
 //    
 //    public DetalleCompraAlimento todetalleCompra() {
 //        detalleCompraAlimento = new DetalleCompraAlimento();
@@ -133,22 +135,12 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     public void cargar() {
         try {
 
-            tablaDetalleAlimentoPojo = new TablaDetalleAlimentoPojo();
-
-            tablaDetalleAlimentoPojo.setIdTipoAlimento(getTipoAlimento().getIdTipoAlimento());
-            tablaDetalleAlimentoPojo.setIdAlimento(getAlimento().getIdAlimento());
-
-            tablaDetalleAlimentoPojo.setImpuesto(getDetalleCompraAlimento().getImpuestoDetCompraAlimento());
-            tablaDetalleAlimentoPojo.setMarca(getAlimento().getMarcaAlimento());
-            tablaDetalleAlimentoPojo.setTipoAlimento(getTipoAlimento().getNombreTipoAlimento());
-            tablaDetalleAlimentoPojo.setPrecio(getDetalleCompraAlimento().getPrecioDetalleCompraAlimento().setScale(2, BigDecimal.ROUND_HALF_UP));
-            tablaDetalleAlimentoPojo.setCantidad(getDetalleCompraAlimento().getCantDetalleCompraAlimento());
-            tablaDetalleAlimentoPojo.setTotal(getTotal().setScale(2, BigDecimal.ROUND_HALF_UP));/**/
-
+            getDetalleCompraAlimento().setSumaParcial(getTotal());
+            getDetalleCompraAlimento().setIdAlimento(alimento);
+            tablaDetalleAlimentoPojoLista.add(getDetalleCompraAlimento());
             sumaTotal = sumaTotal.add(getTotal().setScale(2, BigDecimal.ROUND_HALF_UP));
-
-            tablaDetalleAlimentoPojoList.add(tablaDetalleAlimentoPojo);
         } catch (Exception e) {
+            System.out.println("error" + e);
         }
     }
 
@@ -156,31 +148,28 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     public void saveNew(ActionEvent event) {
 
         try {
-           if(getSumaTotal().compareTo(BigDecimal.ZERO) > 0){
-            
-            Compra newcompra = new Compra();
-            newcompra.setIdProveedor(getProveedor());
-            newcompra.setFechaHoraCompra(new Date());
-            newcompra.setUsuarioCompra(getUsuario());
-            newcompra.setTotalCompra((BigDecimal) ((getSumaTotal() != null) ? getSumaTotal() : 0.0));
- //               compraService.save(newcompra);
+            if (getSumaTotal().compareTo(BigDecimal.ZERO) > 0) {
 
-            for (TablaDetalleAlimentoPojo l : tablaDetalleAlimentoPojoList) {
+                Compra newcompra = new Compra();
+                newcompra.setIdProveedor(getProveedor());
+                newcompra.setFechaHoraCompra(new Date());
+                newcompra.setUsuarioCompra(getUsuario());
+                newcompra.setTotalCompra((BigDecimal) ((getSumaTotal() != null) ? getSumaTotal() : new BigDecimal(0.0)));
+                compraService.save(newcompra);
 
-//                DetalleCompraAlimento newCompraAlimento = getDetalleCompraAlimento();
-//                newCompraAlimento.setIdCompra(newcompra);
-//                newCompraAlimento.setIdAlimento(getAlimento());
-//                detalleCompraAlimentoService.save(newCompraAlimento);
-//
-//                Alimento newAlimento = getAlimento();
-//                BigDecimal cactual = newAlimento.getExistenciaAlimento();
-//                BigDecimal compra = newCompraAlimento.getCantDetalleCompraAlimento();
-//                BigDecimal existencia = cactual.add(compra);
-//
-//                newAlimento.setExistenciaAlimento(existencia);
-//                alimentoService.merge(newAlimento);
+                for (DetalleCompraAlimento detalle : tablaDetalleAlimentoPojoLista) {
+                    detalle.setIdCompra(newcompra);
+                    detalleCompraAlimentoService.save(detalle);
+                    
+                    Alimento newAlimento = getAlimento();
+                    BigDecimal cactual = newAlimento.getExistenciaAlimento();
+                    BigDecimal compra = detalle.getCantDetalleCompraAlimento();
+                    BigDecimal existencia = cactual.add(compra);
+
+                    newAlimento.setExistenciaAlimento(existencia);
+                    alimentoService.merge(newAlimento);
+                }
             }
-           }
         } catch (Exception e) {
         }
 
@@ -299,22 +288,6 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.precio = precio;
     }
 
-    public TablaDetalleAlimentoPojo getTablaDetalleAlimentoPojo() {
-        return tablaDetalleAlimentoPojo;
-    }
-
-    public void setTablaDetalleAlimentoPojo(TablaDetalleAlimentoPojo tablaDetalleAlimentoPojo) {
-        this.tablaDetalleAlimentoPojo = tablaDetalleAlimentoPojo;
-    }
-
-    public List<TablaDetalleAlimentoPojo> getTablaDetalleAlimentoPojoList() {
-        return tablaDetalleAlimentoPojoList;
-    }
-
-    public void setTablaDetalleAlimentoPojoList(List<TablaDetalleAlimentoPojo> tablaDetalleAlimentoPojoList) {
-        this.tablaDetalleAlimentoPojoList = tablaDetalleAlimentoPojoList;
-    }
-
     public BigDecimal getSumaTotal() {
         return sumaTotal;
     }
@@ -323,4 +296,11 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         this.sumaTotal = sumaTotal;
     }
 
+    public List<DetalleCompraAlimento> getTablaDetalleAlimentoPojoLista() {
+        return tablaDetalleAlimentoPojoLista;
+    }
+
+    public void setTablaDetalleAlimentoPojoLista(List<DetalleCompraAlimento> tablaDetalleAlimentoPojoLista) {
+        this.tablaDetalleAlimentoPojoLista = tablaDetalleAlimentoPojoLista;
+    }
 }
