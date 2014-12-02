@@ -14,68 +14,79 @@
         <h:form id="DetalleCompraListForm">
             <p:fieldset legend="Compra de Alimento">
 
-                <div align="center" style="background: #00426f"  > 
+                <div align="center" > 
                     <h:panelGroup id="display" >
-                        <p:panelGrid columns="2" >
-                            <p:outputLabel value="Proveedor : "/>
-                            <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
-                                <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
-                            </p:selectOneMenu>
+                        <p:panelGrid columns="4" >
 
-                            <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true"   value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreate(event)}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>
+
+                           
+                                <p:outputLabel value="Proveedor : "/>
+                                <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
+                                    <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
+                                </p:selectOneMenu>
+                           
+                           <div align="center" > 
+                                <p:panel id="total" header="TOTAL" style="font-size:20px; width:120px; height:120px">
+                                    <h:outputText value="#{detalleCompraAlimentoManagedBean.sumaTotal}" style="font-size:25px; font-weight:bold;  alignment-adjust: central" />
+                                </p:panel>
+                            </div>
+
 
 
                         </p:panelGrid>
                     </h:panelGroup>
-                  
+
+
                 </div>
-  
-  <p:separator />
-              
+
+
+
+                <p:separator />
+
                 <h:form id="form">
                     <p:growl id="msgs" />
 
 
-                    <p:outputPanel id="books">
-                        <p:dataTable value="#{detalleCompraAlimentoManagedBean.tablaDetalleAlimentoPojoList}" var="pojo" id="booksTable">
+                    <p:outputPanel id="tabla">
+                        <p:dataTable value="#{detalleCompraAlimentoManagedBean.tablaDetalleAlimentoPojoLista}" var="pojo" id="booksTable">
 
                             <p:column headerText="Tipo Alimento">
-                                <h:outputText value="#{pojo.tipoAlimento}" />
+                                <h:outputText value="#{pojo.idAlimento.idTipoAlimento.nombreTipoAlimento}" />
                             </p:column>
 
                             <p:column headerText="Marca">
                                 <f:facet name="Marca">
                                     <h:outputText value="Marca" />
                                 </f:facet>
-                                <h:outputText value="#{pojo.marca}" />
+                                <h:outputText value="#{pojo.idAlimento.marcaAlimento}" />
                             </p:column>
 
                             <p:column headerText="Cantidad">
                                 <f:facet name="Cantidad">
                                     <h:outputText value="Cantidad" />
                                 </f:facet>
-                                <h:outputText value="#{pojo.cantidad}" />
+                                <h:outputText value="#{pojo.cantDetalleCompraAlimento}" />
                             </p:column>
 
                             <p:column headerText="Precio">
                                 <f:facet name="Precio">
                                     <h:outputText value="Precio" />
                                 </f:facet>
-                                <h:outputText value="#{pojo.precio}" />
+                                <h:outputText value="#{pojo.precioDetalleCompraAlimento}" />
                             </p:column>
 
                             <p:column headerText="Impuesto">
                                 <f:facet name="Impuesto">
                                     <h:outputText value="Impuesto" />
                                 </f:facet>
-                                <h:outputText value="#{pojo.impuesto}" />
+                                <h:outputText value="#{pojo.impuestoDetCompraAlimento}" />
                             </p:column>
 
                             <p:column headerText="Total">
                                 <f:facet name="Total">
                                     <h:outputText value="Total" />
                                 </f:facet>
-                                <h:outputText value="#{pojo.total}" />
+                                <h:outputText value="#{pojo.sumaParcial}" />
                             </p:column>
 
 
@@ -85,11 +96,14 @@
                                                             <p:collector value="#{book}" removeFrom="#{detalleCompraAlimentoManagedBean.books}" unique="true"/>
                                                         </p:commandLink>
                                                     </p:column>-->
+                            <f:facet name="footer">
+                                <div align="center" class="footer-section" > 
+                                    <p:commandButton id="createButton" icon="ui-icon-plus"  value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreateDetalle}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>
 
-                            <div align="center" class="footer-section" > 
-                                <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);"/>
+                                    <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);"/>
 
-                            </div>
+                                </div>
+                            </f:facet>
                         </p:dataTable>
                     </p:outputPanel>
                 </h:form>

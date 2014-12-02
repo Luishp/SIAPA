@@ -21,6 +21,8 @@
 
                 <p:panelGrid columns="2" id="grid"  >
 
+                  
+
                     <p:outputLabel value="Tipo Alimento : "/>
                     <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.tipoAlimento}" converter="#{tipoAlimentoConverter}" effect="fade" style="width:200px">
                         <p:ajax listener="#{detalleCompraAlimentoManagedBean.cargarComboAlimentoMarca}" update="marca" process="tipoAlimento"></p:ajax>
@@ -58,9 +60,9 @@
                     <p:inputText id="total_calc" value="#{detalleCompraAlimentoManagedBean.total}" readonly="true"  />
 
 
-                     <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.cargar}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);" onclick="PF('ContactoCreateDialog').hide()"/>
-                    
-                  
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.cargar}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);" onclick="PF('ContactoCreateDialog').hide()"/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="DetalleCompraAlimentoCreateDialog.hide()"/>
+
 
 
                 </p:panelGrid>

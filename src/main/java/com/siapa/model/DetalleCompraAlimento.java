@@ -54,6 +54,7 @@ public class DetalleCompraAlimento implements Serializable {
     @JoinColumn(name = "ID_COMPRA", referencedColumnName = "ID_COMPRA")
     @ManyToOne(fetch = FetchType.LAZY)
     private Compra idCompra;
+    private transient BigDecimal sumaParcial;
 
     public DetalleCompraAlimento() {
     }
@@ -141,5 +142,14 @@ public class DetalleCompraAlimento implements Serializable {
     public String toString() {
         return "com.siapa.model.DetalleCompraAlimento[ idDetalleCompraAlimento=" + idDetalleCompraAlimento + " ]";
     }
+
+    public BigDecimal getSumaParcial() {
+        return sumaParcial;
+    }
+
+    public void setSumaParcial(BigDecimal sumaParcial) {
+        this.sumaParcial = sumaParcial;
+    }
+    
     
 }
