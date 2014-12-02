@@ -8,33 +8,30 @@
 
     <ui:composition>
 
-        <p:dialog id="ProductoCreateDlg" widgetVar="ProductoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateProductoTitle}" closeOnEscape="true">
+        <p:dialog id="ProductoCreateDlg" widgetVar="ProductoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Crear Producto" closeOnEscape="true">
 
             <h:form id="ProductoCreateForm">
 
                 <h:panelGroup id="display" rendered="#{productoManagedBean.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_idProducto}" for="idProducto" />
-                        <p:inputText id="idProducto" value="#{productoManagedBean.selected.idProducto}" title="#{crudbundle.CreateProductoTitle_idProducto}" required="true" requiredMessage="#{crudbundle.CreateProductoRequiredMessage_idProducto}"/>
+                        <p:outputLabel value="Nombre del producto" for="nombreProducto" />
+                        <p:inputText id="nombreProducto" value="#{productoManagedBean.selected.nombreProducto}" title="Nombre del producto" required="true" requiredMessage="Es necesario especificar el campo nombre del producto" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_nombreProducto}" for="nombreProducto" />
-                        <p:inputText id="nombreProducto" value="#{productoManagedBean.selected.nombreProducto}" title="#{crudbundle.CreateProductoTitle_nombreProducto}" required="true" requiredMessage="#{crudbundle.CreateProductoRequiredMessage_nombreProducto}" size="50" maxlength="50"/>
+                        <p:outputLabel value="Descripcion" for="descripcionProducto" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionProducto" value="#{productoManagedBean.selected.descripcionProducto}" title="Descripcion" required="true" requiredMessage="Es necesario especificar si el producto es activo"/>
 
-                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_descripcionProducto}" for="descripcionProducto" />
-                        <p:inputTextarea rows="4" cols="30" id="descripcionProducto" value="#{productoManagedBean.selected.descripcionProducto}" title="#{crudbundle.CreateProductoTitle_descripcionProducto}" />
+                        <p:outputLabel value="Producto activo" for="activoProducto" />
+                        <p:selectBooleanCheckbox id="activoProducto" value="#{productoManagedBean.selected.activoProducto}" required="true" requiredMessage="Es necesario especificar si el producto es activo"/>
 
-                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_activoProducto}" for="activoProducto" />
-                        <p:selectBooleanCheckbox id="activoProducto" value="#{productoManagedBean.selected.activoProducto}" required="true" requiredMessage="#{crudbundle.CreateProductoRequiredMessage_activoProducto}"/>
-
-                        <p:outputLabel value="#{crudbundle.CreateProductoLabel_precioProducto}" for="precioProducto" />
-                        <p:inputText id="precioProducto" value="#{productoManagedBean.selected.precioProducto}" title="#{crudbundle.CreateProductoTitle_precioProducto}" required="true" requiredMessage="#{crudbundle.CreateProductoRequiredMessage_precioProducto}"/>
+                        <p:outputLabel value="Precio del producto" for="precioProducto" />
+                        <p:inputText id="precioProducto" value="#{productoManagedBean.selected.precioProducto}" title="Precio del producto" required="true" requiredMessage="es necesario especificar precio"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{productoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:ProductoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ProductoCreateDialog'));">
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{productoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:ProductoListForm,:growl" oncomplete="handleSubmit(xhr,status,args,ProductoCreateDialog);">
                         <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('ProductoCreateDialog').hide()"/>
+                    <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="ProductoCreateDialog.hide()"/>
                 </h:panelGroup>
 
             </h:form>

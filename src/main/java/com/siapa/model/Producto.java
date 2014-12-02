@@ -13,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -30,9 +31,10 @@ import javax.persistence.Table;
 public class Producto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_PRODUCTO", nullable = false)
-    private Long idProducto;
+    @GeneratedValue
+    @Column(name = "ID_PRODUCTO", nullable = true)
+    private Integer idProducto;
+    
     @Basic(optional = false)
     @Column(name = "NOMBRE_PRODUCTO", nullable = false, length = 50)
     private String nombreProducto;
@@ -55,22 +57,22 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(Long idProducto) {
+    public Producto(Integer idProducto) {
         this.idProducto = idProducto;
     }
 
-    public Producto(Long idProducto, String nombreProducto, boolean activoProducto, BigDecimal precioProducto) {
+    public Producto(Integer idProducto, String nombreProducto, boolean activoProducto, BigDecimal precioProducto) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.activoProducto = activoProducto;
         this.precioProducto = precioProducto;
     }
 
-    public Long getIdProducto() {
+    public Integer getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(Long idProducto) {
+    public void setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
     }
 

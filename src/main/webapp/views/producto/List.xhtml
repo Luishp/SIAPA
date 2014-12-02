@@ -8,82 +8,80 @@
 
     <h:form id="ProductoListForm">
 
-        <p:panel header="#{crudbundle.ListProductoTitle}">
-            <p:contextMenu id="ProductoDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('ProductoListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('ProductoListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('ProductoListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('ProductoListForm:deleteButton').click();" icon="ui-icon-trash"/>
-                <p:separator/>
-                <p:menuitem value="#{crudbundle.ProductoMenuItem_detalleVentaSet}" icon="ui-icon-search"  action="#{productoManagedBean.navigateDetalleVentaSet}" disabled="#{empty productoManagedBean.selected.detalleVentaSet}" ajax="false"/>  
-                <p:menuitem value="#{crudbundle.ProductoMenuItem_descuentoSet}" icon="ui-icon-search"  action="#{productoManagedBean.navigateDescuentoSet}" disabled="#{empty productoManagedBean.selected.descuentoSet}" ajax="false"/>  
-                <p:menuitem value="#{crudbundle.ProductoMenuItem_ingresoProductoSet}" icon="ui-icon-search"  action="#{productoManagedBean.navigateIngresoProductoSet}" disabled="#{empty productoManagedBean.selected.ingresoProductoSet}" ajax="false"/>  
-            </p:contextMenu>
-            <p:dataTable id="datalist"
-                         value="#{productoManagedBean.items}"
-                         var="item"
-                         rowKey="#{item.idProducto}"
-                         paginator="true"
-                         rows="10"
-                         rowsPerPageTemplate="10,20,30,40,50"
-                         selectionMode="single"
-                         selection="#{productoManagedBean.selected}">
-
-                <p:ajax event="rowSelect"   update=":ProductoListForm:createButton :ProductoListForm:viewButton :ProductoListForm:editButton :ProductoListForm:deleteButton :ProductoListForm:ProductoDataTableContextMenu" listener="#{productoManagedBean.resetParents}"/>
-                <p:ajax event="rowUnselect" update=":ProductoListForm:createButton :ProductoListForm:viewButton :ProductoListForm:editButton :ProductoListForm:deleteButton :ProductoListForm:ProductoDataTableContextMenu" listener="#{productoManagedBean.resetParents}"/>
-                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ProductoListForm:viewButton').click();"/>
-
-                <p:column sortBy="#{item.idProducto}" filterBy="#{item.idProducto}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProductoTitle_idProducto}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idProducto}"/>
-                </p:column>
+        <p:panel header="Lista de productos en inventario">
+            <p:fieldset legend="productos">
 
 
-                <p:column sortBy="#{item.nombreProducto}" filterBy="#{item.nombreProducto}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProductoTitle_nombreProducto}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.nombreProducto}"/>
-                </p:column>
+                <p:dataTable id="datalist"
+                             var="item"
+                             value="#{productoManagedBean.items}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             lazy="true"
+                             resizableColumns="true"  
+                             selectionMode="single"
+                             selection="#{productoManagedBean.selected}"
+                             rowKey="#{item.idProducto}"
+                             paginatorPosition="bottom">
+
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
+
+                    <p:column sortBy="#{item.idProducto}" filterBy="#{item.idProducto}">
+                        <f:facet name="header">
+                            <h:outputText value="Numero de registro del producto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idProducto}"/>
+                    </p:column>
 
 
-                <p:column sortBy="#{item.descripcionProducto}" filterBy="#{item.descripcionProducto}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProductoTitle_descripcionProducto}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.descripcionProducto}"/>
-                </p:column>
+                    <p:column sortBy="#{item.nombreProducto}" filterBy="#{item.nombreProducto}">
+                        <f:facet name="header">
+                            <h:outputText value="Nombre del producto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombreProducto}"/>
+                    </p:column>
 
 
-                <p:column sortBy="#{item.activoProducto}" filterBy="#{item.activoProducto}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProductoTitle_activoProducto}"/>
-                    </f:facet>
-                    <h:selectBooleanCheckbox id="activoProducto" value="#{item.activoProducto}" title="#{crudbundle.EditProductoTitle_activoProducto}" required="true" requiredMessage="#{crudbundle.EditProductoRequiredMessage_activoProducto}" disabled="true"/>
-                </p:column>
+                    <p:column sortBy="#{item.descripcionProducto}" filterBy="#{item.descripcionProducto}">
+                        <f:facet name="header">
+                            <h:outputText value="Descripcion"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcionProducto}"/>
+                    </p:column>
 
 
-                <p:column sortBy="#{item.precioProducto}" filterBy="#{item.precioProducto}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProductoTitle_precioProducto}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.precioProducto}"/>
-                </p:column>
+                    <p:column sortBy="#{item.activoProducto}" filterBy="#{item.activoProducto}">
+                        <f:facet name="header">
+                            <h:outputText value="Producto activo"/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox id="activoProducto" value="#{item.activoProducto}" title="#{crudbundle.EditProductoTitle_activoProducto}" required="true" requiredMessage="#{crudbundle.EditProductoRequiredMessage_activoProducto}" disabled="true"/>
+                    </p:column>
 
 
-            </p:dataTable>
+                    <p:column sortBy="#{item.precioProducto}" filterBy="#{item.precioProducto}">
+                        <f:facet name="header">
+                            <h:outputText value="Precio de venta del producto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.precioProducto}"/>
+                    </p:column>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{productoManagedBean.prepareCreate}" update=":ProductoCreateForm" oncomplete="PF('ProductoCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":ProductoViewForm" oncomplete="PF('ProductoViewDialog').show()" disabled="#{empty productoManagedBean.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":ProductoEditForm" oncomplete="PF('ProductoEditDialog').show()" disabled="#{empty productoManagedBean.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{productoManagedBean.delete}" update=":growl,datalist" disabled="#{empty productoManagedBean.selected}">
-                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
-            </p:commandButton>
+                    <f:facet name="footer">
+                        <div class="footer-section">
+                            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{productoManagedBean.prepareCreate}" update="@(#ProductoCreateForm)" oncomplete="ProductoCreateDialog.show()"/>
+                            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ProductoViewForm)" oncomplete="ProductoViewDialog.show()" disabled="#{empty productoManagedBean.selected}"/>
+                            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#ProductoEditForm)" oncomplete="ProductoEditDialog.show()" disabled="#{empty productoManagedBean.selected}"/>
+                            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{productoManagedBean.delete}" update=":growl,datalist" disabled="#{empty productoManagedBean.selected}">
+                                <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                            </p:commandButton>
+                        </div>
+                    </f:facet> 
 
+
+                </p:dataTable>
+            </p:fieldset>
         </p:panel>
-        <ui:include src="/confirmation.xhtml"/>
     </h:form>
 
 </ui:composition>

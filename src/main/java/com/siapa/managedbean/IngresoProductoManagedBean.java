@@ -142,7 +142,7 @@ public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProduc
             jaulas = jaulaService.findAll();
             productos =productoService.findAll();
             setSelected(new IngresoProducto());
-            contex.getExternalContext().redirect("/siapa/views/GestionCompraPeces/Create.xhtml");
+            contex.getExternalContext().redirect("/siapa/views/ingresoProducto/Create.xhtml");
         } catch (IOException ex) {
             //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
         }

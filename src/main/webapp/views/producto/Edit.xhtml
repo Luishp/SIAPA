@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="ProductoEditDlg" widgetVar="ProductoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditProductoTitle}" closeOnEscape="true">
+        <p:dialog id="ProductoEditDlg" widgetVar="ProductoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="Edit producto" closeOnEscape="true">
 
             <h:form id="ProductoEditForm">
 
@@ -15,20 +15,20 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{productoManagedBean.selected != null}">
 
 
-                        <h:outputLabel value="#{crudbundle.EditProductoLabel_idProducto}" for="idProducto" />
+                        <h:outputLabel value="Numero de registro" for="idProducto" />
                         <h:outputText id="idProducto" value="#{productoManagedBean.selected.idProducto}" />
 
-                        <p:outputLabel value="#{crudbundle.EditProductoLabel_nombreProducto}" for="nombreProducto" />
-                        <p:inputText id="nombreProducto" value="#{productoManagedBean.selected.nombreProducto}" title="#{crudbundle.EditProductoTitle_nombreProducto}" required="true" requiredMessage="#{crudbundle.EditProductoRequiredMessage_nombreProducto}" size="50" maxlength="50"/>
+                        <p:outputLabel value="Nombre del producto" for="nombreProducto" />
+                        <p:inputText id="nombreProducto" value="#{productoManagedBean.selected.nombreProducto}" title="Nombre del producto" required="true" requiredMessage="No puede estar vacio" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{crudbundle.EditProductoLabel_descripcionProducto}" for="descripcionProducto" />
-                        <p:inputTextarea rows="4" cols="30" id="descripcionProducto" value="#{productoManagedBean.selected.descripcionProducto}" title="#{crudbundle.EditProductoTitle_descripcionProducto}" />
+                        <p:outputLabel value="Descripcion" for="descripcionProducto" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionProducto" value="#{productoManagedBean.selected.descripcionProducto}" title="Descripcion" />
 
-                        <p:outputLabel value="#{crudbundle.EditProductoLabel_activoProducto}" for="activoProducto" />
-                        <p:selectBooleanCheckbox id="activoProducto" value="#{productoManagedBean.selected.activoProducto}" required="true" requiredMessage="#{crudbundle.EditProductoRequiredMessage_activoProducto}"/>
+                        <p:outputLabel value="Producto activo" for="activoProducto" />
+                        <p:selectBooleanCheckbox id="activoProducto" value="#{productoManagedBean.selected.activoProducto}" required="true" requiredMessage="No puede ser vacio"/>
 
-                        <p:outputLabel value="#{crudbundle.EditProductoLabel_precioProducto}" for="precioProducto" />
-                        <p:inputText id="precioProducto" value="#{productoManagedBean.selected.precioProducto}" title="#{crudbundle.EditProductoTitle_precioProducto}" required="true" requiredMessage="#{crudbundle.EditProductoRequiredMessage_precioProducto}"/>
+                        <p:outputLabel value="Precio del producto" for="precioProducto" />
+                        <p:inputText id="precioProducto" value="#{productoManagedBean.selected.precioProducto}" title="Precio de producto" required="true" requiredMessage="campo no puede ser vacio"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{productoManagedBean.save}" value="#{crudbundle.Save}" update="display,:ProductoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ProductoEditDialog'));">
                         <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmEditMessage}" icon="ui-icon-alert"/>

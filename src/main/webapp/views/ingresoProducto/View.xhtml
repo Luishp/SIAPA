@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IngresoProductoViewDlg" widgetVar="IngresoProductoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="View Ingreso de Producto" closeOnEscape="true">
+
+            <h:form id="IngresoProductoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{ingresoProductoManagedBean.selected != null}">
+
+                        <h:outputText value="No. de registro"/>
+                        <h:outputText value="#{ingresoProductoManagedBean.selected.idIngresoProducto}" title="No. de registro"/>
+                        
+                        <h:outputText value="Cantidad de compra"/>
+                        <h:outputText value="#{ingresoProductoManagedBean.selected.cantidadIngresoProducto}" title="Cantidad de compra"/>
+                        
+                        <h:outputText value="Nombre del producto"/>
+                        <h:outputText value="#{ingresoProductoManagedBean.selected.idProducto.nombreProducto}" title="Producto ingresado"/>
+                        
+                        <h:outputText value="Tipo de jaula"/>
+                        <h:outputText value="#{ingresoProductoManagedBean.selected.idJaula.nombreJaula}" title="Tipo de jaula"/>
+
+                        <h:outputText value="Fecha de compra"/>
+                        <h:outputText value="#{ingresoProductoManagedBean.selected.fechaHoraIngresoProducto}" title="Fecha e compra">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="Usuario del registro"/>
+                        <h:outputText value="#{ingresoProductoManagedBean.selected.usuarioIngresoProducto}" title="Usuario del registro"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{crudbundle.Close}" onclick="PF('IngresoProductoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="IngresoProductoListForm">
+        <p:fieldset legend="Listado de Compras">
+            <p:dataTable id="datalist" 
+                         var="item"
+                         value="#{ingresoProductoManagedBean.lazyItems}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
+                         selectionMode="single"
+                         selection="#{ingresoProductoManagedBean.selected}"
+                         rowKey="#{item.idIngresoProducto}" 
+                         paginatorPosition="bottom">   
+
+                <p:ajax event="rowSelect"   update="createButton  deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton  deleteButton viewButton"/>
+
+                <p:column sortBy="#{item.idIngresoProducto}" filterBy="#{item.idIngresoProducto}">
+                    <f:facet name="header">
+                        <h:outputText value="Numero de registro"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idIngresoProducto}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.idProducto.nombreProducto}" filterBy="#{item.idProducto.nombreProducto}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre del producto"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idProducto.nombreProducto}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.idJaula.descripcionJaula}" filterBy="#{item.idJaula.descripcionJaula}">
+                    <f:facet name="header">
+                        <h:outputText value="Tipo de jaula"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idJaula.descripcionJaula}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.cantidadIngresoProducto}" filterBy="#{item.cantidadIngresoProducto}">
+                    <f:facet name="header">
+                        <h:outputText value="Cantidad de compra"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cantidadIngresoProducto}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.fechaHoraIngresoProducto}" filterBy="#{item.fechaHoraIngresoProducto}">
+                    <f:facet name="header">
+                        <h:outputText value="Fecha de compra"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaHoraIngresoProducto}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                
+                <p:column sortBy="#{item.usuarioIngresoProducto}" filterBy="#{item.usuarioIngresoProducto}">
+                    <f:facet name="header">
+                        <h:outputText value="Usuario del registro"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuarioIngresoProducto}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{ingresoProductoManagedBean.toCreateIngresoProducto}"/>      
+                        <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{IngresoproductoManagedBean.delete}" update=":growl,datalist" disabled="#{empty ingresoProductoManagedBean.selected}"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#IngresoProductoViewForm)" oncomplete="IngresoProductoViewDialog.show()" disabled="#{empty ingresoProductoManagedBean.selected}"/>
+                    </div>
+                </f:facet>
+            </p:dataTable>
+
+        </p:fieldset>
+    </h:form>
+</ui:composition>

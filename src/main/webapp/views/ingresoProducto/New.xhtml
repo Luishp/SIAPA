@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <ui:composition>
+        <h:form id="IngresoProductoCreateForm">
+            <h:panelGroup id="display" >
+
+
+                <h3>Producto</h3>
+                <p:panelGrid columns="2"  >           
+
+                    <p:selectOneMenu id="producto" value="#{ingresoProductoManagedBean.producto}" converter="#{productoConverter}" panelStyle="width:180px"
+                                     effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                        <f:selectItems value="#{ingresoProductoManagedBean.productos}" var="producto" itemLabel="#{producto.nombreProducto}" itemValue="#{producto}" />
+                        
+                        <p:column>
+                            <h:outputText value="#{t.nombreProducto}" />
+                        </p:column>
+                    </p:selectOneMenu>
+
+                    <p:commandButton id="createButtonP" icon="ui-icon-plus" immediate="true"   value="#{crudbundle.Create}" actionListener="#{productoManagedBean.toCreateProducto}"/>
+                </p:panelGrid>
+
+
+                <p:separator/>
+
+                <h3>Ingreso de compra</h3>
+                <p:panelGrid columns="2">                        
+                    <h:outputLabel for="jaula" value="Jaula de ingreso: " />
+                    <p:selectOneMenu id="jaula" value="#{ingresoProductoManagedBean.jaula}" converter="#{jaulaConverter}" panelStyle="width:180px"
+                                     effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                        <f:selectItems value="#{ingresoProductoManagedBean.jaulas}" var="jaula" itemLabel="#{jaula.descripcionJaula}" itemValue="#{jaula}" />
+                        <p:column>
+                            <h:outputText value="#{t.descripcionJaula}" />
+                        </p:column>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="cantidad" value="Cantidad de compra: " />
+                    <p:inputText id="cantidad" style="text-align: center" value="#{ingresoProductoManagedBean.ingresoProducto.cantidadIngresoProducto}" />
+
+                    <h:outputLabel for="fecha" value="Fecha: " />
+                    <p:calendar id="fecha" style="text-align: center" value="#{ingresoProductoManagedBean.ingresoProducto.fechaHoraIngresoProducto}" showOn="button"  />
+
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{ingresoProductoManagedBean.saveNew}" value="#{crudbundle.Save}" />
+
+                </p:panelGrid>
+                <p:separator/>
+
+
+            </h:panelGroup>
+        </h:form>
+    </ui:composition> 
+</html>

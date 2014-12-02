@@ -8,27 +8,27 @@
 
     <ui:composition>
 
-        <p:dialog id="ProductoViewDlg" widgetVar="ProductoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewProductoTitle}" closeOnEscape="true">
+        <p:dialog id="ProductoViewDlg" widgetVar="ProductoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="View Producto" closeOnEscape="true">
 
             <h:form id="ProductoViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{productoManagedBean.selected != null}">
 
-                        <h:outputText value="#{crudbundle.ViewProductoLabel_idProducto}"/>
-                        <h:outputText value="#{productoManagedBean.selected.idProducto}" title="#{crudbundle.ViewProductoTitle_idProducto}"/>
+                        <h:outputText value="Numero de registro del producto"/>
+                        <h:outputText value="#{productoManagedBean.selected.idProducto}" title="Numero de registro del producto"/>
 
-                        <h:outputText value="#{crudbundle.ViewProductoLabel_nombreProducto}"/>
-                        <h:outputText value="#{productoManagedBean.selected.nombreProducto}" title="#{crudbundle.ViewProductoTitle_nombreProducto}"/>
+                        <h:outputText value="Nombre del producto"/>
+                        <h:outputText value="#{productoManagedBean.selected.nombreProducto}" title="Nombre del producto"/>
 
-                        <h:outputText value="#{crudbundle.ViewProductoLabel_descripcionProducto}"/>
-                        <h:outputText value="#{productoManagedBean.selected.descripcionProducto}" title="#{crudbundle.ViewProductoTitle_descripcionProducto}"/>
+                        <h:outputText value="Descripcion"/>
+                        <h:outputText value="#{productoManagedBean.selected.descripcionProducto}" title="Descripcion"/>
 
-                        <h:outputText value="#{crudbundle.ViewProductoLabel_activoProducto}"/>
-                        <h:selectBooleanCheckbox id="activoProducto" value="#{productoManagedBean.selected.activoProducto}" title="#{crudbundle.EditProductoTitle_activoProducto}" required="true" requiredMessage="#{crudbundle.EditProductoRequiredMessage_activoProducto}" disabled="true"/>
+                        <h:outputText value="Producto activo"/>
+                        <h:selectBooleanCheckbox id="activoProducto" value="#{productoManagedBean.selected.activoProducto}" title="Producto activo" required="true" requiredMessage="Es necesario el campo" disabled="true"/>
 
-                        <h:outputText value="#{crudbundle.ViewProductoLabel_precioProducto}"/>
-                        <h:outputText value="#{productoManagedBean.selected.precioProducto}" title="#{crudbundle.ViewProductoTitle_precioProducto}"/>
+                        <h:outputText value="Precio de venta del producto"/>
+                        <h:outputText value="#{productoManagedBean.selected.precioProducto}" title="Precio de venta del producto"/>
                     </p:panelGrid>
                     <p:commandButton value="#{crudbundle.Close}" onclick="PF('ProductoViewDialog').hide()"/>
                 </h:panelGroup>
