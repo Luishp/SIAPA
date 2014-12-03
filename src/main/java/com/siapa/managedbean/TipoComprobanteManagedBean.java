@@ -27,14 +27,15 @@ import org.springframework.web.context.WebApplicationContext;
 
 
    
-public class TipoComprobanteManagedBean extends GenericManagedBean<TipoComprobante, Long>{
+public class TipoComprobanteManagedBean extends GenericManagedBean<TipoComprobante, Integer>{
 
     @Autowired
     @Qualifier(value = "tipoComprobanteService")
     private TipoComprobanteService tipoComprobanteService;
     
+    
     @Override
-    public GenericService<TipoComprobante, Long> getService() {
+    public GenericService<TipoComprobante, Integer> getService() {
         return tipoComprobanteService;
     }
 

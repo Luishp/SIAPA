@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2014 a las 06:39:37
--- Versión del servidor: 5.5.32
--- Versión de PHP: 5.4.16
+-- Tiempo de generación: 02-12-2014 a las 23:43:01
+-- Versión del servidor: 5.5.37
+-- Versión de PHP: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,12 +41,13 @@ CREATE TABLE IF NOT EXISTS `alimento` (
 -- Volcado de datos para la tabla `alimento`
 --
 
-INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(2, 3, 'ALCON', '100.00');
-INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(4, 4, 'ALCON', '150.00');
-INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(5, 7, 'Alianza', '1501.00');
-INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(6, 6, 'DELTA', '234.00');
-INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(7, 7, 'OMEGA', '159.00');
-INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES(8, 7, 'OMEGA', '159.00');
+INSERT INTO `alimento` (`ID_ALIMENTO`, `ID_TIPO_ALIMENTO`, `MARCA_ALIMENTO`, `EXISTENCIA_ALIMENTO`) VALUES
+(2, 3, 'ALCON', '100.00'),
+(4, 4, 'ALCON', '150.00'),
+(5, 7, 'Alianza', '1531.00'),
+(6, 6, 'DELTA', '234.00'),
+(7, 7, 'OMEGA', '159.00'),
+(8, 7, 'OMEGA', '159.00');
 
 -- --------------------------------------------------------
 
@@ -65,9 +66,10 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES(1, 'A', 'categoria 1 de prueba');
-INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES(2, 'B', 'categoria 2 de prueba');
-INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES(3, 'C', 'Categoria de prueba ');
+INSERT INTO `categorias` (`ID_CATEGORIAS`, `NOMBRE_CATEGORIAS`, `DESCRIPCION_CATEGORIAS`) VALUES
+(1, 'A', 'categoria 1 de prueba'),
+(2, 'B', 'categoria 2 de prueba'),
+(3, 'C', 'Categoria de prueba ');
 
 -- --------------------------------------------------------
 
@@ -91,9 +93,10 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES(3, 3, 6, 'Izabel Goulart', 'Brasil', 'C');
-INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES(4, 1, 5, 'Behati Prinsloo ', '(Namibia)()', 'A');
-INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES(5, 3, 5, 'Behati Prinsloo ', '(Namibia)()', 'C');
+INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIENTE_COMP_VENTA`, `DIRECCION_CLIENTE`, `TIPO_CLIENTE`) VALUES
+(3, 3, 6, 'Izabel Goulart', 'Brasil', 'C'),
+(4, 1, 5, 'Behati Prinsloo ', '(Namibia)()', 'A'),
+(5, 3, 5, 'Behati Prinsloo ', '(Namibia)()', 'C');
 
 -- --------------------------------------------------------
 
@@ -124,14 +127,16 @@ CREATE TABLE IF NOT EXISTS `compra` (
   `TOTAL_COMPRA` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_COMPRA`),
   KEY `FK_RELATIONSHIP_15` (`ID_PROVEEDOR`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `compra`
 --
 
-INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO_COMPRA`, `TOTAL_COMPRA`) VALUES(1, 2, '2014-11-03', 'AOP', '125.00');
-INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO_COMPRA`, `TOTAL_COMPRA`) VALUES(2, 2, '2014-11-08', 'juan', '1223.00');
+INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO_COMPRA`, `TOTAL_COMPRA`) VALUES
+(1, 2, '2014-11-03', 'AOP', '125.00'),
+(2, 2, '2014-11-08', 'juan', '1223.00'),
+(3, 1, '2014-12-01', 'EOP', '50.85');
 
 -- --------------------------------------------------------
 
@@ -140,9 +145,9 @@ INSERT INTO `compra` (`ID_COMPRA`, `ID_PROVEEDOR`, `FECHA_HORA_COMPRA`, `USUARIO
 --
 
 CREATE TABLE IF NOT EXISTS `comprobante_venta` (
-  `ID_COMPROBANTE_VENTA` decimal(18,0) NOT NULL,
-  `ID_VENTA` decimal(18,0) DEFAULT NULL,
-  `ID_TIPO_COMPROBANTE` decimal(18,0) DEFAULT NULL,
+  `ID_COMPROBANTE_VENTA` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_VENTA` int(11) DEFAULT NULL,
+  `ID_TIPO_COMPROBANTE` int(11) DEFAULT NULL,
   `NOMBRE_CLIENTE_COMP_VENTA` varchar(50) NOT NULL,
   `DIRECCION_COMPROBANTE_VENTA` varchar(500) NOT NULL,
   `TEL_COMPROBANTE_VENTA` varchar(14) DEFAULT NULL,
@@ -154,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `comprobante_venta` (
   PRIMARY KEY (`ID_COMPROBANTE_VENTA`),
   KEY `FK_RELATIONSHIP_1` (`ID_TIPO_COMPROBANTE`),
   KEY `FK_RELATIONSHIP_3` (`ID_VENTA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -176,16 +181,16 @@ CREATE TABLE IF NOT EXISTS `contacto` (
 --
 
 CREATE TABLE IF NOT EXISTS `descuento` (
-  `ID_DESCUENTO` decimal(18,0) NOT NULL,
+  `ID_DESCUENTO` int(11) NOT NULL AUTO_INCREMENT,
   `ID_CATEGORIAS` int(11) DEFAULT NULL,
-  `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
+  `ID_PRODUCTO` int(11) DEFAULT NULL,
   `NOMBRE_DESCUENTO` varchar(50) NOT NULL,
   `DESCRIPCION_DESCUENTO` varchar(500) NOT NULL,
   `PORCENTAJE_DESCUENTO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_DESCUENTO`),
   KEY `FK_RELATIONSHIP_19` (`ID_PRODUCTO`),
   KEY `FK_RELATIONSHIP_20` (`ID_CATEGORIAS`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -203,14 +208,17 @@ CREATE TABLE IF NOT EXISTS `detalle_compra_alimento` (
   PRIMARY KEY (`ID_DETALLE_COMPRA_ALIMENTO`),
   KEY `FK_RELATIONSHIP_14` (`ID_COMPRA`),
   KEY `ID_ALIMENTO` (`ID_ALIMENTO`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `detalle_compra_alimento`
 --
 
-INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`, `ID_ALIMENTO`, `CANT_DETALLE_COMPRA_ALIMENTO`, `PRECIO_DETALLE_COMPRA_ALIMENTO`, `IMPUESTO_DET_COMPRA_ALIMENTO`) VALUES(1, 1, 7, '12.00', '1.25', '13.00');
-INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`, `ID_ALIMENTO`, `CANT_DETALLE_COMPRA_ALIMENTO`, `PRECIO_DETALLE_COMPRA_ALIMENTO`, `IMPUESTO_DET_COMPRA_ALIMENTO`) VALUES(2, 2, 7, '12.00', '1.25', '13.00');
+INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`, `ID_ALIMENTO`, `CANT_DETALLE_COMPRA_ALIMENTO`, `PRECIO_DETALLE_COMPRA_ALIMENTO`, `IMPUESTO_DET_COMPRA_ALIMENTO`) VALUES
+(1, 1, 7, '12.00', '1.25', '13.00'),
+(2, 2, 7, '12.00', '1.25', '13.00'),
+(3, 3, 4, '12.00', '1.50', '13.00'),
+(4, 3, 5, '18.00', '1.50', '13.00');
 
 -- --------------------------------------------------------
 
@@ -219,8 +227,8 @@ INSERT INTO `detalle_compra_alimento` (`ID_DETALLE_COMPRA_ALIMENTO`, `ID_COMPRA`
 --
 
 CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
-  `ID_DETALLE_COMPROBANTE_VENTA` decimal(18,0) NOT NULL,
-  `ID_COMPROBANTE_VENTA` decimal(18,0) DEFAULT NULL,
+  `ID_DETALLE_COMPROBANTE_VENTA` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_COMPROBANTE_VENTA` int(11) DEFAULT NULL,
   `PRODUCTO_DETALLE_COMP_VENTA` varchar(50) NOT NULL,
   `CANTIDAD_DETALLE_COMP_VENTA` decimal(10,2) NOT NULL,
   `DESCRIPCION_DETALLE_COMP_VENTA` varchar(500) NOT NULL,
@@ -229,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `detalle_comprobante_venta` (
   `TOTAL_DETALLE_COMPROBANTE_VENTA` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_DETALLE_COMPROBANTE_VENTA`),
   KEY `FK_RELATIONSHIP_2` (`ID_COMPROBANTE_VENTA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -244,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
   `PESO_DETALLE_MUESTREO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_DETALLE_MUESTREO`),
   KEY `FK_RELATIONSHIP_9` (`ID_MUESTREO`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -253,17 +261,17 @@ CREATE TABLE IF NOT EXISTS `detalle_muestreo` (
 --
 
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
-  `ID_DETALLE_VENTA` decimal(18,0) NOT NULL,
-  `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
+  `ID_DETALLE_VENTA` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_PRODUCTO` int(11) DEFAULT NULL,
   `ID_JAULA` int(11) DEFAULT NULL,
-  `ID_VENTA` decimal(18,0) DEFAULT NULL,
+  `ID_VENTA` int(11) DEFAULT NULL,
   `CANTIDAD_DETALLE_VENTA` decimal(10,2) NOT NULL,
   `PORCENTAJE_DES_DETALLE_VENTA` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_DETALLE_VENTA`),
   KEY `FK_RELATIONSHIP_17` (`ID_JAULA`),
   KEY `FK_RELATIONSHIP_18` (`ID_PRODUCTO`),
   KEY `FK_RELATIONSHIP_21` (`ID_VENTA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -272,8 +280,8 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 --
 
 CREATE TABLE IF NOT EXISTS `ingreso_producto` (
-  `ID_INGRESO_PRODUCTO` decimal(18,0) NOT NULL,
-  `ID_PRODUCTO` decimal(18,0) DEFAULT NULL,
+  `ID_INGRESO_PRODUCTO` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_PRODUCTO` int(11) DEFAULT NULL,
   `ID_JAULA` int(11) DEFAULT NULL,
   `CANTIDAD_INGRESO_PRODUCTO` decimal(10,2) NOT NULL,
   `FECHA_HORA_INGRESO_PRODUCTO` date NOT NULL,
@@ -281,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `ingreso_producto` (
   PRIMARY KEY (`ID_INGRESO_PRODUCTO`),
   KEY `FK_RELATIONSHIP_24` (`ID_PRODUCTO`),
   KEY `FK_RELATIONSHIP_6` (`ID_JAULA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -300,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `jaula` (
   `VENTA_JAULA` decimal(8,0) NOT NULL,
   PRIMARY KEY (`ID_JAULA`),
   KEY `FK_RELATIONSHIP_7` (`ID_TIPO_JAULA`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -317,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `muestreo` (
   `FECHA_REGISTRO_MUESTREO` date NOT NULL,
   PRIMARY KEY (`ID_MUESTREO`),
   KEY `FK_RELATIONSHIP_8` (`ID_JAULA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -340,13 +348,14 @@ CREATE TABLE IF NOT EXISTS `persona` (
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(1, 'Joao Hernandez', 'San Marcos', '123456', '321564', '2348949879', 'A');
-INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(2, 'Walter Hernandez', 'Mejicanos', '789467868', '46416876416', '645468465746', 'B');
-INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(3, 'Ricardo Armando Flamenco', 'San Martin #3', '1654891354', '12213123', '232323222', 'A');
-INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(4, 'Alessandra Ambrosio ', 'Brasil #12, San Jacinto', '78916946198', '1654768162165', '65431894651657', 'A');
-INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(5, 'Behati Prinsloo ', '(Namibia)()', '92512436146', '913434161657', '16541364655165', 'C');
-INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(6, 'Izabel Goulart', 'Brasil', '1891564545615', '005961261', '0651364130', 'B');
-INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES(7, 'Kasia Struss', '(Polonia) ', '004405055', '0011224105', '0000521205', 'B');
+INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC_PERSONA`, `NIT_PERSONA`, `DUI_PERSONA`, `TIPO_PERSONA`) VALUES
+(1, 'Joao Hernandez', 'San Marcos', '123456', '321564', '2348949879', 'A'),
+(2, 'Walter Hernandez', 'Mejicanos', '789467868', '46416876416', '645468465746', 'B'),
+(3, 'Ricardo Armando Flamenco', 'San Martin #3', '1654891354', '12213123', '232323222', 'A'),
+(4, 'Alessandra Ambrosio ', 'Brasil #12, San Jacinto', '78916946198', '1654768162165', '65431894651657', 'A'),
+(5, 'Behati Prinsloo ', '(Namibia)()', '92512436146', '913434161657', '16541364655165', 'C'),
+(6, 'Izabel Goulart', 'Brasil', '1891564545615', '005961261', '0651364130', 'B'),
+(7, 'Kasia Struss', '(Polonia) ', '004405055', '0011224105', '0000521205', 'B');
 
 -- --------------------------------------------------------
 
@@ -355,13 +364,13 @@ INSERT INTO `persona` (`ID_PERSONA`, `NOMBRE_PERSONA`, `DIRECCION_PERSONA`, `NRC
 --
 
 CREATE TABLE IF NOT EXISTS `producto` (
-  `ID_PRODUCTO` decimal(18,0) NOT NULL,
+  `ID_PRODUCTO` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_PRODUCTO` varchar(50) NOT NULL,
   `DESCRIPCION_PRODUCTO` varchar(500) DEFAULT NULL,
   `ACTIVO_PRODUCTO` tinyint(1) NOT NULL,
   `PRECIO_PRODUCTO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_PRODUCTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -382,8 +391,9 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUARIO_PROVEEDOR`) VALUES(1, 5, '2014-11-20', 'EAD');
-INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUARIO_PROVEEDOR`) VALUES(2, 6, '2014-11-28', 'EAD');
+INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUARIO_PROVEEDOR`) VALUES
+(1, 5, '2014-11-20', 'EAD'),
+(2, 6, '2014-11-28', 'EAD');
 
 -- --------------------------------------------------------
 
@@ -438,10 +448,11 @@ CREATE TABLE IF NOT EXISTS `tipo_alimento` (
 -- Volcado de datos para la tabla `tipo_alimento`
 --
 
-INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES(3, 'Alimento liofilizado', 'Son alimentos deshidratados mediante una técnica especial que les permite conservar todos sus nutrientes\n\n\n', '12.5');
-INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES(4, 'Papillas', ' El alimento se presenta en forma de papilla, después de haber mezclado y batido los ingredientes correspondientes.\n\n\n', '21.5');
-INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES(6, ' Alimento Fresco', 'Mejillones, gambas, corazón de res... Estos alimentos pueden proporcionarse ocasionalmente en su forma natural, siempre troceados en función del tamaño de los peces\n', '5.5');
-INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES(7, 'daphnia', 'las larvas de mosquito, camarones recién eclosionados o adultos (según el tipo de pez a alimentar) y las pequeñas lombrices Tubifex.\n', '.2.2');
+INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRICION_TIPO_ALIMENTO`, `PORCE_PROTEINA_TIPO_ALIMENTO`) VALUES
+(3, 'Alimento liofilizado', 'Son alimentos deshidratados mediante una técnica especial que les permite conservar todos sus nutrientes\n\n\n', '12.5'),
+(4, 'Papillas', ' El alimento se presenta en forma de papilla, después de haber mezclado y batido los ingredientes correspondientes.\n\n\n', '21.5'),
+(6, ' Alimento Fresco', 'Mejillones, gambas, corazón de res... Estos alimentos pueden proporcionarse ocasionalmente en su forma natural, siempre troceados en función del tamaño de los peces\n', '5.5'),
+(7, 'daphnia', 'las larvas de mosquito, camarones recién eclosionados o adultos (según el tipo de pez a alimentar) y las pequeñas lombrices Tubifex.\n', '.2.2');
 
 -- --------------------------------------------------------
 
@@ -450,11 +461,11 @@ INSERT INTO `tipo_alimento` (`ID_TIPO_ALIMENTO`, `NOMBRE_TIPO_ALIMENTO`, `DESCRI
 --
 
 CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
-  `ID_TIPO_COMPROBANTE` decimal(18,0) NOT NULL,
+  `ID_TIPO_COMPROBANTE` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_TIPO_COMPROBANTE` varchar(50) DEFAULT NULL,
   `DESCRIPCION_TIPO_COMPROBANTE` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID_TIPO_COMPROBANTE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -476,7 +487,8 @@ CREATE TABLE IF NOT EXISTS `tipo_jaula` (
 -- Volcado de datos para la tabla `tipo_jaula`
 --
 
-INSERT INTO `tipo_jaula` (`ID_TIPO_JAULA`, `NOMBRE_TIPO_JAULA`, `DESCRIPCION_TIPO_JAULA`, `ANCHO_TIPO_JAULA`, `LARGO_TIPO_JAULA`, `PROFUNDIDAD_TIPO_JAULA`) VALUES(1, 'V', 'Jaula de Ventas', '8.40', '6.70', '4.50');
+INSERT INTO `tipo_jaula` (`ID_TIPO_JAULA`, `NOMBRE_TIPO_JAULA`, `DESCRIPCION_TIPO_JAULA`, `ANCHO_TIPO_JAULA`, `LARGO_TIPO_JAULA`, `PROFUNDIDAD_TIPO_JAULA`) VALUES
+(1, 'V', 'Jaula de Ventas', '8.40', '6.70', '4.50');
 
 -- --------------------------------------------------------
 
@@ -501,15 +513,15 @@ CREATE TABLE IF NOT EXISTS `traslados` (
 --
 
 CREATE TABLE IF NOT EXISTS `venta` (
-  `ID_VENTA` decimal(18,0) NOT NULL,
+  `ID_VENTA` int(11) NOT NULL AUTO_INCREMENT,
   `ID_CLIENTE` int(11) DEFAULT NULL,
-  `ID_COMPROBANTE_VENTA` decimal(18,0) DEFAULT NULL,
+  `ID_COMPROBANTE_VENTA` int(11) DEFAULT NULL,
   `FECHA_HORA_VENTA` date NOT NULL,
   `USUARIO_VENTA` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_VENTA`),
   KEY `FK_RELATIONSHIP_23` (`ID_CLIENTE`),
   KEY `FK_RELATIONSHIP_4` (`ID_COMPROBANTE_VENTA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Restricciones para tablas volcadas
@@ -545,15 +557,15 @@ ALTER TABLE `compra`
 -- Filtros para la tabla `comprobante_venta`
 --
 ALTER TABLE `comprobante_venta`
-  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`ID_TIPO_COMPROBANTE`) REFERENCES `tipo_comprobante` (`ID_TIPO_COMPROBANTE`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`ID_VENTA`) REFERENCES `venta` (`ID_VENTA`);
+  ADD CONSTRAINT `comprobante_venta_ibfk_2` FOREIGN KEY (`ID_TIPO_COMPROBANTE`) REFERENCES `tipo_comprobante` (`ID_TIPO_COMPROBANTE`),
+  ADD CONSTRAINT `comprobante_venta_ibfk_1` FOREIGN KEY (`ID_VENTA`) REFERENCES `venta` (`ID_VENTA`);
 
 --
 -- Filtros para la tabla `descuento`
 --
 ALTER TABLE `descuento`
-  ADD CONSTRAINT `descuento_ibfk_1` FOREIGN KEY (`ID_CATEGORIAS`) REFERENCES `categorias` (`ID_CATEGORIAS`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_19` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`);
+  ADD CONSTRAINT `descuento_ibfk_2` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`),
+  ADD CONSTRAINT `descuento_ibfk_1` FOREIGN KEY (`ID_CATEGORIAS`) REFERENCES `categorias` (`ID_CATEGORIAS`);
 
 --
 -- Filtros para la tabla `detalle_compra_alimento`
@@ -566,7 +578,7 @@ ALTER TABLE `detalle_compra_alimento`
 -- Filtros para la tabla `detalle_comprobante_venta`
 --
 ALTER TABLE `detalle_comprobante_venta`
-  ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`ID_COMPROBANTE_VENTA`) REFERENCES `comprobante_venta` (`ID_COMPROBANTE_VENTA`);
+  ADD CONSTRAINT `detalle_comprobante_venta_ibfk_1` FOREIGN KEY (`ID_COMPROBANTE_VENTA`) REFERENCES `comprobante_venta` (`ID_COMPROBANTE_VENTA`);
 
 --
 -- Filtros para la tabla `detalle_muestreo`
@@ -578,16 +590,16 @@ ALTER TABLE `detalle_muestreo`
 -- Filtros para la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
+  ADD CONSTRAINT `detalle_venta_ibfk_3` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`),
   ADD CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_18` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_21` FOREIGN KEY (`ID_VENTA`) REFERENCES `venta` (`ID_VENTA`);
+  ADD CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`ID_VENTA`) REFERENCES `venta` (`ID_VENTA`);
 
 --
 -- Filtros para la tabla `ingreso_producto`
 --
 ALTER TABLE `ingreso_producto`
-  ADD CONSTRAINT `ingreso_producto_ibfk_1` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_24` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`);
+  ADD CONSTRAINT `ingreso_producto_ibfk_2` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
+  ADD CONSTRAINT `ingreso_producto_ibfk_1` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `producto` (`ID_PRODUCTO`);
 
 --
 -- Filtros para la tabla `jaula`
@@ -611,8 +623,8 @@ ALTER TABLE `proveedor`
 -- Filtros para la tabla `registro_alimentacion`
 --
 ALTER TABLE `registro_alimentacion`
-  ADD CONSTRAINT `registro_alimentacion_ibfk_2` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`),
-  ADD CONSTRAINT `registro_alimentacion_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`);
+  ADD CONSTRAINT `registro_alimentacion_ibfk_1` FOREIGN KEY (`ID_ALIMENTO`) REFERENCES `alimento` (`ID_ALIMENTO`),
+  ADD CONSTRAINT `registro_alimentacion_ibfk_2` FOREIGN KEY (`ID_JAULA`) REFERENCES `jaula` (`ID_JAULA`);
 
 --
 -- Filtros para la tabla `registro_mortalidad`
@@ -630,7 +642,7 @@ ALTER TABLE `traslados`
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`ID_COMPROBANTE_VENTA`) REFERENCES `comprobante_venta` (`ID_COMPROBANTE_VENTA`),
+  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`ID_COMPROBANTE_VENTA`) REFERENCES `comprobante_venta` (`ID_COMPROBANTE_VENTA`),
   ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `cliente` (`ID_CLIENTE`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

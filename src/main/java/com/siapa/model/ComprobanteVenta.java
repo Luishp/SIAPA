@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -14,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,11 +33,12 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "ComprobanteVenta.findAll", query = "SELECT c FROM ComprobanteVenta c")})
 public class ComprobanteVenta implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_COMPROBANTE_VENTA", nullable = false)
-    private Long idComprobanteVenta;
+    @GeneratedValue
+    @Column(name = "ID_COMPROBANTE_VENTA", nullable = true)
+    private Integer idComprobanteVenta;
     @Basic(optional = false)
     @Column(name = "NOMBRE_CLIENTE_COMP_VENTA", nullable = false, length = 50)
     private String nombreClienteCompVenta;
@@ -72,21 +73,21 @@ public class ComprobanteVenta implements Serializable {
     public ComprobanteVenta() {
     }
 
-    public ComprobanteVenta(Long idComprobanteVenta) {
+    public ComprobanteVenta(Integer idComprobanteVenta) {
         this.idComprobanteVenta = idComprobanteVenta;
     }
 
-    public ComprobanteVenta(Long idComprobanteVenta, String nombreClienteCompVenta, String direccionComprobanteVenta) {
+    public ComprobanteVenta(Integer idComprobanteVenta, String nombreClienteCompVenta, String direccionComprobanteVenta) {
         this.idComprobanteVenta = idComprobanteVenta;
         this.nombreClienteCompVenta = nombreClienteCompVenta;
         this.direccionComprobanteVenta = direccionComprobanteVenta;
     }
 
-    public Long getIdComprobanteVenta() {
+    public Integer getIdComprobanteVenta() {
         return idComprobanteVenta;
     }
 
-    public void setIdComprobanteVenta(Long idComprobanteVenta) {
+    public void setIdComprobanteVenta(Integer idComprobanteVenta) {
         this.idComprobanteVenta = idComprobanteVenta;
     }
 
@@ -210,5 +211,4 @@ public class ComprobanteVenta implements Serializable {
     public String toString() {
         return "com.siapa.model.ComprobanteVenta[ idComprobanteVenta=" + idComprobanteVenta + " ]";
     }
-    
 }

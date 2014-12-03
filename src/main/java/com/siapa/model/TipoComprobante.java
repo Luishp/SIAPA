@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,10 +29,14 @@ import javax.persistence.Table;
     @NamedQuery(name = "TipoComprobante.findAll", query = "SELECT t FROM TipoComprobante t")})
 public class TipoComprobante implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_TIPO_COMPROBANTE", nullable = false)
-    private Long idTipoComprobante;
+   
+    
+    
+     @Id
+    @GeneratedValue
+    @Column(name = "ID_TIPO_COMPROBANTE", nullable = true)
+    private Integer idTipoComprobante;
+    
     @Column(name = "NOMBRE_TIPO_COMPROBANTE", length = 50)
     private String nombreTipoComprobante;
     @Column(name = "DESCRIPCION_TIPO_COMPROBANTE", length = 500)
@@ -42,15 +47,15 @@ public class TipoComprobante implements Serializable {
     public TipoComprobante() {
     }
 
-    public TipoComprobante(Long idTipoComprobante) {
+    public TipoComprobante(Integer idTipoComprobante) {
         this.idTipoComprobante = idTipoComprobante;
     }
 
-    public Long getIdTipoComprobante() {
+    public Integer getIdTipoComprobante() {
         return idTipoComprobante;
     }
 
-    public void setIdTipoComprobante(Long idTipoComprobante) {
+    public void setIdTipoComprobante(Integer idTipoComprobante) {
         this.idTipoComprobante = idTipoComprobante;
     }
 

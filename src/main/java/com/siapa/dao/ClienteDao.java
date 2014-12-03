@@ -7,6 +7,8 @@ package com.siapa.dao;
 
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.Cliente;
+import java.util.List;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +17,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ClienteDao extends GenericDao<Cliente, Integer>{
+    
+    
+     public List <Cliente>getCliente(){
+        
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT clie FROM Cliente clie JOIN FETCH clie.idPersona");
+        return q.list();
+        
+    }
     
 }

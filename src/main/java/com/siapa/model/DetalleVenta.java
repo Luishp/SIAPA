@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,11 +28,12 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "DetalleVenta.findAll", query = "SELECT d FROM DetalleVenta d")})
 public class DetalleVenta implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_DETALLE_VENTA", nullable = false)
-    private Long idDetalleVenta;
+    @GeneratedValue
+    @Column(name = "ID_DETALLE_VENTA", nullable = true)
+    private Integer idDetalleVenta;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "CANTIDAD_DETALLE_VENTA", nullable = false, precision = 10, scale = 2)
@@ -53,21 +54,21 @@ public class DetalleVenta implements Serializable {
     public DetalleVenta() {
     }
 
-    public DetalleVenta(Long idDetalleVenta) {
+    public DetalleVenta(Integer idDetalleVenta) {
         this.idDetalleVenta = idDetalleVenta;
     }
 
-    public DetalleVenta(Long idDetalleVenta, BigDecimal cantidadDetalleVenta, BigDecimal porcentajeDesDetalleVenta) {
+    public DetalleVenta(Integer idDetalleVenta, BigDecimal cantidadDetalleVenta, BigDecimal porcentajeDesDetalleVenta) {
         this.idDetalleVenta = idDetalleVenta;
         this.cantidadDetalleVenta = cantidadDetalleVenta;
         this.porcentajeDesDetalleVenta = porcentajeDesDetalleVenta;
     }
 
-    public Long getIdDetalleVenta() {
+    public Integer getIdDetalleVenta() {
         return idDetalleVenta;
     }
 
-    public void setIdDetalleVenta(Long idDetalleVenta) {
+    public void setIdDetalleVenta(Integer idDetalleVenta) {
         this.idDetalleVenta = idDetalleVenta;
     }
 
@@ -135,5 +136,4 @@ public class DetalleVenta implements Serializable {
     public String toString() {
         return "com.siapa.model.DetalleVenta[ idDetalleVenta=" + idDetalleVenta + " ]";
     }
-    
 }

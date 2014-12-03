@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -13,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,11 +32,15 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")})
 public class Venta implements Serializable {
+
     private static final long serialVersionUID = 1L;
+   
+   
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_VENTA", nullable = false)
-    private Long idVenta;
+    @GeneratedValue
+    @Column(name = "ID_VENTA", nullable = true)
+    private Integer idVenta;
+   
     @Basic(optional = false)
     @Column(name = "FECHA_HORA_VENTA", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -58,21 +62,21 @@ public class Venta implements Serializable {
     public Venta() {
     }
 
-    public Venta(Long idVenta) {
+    public Venta(Integer idVenta) {
         this.idVenta = idVenta;
     }
 
-    public Venta(Long idVenta, Date fechaHoraVenta, String usuarioVenta) {
+    public Venta(Integer idVenta, Date fechaHoraVenta, String usuarioVenta) {
         this.idVenta = idVenta;
         this.fechaHoraVenta = fechaHoraVenta;
         this.usuarioVenta = usuarioVenta;
     }
 
-    public Long getIdVenta() {
+    public Integer getIdVenta() {
         return idVenta;
     }
 
-    public void setIdVenta(Long idVenta) {
+    public void setIdVenta(Integer idVenta) {
         this.idVenta = idVenta;
     }
 
@@ -148,5 +152,4 @@ public class Venta implements Serializable {
     public String toString() {
         return "com.siapa.model.Venta[ idVenta=" + idVenta + " ]";
     }
-    
 }

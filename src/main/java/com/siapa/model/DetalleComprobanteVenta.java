@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,11 +28,12 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "DetalleComprobanteVenta.findAll", query = "SELECT d FROM DetalleComprobanteVenta d")})
 public class DetalleComprobanteVenta implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_DETALLE_COMPROBANTE_VENTA", nullable = false)
-    private Long idDetalleComprobanteVenta;
+    @GeneratedValue
+    @Column(name = "ID_DETALLE_COMPROBANTE_VENTA", nullable = true)
+    private Integer idDetalleComprobanteVenta;
     @Basic(optional = false)
     @Column(name = "PRODUCTO_DETALLE_COMP_VENTA", nullable = false, length = 50)
     private String productoDetalleCompVenta;
@@ -59,11 +60,11 @@ public class DetalleComprobanteVenta implements Serializable {
     public DetalleComprobanteVenta() {
     }
 
-    public DetalleComprobanteVenta(Long idDetalleComprobanteVenta) {
+    public DetalleComprobanteVenta(Integer idDetalleComprobanteVenta) {
         this.idDetalleComprobanteVenta = idDetalleComprobanteVenta;
     }
 
-    public DetalleComprobanteVenta(Long idDetalleComprobanteVenta, String productoDetalleCompVenta, BigDecimal cantidadDetalleCompVenta, String descripcionDetalleCompVenta, BigDecimal precioUnitarioDetCompVenta, String tipoVentaDetalleCompVenta, BigDecimal totalDetalleComprobanteVenta) {
+    public DetalleComprobanteVenta(Integer idDetalleComprobanteVenta, String productoDetalleCompVenta, BigDecimal cantidadDetalleCompVenta, String descripcionDetalleCompVenta, BigDecimal precioUnitarioDetCompVenta, String tipoVentaDetalleCompVenta, BigDecimal totalDetalleComprobanteVenta) {
         this.idDetalleComprobanteVenta = idDetalleComprobanteVenta;
         this.productoDetalleCompVenta = productoDetalleCompVenta;
         this.cantidadDetalleCompVenta = cantidadDetalleCompVenta;
@@ -73,11 +74,11 @@ public class DetalleComprobanteVenta implements Serializable {
         this.totalDetalleComprobanteVenta = totalDetalleComprobanteVenta;
     }
 
-    public Long getIdDetalleComprobanteVenta() {
+    public Integer getIdDetalleComprobanteVenta() {
         return idDetalleComprobanteVenta;
     }
 
-    public void setIdDetalleComprobanteVenta(Long idDetalleComprobanteVenta) {
+    public void setIdDetalleComprobanteVenta(Integer idDetalleComprobanteVenta) {
         this.idDetalleComprobanteVenta = idDetalleComprobanteVenta;
     }
 
@@ -161,5 +162,4 @@ public class DetalleComprobanteVenta implements Serializable {
     public String toString() {
         return "com.siapa.model.DetalleComprobanteVenta[ idDetalleComprobanteVenta=" + idDetalleComprobanteVenta + " ]";
     }
-    
 }

@@ -88,7 +88,6 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         alimentoByIdList = new ArrayList<Alimento>();
         detalleCompraAlimento = new DetalleCompraAlimento();
         tablaDetalleAlimentoPojoLista = new ArrayList<DetalleCompraAlimento>();
-
     }
 
     public void cargarComboAlimentoMarca() {
@@ -125,19 +124,16 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         }
         return null;
     }
-//    
-//    public DetalleCompraAlimento todetalleCompra() {
-//        detalleCompraAlimento = new DetalleCompraAlimento();
-//
-//        return detalleCompraAlimento;
-//    }
+    
+
 
     public void cargar() {
         try {
-
-            getDetalleCompraAlimento().setSumaParcial(getTotal());
-            getDetalleCompraAlimento().setIdAlimento(alimento);
-            tablaDetalleAlimentoPojoLista.add(getDetalleCompraAlimento());
+            DetalleCompraAlimento nuevo= new DetalleCompraAlimento();
+            nuevo=getDetalleCompraAlimento();
+            nuevo.setSumaParcial(getTotal());
+            nuevo.setIdAlimento(getAlimento());
+            tablaDetalleAlimentoPojoLista.add(nuevo);
             sumaTotal = sumaTotal.add(getTotal().setScale(2, BigDecimal.ROUND_HALF_UP));
         } catch (Exception e) {
             System.out.println("error" + e);
