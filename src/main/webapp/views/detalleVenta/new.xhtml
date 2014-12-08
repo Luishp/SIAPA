@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:composition>
+
+        <p:dialog id="DetalleVentaCreateDlg" widgetVar="DetalleVentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Venta de Producto" closeOnEscape="true">
+
+
+
+            <h:form id="DetalleVentaCreateForm">
+
+                <p:panelGrid columns="2" id="grid"  >
+
+
+
+                    <p:outputLabel value="Tipo Alimento : "/>
+<!--                    <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.tipoAlimento}" converter="#{tipoAlimentoConverter}" effect="fade" style="width:200px">
+                        <p:ajax listener="#{detalleCompraAlimentoManagedBean.cargarComboAlimentoMarca}" update="marca" process="tipoAlimento"></p:ajax>
+                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.tipoAlimentoList}" var="tipoc" itemLabel="#{tipoc.nombreTipoAlimento}" itemValue="#{tipoc}" />
+                    </p:selectOneMenu>-->
+
+                    <p:outputLabel value="Marca : "/>
+<!--                    <p:selectOneMenu id="marca" value="#{detalleCompraAlimentoManagedBean.alimento}" converter="#{alimentoConverter}" effect="fade" style="width:200px">
+                        <f:selectItems value="#{detalleCompraAlimentoManagedBean.alimentoByIdList}" var="tipoa" itemLabel="#{tipoa.marcaAlimento}" itemValue="#{tipo}" />
+                    </p:selectOneMenu>-->
+
+                    <p:outputLabel value="Cantidad :" />
+<!--                    <pe:inputNumber id="cantidad" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.cantDetalleCompraAlimento}" required="true"  >
+                                                <f:validateDoubleRange minimum="1"/>
+                        <p:ajax update="total_calc" event="keyup" />
+                    </pe:inputNumber>-->
+
+                    <p:outputLabel value="Precio :($)" />
+<!--                    <pe:inputNumber id="precio" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.precioDetalleCompraAlimento}" required="true">
+                                                <f:validateDoubleRange minimum="1"/>  
+                        <p:ajax update="total_calc" event="keyup"  />
+                    </pe:inputNumber>-->
+
+                    <h:outputLabel value="Impuesto :" />
+<!--                    <pe:inputNumber id="impuesto" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.impuestoDetCompraAlimento}" required="true">
+                                                <f:validateDoubleRange minimum="1"/>
+                        <p:ajax update="total_calc" event="keyup"  />
+                    </pe:inputNumber>-->
+
+                    <h:outputLabel value="Total :($)" />   
+<!--                    <p:inputText id="total_calc" value="#{detalleCompraAlimentoManagedBean.total}" readonly="true"  />-->
+                    <!--
+                                        <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.cargar}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);" onclick="PF('ContactoCreateDialog').hide()"/>
+                                        <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="DetalleCompraAlimentoCreateDialog.hide()"/>-->
+
+
+
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -8,6 +8,8 @@ package com.siapa.dao;
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.Producto;
 import java.io.Serializable;
+import java.util.List;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +18,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ProductoDao extends GenericDao<Producto, Integer>{
-    
+      
+    public List <Producto>getProducto(){
+        
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT prod FROM Producto prod JOIN FETCH prod.descuentoSet");
+        return q.list();
+        
+    }
 }

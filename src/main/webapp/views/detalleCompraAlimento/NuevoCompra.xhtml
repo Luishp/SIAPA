@@ -17,9 +17,6 @@
                 <div align="center" > 
                     <h:panelGroup id="display" >
                         <p:panelGrid columns="4" >
-
-
-                           
                                 <p:outputLabel value="Proveedor : "/>
                                 <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
                                     <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
@@ -31,16 +28,9 @@
                                 </p:panel>
                             </div>
 
-
-
                         </p:panelGrid>
                     </h:panelGroup>
-
-
                 </div>
-
-
-
                 <p:separator />
 
                 <h:form id="form">
@@ -90,12 +80,6 @@
                             </p:column>
 
 
-
-                            <!--                        <p:column headerText="Action">
-                                                        <p:commandLink value="Remove" update=":form:books" process=":form:books">
-                                                            <p:collector value="#{book}" removeFrom="#{detalleCompraAlimentoManagedBean.books}" unique="true"/>
-                                                        </p:commandLink>
-                                                    </p:column>-->
                             <f:facet name="footer">
                                 <div align="center" class="footer-section" > 
                                     <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true" value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreateDetalle}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>

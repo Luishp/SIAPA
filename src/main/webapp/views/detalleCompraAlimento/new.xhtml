@@ -34,8 +34,6 @@
                         <f:selectItems value="#{detalleCompraAlimentoManagedBean.alimentoByIdList}" var="tipoa" itemLabel="#{tipoa.marcaAlimento}" itemValue="#{tipo}" />
                     </p:selectOneMenu>
 
-
-
                     <p:outputLabel value="Cantidad :" />
                     <pe:inputNumber id="cantidad" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.cantDetalleCompraAlimento}" required="true"  >
                         <!--                        <f:validateDoubleRange minimum="1"/>-->
@@ -48,9 +46,7 @@
                         <p:ajax update="total_calc" event="keyup"  />
                     </pe:inputNumber>
 
-
                     <h:outputLabel value="Impuesto :" />
-
                     <pe:inputNumber id="impuesto" value="#{detalleCompraAlimentoManagedBean.detalleCompraAlimento.impuestoDetCompraAlimento}" required="true">
                         <!--                        <f:validateDoubleRange minimum="1"/>-->
                         <p:ajax update="total_calc" event="keyup"  />
@@ -59,15 +55,12 @@
                     <h:outputLabel value="Total :($)" />   
                     <p:inputText id="total_calc" value="#{detalleCompraAlimentoManagedBean.total}" readonly="true"  />
 
-
                     <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.cargar}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);" onclick="PF('ContactoCreateDialog').hide()"/>
                     <p:commandButton icon="ui-icon-closethick" value="#{crudbundle.Cancel}" onclick="DetalleCompraAlimentoCreateDialog.hide()"/>
 
 
 
                 </p:panelGrid>
-
-
             </h:form>
 
         </p:dialog>
