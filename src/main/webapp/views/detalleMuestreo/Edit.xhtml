@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DetalleMuestreoEditDlg" widgetVar="DetalleMuestreoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditMuestreoTitle}" closeOnEscape="true">
+
+            <h:form id="DetalleMuestreoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{detallemuestreoManagedBean.selected!= null}">
+
+
+                        <h:outputLabel for="detallemuestreo" value="Id Muestreo: " />
+                        <p:selectOneMenu id="detallemuestreo" value="#{detallemuestreoManagedBean.muestreo}" converter="#{muestreoConverter}" effect="fade"  style="width:200px"> 
+                            <f:selectItems value="#{detallemuestreoManagedBean.listMuestreo}" var="muestreo" itemLabel="#{muestreo.idMuestreo}" itemValue="#{muestreo}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Cantidad" for="detallemuestreocantidad" />
+
+                        <p:inputText id="detallemuestreocantidad" value="#{detallemuestreoManagedBean.selected.cantidadDetalleMuestreo}" title="#{crudbundle.EditMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
+
+
+
+                        <p:outputLabel value="Peso" for="detallemuestreopeso" />
+
+                        <p:inputText id="detallemuestreopeso" value="#{detallemuestreoManagedBean.selected.pesoDetalleMuestreo}" title="#{crudbundle.EditMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
+
+
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detallemuestreoManagedBean.save}" value="#{crudbundle.Save}" update="display,:DetalleMuestreoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DetalleMuestreoEditDialog'));"/>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('DetalleMuestreoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

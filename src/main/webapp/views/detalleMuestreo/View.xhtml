@@ -8,9 +8,9 @@
 
     <ui:composition>
 
-        <p:dialog id="MuestreoViewDlg" widgetVar="MuestreoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewMuestreoTitle}" closeOnEscape="true">
+        <p:dialog id="DetalleMuestreoViewDlg" widgetVar="DetalleMuestreoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.ViewMuestreoTitle}" closeOnEscape="true">
 
-            <h:form id="MuestreoViewForm">
+            <h:form id="DetalleMuestreoViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{muestreoManagedBean.selected != null}">

@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,9 +31,9 @@ import javax.persistence.Table;
 public class DetalleMuestreo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @GeneratedValue
     @Column(name = "ID_DETALLE_MUESTREO", nullable = false)
-    private Long idDetalleMuestreo;
+    private Integer idDetalleMuestreo;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "CANTIDAD_DETALLE_MUESTREO", nullable = false, precision = 10, scale = 2)
@@ -47,21 +48,21 @@ public class DetalleMuestreo implements Serializable {
     public DetalleMuestreo() {
     }
 
-    public DetalleMuestreo(Long idDetalleMuestreo) {
+    public DetalleMuestreo(Integer idDetalleMuestreo) {
         this.idDetalleMuestreo = idDetalleMuestreo;
     }
 
-    public DetalleMuestreo(Long idDetalleMuestreo, BigDecimal cantidadDetalleMuestreo, BigDecimal pesoDetalleMuestreo) {
+    public DetalleMuestreo(Integer idDetalleMuestreo, BigDecimal cantidadDetalleMuestreo, BigDecimal pesoDetalleMuestreo) {
         this.idDetalleMuestreo = idDetalleMuestreo;
         this.cantidadDetalleMuestreo = cantidadDetalleMuestreo;
         this.pesoDetalleMuestreo = pesoDetalleMuestreo;
     }
 
-    public Long getIdDetalleMuestreo() {
+    public Integer getIdDetalleMuestreo() {
         return idDetalleMuestreo;
     }
 
-    public void setIdDetalleMuestreo(Long idDetalleMuestreo) {
+    public void setIdDetalleMuestreo(Integer idDetalleMuestreo) {
         this.idDetalleMuestreo = idDetalleMuestreo;
     }
 

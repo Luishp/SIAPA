@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DetalleMuestreoListForm">
+
+        <p:fieldset legend="Detalle Muestreo">
+            
+            <p:dataTable id="datalist"
+                         value="#{detallemuestreoManagedBean.lazyItems}"
+                         var="item"
+                         rowKey="#{item.idDetalleMuestreo}"
+                         paginator="true"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
+                         rows="5"
+                         lazy="true"
+                         rowsPerPageTemplate="5,10,15"
+                         resizableColumns="true" 
+                         selectionMode="single"
+                         selection="#{detallemuestreoManagedBean.selected}"
+                         paginatorPosition="bottom">
+
+                <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
+
+                <p:column sortBy="#{item.idDetalleMuestreo}" filterBy="#{item.idDetalleMuestreo}">
+                    <f:facet name="header">
+                        <h:outputText value="Id detalle de Muestreo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idDetalleMuestreo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idMuestreo}" filterBy="#{item.idMuestreo}">
+                    <f:facet name="header">
+                        <h:outputText value="Id Muestreo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idMuestreo.idMuestreo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cantidadDetalleMuestreo}" filterBy="#{item.cantidadDetalleMuestreo}">
+                    <f:facet name="header">
+                        <h:outputText value="Cantidad"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cantidadDetalleMuestreo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.pesoDetalleMuestreo}" filterBy="#{item.pesoDetalleMuestreo}">
+                    <f:facet name="header">
+                        <h:outputText value="Peso"/>
+                    </f:facet>
+                    <h:outputText value="#{item.pesoDetalleMuestreo}"/>
+                </p:column>
+
+
+           <f:facet name="footer">
+            <div class="footer-section" >  
+                <p:commandButton id="createButton"  icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{detallemuestreoManagedBean.toCreateDetalleMuestreo}"/>
+            <p:commandButton id="viewButton"    icon="ui-icon-search" value="#{crudbundle.View}" update="@(#DetalleMuestreoViewForm)" oncomplete="DetalleMuestreoViewDialog.show()" disabled="#{empty detallemuestreoManagedBean.selected}"/>
+            <p:commandButton id="editButton"    icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#DetalleMuestreoEditForm)" oncomplete="DetalleMuestreoEditDialog.show()" disabled="#{empty detallemuestreoManagedBean.selected}"/>
+            <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{detallemuestreoManagedBean.delete}" update=":growl,datalist" disabled="#{empty detallemuestreoManagedBean.selected}"/>
+           </div>   
+            </f:facet> 
+           </p:dataTable>   
+                
+            
+        </p:fieldset>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <ui:composition>
+
+        <h:form id="DetalleMuestreoCreateForm">
+            <p:growl id="growl" showDetail="true" sticky="true" /> 
+
+            <h3>Detalle de Muestreo</h3>
+            <p:panelGrid columns="2"  >           
+                <h:outputLabel for="idM" value="Id Muestreo: " />
+                <p:selectOneMenu id="detallemuestreo" value="#{detallemuestreoManagedBean.muestreo}" converter="#{muestreoConverter}" panelStyle="width:180px"
+                                 effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                    <f:selectItems value="#{detallemuestreoManagedBean.listMuestreo}" var="muestreo" itemLabel="#{muestreo.idMuestreo}" itemValue="#{muestreo}" />
+                  
+                    <p:column>
+                        <h:outputText value="#{t.idMuestreo}" />
+                    </p:column>
+                </p:selectOneMenu>
+            </p:panelGrid>
+
+
+            <p:panelGrid columns="2">                        
+               
+
+
+                <h:outputLabel for="peso" value="Peso: " />
+                <p:inputText id="pesoDetalleMuestreo"  value="#{detallemuestreoManagedBean.detallemuestreo.pesoDetalleMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}" size="50" maxlength="50" style="text-align: center"/>
+                <h:outputLabel for="cantidad" value="Cantidad: " />
+                <p:inputText id="cantidadDetalleMuestreo"  value="#{detallemuestreoManagedBean.detallemuestreo.cantidadDetalleMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}" size="50" maxlength="50" style="text-align: center"/>
+
+
+
+                <p:commandButton icon="ui-icon-disk" actionListener="#{detallemuestreoManagedBean.saveNew}" value="#{crudbundle.Save}" update="growl"/>
+
+            </p:panelGrid>
+
+
+
+
+        </h:form>
+    </ui:composition>     
+
+</html>
