@@ -45,19 +45,16 @@
                             <p:tooltip for="fechaRegistroMuestreo" value="#{muestreoManagedBean.getComponentMessages('fechaRegistroMuestreo', crudbundle.EditMuestreoHelpText_fechaRegistroMuestreo)}"/>
                         </h:panelGroup>
 
-                    <!--    <p:outputLabel value="#{crudbundle.EditMuestreoLabel_idJaula}" for="idJaula" />
+                        <h:outputLabel for="nombrej" value="Nombre de Jaula: " />
                         <h:panelGroup>
-                           <p:selectOneMenu id="idJaula" value="#{muestreoManagedBean.selected.idJaula}"  converter="jaulaConverter">
-                                <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{jaulaController.items}"
-                                               var="idJaulaItem"
-                                               itemValue="#{idJaulaItem}"
-                                               itemLabel="#{idJaulaItem.descripcionJaula.toString()}"
-                                               />
-
-                            </p:selectOneMenu> 
-                            <p:tooltip for="idJaula" value="#{muestreoManagedBean.getComponentMessages('idJaula', crudbundle.EditMuestreoHelpText_idJaula)}"/>
-                        </h:panelGroup> -->
+                          
+                <p:selectOneMenu id="muestreo" value="#{muestreoManagedBean.jaula}" converter="#{jaulaConverter}" panelStyle="width:180px"
+                                 effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                    <f:selectItems value="#{muestreoManagedBean.listJaula}" var="jaula" itemLabel="#{jaula.nombreJaula}" itemValue="#{jaula}" />
+                    
+                </p:selectOneMenu>
+                            
+                        </h:panelGroup> 
                     </p:panelGrid>
                     <p:commandButton actionListener="#{muestreoManagedBean.save}" value="#{crudbundle.Save}" update="display,:MuestreoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MuestreoEditDialog'));"/>
                     <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('MuestreoEditDialog').hide()"/>

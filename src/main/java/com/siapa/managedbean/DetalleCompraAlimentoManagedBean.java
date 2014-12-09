@@ -107,7 +107,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
             if (detalleCompraAlimento.getPrecioDetalleCompraAlimento() != null) {
                 if (detalleCompraAlimento.getImpuestoDetCompraAlimento() != null) {
 
-                    total1 = total1.add((detalleCompraAlimento.getCantDetalleCompraAlimento().multiply(detalleCompraAlimento.getPrecioDetalleCompraAlimento())).multiply(detalleCompraAlimento.getImpuestoDetCompraAlimento().divide(new BigDecimal(100)).add(new BigDecimal(1))));
+                    total1 = total1.add((detalleCompraAlimento.getCantDetalleCompraAlimento().multiply(detalleCompraAlimento.getPrecioDetalleCompraAlimento())).multiply(detalleCompraAlimento.getImpuestoDetCompraAlimento().divide(new BigDecimal(100)).add(new BigDecimal(1))).setScale(2, BigDecimal.ROUND_HALF_UP));
                 }
             }
         }
@@ -118,9 +118,11 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         DetalleCompraAlimento newItem;
         try {
             newItem = new DetalleCompraAlimento();
+            System.out.println(""+proveedor);
             this.setDetalleCompraAlimento(newItem);
             return newItem;
         } catch (Exception ex) {
+            System.out.println("error"+ex);
         }
         return null;
     }
@@ -133,6 +135,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
             nuevo=getDetalleCompraAlimento();
             nuevo.setSumaParcial(getTotal());
             nuevo.setIdAlimento(getAlimento());
+            System.out.println(""+getProveedor());
             tablaDetalleAlimentoPojoLista.add(nuevo);
             sumaTotal = sumaTotal.add(getTotal().setScale(2, BigDecimal.ROUND_HALF_UP));
         } catch (Exception e) {
@@ -140,8 +143,8 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         }
     }
 
-    @Override
-    public void saveNew(ActionEvent event) {
+    
+    public void guardarCompra() {
 
         try {
             if (getSumaTotal().compareTo(BigDecimal.ZERO) > 0) {

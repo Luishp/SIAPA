@@ -18,8 +18,8 @@
                     <h:panelGroup id="display" >
                         <p:panelGrid columns="4" >
                                 <p:outputLabel value="Proveedor : "/>
-                                <p:selectOneMenu id="tipoAlimento" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
-                                    <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="tipo" itemLabel="#{tipo.idPersona.nombrePersona}" itemValue="#{tipo}" />
+                                <p:selectOneMenu id="proveedor" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
+                                    <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="proveedor" itemLabel="#{proveedor.idPersona.nombrePersona}" itemValue="#{proveedor}" />
                                 </p:selectOneMenu>
                            
                            <div align="center" > 
@@ -84,7 +84,7 @@
                                 <div align="center" class="footer-section" > 
                                     <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true" value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreateDetalle}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>
 
-                                    <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.saveNew}" value="#{crudbundle.Save}" update=":DetalleCompraAlimentoCreateForm,:growl" oncomplete="handleSubmit(xhr,status,args,DetalleCompraAlimentoCreateDialog);"/>
+                                    <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.guardarCompra()}" value="#{crudbundle.Save}" immediate="true" />
 
                                 </div>
                             </f:facet>

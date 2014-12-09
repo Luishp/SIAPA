@@ -9,12 +9,7 @@
     <h:form id="MuestreoListForm">
 
         <p:fieldset legend="#{crudbundle.ListMuestreoTitle}">
-            <p:contextMenu id="MuestreoDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{crudbundle.Create}" onclick="document.getElementById('MuestreoListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{crudbundle.View}" onclick="document.getElementById('MuestreoListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{crudbundle.Edit}" onclick="document.getElementById('MuestreoListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{crudbundle.Delete}" onclick="document.getElementById('MuestreoListForm:deleteButton').click();" icon="ui-icon-trash"/>
-            </p:contextMenu>
+            
             <p:dataTable id="datalist"
                          value="#{muestreoManagedBean.lazyItems}"
                          var="item"
@@ -29,9 +24,8 @@
                          selection="#{muestreoManagedBean.selected}"
                          paginatorPosition="bottom">
 
-                <p:ajax event="rowSelect"   update=":MuestreoListForm:createButton :MuestreoListForm:viewButton :MuestreoListForm:editButton :MuestreoListForm:deleteButton :MuestreoListForm:MuestreoDataTableContextMenu"/>
-                <p:ajax event="rowUnselect" update=":MuestreoListForm:createButton :MuestreoListForm:viewButton :MuestreoListForm:editButton :MuestreoListForm:deleteButton :MuestreoListForm:MuestreoDataTableContextMenu"/>
-                <p:ajax event="rowDblselect" onsuccess="document.getElementById('MuestreoListForm:viewButton').click();"/>
+                <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
 
                 <p:column sortBy="#{item.idMuestreo}" filterBy="#{item.idMuestreo}">
                     <f:facet name="header">
@@ -77,22 +71,22 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.idJaula.descripcionJaula}" filterBy="#{item.idJaula.descripcionJaula}">
+                <p:column sortBy="#{item.idJaula}" filterBy="#{item.idJaula}">
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListMuestreoTitle_idJaula}"/>
                     </f:facet>
-                    <h:outputText value="#{item.idJaula.descripcionJaula}"/>
+                    <h:outputText value="#{item.idJaula.nombreJaula}"/>
                 </p:column>
 
-              </p:dataTable>
-            <div align="center" class="footer-section" >  
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{muestreoManagedBean.prepareCreate}" update="@(#MuestreoCreateForm)" oncomplete="MuestreoCreateDialog.show()"/>
-            <p:commandButton id="viewButton"    icon="ui-icon-search" value="#{crudbundle.View}" update=":MuestreoViewForm" oncomplete="MuestreoViewDialog.show()" disabled="#{empty muestreoManagedBean.selected}"/>
-            <p:commandButton id="editButton"    icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":MuestreoEditForm" oncomplete="PF('MuestreoEditDialog').show()" disabled="#{empty muestreoManagedBean.selected}"/>
+            <f:facet name="footer">
+            <div class="footer-section" >  
+            <p:commandButton id="createButton"  icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{muestreoManagedBean.toCreateMuestreo}"/>
+            <p:commandButton id="viewButton"    icon="ui-icon-search" value="#{crudbundle.View}" update="@(#MuestreoViewForm)" oncomplete="MuestreoViewDialog.show()" disabled="#{empty muestreoManagedBean.selected}"/>
+            <p:commandButton id="editButton"    icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#MuestreoEditForm)" oncomplete="MuestreoEditDialog.show()" disabled="#{empty muestreoManagedBean.selected}"/>
             <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{muestreoManagedBean.delete}" update=":growl,datalist" disabled="#{empty muestreoManagedBean.selected}"/>
             </div>   
-                
-              
+            </f:facet> 
+           </p:dataTable>   
                 
             
         </p:fieldset>

@@ -49,7 +49,7 @@ public class ProveedorConverter implements Converter {
             Proveedor o = (Proveedor) object;
             return getStringKey(o.getIdProveedor());
         } else {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), TipoAlimento.class.getName()});
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Proveedor.class.getName()});
             return null;
         }
 
