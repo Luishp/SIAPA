@@ -11,8 +11,8 @@ import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,36 +22,39 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author Angel
+ * @author Joao
  */
 @Entity
 @Table(catalog = "siapa", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Proveedor.findAll", query = "SELECT p FROM Proveedor p")})
 public class Proveedor implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue
-    @Column(name = "ID_PROVEEDOR", nullable = true)
-    private Integer idProveedor;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name = "ID_PROVEEDOR", nullable = false)
+    private Integer idProveedor;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "FECHA_PROVEEDOR", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaProveedor;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "USUARIO_PROVEEDOR", nullable = false, length = 30)
     private String usuarioProveedor;
-    @OneToMany(mappedBy = "idProveedor", fetch = FetchType.LAZY)
-    private Set<Compra> compraSet;
     @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Persona idPersona;
+    @OneToMany(mappedBy = "idProveedor")
+    private Set<Compra> compraSet;
 
     public Proveedor() {
     }
@@ -90,20 +93,20 @@ public class Proveedor implements Serializable {
         this.usuarioProveedor = usuarioProveedor;
     }
 
-    public Set<Compra> getCompraSet() {
-        return compraSet;
-    }
-
-    public void setCompraSet(Set<Compra> compraSet) {
-        this.compraSet = compraSet;
-    }
-
     public Persona getIdPersona() {
         return idPersona;
     }
 
     public void setIdPersona(Persona idPersona) {
         this.idPersona = idPersona;
+    }
+
+    public Set<Compra> getCompraSet() {
+        return compraSet;
+    }
+
+    public void setCompraSet(Set<Compra> compraSet) {
+        this.compraSet = compraSet;
     }
 
     @Override
@@ -128,7 +131,7 @@ public class Proveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.siapa.model.Proveedor[ idProveedor=" + idProveedor + " ]";
+        return "paq.Proveedor[ idProveedor=" + idProveedor + " ]";
     }
-
+    
 }

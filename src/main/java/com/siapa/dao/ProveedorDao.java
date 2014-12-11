@@ -21,7 +21,7 @@ public class ProveedorDao extends GenericDao<Proveedor, Integer>{
     
        public List <Proveedor>getProveedor(){
         
-        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT prov FROM Proveedor prov JOIN FETCH prov.idPersona");
+        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT prov FROM Proveedor prov");
         return q.list();
         
     }

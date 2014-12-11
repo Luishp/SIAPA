@@ -62,6 +62,8 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private ProveedorService proveedorService;
     @Autowired
     @Qualifier(value = "tipoAlimentoService")
+   
+    
     private TipoAlimentoService tipoAlimentoService;
     private List<Proveedor> proveedorList;
     private List<DetalleCompraAlimento> detalleCompraAlimentoList;
@@ -80,9 +82,9 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     @PostConstruct
     public void init() {
-        tipoAlimento = new TipoAlimento();
+        tipoAlimento = new TipoAlimento();       
         detalleCompraAlimentoList = detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
-        proveedorList = proveedorService.getProveedor();
+        proveedorList = proveedorService.findAll();
         alimentoList = alimentoService.getTypeFood();
         tipoAlimentoList = tipoAlimentoService.findAll();
         alimentoByIdList = new ArrayList<Alimento>();
@@ -150,7 +152,11 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
             if (getSumaTotal().compareTo(BigDecimal.ZERO) > 0) {
 
                 Compra newcompra = new Compra();
-                newcompra.setIdProveedor(getProveedor());
+                
+                System.out.println(""+getDetalleCompraAlimento());
+                System.out.println(""+getSelected());
+                System.out.println(""+getService());
+                newcompra.setIdProveedor(proveedor);
                 newcompra.setFechaHoraCompra(new Date());
                 newcompra.setUsuarioCompra(getUsuario());
                 newcompra.setTotalCompra((BigDecimal) ((getSumaTotal() != null) ? getSumaTotal() : new BigDecimal(0.0)));
