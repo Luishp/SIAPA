@@ -76,17 +76,19 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private BigDecimal cantidad;
     private BigDecimal precio;
     private BigDecimal sumaTotal = BigDecimal.ZERO;
+    private BigDecimal existencia = BigDecimal.ZERO;
     private List<DetalleCompraAlimento> tablaDetalleAlimentoPojoLista;
+    private Integer idProveedor;
+    private boolean flag = false;
 
     @PostConstruct
     public void init() {
         tipoAlimento = new TipoAlimento();
         detalleCompraAlimentoList = detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
-        proveedorList = proveedorService.getProveedor();
+        proveedorList = proveedorService.findAll();
         alimentoList = alimentoService.getTypeFood();
         tipoAlimentoList = tipoAlimentoService.findAll();
         alimentoByIdList = new ArrayList<Alimento>();
-        detalleCompraAlimento = new DetalleCompraAlimento();
         tablaDetalleAlimentoPojoLista = new ArrayList<DetalleCompraAlimento>();
     }
 
@@ -103,7 +105,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     public BigDecimal calcularTotal() {
         BigDecimal total1 = BigDecimal.ZERO;
         BigDecimal imp = BigDecimal.ZERO;
-        if (detalleCompraAlimento.getCantDetalleCompraAlimento() != null) {
+        if (detalleCompraAlimento != null && detalleCompraAlimento.getCantDetalleCompraAlimento() != null) {
             if (detalleCompraAlimento.getPrecioDetalleCompraAlimento() != null) {
                 if (detalleCompraAlimento.getImpuestoDetCompraAlimento() != null) {
 
@@ -114,60 +116,63 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         return total1;
     }
 
-    public DetalleCompraAlimento prepareCreateDetalle() {
-        DetalleCompraAlimento newItem;
+    public void prepareCreateDetalle() {
         try {
-            newItem = new DetalleCompraAlimento();
-            System.out.println(""+proveedor);
-            this.setDetalleCompraAlimento(newItem);
-            return newItem;
+            detalleCompraAlimento = new DetalleCompraAlimento();
         } catch (Exception ex) {
-            System.out.println("error"+ex);
+            System.out.println("error" + ex);
         }
-        return null;
     }
-    
-
 
     public void cargar() {
         try {
-            DetalleCompraAlimento nuevo= new DetalleCompraAlimento();
-            nuevo=getDetalleCompraAlimento();
+            DetalleCompraAlimento nuevo = new DetalleCompraAlimento();
+            nuevo = getDetalleCompraAlimento();
             nuevo.setSumaParcial(getTotal());
             nuevo.setIdAlimento(getAlimento());
-            System.out.println(""+getProveedor());
             tablaDetalleAlimentoPojoLista.add(nuevo);
+            if (tablaDetalleAlimentoPojoLista.isEmpty()) {
+                flag = false;
+            } else {
+                flag = true;
+            }
             sumaTotal = sumaTotal.add(getTotal().setScale(2, BigDecimal.ROUND_HALF_UP));
+            detalleCompraAlimento = new DetalleCompraAlimento();
+
         } catch (Exception e) {
             System.out.println("error" + e);
         }
     }
 
-    
     public void guardarCompra() {
 
         try {
             if (getSumaTotal().compareTo(BigDecimal.ZERO) > 0) {
 
                 Compra newcompra = new Compra();
-                newcompra.setIdProveedor(getProveedor());
+                Proveedor proveedorSelected = proveedorService.findById(idProveedor);
+                newcompra.setIdProveedor(proveedorSelected);
                 newcompra.setFechaHoraCompra(new Date());
                 newcompra.setUsuarioCompra(getUsuario());
                 newcompra.setTotalCompra((BigDecimal) ((getSumaTotal() != null) ? getSumaTotal() : new BigDecimal(0.0)));
                 compraService.save(newcompra);
 
                 for (DetalleCompraAlimento detalle : tablaDetalleAlimentoPojoLista) {
+                    existencia = BigDecimal.ZERO;
+
                     detalle.setIdCompra(newcompra);
                     detalleCompraAlimentoService.save(detalle);
-                    
-                    Alimento newAlimento = getAlimento();
-                    BigDecimal cactual = newAlimento.getExistenciaAlimento();
-                    BigDecimal compra = detalle.getCantDetalleCompraAlimento();
-                    BigDecimal existencia = cactual.add(compra);
 
+                    Alimento newAlimento = getAlimento();
+                    Alimento idAlimento = detalle.getIdAlimento();
+                    Alimento cactual = alimentoService.findById(idAlimento.getIdAlimento());
+                    BigDecimal compra = detalle.getCantDetalleCompraAlimento();
+                    existencia = cactual.getExistenciaAlimento().add(compra);
                     newAlimento.setExistenciaAlimento(existencia);
                     alimentoService.merge(newAlimento);
                 }
+                tablaDetalleAlimentoPojoLista = new ArrayList<DetalleCompraAlimento>();
+                sumaTotal = BigDecimal.ZERO;
             }
         } catch (Exception e) {
         }
@@ -185,6 +190,10 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
         }
     }
 
+    public void vacio(){
+        System.out.println("algo");   
+    }
+    
     @Override
     public LazyDataModel<DetalleCompraAlimento> getNewLazyModel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -301,5 +310,21 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     public void setTablaDetalleAlimentoPojoLista(List<DetalleCompraAlimento> tablaDetalleAlimentoPojoLista) {
         this.tablaDetalleAlimentoPojoLista = tablaDetalleAlimentoPojoLista;
+    }
+
+    public Integer getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(Integer idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
 }
