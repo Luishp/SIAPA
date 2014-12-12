@@ -62,6 +62,8 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
     private ProveedorService proveedorService;
     @Autowired
     @Qualifier(value = "tipoAlimentoService")
+   
+    
     private TipoAlimentoService tipoAlimentoService;
     private List<Proveedor> proveedorList;
     private List<DetalleCompraAlimento> detalleCompraAlimentoList;
@@ -83,7 +85,7 @@ public class DetalleCompraAlimentoManagedBean extends GenericManagedBean<Detalle
 
     @PostConstruct
     public void init() {
-        tipoAlimento = new TipoAlimento();
+        tipoAlimento = new TipoAlimento();       
         detalleCompraAlimentoList = detalleCompraAlimentoService.getDetalleCompraAlimentoAll();
         proveedorList = proveedorService.findAll();
         alimentoList = alimentoService.getTypeFood();
