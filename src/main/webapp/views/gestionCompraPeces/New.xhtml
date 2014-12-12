@@ -5,10 +5,12 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
       >
 
     <ui:composition>
         <h:form id="IngresoProductoCreateForm">
+            <p:growl id="growl" showDetail="true" sticky="true" />
             <h:panelGroup id="display" >
 
 
@@ -24,8 +26,8 @@
                         </p:column>
                     </p:selectOneMenu>
 
-            <!--        <p:commandButton id="createButtonP" icon="ui-icon-plus" immediate="true"   value="#{crudbundle.Create}" actionListener="#{productoManagedBean.toCreateProducto}"/>
-                </p:panelGrid>-->
+                    <p:commandButton id="createButtonP" icon="ui-icon-plus" immediate="true"   value="#{crudbundle.Create}" actionListener="#{productoManagedBean.toCreateProducto}"/>
+                </p:panelGrid>
 
 
                 <p:separator/>
@@ -42,12 +44,12 @@
                     </p:selectOneMenu>
 
                     <h:outputLabel for="cantidad" value="Cantidad de compra: " />
-                    <p:inputText id="button" style="text-align: center" value="#{ingresoProductoManagedBean.ingresoProducto.cantidadIngresoProducto}" />
+                    <pe:inputNumber id="cantidad" style="text-align: center" value="#{ingresoProductoManagedBean.ingresoProducto.cantidadIngresoProducto}" />
 
                     <h:outputLabel for="fecha" value="Fecha: " />
-                    <p:calendar id="button" style="text-align: center" value="#{ingresoProductoManagedBean.ingresoProducto.fechaHoraIngresoProducto}" showOn="button"  />
+                    <p:calendar id="fecha" style="text-align: center" value="#{ingresoProductoManagedBean.ingresoProducto.fechaHoraIngresoProducto}" showOn="button"  />
 
-                    <p:commandButton icon="ui-icon-disk" actionListener="#{ingresoProductoManagedBean.saveNew}" value="#{crudbundle.Save}" />
+                    <p:commandButton icon="ui-icon-disk" actionListener="#{ingresoProductoManagedBean.saveNew}" value="#{crudbundle.Save}" update="growl"/>
 
                 </p:panelGrid>
                 <p:separator/>

@@ -5,10 +5,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      >
+      xmlns:pe="http://primefaces.org/ui/extensions"
+          
+      xmlns:poue="http://primefaces.org/ui/extensions">
     
     <ui:composition>
         <h:form id="RegistroMortalidadCreateForm">
+            <p:growl id="growl" showDetail="true" sticky="true" />
             <h:panelGroup id="display" >
                
 
@@ -34,10 +37,12 @@
                     <p:panelGrid columns="2">                        
                         
                         <h:outputLabel for="idetyJaula" value="Identificador de Jaula: " />
-                        <p:inputText id="idetyJaula" readonly="true" value="#{registroMortalidadManagedBean.jaula.idJaula}" title="#{crudbundle.CreateRegistroMortalidadTitle_idJaula}" required="true" requiredMessage="#{crudbundle.CreateRegistroMortalidadRequiredMessage_idJaula}" size="50" maxlength="50" style="text-align: center"/>
+                        <p:inputText id="idetyJaula" readonly="true" value="#{registroMortalidadManagedBean.jaula.nombreJaula}" title="#{crudbundle.CreateRegistroMortalidadTitle_idJaula}" required="true" requiredMessage="#{crudbundle.CreateRegistroMortalidadRequiredMessage_idJaula}" size="50" maxlength="50" style="text-align: center"/>
 
-                       <h:outputLabel for="cantidad" value="Cantidad de peces muertos: " />
-                        <p:inputText id="cantidad" value="#{registroMortalidadManagedBean.registroMortalidad.cantidadRegistroMortalidad}"/>
+                       <h:outputLabel value="Cantidad de peces muertos: " />
+                       <pe:inputNumber id="cantidad"  value="#{registroMortalidadManagedBean.registroMortalidad.cantidadRegistroMortalidad}" required="true">
+                       </pe:inputNumber>
+                       
                         
                         <h:outputLabel for="fecha" value="Fecha del conteo de peces: " />
                         <p:calendar id="button" style="text-align: center" value="#{registroMortalidadManagedBean.registroMortalidad.fechaRegistroMortalidad}" showOn="button"  />
@@ -46,7 +51,7 @@
                         <p:calendar id="buttonn" style="text-align: center" value="#{registroMortalidadManagedBean.registroMortalidad.fechaIngresoRegMortalidad}" showOn="button"  />
                         
 
-                        <p:commandButton icon="ui-icon-disk" actionListener="#{registroMortalidadManagedBean.saveNew}" value="#{crudbundle.Save}" />
+                        <p:commandButton icon="ui-icon-disk" actionListener="#{registroMortalidadManagedBean.saveNew}" value="#{crudbundle.Save}" update="growl"/>
 
                     </p:panelGrid>
                     <p:separator/>

@@ -105,7 +105,7 @@ INSERT INTO `cliente` (`ID_CLIENTE`, `ID_CATEGORIAS`, `ID_PERSONA`, `NOMBRE_CLIE
 --
 
 CREATE TABLE IF NOT EXISTS `cliente_contacto` (
-  `ID_CONTACTO` decimal(18,0) NOT NULL,
+  `ID_CONTACTO` int(11) NOT NULL AUTO_INCREMENT,
   `ID_PERSONA` int(11) NOT NULL,
   `VALOR_CLIENTE_CONTACTO` varchar(100) NOT NULL,
   `ACTIVO_CLIENTE_CONTACTO` tinyint(1) NOT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `comprobante_venta` (
 --
 
 CREATE TABLE IF NOT EXISTS `contacto` (
-  `ID_CONTACTO` decimal(18,0) NOT NULL,
+  `ID_CONTACTO` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE_CONTACTO` varchar(50) NOT NULL,
   `DESCRIPCION_CONTACTO` varchar(500) NOT NULL,
   PRIMARY KEY (`ID_CONTACTO`)
@@ -310,6 +310,22 @@ CREATE TABLE IF NOT EXISTS `jaula` (
   KEY `FK_RELATIONSHIP_7` (`ID_TIPO_JAULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- Volcado de datos para la tabla `jaula`
+INSERT INTO `siapa`.`jaula` (
+`ID_JAULA` ,
+`ID_TIPO_JAULA` ,
+`NOMBRE_JAULA` ,
+`DESCRIPCION_JAULA` ,
+`LISTA_VENTA_JAULA` ,
+`FECHA_VENTA_JAULA` ,
+`FECHA_SIEMBRA_JAULA` ,
+`VENTA_JAULA`
+)
+VALUES (
+'1', '1', 'Venta', 'jaula de ventas', '1', '2014-12-16', '2014-12-09', '125'
+), (
+'2', '1', 'produccion', 'jaula de peces en produccion', '0', '2014-12-24', '2014-12-24', '26'
+);
 -- --------------------------------------------------------
 
 --
@@ -371,7 +387,12 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `PRECIO_PRODUCTO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_PRODUCTO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
+--
+-- Volcado de datos para la tabla `producto`
+--
+INSERT INTO `siapa`.`producto` (`ID_PRODUCTO` ,`NOMBRE_PRODUCTO` ,`DESCRIPCION_PRODUCTO` ,`ACTIVO_PRODUCTO` ,`PRECIO_PRODUCTO`)
+VALUES (1, 'Tilapia gris', 'Tilapia gris grande', '1', '1.3'), 
+(2, 'Tilapia roja', 'Tilapia roja grande', '1', '1.6');
 -- --------------------------------------------------------
 
 --
@@ -402,7 +423,7 @@ INSERT INTO `proveedor` (`ID_PROVEEDOR`, `ID_PERSONA`, `FECHA_PROVEEDOR`, `USUAR
 --
 
 CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
-  `ID_REGISTRO_ALIMENTACION` decimal(18,0) NOT NULL,
+  `ID_REGISTRO_ALIMENTACION` int(11) NOT NULL AUTO_INCREMENT,
   `ID_ALIMENTO` int(11) DEFAULT NULL,
   `ID_JAULA` int(11) DEFAULT NULL,
   `CANTIDAD_REGISTRO_ALIMENTACION` decimal(10,2) NOT NULL,
@@ -420,7 +441,7 @@ CREATE TABLE IF NOT EXISTS `registro_alimentacion` (
 --
 
 CREATE TABLE IF NOT EXISTS `registro_mortalidad` (
-  `ID_REGISTRO_MORTALIDAD` decimal(18,0) NOT NULL,
+  `ID_REGISTRO_MORTALIDAD` int(11) NOT NULL AUTO_INCREMENT,
   `ID_JAULA` int(11) DEFAULT NULL,
   `CANTIDAD_REGISTRO_MORTALIDAD` decimal(10,2) NOT NULL,
   `FECHA_REGISTRO_MORTALIDAD` date NOT NULL,
@@ -497,7 +518,7 @@ INSERT INTO `tipo_jaula` (`ID_TIPO_JAULA`, `NOMBRE_TIPO_JAULA`, `DESCRIPCION_TIP
 --
 
 CREATE TABLE IF NOT EXISTS `traslados` (
-  `ID_TRASLADOS` decimal(18,0) NOT NULL,
+  `ID_TRASLADOS` int(11) NOT NULL AUTO_INCREMENT,
   `ID_JAULA` int(11) DEFAULT NULL,
   `FECHA_HORA_TRASLADOS` date NOT NULL,
   `USUARIO_TRASLADOS` varchar(30) NOT NULL,
@@ -795,10 +816,10 @@ INSERT INTO `ss_opciones` (`ID_OPCION`, `NOMBRE_OPCION`, `URL`, `VISIBLE`, `USUA
 ('2', 'Gestion de Ventas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('3', 'Ingresar Cliente', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('4', 'Gestion de Clientes', '/siapa/views/cliente/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('5', 'Ingreso Peces Muertos', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('6', 'Ingreso de Muestreo', '/siapa/views/persona/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('7', 'Ingreso Alimento a Jaula', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
-('8', 'Gestion de Compra de Peces', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('5', 'Ingreso Peces Muertos', '/siapa/views/registroMortalidad/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('6', 'Ingreso de Muestreo', '/siapa/views/muestreo/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('7', 'Ingreso Alimento a Jaula', '/siapa/views/registroAlimentacion/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
+('8', 'Gestion de Compra de Peces', '/siapa/views/ingresoProducto/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('9', 'Movimiento Entre Jaulas', '/siapa/views/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('10', 'Gestion de Jaulas', '/siapa/views/jaula/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),
 ('11', 'Gestion de Alimento', '/siapa/views/alimento/index.xhtml', 'S', 'desarrollo', '2014-10-30 00:00:00', NULL, NULL, NULL),

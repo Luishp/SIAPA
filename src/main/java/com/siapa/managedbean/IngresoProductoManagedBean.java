@@ -18,6 +18,7 @@ import com.siapa.service.generic.GenericService;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Named;
@@ -44,7 +45,7 @@ public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProduc
     private JaulaService jaulaService;
     
     @Autowired
-    @Qualifier(value = "ProductoService")
+    @Qualifier(value = "productoService")
     private ProductoService productoService;
     
     private Producto producto;
@@ -161,5 +162,13 @@ public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProduc
         ingresoProducto.setIdProducto(producto);
         ingresoProducto.setUsuarioIngresoProducto(getUsuario());
         ingresoProductoService.save(ingresoProducto);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Insercion completada"));
+        try {
+            FacesContext contex = FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("/siapa/views/ingresoProducto/index.xhtml");
+        } catch (IOException ex) {
+            //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+        }
         }
 }
