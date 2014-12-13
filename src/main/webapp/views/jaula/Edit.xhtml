@@ -4,10 +4,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="JaulaEditDlg" widgetVar="JaulaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditAlimentoTitle}" closeOnEscape="true">
+        <p:dialog id="JaulaEditDlg" widgetVar="JaulaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="Editar Jaula" closeOnEscape="true">
 
             <h:form id="JaulaEditForm">
 
@@ -21,14 +22,21 @@
                         <p:outputLabel value="#{crudbundle.ListJaulaTitle_descripcion}" for="descripcionJaula" />
                         <p:inputText id="descripcionJaula" value="#{jaulaManagedBean.selected.descripcionJaula}" title="#{crudbundle.ListJaulaTitle_descripcion}"  size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{crudbundle.ListJaulaTitle_enVenta}" for="listaVentaJaula" />
-                        <p:inputText id="listaVentaJaula" value="#{jaulaManagedBean.selected.listaVentaJaula}" title="#{crudbundle.ListJaulaTitle_enVenta}"  size="50" maxlength="50"/>
-
                         
-                        <p:outputLabel value="#{crudbundle.ListJaulaTitle_cantidad}" for="ventaJaula" />
-                        <p:inputText id="ventaJaula" value="#{jaulaManagedBean.selected.ventaJaula}" title="#{crudbundle.ListJaulaTitle_cantidad}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}"/>
-                
                        
+                        
+                        <p:outputLabel value="#{crudbundle.ListJaulaTitle_enVenta}"  for="listaVentaJaula"  />
+                        <p:selectOneMenu id="listaVentaJaula"  value="#{jaulaManagedBean.jaulaVenta}" >
+                            <f:selectItem itemLabel="Venta" itemValue="true"/>
+                            <f:selectItem itemLabel="Cultivo"   itemValue="false" />
+                        </p:selectOneMenu>
+                        
+                        
+
+                        <p:outputLabel value="#{crudbundle.ListJaulaTitle_cantidad}" for="ventaJaula" />
+                        <pe:inputNumber id="ventaJaula" value="#{jaulaManagedBean.selected.ventaJaula}" title="#{crudbundle.ListJaulaTitle_cantidad}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}"/>
+
+
                     </p:panelGrid>
 
                     <br/>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <ui:composition>
+        <ui:define name="title">
+            <h:outputText value="Compra de Alimento"/>
+        </ui:define>
+
+        <h:form id="DetalleCompraListForm">
+            <p:fieldset legend="Compra de Alimento">
+
+                <div align="center" > 
+                    <h:panelGroup id="display" >
+                        <p:panelGrid columns="4" >
+                                <p:outputLabel value="Proveedor : "/>
+                                <p:selectOneMenu id="proveedor" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
+                                    <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="proveedor" itemLabel="#{proveedor.idPersona.nombrePersona}" itemValue="#{proveedor}" />
+                                </p:selectOneMenu>
+                           
+                           <div align="center" > 
+                                <p:panel id="total" header="TOTAL" style="font-size:20px; width:120px; height:120px">
+                                    <h:outputText value="#{detalleCompraAlimentoManagedBean.sumaTotal}" style="font-size:25px; font-weight:bold;  alignment-adjust: central" />
+                                </p:panel>
+                            </div>
+
+                        </p:panelGrid>
+                    </h:panelGroup>
+                </div>
+                <p:separator />
+
+                <h:form id="form">
+                    <p:growl id="msgs" />
+
+
+                    <p:outputPanel id="tabla">
+                        <p:dataTable value="#{detalleCompraAlimentoManagedBean.tablaDetalleAlimentoPojoLista}" var="pojo" id="booksTable">
+
+                            <p:column headerText="Tipo Alimento">
+                                <h:outputText value="#{pojo.idAlimento.idTipoAlimento.nombreTipoAlimento}" />
+                            </p:column>
+
+                            <p:column headerText="Marca">
+                                <f:facet name="Marca">
+                                    <h:outputText value="Marca" />
+                                </f:facet>
+                                <h:outputText value="#{pojo.idAlimento.marcaAlimento}" />
+                            </p:column>
+
+                            <p:column headerText="Cantidad">
+                                <f:facet name="Cantidad">
+                                    <h:outputText value="Cantidad" />
+                                </f:facet>
+                                <h:outputText value="#{pojo.cantDetalleCompraAlimento}" />
+                            </p:column>
+
+                            <p:column headerText="Precio">
+                                <f:facet name="Precio">
+                                    <h:outputText value="Precio" />
+                                </f:facet>
+                                <h:outputText value="#{pojo.precioDetalleCompraAlimento}" />
+                            </p:column>
+
+                            <p:column headerText="Impuesto">
+                                <f:facet name="Impuesto">
+                                    <h:outputText value="Impuesto" />
+                                </f:facet>
+                                <h:outputText value="#{pojo.impuestoDetCompraAlimento}" />
+                            </p:column>
+
+                            <p:column headerText="Total">
+                                <f:facet name="Total">
+                                    <h:outputText value="Total" />
+                                </f:facet>
+                                <h:outputText value="#{pojo.sumaParcial}" />
+                            </p:column>
+
+
+                            <f:facet name="footer">
+                                <div align="center" class="footer-section" > 
+                                    <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true" value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreateDetalle}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>
+
+                                    <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.guardarCompra()}" value="#{crudbundle.Save}" immediate="true" />
+
+                                </div>
+                            </f:facet>
+                        </p:dataTable>
+                    </p:outputPanel>
+                </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+            </p:fieldset> 
+        </h:form>
+
+    </ui:composition>
+</html>

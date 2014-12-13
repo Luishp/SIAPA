@@ -4,6 +4,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -25,15 +26,16 @@
                             <f:selectItem itemLabel="Venta" itemValue="true"/>
                             <f:selectItem itemLabel="Cultivo"   itemValue="false" />
                         </p:selectOneMenu>
-                       
+
                         <p:outputLabel value="Tipo de Jaula"/>
                         <p:selectOneMenu id="tipoJaula" value="#{jaulaManagedBean.tipoJaula}" converter="#{tipoJaulaConverter}" effect="fade" style="width:200px">
                             <f:selectItems value="#{jaulaManagedBean.jaulaList}" var="tipo" itemLabel="#{tipo.nombreTipoJaula}" itemValue="#{tipo}" />
                         </p:selectOneMenu>
-                        
-                        
+
                         <p:outputLabel value="#{crudbundle.ListJaulaTitle_cantidad}" for="ventaJaula" />
-                        <p:inputText id="ventaJaula" value="#{jaulaManagedBean.selected.ventaJaula}" title="#{crudbundle.ListJaulaTitle_cantidad}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}"/>
+                        <pe:inputNumber id="ventaJaula" value="#{jaulaManagedBean.selected.ventaJaula}" title="#{crudbundle.ListJaulaTitle_cantidad}" required="true" requiredMessage="#{crudbundle.CreateAlimentoRequiredMessage_existenciaAlimento}" decimalPlaces="2" minValue="0000.00" maxValue="99999.99">
+                        
+                        </pe:inputNumber>
 
                     </p:panelGrid>
 
