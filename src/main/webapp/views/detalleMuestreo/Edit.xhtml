@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 
     <ui:composition>
         <p:dialog id="DetalleMuestreoEditDlg" widgetVar="DetalleMuestreoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditMuestreoTitle}" closeOnEscape="true">
@@ -21,13 +22,13 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="Cantidad" for="detallemuestreocantidad" />
 
-                        <p:inputText id="detallemuestreocantidad" value="#{detallemuestreoManagedBean.selected.cantidadDetalleMuestreo}" title="#{crudbundle.EditMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
+                        <pe:inputNumber id="detallemuestreocantidad" value="#{detallemuestreoManagedBean.selected.cantidadDetalleMuestreo}" title="#{crudbundle.EditMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
 
 
 
                         <p:outputLabel value="Peso" for="detallemuestreopeso" />
 
-                        <p:inputText id="detallemuestreopeso" value="#{detallemuestreoManagedBean.selected.pesoDetalleMuestreo}" title="#{crudbundle.EditMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
+                        <pe:inputNumber id="detallemuestreopeso" value="#{detallemuestreoManagedBean.selected.pesoDetalleMuestreo}" title="#{crudbundle.EditMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
 
 
 

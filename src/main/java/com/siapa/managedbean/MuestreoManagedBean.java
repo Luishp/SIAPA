@@ -13,6 +13,7 @@ import com.siapa.service.JaulaService;
 import com.siapa.service.MuestreoService;
 import com.siapa.service.generic.GenericService;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -74,6 +75,8 @@ public class MuestreoManagedBean extends GenericManagedBean<Muestreo, Integer> {
 
         }
     }
+     
+    
 
     @Override
     public void saveNew(ActionEvent event) {
@@ -81,10 +84,19 @@ public class MuestreoManagedBean extends GenericManagedBean<Muestreo, Integer> {
         muestreo.setIdJaula(jaula);
         muestreo.setUsuarioMuestreo(getUsuario());
         muestreo.setFechaRegistroMuestreo(new Date());
+        muestreo.setPesoPromedioMuestreo(BigDecimal.ZERO);
         muestreoService.save(muestreo);
         loadLazyModels();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Successful"));
+        try{
+          FacesContext context1 = FacesContext.getCurrentInstance();
+          context1.getExternalContext().redirect("/siapa/views/muestreo/index.xhtml");  
+        }
+        catch(IOException e)
+        {
+            
+        }
     }
 
     public Jaula getJaula() {

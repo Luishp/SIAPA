@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 
     <ui:composition>
         <p:dialog id="MuestreoEditDlg" widgetVar="MuestreoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditMuestreoTitle}" closeOnEscape="true">
@@ -21,12 +22,12 @@
                             <p:tooltip for="idMuestreo" value="#{muestreoManagedBean.getComponentMessages('idMuestreo', crudbundle.EditMuestreoHelpText_idMuestreo)}"/>
                         </h:panelGroup>
 
-                        <p:outputLabel value="#{crudbundle.EditMuestreoLabel_pesoPromedioMuestreo}" for="pesoPromedioMuestreo" />
+                      <!--   <p:outputLabel value="#{crudbundle.EditMuestreoLabel_pesoPromedioMuestreo}" for="pesoPromedioMuestreo" />
                         <h:panelGroup>
-                            <p:inputText id="pesoPromedioMuestreo" value="#{muestreoManagedBean.selected.pesoPromedioMuestreo}" title="#{crudbundle.EditMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
+                           <pe:inputNumber id="pesoPromedioMuestreo" value="#{muestreoManagedBean.selected.pesoPromedioMuestreo}" title="#{crudbundle.EditMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_pesoPromedioMuestreo}"/>
                             <p:tooltip for="pesoPromedioMuestreo" value="#{muestreoManagedBean.getComponentMessages('pesoPromedioMuestreo', crudbundle.EditMuestreoHelpText_pesoPromedioMuestreo)}"/>
                         </h:panelGroup>
-
+-->
                         <p:outputLabel value="#{crudbundle.EditMuestreoLabel_fechaMuestreo}" for="fechaMuestreo" />
                         <h:panelGroup>
                             <p:calendar id="fechaMuestreo" pattern="MM/dd/yyyy" value="#{muestreoManagedBean.selected.fechaMuestreo}" title="#{crudbundle.EditMuestreoTitle_fechaMuestreo}" required="true" requiredMessage="#{crudbundle.EditMuestreoRequiredMessage_fechaMuestreo}" showOn="button"/>
@@ -47,13 +48,13 @@
 
                         <h:outputLabel for="nombrej" value="Nombre de Jaula: " />
                         <h:panelGroup>
-                          
-                <p:selectOneMenu id="muestreo" value="#{muestreoManagedBean.jaula}" converter="#{jaulaConverter}" panelStyle="width:180px"
-                                 effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
-                    <f:selectItems value="#{muestreoManagedBean.listJaula}" var="jaula" itemLabel="#{jaula.nombreJaula}" itemValue="#{jaula}" />
-                    
-                </p:selectOneMenu>
-                            
+
+                            <p:selectOneMenu id="muestreo" value="#{muestreoManagedBean.jaula}" converter="#{jaulaConverter}" panelStyle="width:180px"
+                                             effect="fade" var="t" style="width:200px" filter="true" filterMatchMode="contains">
+                                <f:selectItems value="#{muestreoManagedBean.listJaula}" var="jaula" itemLabel="#{jaula.nombreJaula}" itemValue="#{jaula}" />
+
+                            </p:selectOneMenu>
+
                         </h:panelGroup> 
                     </p:panelGrid>
                     <p:commandButton actionListener="#{muestreoManagedBean.save}" value="#{crudbundle.Save}" update="display,:MuestreoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MuestreoEditDialog'));"/>

@@ -5,12 +5,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
       >
     <ui:composition>
 
         <h:form id="MuestreoCreateForm">
-             <p:growl id="growl" showDetail="true" sticky="true" /> 
-             
+            <p:growl id="growl" showDetail="true" sticky="true" /> 
+
             <h3>Muestreo</h3>
             <p:panelGrid columns="2"  >           
                 <h:outputLabel for="nombrej" value="Nombre de Jaula: " />
@@ -24,16 +25,16 @@
             </p:panelGrid>
 
             <p:panelGrid columns="2">                        
-                <h:outputLabel for="peso" value="Peso Promedio: " />
-                <p:inputText id="pesoPromedioMuestreo"  value="#{muestreoManagedBean.muestreo.pesoPromedioMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}" size="50" maxlength="50" style="text-align: center"/>
-                <h:outputLabel for="fechaMuestreo" value="Fecha Muestreo: " />
+                <!--     <h:outputLabel for="peso" value="Peso Promedio: " />
+                    <pe:inputNumber id="pesoPromedioMuestreo"  value="#{muestreoManagedBean.muestreo.pesoPromedioMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}"  maxlength="50" style="text-align: center"/>
+                -->      <h:outputLabel for="fechaMuestreo" value="Fecha Muestreo: " />
 
                 <p:calendar id="button" style="text-align: center" value="#{muestreoManagedBean.muestreo.fechaMuestreo}" showOn="button"  />
 
-                
-                
-                    <p:commandButton icon="ui-icon-disk" actionListener="#{muestreoManagedBean.saveNew}" value="#{crudbundle.Save}" update="growl"/>
-                
+
+                <p:commandButton id="createButtonP" icon="ui-icon-plus" immediate="true" value="Detalle Muestreo" actionListener="#{detallemuestreoManagedBean.toIndexMuestreo}"/>
+                <p:commandButton icon="ui-icon-disk" actionListener="#{muestreoManagedBean.saveNew}" value="#{crudbundle.Save}" update="growl"/>
+
             </p:panelGrid>
 
 

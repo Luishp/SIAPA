@@ -13,29 +13,24 @@
             <h:form id="DetalleMuestreoViewForm">
 
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" columnClasses="column" rendered="#{muestreoManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{detallemuestreoManagedBean.selected != null}">
 
-                        <h:outputText value="#{crudbundle.ViewMuestreoLabel_idMuestreo}"/>
-                        <h:outputText value="#{muestreoManagedBean.selected.idMuestreo}" title="#{crudbundle.ViewMuestreoTitle_idMuestreo}"/>
+                        <h:outputText value="Id detalle muestreo"/>
+                        <h:outputText value="#{detallemuestreoManagedBean.selected.idDetalleMuestreo}" title="Id detalle muestreo"/>
 
-                        <h:outputText value="#{crudbundle.ViewMuestreoLabel_pesoPromedioMuestreo}"/>
-                        <h:outputText value="#{muestreoManagedBean.selected.pesoPromedioMuestreo}" title="#{crudbundle.ViewMuestreoTitle_pesoPromedioMuestreo}"/>
+                        <h:outputText value="Id Muestreo"/>
+                        <h:outputText value="#{detallemuestreoManagedBean.selected.idMuestreo.idMuestreo}" title="Id muestreo"/>
 
-                        <h:outputText value="#{crudbundle.ViewMuestreoLabel_fechaMuestreo}"/>
-                        <h:outputText value="#{muestreoManagedBean.selected.fechaMuestreo}" title="#{crudbundle.ViewMuestreoTitle_fechaMuestreo}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        <h:outputText value="Cantidad"/>
+                        <h:outputText value="#{detallemuestreoManagedBean.selected.cantidadDetalleMuestreo}" title="Cantidad">
+
                         </h:outputText>
 
-                        <h:outputText value="#{crudbundle.ViewMuestreoLabel_usuarioMuestreo}"/>
-                        <h:outputText value="#{muestreoManagedBean.selected.usuarioMuestreo}" title="#{crudbundle.ViewMuestreoTitle_usuarioMuestreo}"/>
+                        <h:outputText value="Peso"/>
+                        <h:outputText value="#{detallemuestreoManagedBean.selected.pesoDetalleMuestreo}" title="#Peso"/>
 
-                        <h:outputText value="#{crudbundle.ViewMuestreoLabel_fechaRegistroMuestreo}"/>
-                        <h:outputText value="#{muestreoManagedBean.selected.fechaRegistroMuestreo}" title="#{crudbundle.ViewMuestreoTitle_fechaRegistroMuestreo}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
 
-                        <h:outputText value="#{crudbundle.ViewMuestreoLabel_idJaula}"/>
-                        <h:outputText value="#{muestreoManagedBean.selected.idJaula.nombreJaula}"/>
+
                     </p:panelGrid>
                     <p:commandButton value="#{crudbundle.Close}" onclick="PF('MuestreoViewDialog').hide()"/>
                 </h:panelGroup>

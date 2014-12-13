@@ -13,6 +13,8 @@ import com.siapa.service.MuestreoService;
 import com.siapa.service.generic.GenericService;
 import com.siapa.service.DetalleMuestreoService;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -44,19 +46,21 @@ public class DetalleMuestreoManagedBean extends GenericManagedBean<DetalleMuestr
     private DetalleMuestreo detallemuestreo;
     private Muestreo muestreo;
     private List<Muestreo> listMuestreo;
-    
-     @PostConstruct
+    private List<DetalleMuestreo> listadetalle;
+
+    @PostConstruct
     public void init() {
         loadLazyModels();
         detallemuestreo = new DetalleMuestreo();
-        listMuestreo=muestreoService.findAll();
+        listMuestreo = muestreoService.findAll();
+
     }
 
     @Override
     public GenericService<DetalleMuestreo, Integer> getService() {
-         return detallemuestreoService;
+        return detallemuestreoService;
     }
-    
+
     @Override
     public LazyDataModel<DetalleMuestreo> getNewLazyModel() {
         return new DetalleMuestreoLazyModel(detallemuestreoService);
@@ -73,19 +77,60 @@ public class DetalleMuestreoManagedBean extends GenericManagedBean<DetalleMuestr
 
         }
     }
-    
+
     @Override
     public void saveNew(ActionEvent event) {
-        DetalleMuestreo detallemuestreo=getDetallemuestreo();
+        DetalleMuestreo detallemuestreo = getDetallemuestreo();
         detallemuestreo.setIdMuestreo(muestreo);
         detallemuestreoService.save(detallemuestreo);
-         loadLazyModels();
+        BigInteger cant = detallemuestreoService.cantidad(muestreo.getIdMuestreo());
+
+        BigDecimal dividir = new BigDecimal(cant);
+        List<DetalleMuestreo> q = detallemuestreoService.findAll();
+        BigDecimal suma = BigDecimal.ZERO;
+        BigDecimal promedio = BigDecimal.ZERO;
+
+        for (DetalleMuestreo detalle : q) {
+            if (detalle.getIdMuestreo().getIdMuestreo() == muestreo.getIdMuestreo()) {
+                suma = suma.add(detalle.getPesoDetalleMuestreo());
+            }
+        }
+        int sumaint=suma.intValue();
+        int cantint=cant.intValue();
+        //int prom=sumaint/cantint;
+      //  promedio=new BigDecimal(prom);
+      //  System.out.println(prom);
+        promedio=suma.divide(dividir);
+        Muestreo newMuestreo = getMuestreo();
+        newMuestreo.setPesoPromedioMuestreo(suma.divide(dividir));
+        //  muestreo.setPesoPromedioMuestreo(suma);
+        System.out.println(promedio);
+        muestreoService.merge(newMuestreo);
+
+        loadLazyModels();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Successful"));
-      
-        
-    } 
-      public void llenar() {
+        try {
+            FacesContext context1 = FacesContext.getCurrentInstance();
+            context1.getExternalContext().redirect("/siapa/views/detalleMuestreo/index.xhtml");
+        } catch (IOException e) {
+
+        }
+
+    }
+
+    public void toIndexMuestreo(ActionEvent event) {
+        try {
+            FacesContext contex = FacesContext.getCurrentInstance();
+
+            contex.getExternalContext().redirect("/siapa/views/detalleMuestreo/index.xhtml");
+
+        } catch (IOException ex) {
+
+        }
+    }
+
+    public void llenar() {
         System.out.println("punto");
 
     }

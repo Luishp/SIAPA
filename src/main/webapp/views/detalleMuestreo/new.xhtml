@@ -5,6 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
       >
     <ui:composition>
 
@@ -30,9 +31,9 @@
 
 
                 <h:outputLabel for="peso" value="Peso: " />
-                <p:inputText id="pesoDetalleMuestreo"  value="#{detallemuestreoManagedBean.detallemuestreo.pesoDetalleMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}" size="50" maxlength="50" style="text-align: center"/>
+                <pe:inputNumber id="pesoDetalleMuestreo"  value="#{detallemuestreoManagedBean.detallemuestreo.pesoDetalleMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}"  maxlength="50" style="text-align: center"/>
                 <h:outputLabel for="cantidad" value="Cantidad: " />
-                <p:inputText id="cantidadDetalleMuestreo"  value="#{detallemuestreoManagedBean.detallemuestreo.cantidadDetalleMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}" size="50" maxlength="50" style="text-align: center"/>
+                <pe:inputNumber id="cantidadDetalleMuestreo"  value="#{detallemuestreoManagedBean.detallemuestreo.cantidadDetalleMuestreo}" title="#{crudbundle.CreateMuestreoTitle_pesoPromedioMuestreo}" required="true" requiredMessage="#{crudbundle.CreateMuestreoRequiredMessage_pesoPromedioMuestreo}"  maxlength="50" style="text-align: center"/>
 
 
 
