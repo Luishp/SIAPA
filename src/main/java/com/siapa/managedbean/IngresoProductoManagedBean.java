@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
@@ -16,6 +15,7 @@ import com.siapa.service.JaulaService;
 import com.siapa.service.ProductoService;
 import com.siapa.service.generic.GenericService;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -34,8 +34,8 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @Named("ingresoProductoManagedBean")
 @Scope(WebApplicationContext.SCOPE_SESSION)
-public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProducto, Integer>{
-    
+public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProducto, Integer> {
+
     @Autowired
     @Qualifier(value = "IngresoProductoService")
     private IngresoProductoService ingresoProductoService;
@@ -43,23 +43,23 @@ public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProduc
     @Autowired
     @Qualifier(value = "jaulaService")
     private JaulaService jaulaService;
-    
+
     @Autowired
     @Qualifier(value = "productoService")
     private ProductoService productoService;
-    
+
     private Producto producto;
     private Jaula jaula;
     private IngresoProducto ingresoProducto;
     private List<Producto> productos;
     private List<Jaula> jaulas;
-    
+
     @PostConstruct
     public void init() {
         loadLazyModels();
         jaulas = jaulaService.findAll();
-        productos=productoService.findAll();
-        ingresoProducto =new IngresoProducto();
+        productos = productoService.findAll();
+        ingresoProducto = new IngresoProducto();
     }
 
     public IngresoProductoService getIngresoProductoService() {
@@ -125,7 +125,6 @@ public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProduc
     public void setJaulas(List<Jaula> jaulas) {
         this.jaulas = jaulas;
     }
-    
 
     @Override
     public GenericService<IngresoProducto, Integer> getService() {
@@ -136,19 +135,43 @@ public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProduc
     public LazyDataModel<IngresoProducto> getNewLazyModel() {
         return new IngresoProductoLazyModel(ingresoProductoService);
     }
-    
+
     public void toCreateIngresoProducto(ActionEvent event) {
         try {
             FacesContext contex = FacesContext.getCurrentInstance();
             jaulas = jaulaService.findAll();
-            productos =productoService.findAll();
+            productos = productoService.findAll();
             setSelected(new IngresoProducto());
             contex.getExternalContext().redirect("/siapa/views/ingresoProducto/Create.xhtml");
         } catch (IOException ex) {
             //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
         }
     }
-    
+
+    public Boolean updateStoc() {
+        Boolean isOk;
+        Integer existencia = 0;
+        Integer existenciaActual = jaula.getVentaJaula();
+        BigDecimal cantActual = new BigDecimal(existenciaActual);
+        BigDecimal aumento = ingresoProducto.getCantidadIngresoProducto();
+        int suma = aumento.intValue();
+        //if (cantActual.compareTo(reduccion) == -1) {
+        //    FacesContext context = FacesContext.getCurrentInstance();
+        //    context.addMessage(null, new FacesMessage("La cantidad es mayor a la almacenada"));
+           // isOk = false;
+        //} else {
+            Jaula newJaula = getJaula();
+            Jaula idJaula = ingresoProducto.getIdJaula();
+            Jaula cactual = jaulaService.findById(idJaula.getIdJaula());
+            existencia = cactual.getVentaJaula() + suma;
+            newJaula.setVentaJaula(existencia);
+            jaulaService.merge(newJaula);
+            isOk = true;
+        //}
+
+        return isOk;
+    }
+
     public void llenar() {
         //System.out.println("punto");
 
@@ -157,18 +180,21 @@ public class IngresoProductoManagedBean extends GenericManagedBean<IngresoProduc
     @Override
     public void saveNew(ActionEvent event) {
 
-        IngresoProducto ingresoProducto= getIngresoProducto();
+        IngresoProducto ingresoProducto = getIngresoProducto();
         ingresoProducto.setIdJaula(jaula);
         ingresoProducto.setIdProducto(producto);
         ingresoProducto.setUsuarioIngresoProducto(getUsuario());
-        ingresoProductoService.save(ingresoProducto);
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Insercion completada"));
-        try {
-            FacesContext contex = FacesContext.getCurrentInstance();
-            contex.getExternalContext().redirect("/siapa/views/ingresoProducto/index.xhtml");
-        } catch (IOException ex) {
-            //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+        Boolean validar = updateStoc();
+        if (validar) {
+            ingresoProductoService.save(ingresoProducto);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Insercion completada"));
+            try {
+                FacesContext contex = FacesContext.getCurrentInstance();
+                contex.getExternalContext().redirect("/siapa/views/ingresoProducto/index.xhtml");
+            } catch (IOException ex) {
+                //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+            }
         }
-        }
+    }
 }
