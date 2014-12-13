@@ -31,8 +31,10 @@ import org.springframework.web.context.WebApplicationContext;
 public class ProductoManagedBean extends GenericManagedBean<Producto, Integer> {
 
     @Autowired
-    @Qualifier(value = "ProductoService")
+    @Qualifier(value = "productoService")
     private ProductoService productoService;
+    
+    private Producto producto;
     
      @PostConstruct
     public void init() {
@@ -48,6 +50,9 @@ public class ProductoManagedBean extends GenericManagedBean<Producto, Integer> {
     public LazyDataModel<Producto> getNewLazyModel() {
         return new ProductoLazyModel(productoService);
     }
+    
+    
+    
     
     public void toCreateProducto(ActionEvent event) {
         try {

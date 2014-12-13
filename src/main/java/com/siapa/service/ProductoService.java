@@ -7,6 +7,7 @@ package com.siapa.service;
 
 import com.siapa.dao.ProductoDao;
 import com.siapa.dao.generic.GenericDao;
+import com.siapa.model.Descuento;
 import com.siapa.model.Producto;
 import com.siapa.service.generic.GenericService;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ProductoService extends GenericService<Producto, Integer>{
         return productoDao;
     }
     
-    public List<Producto> getProducto() {
+    public List<Descuento> getProducto() {
         return productoDao.getProducto();
     }
     

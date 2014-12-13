@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.model;
 
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,11 +28,12 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Descuento.findAll", query = "SELECT d FROM Descuento d")})
 public class Descuento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_DESCUENTO", nullable = false)
-    private Long idDescuento;
+    @GeneratedValue
+    @Column(name = "ID_DESCUENTO", nullable = true)
+    private Integer idDescuento;
     @Basic(optional = false)
     @Column(name = "NOMBRE_DESCUENTO", nullable = false, length = 50)
     private String nombreDescuento;
@@ -53,22 +54,22 @@ public class Descuento implements Serializable {
     public Descuento() {
     }
 
-    public Descuento(Long idDescuento) {
+    public Descuento(Integer idDescuento) {
         this.idDescuento = idDescuento;
     }
 
-    public Descuento(Long idDescuento, String nombreDescuento, String descripcionDescuento, BigDecimal porcentajeDescuento) {
+    public Descuento(Integer idDescuento, String nombreDescuento, String descripcionDescuento, BigDecimal porcentajeDescuento) {
         this.idDescuento = idDescuento;
         this.nombreDescuento = nombreDescuento;
         this.descripcionDescuento = descripcionDescuento;
         this.porcentajeDescuento = porcentajeDescuento;
     }
 
-    public Long getIdDescuento() {
+    public Integer getIdDescuento() {
         return idDescuento;
     }
 
-    public void setIdDescuento(Long idDescuento) {
+    public void setIdDescuento(Integer idDescuento) {
         this.idDescuento = idDescuento;
     }
 
@@ -136,5 +137,4 @@ public class Descuento implements Serializable {
     public String toString() {
         return "com.siapa.model.Descuento[ idDescuento=" + idDescuento + " ]";
     }
-    
 }

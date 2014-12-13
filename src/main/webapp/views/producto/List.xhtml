@@ -14,7 +14,7 @@
 
                 <p:dataTable id="datalist"
                              var="item"
-                             value="#{productoManagedBean.items}"
+                             value="#{productoManagedBean.lazyItems}"
                              paginator="true"
                              rows="10"
                              rowsPerPageTemplate="10,20,30,40,50"
@@ -69,10 +69,10 @@
 
                     <f:facet name="footer">
                         <div class="footer-section">
-                            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{productoManagedBean.prepareCreate}" update="@(#ProductoCreateForm)" oncomplete="ProductoCreateDialog.show()"/>
-                            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ProductoViewForm)" oncomplete="ProductoViewDialog.show()" disabled="#{empty productoManagedBean.selected}"/>
-                            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#ProductoEditForm)" oncomplete="ProductoEditDialog.show()" disabled="#{empty productoManagedBean.selected}"/>
-                            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{productoManagedBean.delete}" update=":growl,datalist" disabled="#{empty productoManagedBean.selected}">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{productoManagedBean.prepareCreate}" update="@(#ProductoCreateForm)" oncomplete="ProductoCreateDialog.show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ProductoViewForm)" oncomplete="ProductoViewDialog.show()" disabled="#{empty productoManagedBean.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#ProductoEditForm)" oncomplete="ProductoEditDialog.show()" disabled="#{empty productoManagedBean.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{productoManagedBean.delete}" update=":growl,datalist" disabled="#{empty productoManagedBean.selected}">
                                 <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
                             </p:commandButton>
                         </div>

@@ -16,14 +16,13 @@
 
                 <div align="center" > 
                     <h:panelGroup id="display" >
-                        <p:panelGrid columns="6" >
-                            <p:outputLabel value="Proveedor : "/>
-                            <p:selectOneMenu id="prov" value="#{detalleCompraAlimentoManagedBean.idProveedor}" effect="fade" style="width:200px" disabled="#{detalleCompraAlimentoManagedBean.flag}" >
-                                <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="proveedor" itemLabel="#{proveedor.idPersona.nombrePersona}" itemValue="#{proveedor.idProveedor}" />
-                                <p:ajax event="change" listener="#{detalleCompraAlimentoManagedBean.vacio()}" update="solo" />
-                            </p:selectOneMenu>
-
-                            <div align="center" > 
+                        <p:panelGrid columns="4" >
+                                <p:outputLabel value="Proveedor : "/>
+                                <p:selectOneMenu id="proveedor" value="#{detalleCompraAlimentoManagedBean.proveedor}" converter="#{proveedorConverter}" effect="fade" style="width:200px">
+                                    <f:selectItems value="#{detalleCompraAlimentoManagedBean.proveedorList}" var="proveedor" itemLabel="#{proveedor.idPersona.nombrePersona}" itemValue="#{proveedor}" />
+                                </p:selectOneMenu>
+                           
+                           <div align="center" > 
                                 <p:panel id="total" header="TOTAL" style="font-size:20px; width:120px; height:120px">
                                     <h:outputText value="#{detalleCompraAlimentoManagedBean.sumaTotal}" style="font-size:25px; font-weight:bold;  alignment-adjust: central" />
                                 </p:panel>
@@ -82,16 +81,27 @@
 
 
                             <f:facet name="footer">
-                                <div align="center" class="footer-section" id="solo" > 
-                                    <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true" value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreateDetalle}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()" disabled="#{empty detalleCompraAlimentoManagedBean.proveedor}"/>
+                                <div align="center" class="footer-section" > 
+                                    <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true" value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreateDetalle}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()"/>
 
-                                    <p:commandButton  icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.guardarCompra()}" value="#{crudbundle.Save}"  oncomplete="handleSubmit(xhr,status,args,DetalleCompraListForm);" update=" @(#DetalleCompraListForm),:growl" />
+                                    <p:commandButton icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.guardarCompra()}" value="#{crudbundle.Save}" immediate="true" />
 
                                 </div>
                             </f:facet>
                         </p:dataTable>
                     </p:outputPanel>
                 </h:form>
+
+
+
+
+
+
+
+
+
+
+
 
             </p:fieldset> 
         </h:form>

@@ -6,6 +6,7 @@
 package com.siapa.dao;
 
 import com.siapa.dao.generic.GenericDao;
+import com.siapa.model.Descuento;
 import com.siapa.model.Producto;
 import java.io.Serializable;
 import java.util.List;
@@ -17,12 +18,12 @@ import org.springframework.stereotype.Repository;
  * @author Joao
  */
 @Repository
-public class ProductoDao extends GenericDao<Producto, Integer>{
-      
-    public List <Producto>getProducto(){
-        
-        Query q=getSessionFactory().getCurrentSession().createQuery("SELECT prod FROM Producto prod JOIN FETCH prod.descuentoSet");
+public class ProductoDao extends GenericDao<Producto, Integer> {
+
+    public List<Descuento> getProducto() {
+
+        Query q = getSessionFactory().getCurrentSession().createQuery("SELECT descuento FROM Descuento descuento JOIN FETCH descuento.idCategorias JOIN FETCH descuento.idProducto");
         return q.list();
-        
+
     }
 }

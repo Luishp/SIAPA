@@ -5,10 +5,13 @@
 package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
+import com.siapa.model.Categorias;
 import com.siapa.model.Cliente;
+import com.siapa.model.Descuento;
 import com.siapa.model.DetalleVenta;
 import com.siapa.model.Producto;
 import com.siapa.service.ClienteService;
+import com.siapa.service.DescuentoService;
 import com.siapa.service.DetalleVentaService;
 import com.siapa.service.ProductoService;
 import com.siapa.service.generic.GenericService;
@@ -34,29 +37,32 @@ public class DetalleVentaManagedBean extends GenericManagedBean<DetalleVenta, In
     @Autowired
     @Qualifier(value = "clienteService")
     private ClienteService clienteService;
-
     @Autowired
     @Qualifier(value = "detalleVentaService")
     private DetalleVentaService detalleVentaService;
-
     @Autowired
     @Qualifier(value = "productoService")
     private ProductoService productoService;
-
+    @Autowired
+    @Qualifier(value = "descuentoService")
+    private DescuentoService descuentoService;
+    
     private Cliente cliente;
     private List<Cliente> clienteList;
     private List<DetalleVenta> detalleVentaList;
-    private List<Producto> productoList;
-
+    private List<Descuento> descuentoList;
     private DetalleVenta detalleVenta;
-
+    private Descuento descuento;
+    private Producto producto;
     private BigDecimal sumaTotal = BigDecimal.ZERO;
+    private BigDecimal total = BigDecimal.ZERO;
 
     @PostConstruct
     public void init() {
-        clienteList = clienteService.getCliente();
+        clienteList = clienteService.findAll();
+        descuentoList = productoService.getProducto();
         detalleVentaList = detalleVentaService.getDetalleVentaAll();
-        productoList = productoService.getProducto();
+       
     }
 
     public DetalleVenta prepareCreateDetalle() {
@@ -69,7 +75,31 @@ public class DetalleVentaManagedBean extends GenericManagedBean<DetalleVenta, In
         }
         return null;
     }
+    
+    public void cargarOutput(){
+        System.out.println("...-..-.-."+getDescuento());
+    }
 
+    public Descuento desc(){
+        Categorias idCategorias=cliente.getIdCategorias();
+        descuento = descuentoService.findById(idCategorias.getIdCategorias());
+        return descuento;
+    }
+    
+    public BigDecimal calcularTotal() {
+        BigDecimal total1 = BigDecimal.ZERO;
+        BigDecimal imp = BigDecimal.ZERO;
+        BigDecimal descuentototal;
+        if(descuento !=null ){
+           double des= descuento.getPorcentajeDescuento().doubleValue();
+           double porce=des/100;
+           BigDecimal des1=new BigDecimal(porce);
+           descuentototal= descuento.getIdProducto().getPrecioProducto().multiply(detalleVenta.getCantidadDetalleVenta()).multiply(des1);
+           total1=descuento.getIdProducto().getPrecioProducto().multiply(detalleVenta.getCantidadDetalleVenta()).subtract(descuentototal);
+        }
+        return total1;
+    }
+    
     @Override
     public GenericService<DetalleVenta, Integer> getService() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -112,4 +142,57 @@ public class DetalleVentaManagedBean extends GenericManagedBean<DetalleVenta, In
         this.detalleVenta = detalleVenta;
     }
 
+    public List<DetalleVenta> getDetalleVentaList() {
+        return detalleVentaList;
+    }
+
+    public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
+        this.detalleVentaList = detalleVentaList;
+    }
+
+  
+
+    public Descuento getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(Descuento descuento) {
+        this.descuento = descuento;
+    }
+
+    public BigDecimal getTotal() {
+         total = calcularTotal();
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public DescuentoService getDescuentoService() {
+        return descuentoService;
+    }
+
+    public void setDescuentoService(DescuentoService descuentoService) {
+        this.descuentoService = descuentoService;
+    }
+
+    public List<Descuento> getDescuentoList() {
+        return descuentoList;
+    }
+
+    public void setDescuentoList(List<Descuento> descuentoList) {
+        this.descuentoList = descuentoList;
+    }
+    
+    
+    
 }
