@@ -30,4 +30,9 @@ public class JaulaService extends GenericService<Jaula, Integer>{
     public List<Jaula> findAllActives() {
         return jaulaDao.findAll();
     }
+    
+    
+    public Long sumAllJ() {
+        return jaulaDao.sumAll();
+    }
 }

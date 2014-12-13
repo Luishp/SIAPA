@@ -5,6 +5,7 @@
  */
 package com.siapa.service;
 
+import com.siapa.dao.JaulaDao;
 import com.siapa.dao.TipoJaulaDao;
 import com.siapa.dao.generic.GenericDao;
 import com.siapa.model.TipoJaula;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 public class TipoJaulaService extends GenericService<TipoJaula, Integer> {
       @Autowired
     private TipoJaulaDao tipoJaulaDao;
+    private JaulaDao JaulaDao;
 
     @Override
     public GenericDao<TipoJaula, Integer> getDao() {
@@ -30,4 +32,15 @@ public class TipoJaulaService extends GenericService<TipoJaula, Integer> {
     public List<TipoJaula> findAllActives() {
         return tipoJaulaDao.findAllActives();
     }
+
+    /**
+     * @return the JaulaDao
+     */
+    public Long getJaulaDao() {
+        return JaulaDao.sumAll();
+    }
+
+    
+    
+    
 }

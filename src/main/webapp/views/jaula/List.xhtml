@@ -4,10 +4,32 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pe="http://primefaces.org/ui/extensions"
                 xmlns:p="http://primefaces.org/ui">
 
+
+
+
     <h:form id="JaulaListForm">
+
+
+        <p:separator />
         <p:fieldset legend="Jaula">
+
+
+            <div align="center" > 
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="6" >
+
+                        <div align="center" > 
+                            <p:panel id="total" header="TOTAL" style="font-size:20px; width:120px; height:120px">
+                                <h:outputText  value="#{jaulaManagedBean.suma}" style="font-size:25px; font-weight:bold;  alignment-adjust: central"/>
+                            </p:panel>
+                        </div>
+
+                    </p:panelGrid>
+                </h:panelGroup>
+            </div>
             <p:dataTable id="datalist" 
                          var="item"
                          value="#{jaulaManagedBean.lazyItems}" 
@@ -25,7 +47,7 @@
                 <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
                 <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
 
-                <p:column sortBy="#{item.idJaula}" filterBy="#{item.idJaula}">
+                <p:column sortBy="#{item.idJaula}">
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListJaulaTitle_idJaula}"/>
                     </f:facet>
@@ -33,7 +55,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.nombreJaula}" filterBy="#{item.nombreJaula}">
+                <p:column sortBy="#{item.nombreJaula}" >
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListJaulaTitle_nombre}"/>
                     </f:facet>
@@ -41,36 +63,36 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.descripcionJaula}" filterBy="#{item.descripcionJaula}">
+                <p:column sortBy="#{item.descripcionJaula}">
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListJaulaTitle_descripcion}"/>
                     </f:facet>
                     <h:outputText value="#{item.descripcionJaula}"/>
                 </p:column>
-                
-                <p:column sortBy="#{item.listaVentaJaula}" filterBy="#{item.listaVentaJaula}">
+
+                <p:column sortBy="#{item.listaVentaJaula}">
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListJaulaTitle_enVenta}"/>
                     </f:facet>
                     <h:outputText value="#{item.listaVentaJaula}"/>
                 </p:column>
 
-                <p:column sortBy="#{item.nombreTipoJaula}" filterBy="#{item.idTipoJaula.nombreTipoJaula}">
+                <p:column sortBy="#{item.nombreTipoJaula}" >
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListJaulaTitle_tipoJaula}"/>
                     </f:facet>
                     <h:outputText value="#{item.idTipoJaula.nombreTipoJaula}"/>
                 </p:column>
-                
-                
-                <p:column sortBy="#{item.fechaSiembraJaula}" filterBy="#{item.fechaSiembraJaula}">
+
+
+                <p:column sortBy="#{item.fechaSiembraJaula}" >
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListJaulaTitle_fechaSiembraJaula}"/>
                     </f:facet>
                     <h:outputText value="#{item.fechaSiembraJaula}"/>
                 </p:column>
 
-                <p:column sortBy="#{item.fechaVentaJaula}" filterBy="#{item.fechaVentaJaula}">
+                <p:column sortBy="#{item.fechaVentaJaula}" >
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListJaulaTitle_fechaVentaJaula}"/>
                     </f:facet>
@@ -78,7 +100,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.ventaJaula}" filterBy="#{item.ventaJaula}">
+                <p:column sortBy="#{item.ventaJaula}" >
                     <f:facet name="header">
                         <h:outputText value="#{crudbundle.ListJaulaTitle_existencias}"/>
                     </f:facet>

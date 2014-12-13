@@ -7,15 +7,18 @@ package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
 import com.siapa.managedbean.lazymodel.JaulaLazyModel;
+import com.siapa.model.DetalleCompraAlimento;
 import com.siapa.model.Jaula;
 import com.siapa.model.TipoJaula;
 import com.siapa.service.JaulaService;
 import com.siapa.service.TipoJaulaService;
 import com.siapa.service.generic.GenericService;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
@@ -42,6 +45,7 @@ public class JaulaManangedBean extends GenericManagedBean<Jaula, Integer> {
     private List<TipoJaula> tipoJaulaList;
     private TipoJaula tipoJaula;
     private Boolean jaulaVenta;
+    private Long suma;
 
     @PostConstruct
     public void init() {
@@ -70,16 +74,44 @@ public class JaulaManangedBean extends GenericManagedBean<Jaula, Integer> {
         getSelected().setListaVentaJaula(getJaulaVenta());
         persist(PersistAction.CREATE, msg);
         tipoJaulaList=tipoJaulaService.findAllActives();
+        setSuma(this.jaulaService.sumAllJ());
+        toCreateJaula();
        }
     } 
     
+    @Override
     
+    public void save(ActionEvent event) {    
+        String msg = ResourceBundle.getBundle("/crudbundle").getString(Jaula.class.getSimpleName() + "Updated");
+        //getSelected().setIdTipoJaula(getTipoJaula());
+        getSelected().setListaVentaJaula(getJaulaVenta());
+        persist(PersistAction.UPDATE, msg);
+        tipoJaulaList=tipoJaulaService.findAllActives();
+        setSuma(this.jaulaService.sumAllJ());
+        toCreateJaula();
+    }
+    
+    @Override
+    public void delete(ActionEvent event) {
+       
+        String msg = ResourceBundle.getBundle("/crudbundle").getString(Jaula.class.getSimpleName() + "Deleted");
+        persist(PersistAction.DELETE, msg);
+        tipoJaulaList=tipoJaulaService.findAllActives();
+        setSuma(this.jaulaService.sumAllJ());
+        toCreateJaula();
+        if (!isValidationFailed()) {
+            items = null; // Invalidate list of items to trigger re-query.
+        }
+    }
     
     
 
     public void cargarListas() {
 
         tipoJaulaList=tipoJaulaService.findAllActives();
+        setSuma(this.jaulaService.sumAllJ());
+        System.out.println(getSuma());
+       // this.jaulaService=new JaulaService();
 
     }
 
@@ -126,5 +158,28 @@ public class JaulaManangedBean extends GenericManagedBean<Jaula, Integer> {
         this.jaulaVenta = jaulaVenta;
     }
 
+    /**
+     * @return the suma
+     */
+    public Long getSuma() {
+        return suma;
+    }
+
+    /**
+     * @param suma the suma to set
+     */
+    public void setSuma(Long suma) {
+        this.suma = suma;
+    }
+    public void toCreateJaula() {
+        try {
+            FacesContext contex = FacesContext.getCurrentInstance();
+
+            setSelected(new Jaula());
+            contex.getExternalContext().redirect("/siapa/views/jaula/index.xhtml");
+        } catch (IOException ex) {
+            //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+        }
+    }
    
 }
