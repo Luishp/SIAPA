@@ -83,7 +83,7 @@
 
                             <f:facet name="footer">
                                 <div align="center" class="footer-section" id="solo" > 
-                                    <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true" value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreateDetalle}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()" disabled="#{empty detalleCompraAlimentoManagedBean.proveedor}"/>
+                                    <p:commandButton id="createButton" icon="ui-icon-plus" immediate="true" value="#{crudbundle.Create}" actionListener="#{detalleCompraAlimentoManagedBean.prepareCreateDetalle}" update=" @(#DetalleCompraListForm)" oncomplete="DetalleCompraAlimentoCreateDialog.show()" />
 
                                     <p:commandButton  icon="ui-icon-disk" actionListener="#{detalleCompraAlimentoManagedBean.guardarCompra()}" value="#{crudbundle.Save}"  oncomplete="handleSubmit(xhr,status,args,DetalleCompraListForm);" update=" @(#DetalleCompraListForm),:growl" />
 

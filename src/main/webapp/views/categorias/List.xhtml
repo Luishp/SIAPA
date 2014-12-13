@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="CategoriasListForm">
+
+        <p:panel header="Listado de Categorias">
+
+            <p:dataTable id="datalist" 
+                         var="item"
+                         value="#{categoriasManagedBean.items}" 
+                         paginator="true" 
+                         rows="5"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
+                         rowsPerPageTemplate="5,10,15" 
+                         lazy="true"
+                         resizableColumns="true"  
+                         selectionMode="single"
+                         selection="#{categoriasManagedBean.selected}"
+                         rowKey="#{item.idCategorias}" 
+                         paginatorPosition="bottom"> 
+
+                <p:ajax event="rowSelect"   update="createButton viewButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton"/>
+
+                <p:column sortBy="#{item.idCategorias}" filterBy="#{item.idCategorias}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListCategoriasTitle_idCategorias}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCategorias}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombreCategorias}" filterBy="#{item.nombreCategorias}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListCategoriasTitle_nombreCategorias}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreCategorias}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcionCategorias}" filterBy="#{item.descripcionCategorias}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListCategoriasTitle_descripcionCategorias}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcionCategorias}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{categoriasManagedBean.prepareCreate}" update="@(#CategoriasCreateForm)" oncomplete="CategoriasCreateDialog.show()"/>
+
+                        <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update="@(#CategoriasViewForm)" oncomplete="CategoriasCreateDialog.show()" disabled="#{empty categoriasManagedBean.selected}"/>
+                        <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#CategoriasEditForm)" oncomplete="CategoriasCreateDialog.show()" disabled="#{empty categoriasManagedBean.selected}"/>
+                        <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{categoriasManagedBean.delete}" update=":growl,datalist" disabled="#{empty categoriasManagedBean.selected}"/>
+                    </div>
+                </f:facet>   
+
+            </p:dataTable>
+
+
+
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

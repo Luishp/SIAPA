@@ -25,13 +25,12 @@
                 <p:ajax event="rowSelect"   update="createButton  deleteButton viewButton"/>
                 <p:ajax event="rowUnselect" update="createButton  deleteButton viewButton"/>
 
-                <p:column sortBy="#{item.idProveedor}" filterBy="#{item.idProveedor}">
+                  <p:column sortBy="#{item.idPersona.idPersona}" filterBy="#{item.idPersona.idPersona}">
                     <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListProveedorTitle_idProveedor}"/>
+                        <h:outputText value="#{crudbundle.ListPersonaTitle_nombrePersona}"/>
                     </f:facet>
-                    <h:outputText value="#{item.idProveedor}"/>
+                    <h:outputText value="#{item.idPersona.nombrePersona}"/>
                 </p:column>
-
 
                 <p:column sortBy="#{item.fechaProveedor}" filterBy="#{item.fechaProveedor}">
                     <f:facet name="header">
@@ -51,12 +50,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.idPersona.idPersona}" filterBy="#{item.idPersona.idPersona}">
-                    <f:facet name="header">
-                        <h:outputText value="#{crudbundle.ListPersonaTitle_nombrePersona}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idPersona.idPersona}"/>
-                </p:column>
+             
 
                 
                 <f:facet name="footer">

@@ -10,7 +10,7 @@
         <p:fieldset legend="cliente">
             <p:dataTable id="datalist" 
                          var="item"
-                         value="#{clienteManagedBean.lazyItems}" 
+                         value="#{descuentosManagedBean.items}" 
                          paginator="true" 
                          rows="5"  
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"  
@@ -18,12 +18,15 @@
                          lazy="true"
                          resizableColumns="true"  
                          selectionMode="single"
-                         selection="#{clienteManagedBean.selected}"
-                         rowKey="#{item.idCliente}" 
-                         paginatorPosition="bottom">   
+                         selection="#{descuentosManagedBean.selected}"
+                         rowKey="#{item.idDescuento}" 
+                         paginatorPosition="bottom"> 
+ 
+                
+                
 
-                <p:ajax event="rowSelect"   update="createButton editButton deleteButton viewButton"/>
-                <p:ajax event="rowUnselect" update="createButton editButton deleteButton viewButton"/>
+                <p:ajax event="rowSelect"   update="createButton editButton deleteButton "/>
+                <p:ajax event="rowUnselect" update="createButton editButton deleteButton "/>
 
                 <p:column sortBy="#{item.nombreClienteCompVenta}" filterBy="#{item.nombreClienteCompVenta}">
                     <f:facet name="header">
@@ -51,11 +54,12 @@
 
                 <f:facet name="footer">
                     <div class="footer-section">
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{clienteManagedBean.toCreateCliente}"/>
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{clienteManagedBean.toCreateCliente}" update="@(#CategoriasCreateForm)" oncomplete="CategoriasCreateDialog.show()"/>
+                        <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{categoriasManagedBean.prepareCreate}" update="@(#CategoriasCreateForm)" oncomplete="CategoriasCreateDialog.show()"/>
+
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{crudbundle.Edit}" update="@(#ClienteEditForm)" oncomplete="ClienteEditDialog.show()" disabled="#{empty clienteManagedBean.selected}"/>
                         <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{clienteManagedBean.delete}" update=":growl,datalist" disabled="#{empty clienteManagedBean.selected}"/>
-                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{crudbundle.View}" update="@(#ClienteViewForm)" oncomplete="ClienteViewDialog.show()" disabled="#{empty clienteManagedBean.selected}"/>
-
+                     
                     </div>
                 </f:facet>
             </p:dataTable>

@@ -15,10 +15,12 @@ import com.siapa.service.DescuentoService;
 import com.siapa.service.DetalleVentaService;
 import com.siapa.service.ProductoService;
 import com.siapa.service.generic.GenericService;
+import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,15 +67,14 @@ public class DetalleVentaManagedBean extends GenericManagedBean<DetalleVenta, In
        
     }
 
-    public DetalleVenta prepareCreateDetalle() {
-        DetalleVenta newItem;
+   
+    
+    public void prepareCreateDetalle() {
         try {
-            newItem = new DetalleVenta();
-            this.setDetalleVenta(newItem);
-            return newItem;
+            detalleVenta = new DetalleVenta();
         } catch (Exception ex) {
+            System.out.println("error" + ex);
         }
-        return null;
     }
     
     public void cargarOutput(){
@@ -84,6 +85,17 @@ public class DetalleVentaManagedBean extends GenericManagedBean<DetalleVenta, In
         Categorias idCategorias=cliente.getIdCategorias();
         descuento = descuentoService.findById(idCategorias.getIdCategorias());
         return descuento;
+    }
+    
+      public void toCreateVenta() {
+        try {
+            FacesContext contex = FacesContext.getCurrentInstance();
+
+            setSelected(new DetalleVenta());
+            contex.getExternalContext().redirect("/siapa/views/detalleCompraAlimento/Create.xhtml");
+        } catch (IOException ex) {
+            //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+        }
     }
     
     public BigDecimal calcularTotal() {

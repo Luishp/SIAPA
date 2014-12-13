@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DescuentoEditDlg" widgetVar="DescuentoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{crudbundle.EditDescuentoTitle}" closeOnEscape="true">
+
+            <h:form id="DescuentoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{descuentoManagedBean.selected != null}">
+
+
+                        <h:outputLabel value="#{crudbundle.EditDescuentoLabel_idDescuento}" for="idDescuento" />
+                        <h:outputText id="idDescuento" value="#{descuentoManagedBean.selected.idDescuento}" />
+
+                        <p:outputLabel value="#{crudbundle.EditDescuentoLabel_nombreDescuento}" for="nombreDescuento" />
+                        <p:inputText id="nombreDescuento" value="#{descuentoManagedBean.selected.nombreDescuento}" title="#{crudbundle.EditDescuentoTitle_nombreDescuento}" required="true" requiredMessage="#{crudbundle.EditDescuentoRequiredMessage_nombreDescuento}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.EditDescuentoLabel_descripcionDescuento}" for="descripcionDescuento" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionDescuento" value="#{descuentoManagedBean.selected.descripcionDescuento}" title="#{crudbundle.EditDescuentoTitle_descripcionDescuento}" required="true" requiredMessage="#{crudbundle.EditDescuentoRequiredMessage_descripcionDescuento}"/>
+
+                        <p:outputLabel value="#{crudbundle.EditDescuentoLabel_porcentajeDescuento}" for="porcentajeDescuento" />
+                        <p:inputText id="porcentajeDescuento" value="#{descuentoManagedBean.selected.porcentajeDescuento}" title="#{crudbundle.EditDescuentoTitle_porcentajeDescuento}" required="true" requiredMessage="#{crudbundle.EditDescuentoRequiredMessage_porcentajeDescuento}"/>
+
+                        <p:outputLabel value="#{crudbundle.EditDescuentoLabel_idCategorias}" for="idCategorias" />
+                        <p:selectOneMenu id="idCategorias" value="#{descuentoManagedBean.selected.idCategorias}" >
+                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{categoriasController.items}"
+                                           var="idCategoriasItem"
+                                           itemValue="#{idCategoriasItem}"
+                                           itemLabel="#{idCategoriasItem.descripcionCategorias.toString()}"
+                                           />
+                            <f:converter binding="#{categoriasConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{crudbundle.EditDescuentoLabel_idProducto}" for="idProducto" />
+                        <p:selectOneMenu id="idProducto" value="#{descuentoManagedBean.selected.idProducto}" >
+                            <f:selectItem itemLabel="#{crudbundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{productoController.items}"
+                                           var="idProductoItem"
+                                           itemValue="#{idProductoItem}"
+                                           itemLabel="#{idProductoItem.descripcionProducto.toString()}"
+                                           />
+                            <f:converter binding="#{productoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{descuentoManagedBean.save}" value="#{crudbundle.Save}" update="display,:DescuentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DescuentoEditDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('DescuentoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

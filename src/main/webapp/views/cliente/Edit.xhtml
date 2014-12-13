@@ -19,9 +19,9 @@
                         <p:inputText id="nombreClienteCompVenta" readonly="true" value="#{clienteManagedBean.selected.nombreClienteCompVenta}" title="#{crudbundle.EditClienteTitle_nombreClienteCompVenta}" required="true" requiredMessage="#{crudbundle.EditClienteRequiredMessage_nombreClienteCompVenta}" size="50" maxlength="50"/>
 
                         <p:outputLabel value="#{crudbundle.EditClienteLabel_direccionCliente}" for="direccionCliente" />
-                        <p:inputTextarea rows="4" cols="30" id="direccionCliente" readonly="true" value="#{clienteManagedBean.selected.direccionCliente}" title="#{crudbundle.EditClienteTitle_direccionCliente}" />
+                        <p:inputTextarea rows="4" cols="30" id="direccionCliente"  value="#{clienteManagedBean.selected.direccionCliente}" title="#{crudbundle.EditClienteTitle_direccionCliente}" />
 
-                        <p:outputLabel value="#{crudbundle.EditClienteLabel_tipoCliente}" for="tipoCliente" />                      
+                           <p:outputLabel value="#{crudbundle.CreateClienteLabel_tipoCliente}" for="tipoCliente" />
                         <p:selectOneMenu id="tipoCliente" value="#{clienteManagedBean.categoria}" converter="#{categoriasConverter}" effect="fade"  style="width:200px" >
                             <f:selectItems value="#{clienteManagedBean.categorias}" var="categorias" itemLabel="#{categorias.nombreCategorias}" itemValue="#{categorias}" />       
                         </p:selectOneMenu>

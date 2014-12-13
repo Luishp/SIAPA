@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CategoriasCreateDlg" widgetVar="CategoriasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Ingresar Categoria" closeOnEscape="true">
+
+            <h:form id="CategoriasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{categoriasManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        
+                        <p:outputLabel value="#{crudbundle.CreateCategoriasLabel_nombreCategorias}" for="nombreCategorias" />
+                        <p:inputText id="nombreCategorias" value="#{categoriasManagedBean.selected.nombreCategorias}" title="#{crudbundle.CreateCategoriasTitle_nombreCategorias}" required="true" requiredMessage="#{crudbundle.CreateCategoriasRequiredMessage_nombreCategorias}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateCategoriasLabel_descripcionCategorias}" for="descripcionCategorias" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionCategorias" value="#{categoriasManagedBean.selected.descripcionCategorias}" title="#{crudbundle.CreateCategoriasTitle_descripcionCategorias}" required="true" requiredMessage="#{crudbundle.CreateCategoriasRequiredMessage_descripcionCategorias}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{categoriasManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:CategoriasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CategoriasCreateDialog'));">
+
+                    </p:commandButton>
+
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('CategoriasCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

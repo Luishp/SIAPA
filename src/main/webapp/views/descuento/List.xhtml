@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DescuentoListForm">
+
+        <p:panel header="#{crudbundle.ListDescuentoTitle}">
+
+            <p:dataTable id="datalist"
+                         value="#{descuentoManagedBean.items}"
+                         var="item"
+                         rowKey="#{item.idDescuento}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{descuentoManagedBean.selected}">
+
+                <p:ajax event="rowSelect"   update=":DescuentoListForm:createButton :DescuentoListForm:viewButton :DescuentoListForm:editButton :DescuentoListForm:deleteButton :DescuentoListForm:DescuentoDataTableContextMenu" listener="#{descuentoManagedBean.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":DescuentoListForm:createButton :DescuentoListForm:viewButton :DescuentoListForm:editButton :DescuentoListForm:deleteButton :DescuentoListForm:DescuentoDataTableContextMenu" listener="#{descuentoManagedBean.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('DescuentoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idDescuento}" filterBy="#{item.idDescuento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDescuentoTitle_idDescuento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idDescuento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombreDescuento}" filterBy="#{item.nombreDescuento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDescuentoTitle_nombreDescuento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreDescuento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcionDescuento}" filterBy="#{item.descripcionDescuento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDescuentoTitle_descripcionDescuento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcionDescuento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.porcentajeDescuento}" filterBy="#{item.porcentajeDescuento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDescuentoTitle_porcentajeDescuento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.porcentajeDescuento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idCategorias.descripcionCategorias}" filterBy="#{item.idCategorias.descripcionCategorias}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDescuentoTitle_idCategorias}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCategorias.descripcionCategorias}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idProducto.descripcionProducto}" filterBy="#{item.idProducto.descripcionProducto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{crudbundle.ListDescuentoTitle_idProducto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idProducto.descripcionProducto}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{crudbundle.Create}" actionListener="#{descuentoManagedBean.prepareCreate}" update=":DescuentoCreateForm" oncomplete="PF('DescuentoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{crudbundle.View}" update=":DescuentoViewForm" oncomplete="PF('DescuentoViewDialog').show()" disabled="#{empty descuentoManagedBean.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{crudbundle.Edit}" update=":DescuentoEditForm" oncomplete="PF('DescuentoEditDialog').show()" disabled="#{empty descuentoManagedBean.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{crudbundle.Delete}" actionListener="#{descuentoManagedBean.delete}" update=":growl,datalist" disabled="#{empty descuentoManagedBean.selected}">
+            </p:commandButton>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

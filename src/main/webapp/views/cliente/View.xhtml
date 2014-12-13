@@ -15,8 +15,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{clienteManagedBean.selected != null}">
 
-                        <h:outputText value="#{crudbundle.ViewClienteLabel_idCliente}"/>
-                        <h:outputText value="#{clienteManagedBean.selected.idCliente}" title="#{crudbundle.ViewClienteTitle_idCliente}"/>
+                      
 
                         <h:outputText value="#{crudbundle.ViewClienteLabel_nombreClienteCompVenta}"/>
                         <h:outputText value="#{clienteManagedBean.selected.nombreClienteCompVenta}" title="#{crudbundle.ViewClienteTitle_nombreClienteCompVenta}"/>
@@ -27,11 +26,8 @@
                         <h:outputText value="#{crudbundle.ViewClienteLabel_tipoCliente}"/>
                         <h:outputText value="#{clienteManagedBean.selected.tipoCliente}" title="#{crudbundle.ViewClienteTitle_tipoCliente}"/>
 
-                        <h:outputText value="#{crudbundle.ViewClienteLabel_idPersona}"/>
-                        <h:outputText value="#{clienteManagedBean.selected.idPersona.idPersona}"/>
-
-                        <h:outputText value="#{crudbundle.ViewClienteLabel_idCategorias}"/>
-                        <h:outputText value="#{clienteManagedBean.selected.idCategorias.descripcionCategorias}"/>
+       
+                   
                     </p:panelGrid>
                     <p:commandButton value="#{crudbundle.Close}" onclick="PF('ClienteViewDialog').hide()"/>
                 </h:panelGroup>

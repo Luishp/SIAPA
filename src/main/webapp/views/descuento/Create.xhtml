@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DescuentoCreateDlg" widgetVar="DescuentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{crudbundle.CreateDescuentoTitle}" closeOnEscape="true">
+
+            <h:form id="DescuentoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{descuentoManagedBean.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                       
+                        <p:outputLabel value="#{crudbundle.CreateDescuentoLabel_nombreDescuento}" for="nombreDescuento" />
+                        <p:inputText id="nombreDescuento" value="#{descuentoManagedBean.selected.nombreDescuento}" title="#{crudbundle.CreateDescuentoTitle_nombreDescuento}" required="true" requiredMessage="#{crudbundle.CreateDescuentoRequiredMessage_nombreDescuento}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateDescuentoLabel_descripcionDescuento}" for="descripcionDescuento" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionDescuento" value="#{descuentoManagedBean.selected.descripcionDescuento}" title="#{crudbundle.CreateDescuentoTitle_descripcionDescuento}" required="true" requiredMessage="#{crudbundle.CreateDescuentoRequiredMessage_descripcionDescuento}"/>
+
+                        <p:outputLabel value="#{crudbundle.CreateDescuentoLabel_porcentajeDescuento}" for="porcentajeDescuento" />
+                        <p:inputText id="porcentajeDescuento" value="#{descuentoManagedBean.selected.porcentajeDescuento}" title="#{crudbundle.CreateDescuentoTitle_porcentajeDescuento}" required="true" requiredMessage="#{crudbundle.CreateDescuentoRequiredMessage_porcentajeDescuento}"/>
+
+                      
+
+                     
+                    <p:commandButton actionListener="#{descuentoManagedBean.saveNew}" value="#{crudbundle.Save}" update="display,:DescuentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DescuentoCreateDialog'));">
+                        <p:confirm header="#{crudbundle.ConfirmationHeader}" message="#{crudbundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{crudbundle.Cancel}" onclick="PF('DescuentoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
