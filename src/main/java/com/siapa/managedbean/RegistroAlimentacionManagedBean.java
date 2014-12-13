@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.siapa.managedbean;
 
 import com.siapa.managedbean.generic.GenericManagedBean;
@@ -16,6 +15,7 @@ import com.siapa.service.JaulaService;
 import com.siapa.service.RegistroAlimentacionService;
 import com.siapa.service.generic.GenericService;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -34,8 +34,8 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @Named("registroAlimentacionManagedBean")
 @Scope(WebApplicationContext.SCOPE_SESSION)
-public class RegistroAlimentacionManagedBean extends GenericManagedBean<RegistroAlimentacion, Integer>{
-    
+public class RegistroAlimentacionManagedBean extends GenericManagedBean<RegistroAlimentacion, Integer> {
+
     @Autowired
     @Qualifier(value = "RegistroAlimentacionService")
     private RegistroAlimentacionService registroAlimentacionService;
@@ -46,12 +46,12 @@ public class RegistroAlimentacionManagedBean extends GenericManagedBean<Registro
     @Autowired
     @Qualifier(value = "alimentoService")
     private AlimentoService alimentoService;
-    
+
     private Jaula jaula;
     private Alimento alimento;
     private List<Jaula> jaulas;
     private List<Alimento> alimentos;
-    
+
     @PostConstruct
     public void init() {
         loadLazyModels();
@@ -134,7 +134,7 @@ public class RegistroAlimentacionManagedBean extends GenericManagedBean<Registro
     public LazyDataModel<RegistroAlimentacion> getNewLazyModel() {
         return new RegistroAlimentacionLazyModel(registroAlimentacionService);
     }
-    
+
     public void toCreateRegistroAlimentacion(ActionEvent event) {
         try {
             FacesContext contex = FacesContext.getCurrentInstance();
@@ -146,7 +146,38 @@ public class RegistroAlimentacionManagedBean extends GenericManagedBean<Registro
             //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
         }
     }
-    
+
+    public Boolean UpdateStock() {
+        Boolean isOk;
+        BigDecimal existencia = BigDecimal.ZERO;
+        BigDecimal existenciaActual = alimento.getExistenciaAlimento();
+        Integer id = alimento.getIdAlimento();
+        BigDecimal existenciaNueva;
+        BigDecimal reduccion = registroAlimentacion.getCantidadRegistroAlimentacion();
+
+        if (existenciaActual.compareTo(reduccion) == -1) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("El inventario no es suficiente"));
+            isOk = false;
+        } else {
+            existenciaNueva = existenciaActual.subtract(reduccion);
+            Alimento newAlimento = getAlimento();
+            Alimento idAlimento = registroAlimentacion.getIdAlimento();
+            Alimento cactual = alimentoService.findById(idAlimento.getIdAlimento());
+            existencia = cactual.getExistenciaAlimento().subtract(reduccion);
+            newAlimento.setExistenciaAlimento(existencia);
+            alimentoService.merge(newAlimento);
+            isOk = true;
+            
+        }
+        /* System.out.println("el id es "+id);
+         System.out.println("la existencia es "+existenciaActual);
+         System.out.println("la reduccion es "+reduccion);*/
+        // System.out.println("la nueva existencia es "+existenciaNueva);
+        return isOk;
+
+    }
+
     public void llenar() {
         //System.out.println("punto");
 
@@ -159,15 +190,18 @@ public class RegistroAlimentacionManagedBean extends GenericManagedBean<Registro
         registroAlimentacion.setIdJaula(jaula);
         registroAlimentacion.setIdAlimento(alimento);
         registroAlimentacion.setUsuarioRegistroAlimentacion(getUsuario());
-        registroAlimentacionService.save(registroAlimentacion);
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Insercion completada"));
-        try {
-            FacesContext contex = FacesContext.getCurrentInstance();
-            contex.getExternalContext().redirect("/siapa/views/registroAlimentacion/index.xhtml");
-        } catch (IOException ex) {
-            //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+        Boolean validar = UpdateStock();
+        if (validar) {
+            registroAlimentacionService.save(registroAlimentacion);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Insercion completada"));
+            try {
+                FacesContext contex = FacesContext.getCurrentInstance();
+                contex.getExternalContext().redirect("/siapa/views/registroAlimentacion/index.xhtml");
+            } catch (IOException ex) {
+                //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+            }
         }
     }
-    
+
 }

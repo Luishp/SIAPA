@@ -13,6 +13,7 @@ import com.siapa.service.JaulaService;
 import com.siapa.service.RegistroMortalidadService;
 import com.siapa.service.generic.GenericService;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -113,6 +114,30 @@ public class RegistroMortalidadManagedBean extends GenericManagedBean<RegistroMo
         }
     }
 
+    public Boolean updateStoc() {
+        Boolean isOk;
+        Integer existencia = 0;
+        Integer existenciaActual = jaula.getVentaJaula();
+        BigDecimal cantActual = new BigDecimal(existenciaActual);
+        BigDecimal reduccion = registroMortalidad.getCantidadRegistroMortalidad();
+        int reducc = reduccion.intValue();
+        if (cantActual.compareTo(reduccion) == -1) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("No contiene existencias del producto"));
+            isOk = false;
+        } else {
+            Jaula newJaula = getJaula();
+            Jaula idJaula = registroMortalidad.getIdJaula();
+            Jaula cactual = jaulaService.findById(idJaula.getIdJaula());
+            existencia = cactual.getVentaJaula() - reducc;
+            newJaula.setVentaJaula(existencia);
+            jaulaService.merge(newJaula);
+            isOk = true;
+        }
+
+        return isOk;
+    }
+
     public void llenar() {
         //System.out.println("punto");
 
@@ -124,14 +149,17 @@ public class RegistroMortalidadManagedBean extends GenericManagedBean<RegistroMo
         RegistroMortalidad registroMortalidad = getRegistroMortalidad();
         registroMortalidad.setIdJaula(jaula);
         registroMortalidad.setUsuarioRegistroMortalidad(getUsuario());
-        registroMortalidadService.save(registroMortalidad);
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Insercion realizada"));
-        try {
-            FacesContext contex = FacesContext.getCurrentInstance();
-            contex.getExternalContext().redirect("/siapa/views/registroMortalidad/index.xhtml");
-        } catch (IOException ex) {
-            //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+        Boolean validar = updateStoc();
+        if (validar) {
+            registroMortalidadService.save(registroMortalidad);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Insercion realizada"));
+            try {
+                FacesContext contex = FacesContext.getCurrentInstance();
+                contex.getExternalContext().redirect("/siapa/views/registroMortalidad/index.xhtml");
+            } catch (IOException ex) {
+                //   log.error("Error al rederigir a la pagina de asesoria", null, ex);
+            }
         }
 
     }
